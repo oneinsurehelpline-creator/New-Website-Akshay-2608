@@ -1,0 +1,483 @@
+<!-- ============ HERO ============ -->
+<section class="hero section" id="top">
+    <div class="container hero__inner text-center">
+
+        <nav aria-label="breadcrumb" class="reveal-up">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                <span class="sep">/</span>
+                <li class="breadcrumb-item"><a routerLink="/" fragment="products">Products</a></li>
+                <span class="sep">/</span>
+                <li class="breadcrumb-item active" aria-current="page"><span class="here">Motor Insurance</span></li>
+            </ol>
+        </nav>
+
+        <div class="hero__chip">
+            <span class="dot"></span>
+            2-minute online quote · Instant policy · Cashless garages
+        </div>
+
+        <h1 class="hero__h1">
+            Your car. Your bike. Protected the moment<br />
+            something <em>goes wrong.</em>
+        </h1>
+
+        <p class="hero__sub">
+            Motor insurance pays when it matters — from a parking scratch to a highway total loss. Quote in 2 minutes,
+            policy issued instantly.
+        </p>
+
+        <div class="hero__cta">
+            <a class="btn btn--orange btn--big" href="#quote" (click)="$event.preventDefault(); scrollTo('quote')">Get
+                my quote →</a>
+            <a class="btn btn--outline btn--big" href="#videos"
+                (click)="$event.preventDefault(); scrollTo('videos')">Watch how it works</a>
+        </div>
+
+        <div class="hero__trust">
+            <div class="hero__trust-item" *ngFor="let t of trust">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                {{ t }}
+            </div>
+        </div>
+
+        <div class="row g-3 justify-content-center hero__stats">
+            <div class="col-6 col-lg-3" *ngFor="let s of stats">
+                <div class="hstat h-100">
+                    <div class="hstat__num">{{ s.num }}<span>{{ s.sup }}</span></div>
+                    <div class="hstat__lbl">{{ s.lbl }}</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============ SUBNAV ============ -->
+<nav class="subnav" id="subnav">
+    <div class="container subnav__inner">
+        <ul class="subnav__links">
+            <li *ngFor="let s of subnav">
+                <a [class.active]="activeSection === s.id" href="#{{ s.id }}"
+                    (click)="$event.preventDefault(); scrollTo(s.id)">{{ s.label }}</a>
+            </li>
+        </ul>
+        <!-- <a routerLink="/" fragment="consult" class="btn btn--orange subnav__cta">Talk to an advisor</a> -->
+        <a class="btn btn--orange subnav__cta" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
+            target="_blank">Talk to an advisor</a>
+    </div>
+</nav>
+
+<!-- ============ WHY MOTOR ============ -->
+<section class="why section" id="why">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+
+            <div class="col-lg-6">
+                <div class="why__copy reveal-left">
+                    <span class="eyebrow">Why motor insurance</span>
+                    <h2>It's the law — but it's also<br />genuinely <em>good protection.</em></h2>
+                    <p>TP cover is mandatory, but comprehensive does far more — your vehicle, your passengers, and any
+                        third
+                        party. Here's exactly what you get.</p>
+                    <a class="btn btn--blue" href="#quote" (click)="$event.preventDefault(); scrollTo('quote')">Get my
+                        quote
+                        in 2 minutes →</a>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="points reveal-right">
+                    <div class="point" *ngFor="let p of whyPoints; let i = index" [attr.data-delay]="i">
+                        <div class="point__icon" [ngSwitch]="p.icon">
+                            <img *ngSwitchCase="'shield'" src="assets/images/icons/knowledgebase/motor.png" alt=""
+                                loading="lazy">
+                            <img *ngSwitchCase="'wrench'" src="assets/images/icons/general/cashless.png" alt=""
+                                loading="lazy">
+                            <img *ngSwitchCase="'clock'" src="assets/images/icons/knowledgebase/savings.png" alt=""
+                                loading="lazy">
+                            <img *ngSwitchCase="'home'" src="assets/images/icons/knowledgebase/term.png" alt=""
+                                loading="lazy">
+                        </div>
+                        <div>
+                            <div class="point__t">{{ p.title }}</div>
+                            <div class="point__d">{{ p.desc }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============ COVER TYPES ============ -->
+<section class="covertypes section" id="covertypes">
+    <div class="container">
+        <div class="covertypes__head text-center mx-auto reveal">
+            <span class="eyebrow">Three types of cover</span>
+            <h2>Know what you're <span class="accent">buying.</span></h2>
+            <p>Motor policies come in three flavours. Most people should be on comprehensive — but here's exactly what
+                each
+                one covers so you can decide.</p>
+        </div>
+
+        <div class="row g-3 row-cols-1 row-cols-md-3 ctgrid">
+            <div class="col" *ngFor="let c of coverCards">
+                <div class="ctcard h-100">
+                    <div class="ctcard__icon" [ngSwitch]="c.icon">
+                        <img *ngSwitchCase="'shield'" src="assets/images/icons/general/comprehensive-cover.png"
+                            alt="" loading="lazy">
+                        <img *ngSwitchCase="'users'" src="assets/images/icons/general/third-party.png" alt=""
+                            loading="lazy">
+                        <img *ngSwitchCase="'link'" src="assets/images/icons/general/own-damage.png" alt=""
+                            loading="lazy">
+                    </div>
+                    <span class="ctcard__tag" [ngClass]="'ctcard__tag--' + c.tagClass">{{ c.tag }}</span>
+                    <h3>{{ c.title }}</h3>
+                    <p>{{ c.desc }}</p>
+                    <ul class="ctcard__bullets">
+                        <li *ngFor="let b of c.bullets">{{ b }}</li>
+                    </ul>
+                    <button type="button" class="ctcard__cta" (click)="goToQuoteWithCover(c.coverType)">
+                        {{ c.cta }}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ EXPLAINER VIDEOS ============ -->
+<section class="vids section" id="videos">
+    <div class="container">
+        <div class="vids__head text-center mx-auto reveal-up">
+            <span class="eyebrow">Motor insurance, simplified</span>
+            <h2>Watch before you <span class="accent">renew.</span></h2>
+            <p>Seven short videos — IDV, NCB, zero-dep, claims — everything confusing about motor insurance, decoded
+                plainly.</p>
+        </div>
+
+        <div class="vids__viewport">
+            <div class="vids__track" #vidsTrack (scroll)="onVideoScroll()">
+                <article class="vcard" *ngFor="let v of videos">
+                    <a class="vcard__media" [href]="v.url" target="_blank" rel="noopener" [class.has-thumb]="v.thumb"
+                        [style.backgroundImage]="v.thumb ? 'url(' + v.thumb + ')' : null"
+                        (click)="openVideo(v, $event)">
+                        <span class="num">{{ v.num }}</span>
+                        <div class="vcard__play">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"></path>
+                            </svg>
+                        </div>
+                        <span class="vcard__cap">{{ v.cap }}</span>
+                        <span class="dur">{{ v.dur }}</span>
+                    </a>
+                    <div class="vcard__body">
+                        <div class="vcard__topic">{{ v.topic }}</div>
+                        <h4>{{ v.title }}</h4>
+                        <p>{{ v.desc }}</p>
+                        <a class="vcard__cta" [href]="v.url" target="_blank" rel="noopener"
+                            (click)="openVideo(v, $event)">Watch · {{ v.dur }} →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div class="vids__nav">
+            <button type="button" class="vnav-btn" (click)="scrollVideos(-1)" aria-label="Previous">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <span class="vnav-count">{{ videoCount | number: '2.0-0' }} / {{ videos.length | number: '2.0-0' }}</span>
+            <div class="vnav-progress">
+                <div class="vnav-progress__bar" [style.width.%]="videoProgress"></div>
+            </div>
+            <button type="button" class="vnav-btn" (click)="scrollVideos(1)" aria-label="Next">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ============ QUOTE FORM ============ -->
+<section class="quote section" id="quote">
+    <div class="container">
+
+        <div class="quote__head text-center mx-auto reveal">
+            <span class="eyebrow">Get your quote</span>
+            <h2>Two minutes to a price you can <span class="accent">actually buy.</span></h2>
+            <p>Fill in your vehicle details and we'll pull live quotes from top insurers — no sales calls, no follow-up
+                spam.</p>
+        </div>
+
+        <!-- ---- Vehicle quote cards (car / bike) ---- -->
+        <div class="row g-4 justify-content-center qlinks">
+            <div class="col-12 col-md-6 col-lg-5" *ngFor="let ql of quoteLinks">
+                <div class="qlink h-100" [ngClass]="'qlink--' + ql.key">
+                    <div class="qlink__icon" [ngSwitch]="ql.icon">
+                        <svg *ngSwitchCase="'car'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6.5 7h11l2 5H4.5l2-5z" />
+                            <path d="M4 12h16v4H4z" />
+                            <circle cx="7.5" cy="18" r="1.6" />
+                            <circle cx="16.5" cy="18" r="1.6" />
+                        </svg>
+                        <svg *ngSwitchCase="'bike'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="5.5" cy="17" r="3.5" />
+                            <circle cx="18.5" cy="17" r="3.5" />
+                            <path d="M5.5 17l3-6h5l2 3" />
+                            <path d="M8.5 11h4" />
+                            <path d="M15.5 14l1.5-3h2" />
+                        </svg>
+                    </div>
+
+                    <span class="qlink__eyebrow">{{ ql.eyebrow }}</span>
+                    <h3 class="qlink__title">{{ ql.title }}</h3>
+                    <p class="qlink__desc">{{ ql.desc }}</p>
+
+                    <ul class="qlink__features">
+                        <li *ngFor="let f of ql.features">{{ f }}</li>
+                    </ul>
+
+                    <a class="qlink__cta" [href]="ql.url" target="_blank" rel="noopener noreferrer">
+                        {{ ql.cta }}
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <form *ngIf="showQuoteForm" class="qcard" id="qcard" [formGroup]="quoteForm" (ngSubmit)="onQuoteSubmit()"
+            novalidate>
+
+            <!-- vehicle type -->
+            <span class="vtype__label">What are you insuring?</span>
+            <div class="vtype__tabs">
+                <button type="button" class="vtab" *ngFor="let v of vehicleTabs"
+                    [class.active]="qf['vehicleType'].value === v.value" (click)="selectVehicle(v.value)">
+                    <span class="vtab__lbl">{{ v.label }}</span>
+                </button>
+            </div>
+
+            <div class="row g-3 qform">
+
+                <!-- new or renewal -->
+                <div class="col-12 policy-row">
+                    <label>Is this a new policy or a renewal?</label>
+                    <div class="policy-tabs">
+                        <button type="button" class="ptab" *ngFor="let p of policyKindTabs"
+                            [class.active]="qf['policyKind'].value === p.value" (click)="selectPolicyKind(p.value)">
+                            {{ p.label }}
+                        </button>
+                    </div>
+                </div>
+
+                <!-- reg number -->
+                <div class="col-12 qfield" *ngIf="showRegField">
+                    <label>Registration number</label>
+                    <div class="reg-wrap">
+                        <input type="text" formControlName="regNumber" placeholder="MH 01 AB 1234" maxlength="13"
+                            (input)="onRegInput($event)" [class.invalid]="invalid('regNumber')" />
+                    </div>
+                    <small class="form-err" *ngIf="invalid('regNumber')">Please enter your registration number.</small>
+                </div>
+
+                <!-- make -->
+                <div class="col-12 col-sm-6 qfield">
+                    <label>Make</label>
+                    <select formControlName="make" (change)="onMakeChange()" [class.invalid]="invalid('make')">
+                        <option value="">Select brand</option>
+                        <option *ngFor="let m of makeOptions" [value]="m">{{ m }}</option>
+                    </select>
+                    <small class="form-err" *ngIf="invalid('make')">Please select the make.</small>
+                </div>
+
+                <!-- model -->
+                <div class="col-12 col-sm-6 qfield">
+                    <label>Model / Variant</label>
+                    <select formControlName="model" [class.invalid]="invalid('model')">
+                        <option value="">{{ modelOptions.length ? 'Select model' : 'Select make first' }}</option>
+                        <option *ngFor="let m of modelOptions" [value]="m">{{ m }}</option>
+                    </select>
+                    <small class="form-err" *ngIf="invalid('model')">Please select the model.</small>
+                </div>
+
+                <!-- year -->
+                <div class="col-12 col-sm-6 qfield">
+                    <label>Year of manufacture</label>
+                    <select formControlName="year" [class.invalid]="invalid('year')">
+                        <option value="">Select year</option>
+                        <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+                    </select>
+                    <small class="form-err" *ngIf="invalid('year')">Please select the year.</small>
+                </div>
+
+                <!-- fuel -->
+                <div class="col-12 col-sm-6 qfield">
+                    <label>Fuel type</label>
+                    <select formControlName="fuel" [class.invalid]="invalid('fuel')">
+                        <option value="">Select fuel</option>
+                        <option *ngFor="let f of fuelTypes" [value]="f">{{ f }}</option>
+                    </select>
+                    <small class="form-err" *ngIf="invalid('fuel')">Please select the fuel type.</small>
+                </div>
+
+                <!-- divider -->
+                <div class="col-12 qdivider"><span>Your details</span></div>
+
+                <!-- mobile -->
+                <div class="col-12 col-sm-6 qfield">
+                    <label>Mobile number</label>
+                    <input type="tel" formControlName="mobile" placeholder="98765 43210" maxlength="10"
+                        [class.invalid]="invalid('mobile')" />
+                    <small class="form-err" *ngIf="invalid('mobile')">Enter a valid 10-digit mobile number.</small>
+                </div>
+
+                <!-- city -->
+                <div class="col-12 col-sm-6 qfield">
+                    <label>City of registration</label>
+                    <select formControlName="city" [class.invalid]="invalid('city')">
+                        <option value="">Select city</option>
+                        <option *ngFor="let c of cities" [value]="c">{{ c }}</option>
+                    </select>
+                    <small class="form-err" *ngIf="invalid('city')">Please select your city.</small>
+                </div>
+
+                <!-- divider -->
+                <div class="col-12 qdivider"><span>Cover type</span></div>
+
+                <!-- cover type -->
+                <div class="col-12 policy-row">
+                    <label>What cover do you need?</label>
+                    <div class="policy-tabs">
+                        <button type="button" class="ptab" *ngFor="let c of coverTabs"
+                            [class.active]="qf['coverType'].value === c.value" (click)="selectCover(c.value)">
+                            {{ c.label }}
+                        </button>
+                    </div>
+                </div>
+
+                <!-- submit -->
+                <div class="col-12 qsubmit">
+                    <button class="qsubmit-btn" type="submit" [disabled]="submitting">
+                        <svg *ngIf="!submitting" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        {{ submitting ? 'Getting your quotes…' : 'See quotes from top insurers →' }}
+                    </button>
+
+                    <div class="form-err form-err--server" *ngIf="quotesError">{{ quotesError }}</div>
+
+                    <div class="qsubmit-note">
+                        <span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                            No spam, ever
+                        </span>
+                        <span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            Instant policy issuance
+                        </span>
+                        <span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            Prices same as insurer's website
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+        <!-- ---- RESULTS: top insurers ---- -->
+        <div class="qresults" id="quote-results" *ngIf="quotesReady">
+            <div class="qresults__head text-center">
+                <span class="eyebrow">Your quotes</span>
+                <h3 *ngIf="quotes.length">Top insurers for your <span class="accent">{{ qf['make'].value }}
+                        {{ qf['model'].value }}</span></h3>
+                <h3 *ngIf="!quotes.length">No quotes came back</h3>
+                <p *ngIf="!quotes.length">We couldn't find matching quotes. Please review your details and try again, or
+                    talk
+                    to an advisor.</p>
+            </div>
+
+            <div class="row g-3" *ngIf="quotes.length">
+                <div class="col-12 col-lg-6" *ngFor="let q of quotes; trackBy: trackByInsurer">
+                    <div class="qquote h-100" [class.qquote--rec]="q.recommended">
+                        <span class="qquote__badge" *ngIf="q.badge">{{ q.badge }}</span>
+                        <div class="qquote__top">
+                            <div class="qquote__logo" [style.background]="q.logoColor">
+                                <img *ngIf="q.logoImg" [src]="q.logoImg" [alt]="q.insurer" />
+                                <span *ngIf="!q.logoImg">{{ q.logo }}</span>
+                            </div>
+                            <div>
+                                <div class="qquote__insurer">{{ q.insurer }}</div>
+                                <div class="qquote__plan">{{ q.plan }}</div>
+                            </div>
+                        </div>
+
+                        <div class="qquote__figures">
+                            <div>
+                                <div class="qquote__num">{{ inr(q.premium) }}<span>/yr</span></div>
+                                <div class="qquote__lbl">Premium</div>
+                            </div>
+                            <div>
+                                <div class="qquote__num">{{ inr(q.idv) }}</div>
+                                <div class="qquote__lbl">IDV</div>
+                            </div>
+                        </div>
+
+                        <ul class="qquote__features">
+                            <li *ngFor="let f of q.features">{{ f }}</li>
+                        </ul>
+
+                        <button type="button" class="btn btn--orange qquote__cta">Buy this plan →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============ FOOTER CTA ============ -->
+<section class="pagefoot section">
+    <div class="container text-center">
+        <span class="eyebrow">Need help choosing?</span>
+        <h3>Not sure about add-ons or IDV?<br />Call us — it takes five minutes.</h3>
+        <p>Our advisors will help you pick the right cover, the right add-ons, and the right insurer for your vehicle
+            and
+            driving pattern.</p>
+        <!-- <a class="btn btn--orange btn--big" routerLink="/" fragment="consult">Talk to an advisor →</a> -->
+        <a class="btn btn--orange btn--big" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
+            target="_blank">Talk to an advisor →</a>
+    </div>
+</section>

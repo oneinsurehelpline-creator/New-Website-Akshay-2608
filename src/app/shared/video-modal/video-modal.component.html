@@ -1,0 +1,10 @@
+<div class="vmodal" *ngIf="state" (click)="onBackdrop($event)">
+    <div class="vmodal__panel" role="dialog" aria-modal="true" [attr.aria-label]="state.title || 'Video'">
+        <button class="vmodal__close" (click)="close()" aria-label="Close">&times;</button>
+        <div class="vmodal__frame">
+            <iframe *ngIf="embedUrl" [src]="embedUrl" title="Video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+</div>

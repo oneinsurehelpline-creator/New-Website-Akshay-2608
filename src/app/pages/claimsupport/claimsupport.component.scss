@@ -1,0 +1,1647 @@
+/* =============================================================
+   claimsupport.component.scss 
+   ============================================================= */ 
+:host {
+    display: block;
+
+    --navy: #00243E;
+    /* deep brand navy used for bands / active chips */
+    --c-blue-deep: #0096DB;
+    /* deeper blue used for icons & accents      */
+    --blue-tint: #EBF8FF;
+    --blue-faint: #F4FBFF;
+
+    --amber: var(--orange);
+    /* #F5A011 — shared with the global token       */
+    --amber-deep: #D4880A;
+    --amber-tint: #FFF4DD;
+
+    --ink: #0F1D2E;
+    --ink-soft: #3A4A5E;
+    --ink-mute: #6B7A8A;
+
+    --line-soft: #EEF3F8;
+    --bg-soft: #F8FBFD;
+    --ok: #1F9D55;
+    --radius-lg: 20px;
+}
+
+/* ---- Section background variants ----------------------------- */
+.section--muted {
+    background: var(--bg-soft);
+}
+
+/* Centered section heading block (matches the About/Careers rhythm) */
+.section__head {
+    max-width: 760px;
+    margin: 0 auto 52px;
+    text-align: center;
+
+    h2 {
+        font-size: clamp(28px, 3.6vw, 40px);
+        margin-top: 14px;
+        letter-spacing: -1.2px;
+    }
+}
+
+.lead {
+    font: 400 16px/1.6 var(--sans);
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin: 14px auto 0;
+}
+
+
+/* ============================================================
+   SECTION 1 — SAHAY HERO
+   ============================================================ */
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding-top: clamp(110px, 12vw, 150px);
+    border-bottom: 1px solid var(--line-soft);
+    background:
+        radial-gradient(900px 500px at 12% 100%, rgba(0, 176, 255, .10) 0%, transparent 60%),
+        radial-gradient(700px 400px at 92% 0%, rgba(245, 160, 17, .08) 0%, transparent 60%),
+        var(--blue-faint);
+
+    h1 {
+        font-size: clamp(36px, 5vw, 56px);
+        line-height: 1.05;
+        letter-spacing: -1.8px;
+        margin-bottom: 18px;
+
+        .accent {
+            color: var(--c-blue-deep);
+        }
+    }
+
+    p {
+        font-size: 17px;
+        color: var(--ink-soft);
+        line-height: 1.65;
+        max-width: 520px;
+        margin-bottom: 30px;
+    }
+}
+
+.hero__cta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.hero__trust {
+    margin-top: 34px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    color: var(--ink-mute);
+    font: 600 12px var(--sans);
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+
+    span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    svg {
+        color: var(--c-blue-deep);
+    }
+}
+
+/* Sahay chat card */
+.sahay-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 28px 28px 26px;
+    max-width: 520px;
+    margin-left: auto;
+}
+
+.sahay-card__head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line-soft);
+}
+
+.sahay-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00B0FF, #0072B5);
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font: 800 18px var(--display);
+    flex-shrink: 0;
+}
+
+.sahay-card__name {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--navy);
+}
+
+.sahay-card__role {
+    font-size: 12px;
+    color: var(--ink-mute);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+
+    &::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--ok);
+        box-shadow: 0 0 0 3px rgba(31, 157, 85, .18);
+    }
+}
+
+.sahay-msgs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 22px 0 6px;
+}
+
+.sahay-msg {
+    align-self: flex-start;
+    background: var(--blue-tint);
+    color: var(--navy);
+    padding: 11px 15px;
+    border-radius: 14px 14px 14px 4px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    max-width: 88%;
+
+    &--user {
+        align-self: flex-end;
+        background: var(--navy);
+        color: #fff;
+        border-radius: 14px 14px 4px 14px;
+    }
+}
+
+.sahay-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.sahay-chip {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid var(--line);
+    font: 600 12px var(--sans);
+    color: var(--navy);
+    transition: all .2s var(--ease);
+
+    &:hover {
+        border-color: var(--blue);
+        color: var(--c-blue-deep);
+        cursor: pointer;
+    }
+}
+
+.typing {
+    display: inline-flex;
+    gap: 4px;
+    padding: 13px 14px;
+    background: var(--blue-tint);
+    border-radius: 14px 14px 14px 4px;
+    align-self: flex-start;
+
+    span {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--c-blue-deep);
+        opacity: .5;
+        animation: bounce 1.2s var(--ease) infinite;
+
+        &:nth-child(2) {
+            animation-delay: .18s;
+        }
+
+        &:nth-child(3) {
+            animation-delay: .36s;
+        }
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: translateY(0);
+        opacity: .4;
+    }
+
+    40% {
+        transform: translateY(-5px);
+        opacity: 1;
+    }
+}
+
+/* ============================================================
+   SECTION 2 — TRACK YOUR CLAIM
+   ============================================================ */
+.track {
+    background: var(--navy);
+    color: #fff;
+    padding-top: clamp(110px, 12vw, 150px);
+    position: relative;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    &::before {
+        width: 340px;
+        height: 340px;
+        background: rgba(0, 176, 255, .06);
+        top: -120px;
+        left: -100px;
+    }
+
+    &::after {
+        width: 420px;
+        height: 420px;
+        background: rgba(245, 160, 17, .05);
+        bottom: -180px;
+        right: -140px;
+    }
+}
+
+.track__inner {
+    position: relative;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+
+    h2 {
+        color: #fff;
+        font-size: clamp(26px, 3.4vw, 34px);
+        margin-bottom: 12px;
+    }
+
+    p {
+        color: rgba(255, 255, 255, .72);
+        font-size: 15.5px;
+        margin-bottom: 28px;
+    }
+}
+
+.track__form {
+    display: flex;
+    gap: 10px;
+    background: rgba(255, 255, 255, .06);
+    padding: 8px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    max-width: 560px;
+    margin: 0 auto 14px;
+
+    input {
+        flex: 1;
+        background: transparent;
+        border: 0;
+        outline: 0;
+        padding: 0 16px;
+        height: 54px;
+        color: #fff;
+        font: 500 15px var(--sans);
+        letter-spacing: .3px;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, .45);
+        }
+    }
+
+    .btn {
+        height: 54px;
+        padding: 0 26px;
+    }
+}
+
+.track__help {
+    font: 500 12.5px var(--sans);
+    color: rgba(255, 255, 255, .55);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ============================================================
+   SECTION 3 — HOW TO FILE A CLAIM
+   ============================================================ */
+
+.fileclaim {
+    padding-top: clamp(110px, 12vw, 150px);
+    position: relative;
+    overflow: hidden;
+}
+
+.steps {
+    position: relative;
+
+    /* dashed connector behind the circles (desktop only) */
+    &::before {
+        content: "";
+        position: absolute;
+        left: 12%;
+        right: 12%;
+        top: 48px;
+        height: 2px;
+        background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 16px);
+        z-index: 0;
+    }
+}
+
+.step {
+    position: relative;
+    text-align: center;
+    padding: 0 14px;
+    z-index: 1;
+
+    h3 {
+        margin-bottom: 6px;
+        font-size: 18px;
+    }
+
+    p {
+        color: var(--ink-soft);
+        font-size: 13.5px;
+        line-height: 1.6;
+        max-width: 240px;
+        margin: 0 auto;
+    }
+
+    &:hover .step__num {
+        border-color: var(--blue);
+        transform: translateY(-3px);
+    }
+}
+
+.step__num {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--blue-tint);
+    display: grid;
+    place-items: center;
+    margin: 0 auto 22px;
+    position: relative;
+    transition: all .25s var(--ease);
+
+    svg {
+        color: var(--c-blue-deep);
+        width: 36px;
+        height: 36px;
+    }
+
+    &::after {
+        content: attr(data-n);
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--amber);
+        color: #1a0e00;
+        display: grid;
+        place-items: center;
+        font: 800 12px var(--sans);
+    }
+}
+
+/* ============================================================
+   SECTION 4 — TYPES OF CLAIMS
+   ============================================================ */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    background: var(--bg-soft);
+    padding: 6px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    max-width: 840px;
+    margin: 0 auto 48px;
+    flex-wrap: wrap;
+}
+
+.tab {
+    flex: 1;
+    min-width: 130px;
+    padding: 14px 14px;
+    border-radius: 10px;
+    font: 700 13.5px var(--sans);
+    letter-spacing: .4px;
+    color: var(--ink-soft);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all .2s var(--ease);
+    text-transform: uppercase;
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    &:hover {
+        color: var(--navy);
+    }
+
+    &.is-active {
+        background: var(--navy);
+        color: #fff;
+    }
+}
+
+.tab-panel {
+    display: none;
+
+    &.is-active {
+        display: block;
+        animation: fadeIn .3s var(--ease);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.claim-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: border-color .2s var(--ease), transform .2s var(--ease);
+
+    &:hover {
+        border-color: var(--blue);
+        transform: translateY(-3px);
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin: 4px 0 6px;
+        padding: 0;
+
+        li {
+            position: relative;
+            padding-left: 22px;
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: var(--ink-soft);
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 7px;
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                background: var(--amber-tint);
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 4px;
+                top: 11px;
+                width: 6px;
+                height: 3px;
+                border-left: 2px solid var(--amber-deep);
+                border-bottom: 2px solid var(--amber-deep);
+                transform: rotate(-45deg);
+            }
+        }
+    }
+}
+
+.claim-card__icon {
+    width: 56px;
+    height: 56px;
+    color: var(--c-blue-deep);
+    display: grid;
+    place-items: center;
+    margin-bottom: 16px;
+
+    svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    img {
+        width: 150%;
+        height: 150%;
+        max-width: 150%;
+        object-fit: contain;
+        filter: drop-shadow(0 4px 10px rgba(13, 43, 85, .14));
+    }
+}
+
+.claim-card__title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--navy);
+    letter-spacing: -.3px;
+    line-height: 1.25;
+}
+
+.claim-card__sub {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-mute);
+}
+
+.claim-card__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 8px;
+}
+
+/* ============================================================
+   SECTION 5 — DOCUMENTS CHECKLIST
+   ============================================================ */
+.docs {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 8px;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.docs__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--bg-soft);
+    border-radius: 14px;
+    padding: 10px;
+    height: 100%;
+}
+
+.doc-tab {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    font: 700 14px var(--sans);
+    color: var(--navy);
+    text-align: left;
+    transition: all .2s var(--ease);
+
+    svg {
+        width: 18px;
+        height: 18px;
+        color: var(--ink-mute);
+    }
+
+    &:hover {
+        background: #fff;
+    }
+
+    &.is-active {
+        background: var(--navy);
+        color: #fff;
+
+        svg {
+            color: var(--blue);
+        }
+
+        .doc-tab__count {
+            background: rgba(255, 255, 255, .14);
+            color: #fff;
+        }
+    }
+}
+
+.doc-tab__count {
+    margin-left: auto;
+    font: 700 11px var(--sans);
+    background: rgba(0, 0, 0, .06);
+    padding: 3px 8px;
+    border-radius: 999px;
+    color: var(--ink-mute);
+}
+
+.docs__panel {
+    padding: 24px 28px;
+    display: none;
+
+    &.is-active {
+        display: block;
+    }
+
+    h3 {
+        margin-bottom: 6px;
+    }
+
+    .sub {
+        color: var(--ink-mute);
+        font-size: 13.5px;
+        margin-bottom: 22px;
+    }
+}
+
+.docs__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 24px;
+    margin-bottom: 24px;
+
+    label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid var(--line-soft);
+        font-size: 13.5px;
+        color: var(--ink-soft);
+    }
+
+    /* the underlying input was always hidden */
+    input {
+        display: none;
+    }
+
+    /* ── REQUESTED: hide the tick-box for now, keep the markup ── */
+    .check {
+        display: none;
+    }
+}
+
+/* ── REQUESTED: hide the PDF download for now, keep the markup ── */
+.docs__download {
+    display: none;
+}
+
+/* ============================================================
+   SECTION 6 — CLAIM TIMELINE
+   ============================================================ */
+.timeline {
+    position: relative;
+    margin-bottom: 24px;
+
+    /* progress line that "flows" along the journey */
+    &::before {
+        content: "";
+        position: absolute;
+        left: 10%;
+        right: 10%; 
+        top: calc(1.5rem + 32px);
+        height: 2px;
+        background: linear-gradient(90deg, var(--blue) 0%, var(--blue) 50%, var(--line) 50%, var(--line) 100%);
+        background-size: 200% 100%; 
+        background-position: 200% 0;
+        animation: flow 14s linear infinite;
+    }
+}
+
+@keyframes flow {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: 0% 0;
+    }
+}
+
+.tl-stage {
+    position: relative;
+    padding: 0 12px;
+    text-align: center;
+
+    h4 {
+        margin-bottom: 4px;
+        font-size: 14.5px;
+    }
+
+    p {
+        font-size: 12.5px;
+        color: var(--ink-mute);
+        line-height: 1.5;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    &:hover .tl-dot {
+        border-color: var(--blue);
+        transform: scale(1.05);
+    }
+}
+
+.tl-dot {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--line);
+    margin: 0 auto 16px;
+    display: grid;
+    place-items: center;
+    color: var(--c-blue-deep);
+    position: relative;
+    transition: all .2s var(--ease);
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    &::after {
+        content: attr(data-n);
+        position: absolute;
+        bottom: -4px;
+        right: -4px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--navy);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font: 800 10px var(--sans);
+        border: 2px solid #fff;
+    }
+}
+
+.tl-stage__time {
+    display: inline-block;
+    margin-top: 6px;
+    font: 700 10.5px var(--sans);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--blue-deep);
+}
+
+.tl-note {
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-mute);
+    background: var(--blue-faint);
+    border: 1px solid var(--blue-tint);
+    padding: 14px 20px;
+    border-radius: 10px;
+    max-width: 720px;
+    margin: 32px auto 0;
+
+    a {
+        font-weight: 700;
+    }
+}
+
+/* ============================================================
+   SECTION 7 — ESCALATIONS & GRIEVANCES
+   ============================================================ */
+.esc {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 760px;
+    margin: 0 auto 36px;
+}
+
+.esc-step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 22px;
+    align-items: flex-start;
+    padding: 22px 24px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+
+    h3 {
+        margin-bottom: 6px;
+        font-size: 18px;
+    }
+
+    p {
+        color: var(--ink-soft);
+        font-size: 14px;
+        line-height: 1.6;
+    }
+}
+
+.esc-step__num {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--navy);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.esc__ctas {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ============================================================
+   SECTION 8 — TALK TO A CLAIMS EXPERT
+   ============================================================ */
+.contact-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: all .2s var(--ease);
+
+    &:hover {
+        border-color: var(--blue);
+        transform: translateY(-3px);
+    }
+
+    h3 {
+        margin-bottom: 0;
+    }
+
+    .big {
+        font-family: var(--display);
+        font-weight: 800;
+        font-size: 24px;
+        color: var(--navy);
+        letter-spacing: -.5px;
+        text-decoration: none;
+
+        &:hover {
+            color: var(--c-blue-deep);
+        }
+    }
+
+    .meta {
+        font-size: 13px;
+        color: var(--ink-mute);
+        line-height: 1.55;
+    }
+
+    .note {
+        font-size: 12.5px;
+        color: var(--ink-mute);
+        background: var(--bg-soft);
+        padding: 10px 12px;
+        border-radius: 8px;
+        border-left: 3px solid var(--blue);
+    }
+}
+
+.contact-card__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--blue-tint);
+    color: var(--c-blue-deep);
+    display: grid;
+    place-items: center;
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* ============================================================
+   SECTION 9 — FAQs
+   ============================================================ */
+.faqs {
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.faq {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color .2s var(--ease);
+
+    &.is-open {
+        border-color: var(--blue);
+
+        .faq__icon {
+            background: var(--blue);
+            color: #fff;
+            transform: rotate(45deg);
+        }
+
+        .faq__a {
+            max-height: 320px;
+        }
+    }
+}
+
+.faq__q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    padding: 20px 22px;
+    font: 700 14.5px var(--sans);
+    color: var(--navy);
+    text-align: left;
+    transition: background .2s var(--ease);
+
+    &:hover {
+        background: var(--blue-faint);
+    }
+}
+
+.faq__icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--blue-tint);
+    color: var(--c-blue-deep);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    transition: transform .25s var(--ease), background .2s var(--ease);
+}
+
+.faq__a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s var(--ease);
+}
+
+.faq__a-inner {
+    padding: 0 22px 22px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+}
+
+/* ============================================================
+   Floating Sahay chat bubble
+   ============================================================ */
+.sahay-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 60;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 22px 14px 16px;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 999px;
+    font: 700 13.5px var(--sans);
+    letter-spacing: .2px;
+    box-shadow: 0 14px 36px -10px rgba(0, 176, 255, .55), 0 0 0 6px rgba(0, 176, 255, .12);
+    transition: transform .25s var(--ease), background .2s var(--ease);
+    animation: fabIn .6s var(--ease) .4s both;
+    cursor: pointer;
+
+    &:hover {
+        background: var(--c-blue-deep);
+        transform: translateY(-3px);
+        color: #fff;
+    }
+}
+
+@keyframes fabIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.sahay-fab__avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--c-blue-deep);
+    display: grid;
+    place-items: center;
+    font: 800 14px var(--display);
+    position: relative;
+    flex-shrink: 0;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        right: -2px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--amber);
+        border: 2px solid var(--blue);
+    }
+}
+
+
+/* ============================================================
+   TEMPORARILY HIDDEN — markup kept, hidden for now.
+   Remove these rules to restore each element.
+   ============================================================ */
+
+/* Section 1,2 — Sahay hero and track */
+#sahay-hero,
+#track {
+    display: none;
+}
+
+/* Floating Sahay chat bubble */
+.sahay-fab {
+    display: none;
+}
+
+/* Section 7 — "Find Your Ombudsman" button */
+.esc__ctas .btn--ghost {
+    display: none;
+}
+
+/* ============================================================
+   GRIEVANCE REDRESSAL MODAL (ported from footer component)
+   ============================================================ */
+.grv {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(8, 20, 40, .65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    animation: grvFade .2s ease both;
+}
+
+@keyframes grvFade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.grv__panel {
+    background: #fff;
+    border-radius: 20px;
+    max-width: 460px;
+    width: 100%;
+    padding: 36px 40px;
+    position: relative;
+    box-shadow: 0 24px 80px rgba(8, 20, 40, .3);
+    animation: grvPop .28s cubic-bezier(.34, 1.4, .64, 1) both;
+}
+
+@keyframes grvPop {
+    from {
+        transform: translateY(14px) scale(.97);
+        opacity: 0;
+    }
+
+    to {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+.grv__close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    color: #888;
+    font-size: 24px;
+    line-height: 32px;
+    border-radius: 8px;
+    transition: all .2s ease;
+}
+
+.grv__close:hover {
+    background: #f1f3f5;
+    color: #0d2b55;
+}
+
+.grv__head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.grv__icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #0d2b55;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.grv__head h3 {
+    font: 800 18px/1.1 var(--display);
+    color: #0d2b55;
+    margin: 0 0 4px;
+}
+
+.grv__head p {
+    font: 400 12px/1 var(--sans);
+    color: #888;
+    margin: 0;
+}
+
+.grv__lede {
+    font: 400 13.5px/1.6 var(--sans);
+    color: #555;
+    margin: 0 0 20px;
+}
+
+.grv__channels {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.grv__ch {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border: 1.5px solid #e5eaf0;
+    border-radius: 12px;
+    color: #0d2b55;
+    transition: border-color .2s ease, transform .2s ease;
+}
+
+.grv__ch:hover {
+    border-color: #0d2b55;
+    transform: translateY(-1px);
+}
+
+.grv__ch span {
+    display: flex;
+    flex-direction: column;
+}
+
+.grv__ch b {
+    font: 700 13px/1.2 var(--sans);
+    margin-bottom: 3px;
+}
+
+.grv__ch i {
+    font: 400 12.5px/1.2 var(--sans);
+    color: #666;
+    font-style: normal;
+}
+
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 768px) {
+
+    /* connector lines only make sense when items sit in a row */
+    .steps::before,
+    .timeline::before {
+        display: none;
+    }
+
+    .docs__list {
+        grid-template-columns: 1fr;
+    }
+
+    .track__form {
+        flex-direction: column;
+        padding: 10px;
+
+        input,
+        .btn {
+            width: 100%;
+            height: 50px;
+        }
+    }
+
+    .sahay-fab .label {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .grv__panel {
+        padding: 28px 22px;
+    }
+}
+
+/* ============================================================
+   FILE-A-CLAIM MODAL 
+   ============================================================ */
+.cs-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1001;
+    display: none;
+
+    &.open {
+        display: block;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 18, 30, .55);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        animation: csFade .25s var(--ease);
+    }
+
+    &__panel {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: min(700px, calc(100vw - 36px));
+        max-height: calc(100vh - 44px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        background: #fff;
+        border-radius: 22px;
+        padding: 32px 34px 30px;
+        box-shadow: 0 50px 100px -30px rgba(0, 18, 30, .6);
+        animation: csPop .32s var(--ease);
+    }
+
+    &__close {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: var(--g100);
+        color: var(--g600);
+        border: none;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        transition: background .2s, color .2s;
+
+        &:hover {
+            background: var(--line);
+            color: var(--blue-deep);
+        }
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    &__head {
+        margin-bottom: 22px;
+        padding-right: 36px;
+
+        .eyebrow {
+            margin-bottom: 12px;
+        }
+
+        h3 {
+            font-size: clamp(22px, 2.6vw, 28px);
+            letter-spacing: -.6px;
+            line-height: 1.12;
+        }
+
+        p {
+            color: var(--g600);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 8px;
+        }
+    }
+
+    &__success {
+        text-align: center;
+        padding: 14px 8px 8px;
+        animation: csFade .3s var(--ease);
+
+        .tick {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            margin: 0 auto 22px;
+            background: linear-gradient(150deg, #10B981, #059669);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 16px 36px -12px rgba(5, 150, 105, .5);
+
+            svg {
+                width: 34px;
+                height: 34px;
+            }
+        }
+
+        h3 {
+            font-size: 24px;
+            letter-spacing: -.6px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            color: var(--g600);
+            font-size: 14.5px;
+            line-height: 1.6;
+            max-width: 420px;
+            margin: 0 auto 24px;
+        }
+    }
+}
+
+@keyframes csFade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes csPop {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -46%) scale(.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* ---- Claim form fields ---- */
+.claim-form {
+    .form-field {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        label {
+            font: 700 11px/1.2 var(--sans);
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            color: var(--g600);
+            margin-bottom: 2px;
+
+            .req {
+                color: var(--amber-deep);
+                margin-left: 2px;
+            }
+
+            .opt {
+                color: var(--g500);
+                font-weight: 600;
+                text-transform: none;
+                letter-spacing: 0;
+            }
+        }
+
+        input,
+        select,
+        textarea {
+            background: var(--warm);
+            border: 1px solid var(--line);
+            border-radius: 11px;
+            padding: 13px 15px;
+            font: 500 14px/1.5 var(--sans);
+            color: var(--blue-deep);
+            outline: none;
+            width: 100%;
+            transition: all .25s var(--ease);
+        }
+
+        input, select {
+            height: 48px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 104px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--orange);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(245, 160, 17, .12);
+        }
+
+        input.invalid,
+        input.invalid,
+        textarea.invalid {
+            border-color: #e5484d;
+            background: #fff;
+
+            &:focus {
+                box-shadow: 0 0 0 4px rgba(229, 72, 77, .12);
+            }
+        }
+    }
+
+    /* Little uppercase section divider (Basic Details / Insurance Type / …) */
+    &__divider {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 8px;
+        font: 700 11px/1 var(--sans);
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--c-blue-deep);
+
+        &::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--line);
+        }
+    }
+
+    &__divider:first-child {
+        margin-top: 0;
+    }
+
+    &__submit {
+        width: 100%;
+        justify-content: center;
+        margin-top: 6px;
+    }
+
+    &__note {
+        font: 500 11.5px/1.55 var(--sans);
+        color: var(--g500);
+        text-align: center;
+        margin-top: 12px;
+    }
+}
+
+.form-err {
+    color: #e5484d;
+    font: 600 11.5px/1.4 var(--sans);
+
+    &--server {
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+
+/* ---- Segmented / pill radio groups (Yes-No, insurance type, insurer, claim type) ---- */
+.cs-seg {
+    display: inline-flex;
+    gap: 6px;
+    background: var(--warm);
+    padding: 5px;
+    border-radius: 11px;
+    border: 1px solid var(--line);
+    flex-wrap: wrap;
+
+    &--wrap {
+        display: flex;
+    }
+
+    label {
+        position: relative;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    span {
+        display: block;
+        padding: 9px 18px;
+        border-radius: 8px;
+        font: 600 13px/1 var(--sans);
+        color: var(--g600);
+        transition: all .18s var(--ease);
+    }
+
+    input:checked+span {
+        background: var(--blue-deep);
+        color: #fff;
+        box-shadow: 0 4px 12px -4px rgba(13, 43, 85, .4);
+    }
+
+    input:focus-visible+span {
+        box-shadow: 0 0 0 3px rgba(0, 176, 255, .25);
+    }
+}
+
+/* ---- Declaration checkbox row ---- */
+.cs-declaration {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    font: 500 13px/1.55 var(--sans);
+    color: var(--ink-soft);
+
+    input {
+        margin-top: 2px;
+        width: 17px;
+        height: 17px;
+        accent-color: var(--blue);
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+
+    &.invalid {
+        color: #e5484d;
+    }
+}
+
+@media (max-width: 575px) {
+    .cs-modal__panel {
+        padding: 26px 20px 24px;
+    }
+
+    .claim-form .cs-seg span {
+        padding: 9px 14px;
+    }
+}

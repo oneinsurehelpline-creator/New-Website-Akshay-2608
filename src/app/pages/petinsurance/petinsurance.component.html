@@ -1,0 +1,150 @@
+<!-- ============ HERO ============ -->
+<section class="plp-hero section" id="top">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="reveal-up">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                <span class="sep">/</span>
+                <li class="breadcrumb-item"><a routerLink="/" fragment="products">Products</a></li>
+                <span class="sep">/</span>
+                <li class="breadcrumb-item active" aria-current="page"><span class="here">Pet Insurance</span>
+                </li>
+            </ol>
+        </nav>
+
+        <div class="row g-5 align-items-center plp-hero__inner">
+            <div class="col-lg-7 plp-hero__copy reveal-left">
+                <h1 class="plp-hero__h1">{{ heroHeadline }}</h1>
+                <p class="plp-hero__sub">{{ heroSub }}</p>
+                <div class="plp-hero__trust">
+                    <span *ngFor="let t of trustPoints">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        {{ t }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-5 reveal-right">
+                <div class="plp-cta-card">
+                    <div class="plp-cta-card__badge">Talk to an advisor</div>
+                    <h3>Schedule a call</h3>
+                    <p>{{ ctaMicrocopy }}</p>
+                    <a class="btn btn--orange btn--big" [href]="scheduleUrl" target="_blank" rel="noopener">
+                        Schedule a Call
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    <div class="plp-cta-card__meta">No spam. No pressure. Just answers.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ TRUST STRIP (reusable) ============ -->
+<section class="plp-strip">
+    <div class="container plp-strip__inner">
+        <span *ngFor="let s of companyTrust">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            {{ s }}
+        </span>
+    </div>
+</section>
+
+<!-- ============ WHAT IT COVERS ============ -->
+<section class="section" id="covers">
+    <div class="container">
+        <div class="section__head reveal-up">
+            <span class="eyebrow">What it covers</span>
+            <h2>What's actually <span class="accent">covered.</span></h2>
+        </div>
+
+        <div class="row g-3 row-cols-1 row-cols-md-2 plp-covers">
+            <div class="col" *ngFor="let c of covers; let i = index">
+                <div class="plp-cover reveal h-100" [attr.data-delay]="(i % 4) + 1">
+                    <div class="plp-cover__ic">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="plp-cover__t">{{ c }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ HOW IT WORKS / WHY IT MATTERS ============ -->
+<section class="section section--neutral" id="why">
+    <div class="container">
+        <div class="section__head reveal-up">
+            <span class="eyebrow">{{ threeUpEyebrow }}</span>
+            <h2 *ngIf="threeUpKind === 'steps'">From diagnosis <span class="accent">to payout.</span></h2>
+            <h2 *ngIf="threeUpKind === 'points'">Why it <span class="accent">matters.</span></h2>
+        </div>
+
+        <div class="row g-4 row-cols-1 row-cols-md-3">
+            <div class="col" *ngFor="let item of threeUp; let i = index">
+                <div class="plp-step reveal-up h-100" [attr.data-delay]="i + 1">
+                    <div class="plp-step__num" *ngIf="item.num">{{ item.num }}</div>
+                    <div class="plp-step__t">{{ item.title }}</div>
+                    <div class="plp-step__d">{{ item.desc }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FAQs ============ -->
+<section class="section" id="faqs">
+    <div class="container">
+        <div class="section__head reveal-up">
+            <span class="eyebrow">Common questions</span>
+            <h2>Frequently asked <span class="accent">questions.</span></h2>
+        </div>
+
+        <div class="plp-faqs">
+            <div class="faq" *ngFor="let item of faqs; let i = index" [class.is-open]="openFaq === i">
+                <button class="faq__q" (click)="toggleFaq(i)">
+                    {{ item.q }}
+                    <span class="faq__icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </span>
+                </button>
+                <div class="faq__a">
+                    <div class="faq__a-inner">{{ item.a }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ CLOSING CTA ============ -->
+<section class="plp-closing">
+    <div class="container text-center reveal-up">
+        <h2>Not sure this is the right cover for you?</h2>
+        <p>That's exactly what a 15-minute call with an advisor is for. No obligation, no hard sell.</p>
+        <a class="btn btn--orange btn--big" [href]="scheduleUrl" target="_blank" rel="noopener">
+            Schedule a Call
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </a>
+    </div>
+</section>

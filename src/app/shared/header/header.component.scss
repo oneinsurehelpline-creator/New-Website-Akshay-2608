@@ -1,0 +1,531 @@
+/* ============================================================
+   HEADER / NAV 
+   ============================================================ */
+
+/* ---- Scroll progress bar ---- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--blue) 0%, var(--orange) 50%, var(--blue) 100%);
+  background-size: 200% 100%;
+  animation: pgGrad 3s linear infinite;
+  box-shadow: 0 0 6px rgba(0, 176, 255, .35);
+  border-radius: 0 2px 2px 0;
+  transition: width .1s linear;
+}
+
+.header_strip {
+  text-align: center;
+  background-color: #e2f5ff;
+  color: var(--g600);
+  font-weight: 500;
+  font-size: 12px;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all .5s ease 0s;
+}
+
+/* ---- Nav bar ---- */
+.nav {
+  height: 88px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, .75);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(13, 43, 85, .08);
+  box-shadow: 0 1px 0 rgba(13, 43, 85, .03);
+  transition: background .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+}
+
+.nav.scrolled {
+  background: rgba(255, 255, 255, .92);
+  backdrop-filter: saturate(200%) blur(24px);
+  -webkit-backdrop-filter: saturate(200%) blur(24px);
+  border-bottom-color: rgba(13, 43, 85, .12);
+  box-shadow: 0 4px 36px rgba(13, 43, 85, .08), 0 1px 0 rgba(13, 43, 85, .04);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  // max-height: 88px;
+
+}
+
+.nav__brand img {
+  height: auto;
+  width: 150px;
+  display: block;
+}
+
+.nav__links {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  >li {
+    position: relative;
+  }
+
+  a.link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    font: 600 13px/1 var(--sans);
+    color: var(--blue-deep);
+    border-radius: 8px;
+    transition: color .2s var(--ease);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 14px;
+      right: 14px;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 1px;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform .35s cubic-bezier(.34, 1.4, .64, 1);
+    }
+
+    &:hover {
+      color: var(--blue);
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+
+  }
+}
+
+.caret {
+  width: 7px;
+  height: 7px;
+  border-right: 1.6px solid currentColor;
+  border-bottom: 1.6px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  opacity: .55;
+  transition: transform .25s ease;
+}
+
+.nav__has-mega.is-open .caret {
+  transform: rotate(225deg) translateY(-3px);
+}
+
+.nav__cta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.wa-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 600 13px/1 var(--sans);
+  color: var(--blue-deep);
+  transition: color .2s, gap .25s ease;
+
+  &:hover {
+    color: var(--blue);
+  }
+
+  .wa-dot {
+    width: 8px;
+    height: 8px;
+    background: #25D366;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(37, 211, 102, .18);
+    animation: waDot 2.2s ease-in-out infinite;
+  }
+}
+
+/* ---- Mega menu ---- */
+.nav__mega {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  transform: translateY(-8px);
+  min-width: 680px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(13, 43, 85, .12);
+  padding: 26px;
+  opacity: 0;
+  pointer-events: none;
+  // transition: opacity .15s ease-out, transform .15s ease-out;
+  z-index: 60;
+
+  /* transparent bridge so moving across the 6px gap keeps hover */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 0;
+    right: 0;
+    height: 14px;
+  }
+}
+
+.nav__has-mega.is-open .nav__mega {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.mega__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+
+.mega__col h5 {
+  font: 700 10px/1 var(--sans);
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 14px;
+}
+
+.mega__item {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 10px;
+  transition: background .2s ease, transform .25s cubic-bezier(.34, 1.56, .64, 1);
+
+  strong {
+    display: block;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--blue-deep);
+    letter-spacing: -.2px;
+  }
+
+  span {
+    font: 500 12px/1.5 var(--sans);
+    color: var(--g500);
+  }
+
+  &:hover {
+    background: var(--blue-soft);
+    transform: translateX(7px);
+  }
+}
+
+.mega__link {
+  display: block;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font: 600 13px/1.4 var(--sans);
+  color: var(--blue-deep);
+  transition: background .2s ease, color .2s ease, transform .25s cubic-bezier(.34, 1.56, .64, 1);
+
+  &:hover {
+    background: var(--blue-soft);
+    color: var(--blue);
+    transform: translateX(7px);
+  }
+}
+
+.mega__foot {
+  display: inline-block;
+  margin-top: 18px;
+  padding-top: 16px;
+  font: 700 13px/1 var(--sans);
+  color: var(--orange);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ---- Keyframes (from source) ---- */
+@keyframes pgGrad {
+  to {
+    background-position: -200% 50%;
+  }
+}
+
+@keyframes waDot {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px rgba(37, 211, 102, .2);
+  }
+
+  50% {
+    box-shadow: 0 0 0 7px rgba(37, 211, 102, .06);
+  }
+}
+
+/* ============================================================
+   Laptop / small desktop (1025–1300px) 
+   ============================================================ */
+@media (min-width: 1025px) and (max-width: 1300px) {
+  // .nav__brand img {
+  //   height: 48px;
+  // }
+
+  .nav__links {
+    gap: 2px;
+  }
+
+  .nav__links a.link {
+    padding: 6px 9px;
+    font-size: 12.5px;
+  }
+
+  .nav__cta {
+    gap: 12px;
+  }
+
+  .wa-link {
+    display: none;
+  }
+
+  .btn.btn--blue {
+    padding: 10px 16px;
+    font-size: 12.5px;
+  }
+
+  /* keep the mega panel inside the viewport on narrower laptops */
+  .nav__mega {
+    min-width: 560px;
+    padding: 22px;
+  }
+
+  .mega__grid {
+    gap: 20px;
+  }
+}
+
+/* ============================================================
+   Mobile (added — not in source; desktop values above unchanged)
+   ============================================================ */
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 8px;
+
+  span {
+    width: 24px;
+    height: 2px;
+    background: var(--blue-deep);
+    border-radius: 2px;
+    transition: transform .25s var(--ease), opacity .2s;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  .nav.nav.open {
+    background: #fff;
+  }
+
+  .nav {
+    height: 80px;
+  }
+
+  .nav__inner {
+    flex-wrap: wrap;
+    padding-top: 24px;
+    padding-bottom: 6px;
+    gap: 0;
+    row-gap: 0;
+    background: #fff;
+  }
+
+  .nav__brand {
+    margin-right: auto;
+    order: 1;
+  }
+
+  // .nav__brand img {
+  //   height: 52px;
+  // }
+
+  .nav__toggle {
+    display: flex;
+    order: 2;
+  }
+
+  /* Stacked dropdown panel */
+  .nav__links,
+  .nav__cta {
+    order: 3;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height .35s var(--ease), opacity .25s ease, padding .35s var(--ease);
+    padding: 0;
+  }
+
+  .nav.open .nav__links {
+    max-height: 75vh;
+    opacity: 1;
+    padding: 4px 0 4px;
+    overflow-y: auto;
+    background: #fff;
+  }
+
+  .nav.open .nav__cta {
+    max-height: 200px;
+    opacity: 1;
+    gap: 10px;
+    padding: 6px 0 14px;
+    // border-top: 1px solid var(--line);
+    margin-top: 4px;
+  }
+
+  .nav__links a.link {
+    width: 100%;
+    padding: 13px 6px;
+    font-size: 15px;
+    border-radius: 10px;
+
+    &::after {
+      display: none;
+    }
+
+    /* drop the underline animation on mobile */
+    &:active {
+      background: var(--blue-soft);
+    }
+  }
+
+  .nav__links>li {
+    width: 100%;
+  }
+
+  /* Mega menu inline inside the panel — accordion, toggled by tapping Products */
+  .nav__mega {
+    position: static;
+    min-width: 0;
+    pointer-events: auto;
+    transform: none;
+    box-shadow: none;
+    border: 0;
+    border-radius: 0;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    padding: 0 0 0 10px;
+    transition: max-height .32s var(--ease), opacity .25s ease, padding .3s var(--ease);
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .nav__has-mega.is-open .nav__mega {
+    max-height: 640px;
+    opacity: 1;
+    padding: 4px 0 8px 10px;
+  }
+
+  .caret {
+    transition: transform .25s var(--ease);
+  }
+
+  .nav__has-mega.is-open .caret {
+    transform: rotate(225deg);
+    margin-top: 2px;
+  }
+
+  .mega__grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .mega__col h5 {
+    margin-bottom: 8px;
+  }
+
+  .mega__item {
+    padding: 4px;
+
+    strong {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    span {
+      font: 500 11px / 1.5 var(--sans);
+    }
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .mega__link {
+    padding: 5px 4px;
+    font-size: 12.5px;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .mega__foot {
+    margin-top: 0;
+  }
+
+  .wa-link {
+    justify-content: center;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+
+  .nav__cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Hamburger -> X */
+  .nav.open .nav__toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav.open .nav__toggle span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav.open .nav__toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}

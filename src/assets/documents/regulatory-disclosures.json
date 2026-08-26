@@ -1,0 +1,88 @@
+{
+  "lastUpdated": "Not yet published",
+  "sections": [
+    {
+      "id": "annual-reports",
+      "num": "01",
+      "title": "Annual Reports",
+      "summary": "Annual reports of Robinhood Insurance Broker Limited, filed with the relevant regulatory authorities and made available here.",
+      "documents": []
+    },
+    {
+      "id": "shareholding-pattern",
+      "num": "02",
+      "title": "Shareholding Pattern",
+      "summary": "Statement of shareholding pattern, published on a periodic basis.",
+      "documents": []
+    },
+    {
+      "id": "corporate-announcements",
+      "num": "03",
+      "title": "Corporate Announcements & Material Events (Reg. 30)",
+      "summary": "Disclosures of material events and information under Regulation 30 of the SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015.",
+      "documents": []
+    },
+    {
+      "id": "investor-grievance",
+      "num": "04",
+      "title": "Investor Grievance",
+      "summary": "Write to our designated compliance contact for any investor grievance, query, or escalation.",
+      "contact": {
+        "name": "",
+        "designation": "Compliance Officer",
+        "email": "",
+        "phone": ""
+      }
+    },
+    {
+      "id": "agm-egm",
+      "num": "05",
+      "title": "AGM / EGM Notices",
+      "summary": "Notices, proceedings, and outcomes of the Annual General Meeting and any Extraordinary General Meetings.",
+      "documents": []
+    },
+    {
+      "id": "board-composition",
+      "num": "06",
+      "title": "Board & Committee Composition",
+      "summary": "Composition of the Board of Directors and its committees, as required to be disclosed.",
+      "people": [],
+      "committees": []
+    },
+    {
+      "id": "code-of-conduct",
+      "num": "07",
+      "title": "Code of Conduct",
+      "summary": "Code of conduct applicable to the Board of Directors and Senior Management.",
+      "documents": []
+    },
+    {
+      "id": "rpt-policy",
+      "num": "08",
+      "title": "Related Party Transaction Policy",
+      "summary": "Policy on materiality of, and dealing with, related party transactions.",
+      "documents": []
+    },
+    {
+      "id": "whistleblower-policy",
+      "num": "09",
+      "title": "Whistle-Blower / Vigil Mechanism",
+      "summary": "Mechanism enabling directors and employees to report genuine concerns, with safeguards against victimisation.",
+      "documents": []
+    },
+    {
+      "id": "pit-code",
+      "num": "10",
+      "title": "Code of Fair Disclosure (PIT)",
+      "summary": "Code of practices and procedures for fair disclosure of unpublished price sensitive information (UPSI).",
+      "documents": []
+    },
+    {
+      "id": "dividend-policy",
+      "num": "11",
+      "title": "Dividend Distribution Policy",
+      "summary": "Policy governing the distribution of dividends to shareholders.",
+      "documents": []
+    }
+  ]
+}

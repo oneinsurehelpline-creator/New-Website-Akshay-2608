@@ -1,0 +1,124 @@
+<footer class="footer">
+    <div class="container">
+
+        <div class="row g-3 gx-lg-5 gy-4 footer__top">
+
+            <!-- Brand column -->
+            <div class="col-12 col-lg-4 footer__brand">
+                <a class="footer__logo" routerLink="/" aria-label="OneInsure home">
+                    <img src="assets/cmn/logo-white.png" alt="OneInsure">
+                </a>
+                <p class="footer__tag">
+                    Insurance advice that actually puts you first. Pan-India, IRDAI-certified,
+                    human-first since 2007.
+                </p>
+                <p class="footer__reg">
+                    Powered by Robinhood Insurance Broker Ltd. <br> · IRDAI Reg. No. IRDA/DB 407/08 <br> ·
+                    Valid through 13 Nov 2026
+                </p>
+
+                <div class="footer__social">
+                    <a *ngFor="let s of socials" [href]="s.href" target="_blank" rel="noopener noreferrer"
+                        [attr.aria-label]="s.label">
+                        <svg *ngIf="s.label === 'Facebook'" width="15" height="15" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                        </svg>
+                        <svg *ngIf="s.label === 'Instagram'" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17" cy="7" r=".6" fill="currentColor" />
+                        </svg>
+                        <svg *ngIf="s.label === 'LinkedIn'" width="15" height="15" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M4 4h4v16H4V4zm2-2a2 2 0 110 4 2 2 0 010-4zm6 6h4v2c.5-1 2-2.5 4.5-2.5 4 0 4.5 2.5 4.5 5.5V20h-4v-6c0-1.5-.5-2.5-2-2.5s-2 1-2 2.5V20h-4V8z" />
+                        </svg>
+                        <svg *ngIf="s.label === 'YouTube'" width="15" height="15" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M23 6.2c-.3-1-1-1.8-2-2C19 4 12 4 12 4s-7 0-9 .2c-1 .2-1.8 1-2 2C1 8.2 1 12 1 12s0 3.8.2 5.8c.3 1 1 1.8 2 2 2 .2 9 .2 9 .2s7 0 9-.2c1-.2 1.8-1 2-2 .2-2 .2-5.8.2-5.8s0-3.8-.2-5.8zM10 15.5v-7l6 3.5-6 3.5z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Link columns -->
+            <div class="col-6 col-md-4 col-lg-2 footer__col" *ngFor="let col of columns">
+                <h6>{{ col.title }}</h6>
+                <ul>
+                    <li *ngFor="let link of col.links" [ngSwitch]="true">
+                        <a *ngSwitchCase="!!link.action" href="#" (click)="openGrievance($event)">{{ link.label }}</a>
+                        <a *ngSwitchCase="!!link.fragment" href="#" [appScrollTo]="link.fragment!">{{ link.label }}</a>
+                        <a *ngSwitchCase="!!link.route" [routerLink]="link.route">{{ link.label }}</a>
+                        <a *ngSwitchDefault [href]="link.href" [attr.target]="link.newTab ? '_blank' : null"
+                            [attr.rel]="link.newTab ? 'noopener noreferrer' : null">{{ link.label }}</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer__bottom d-flex flex-column flex-sm-row justify-content-between align-items-start gap-3">
+            <span>OneInsure © {{ year }}. All Rights Reserved</span>
+            <span class="footer__bottom-links d-flex flex-wrap gap-3">
+                <a routerLink="/PrivacyPolicy">Privacy</a>
+                <a href="#">Terms</a>
+            </span>
+        </div>
+
+        <div class="footer__disclaimer">Insurance is the subject matter of solicitation. Visitors are advised to read
+            the
+            sales brochure, policy wordings and benefit illustrations carefully before concluding a sale. IRDAI does not
+            involve in the activities of selling insurance, announcing bonus or investment of premium. Public receiving
+            such calls are requested to lodge a complaint on sancharsaathi.gov.in or the Cybercrime helpline 1930.
+            OneInsure is a registered trade name of Robinhood Insurance Broker Ltd.</div>
+    </div>
+
+    <!-- Grievance redressal modal -->
+    <div class="grv" *ngIf="grievanceOpen" (click)="onGrvBackdrop($event)">
+        <div class="grv__panel" role="dialog" aria-modal="true" aria-label="Grievance Redressal">
+            <button class="grv__close" (click)="closeGrievance()" aria-label="Close">&times;</button>
+            <div class="grv__head">
+                <div class="grv__icon">
+                    <svg fill="none" height="20" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24" width="20">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 8v4m0 4h.01"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h3>Grievance Redressal</h3>
+                    <p>Response within 48 business hours</p>
+                </div>
+            </div>
+            <p class="grv__lede">Reach us through any channel below. Every concern is reviewed by a dedicated officer.
+            </p>
+            <div class="grv__channels">
+                <a class="grv__ch" href="mailto:support@oneinsure.com">
+                    <svg fill="none" height="20" stroke="#0d2b55" stroke-width="2" viewBox="0 0 24 24" width="20">
+                        <rect height="16" rx="2" width="20" x="2" y="4"></rect>
+                        <path d="m2 7 10 7 10-7"></path>
+                    </svg>
+                    <span><b>Email</b><i>support&#64;oneinsure.com</i></span>
+                </a>
+                <a class="grv__ch" href="tel:+918655986559">
+                    <svg fill="none" height="20" stroke="#0d2b55" stroke-width="2" viewBox="0 0 24 24" width="20">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                    </svg>
+                    <span><b>Call</b><i>+91 86559 86559</i></span>
+                </a>
+                <a class="grv__ch" href="https://wa.me/918655986559" target="_blank" rel="noopener">
+                    <svg fill="#0d2b55" height="20" viewBox="0 0 24 24" width="20">
+                        <path
+                            d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.22-1.63A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.22-3.48-8.52zM12 22a9.93 9.93 0 0 1-5.09-1.4l-.37-.22-3.69.97.99-3.6-.24-.37A9.94 9.94 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z">
+                        </path>
+                    </svg>
+                    <span><b>WhatsApp</b><i>+91 86559 86559</i></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>

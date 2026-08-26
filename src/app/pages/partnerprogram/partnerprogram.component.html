@@ -1,0 +1,425 @@
+<!-- ============================================================
+  SECTION 1 — HERO  (login card hidden for now)
+  ============================================================ -->
+<section class="pp-hero section" id="top">
+    <div class="pp-hero__grid"></div>
+    <div class="container">
+        <div class="row g-5 align-items-center pp-hero__inner">
+
+            <!-- LEFT -->
+            <div class="col-lg-6 pp-hero__copy reveal-left">
+                <span class="pp-hero__pill">
+                    <b>Partner Program</b> For independent advisors &amp; agencies
+                </span>
+                <h1 class="pp-hero__h1">
+                    Built for Insurance Advisors Who Want
+                    <span class="accent">Bigger Growth.</span>
+                </h1>
+                <p class="pp-hero__sub">
+                    More products. Better support. Faster issuance. Stronger payouts. Partner with
+                    OneInsure and grow your business with a team that works alongside you.
+                </p>
+
+                <div class="pp-hero__cta">
+                    <button type="button" class="btn btn--orange btn--big" (click)="openLead()">
+                        Become a Partner
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                    <!-- <a class="btn btn--outline btn--big" routerLink="/" fragment="consult">Talk to Our Team</a> -->
+                    <a class="btn btn--outline btn--big"
+                        href="https://schedule.oneinsure.com/book/get-expert-guidance-web" target="_blank">Talk to Our
+                        Team</a>
+                </div>
+
+                <div class="row g-3 pp-hero__trust">
+                    <div class="col-6" *ngFor="let t of trust">
+                        <div class="pp-trust-item">
+                            <span class="pp-trust-item__ic">
+                                <ng-container [ngSwitch]="t.icon">
+                                    <svg *ngSwitchCase="'briefcase'" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <rect x="2" y="7" width="20" height="14" rx="2"></rect>
+                                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                    </svg>
+                                    <svg *ngSwitchCase="'users'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg>
+                                    <svg *ngSwitchCase="'bolt'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline>
+                                    </svg>
+                                    <svg *ngSwitchCase="'megaphone'" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M3 11l18-5v12L3 14v-3z"></path>
+                                        <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path>
+                                    </svg>
+                                </ng-container>
+                            </span>
+                            {{ t.label }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: photo + (hidden) login card -->
+            <div class="col-lg-6 reveal-right">
+                <div class="pp-hero__visual">
+                    <div class="pp-hero__photo-frame">
+                        <img src="assets/images/1774855103468.jpg" alt="OneInsure partner advisors" />
+                    </div>
+
+                    <!-- Existing-partner login — hidden for now, will be built later.
+               Set `showLoginCard = true` in the component to re-enable. -->
+                    <div class="pp-login" *ngIf="showLoginCard">
+                        <div class="pp-login__head">
+                            <span class="pp-login__badge">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="11" width="18" height="11" rx="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </span>
+                            <div>
+                                <h3>Existing Partner Login</h3>
+                                <div class="pp-login__sub">Secure advisor dashboard</div>
+                            </div>
+                        </div>
+                        <form autocomplete="off">
+                            <div class="pp-login__field">
+                                <label for="agentId">Agent ID / Email</label>
+                                <input class="pp-login__input" id="agentId" type="text"
+                                    placeholder="e.g. ONI-48231 or you@email.com" />
+                            </div>
+                            <div class="pp-login__field">
+                                <label for="agentPw">Password</label>
+                                <input class="pp-login__input" id="agentPw" type="password" placeholder="••••••••" />
+                            </div>
+                            <button type="submit" class="btn btn--blue pp-login__btn">Login to Dashboard</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+  SECTION 2 — WHY JOIN ONEINSURE
+  ============================================================ -->
+<section class="section" id="why">
+    <div class="container">
+        <div class="pp-head reveal-up">
+            <span class="eyebrow">Why Partner With Us</span>
+            <h2>You Bring the Relationships. We Help You Scale Them.</h2>
+            <p class="pp-lead">Everything an independent advisor needs to compete like an enterprise — without the
+                overhead.</p>
+        </div>
+
+        <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
+            <div class="col" *ngFor="let f of features; let i = index">
+                <article class="pp-feat h-100 reveal-up" [attr.data-delay]="i + 1">
+                    <div class="pp-feat__ic">
+                        <img [src]="f.img" alt="" loading="lazy">
+                    </div>
+                    <h3>{{ f.title }}</h3>
+                    <p>{{ f.desc }}</p>
+                    <span class="pp-feat__tag">{{ f.tag }}</span>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+  SECTION 3 — BENEFITS GRID
+  ============================================================ -->
+<section class="section section--neutral" id="benefits">
+    <div class="container">
+        <div class="pp-head reveal-up">
+            <span class="eyebrow">The Full Toolkit</span>
+            <h2>Everything You Need to Grow — Beyond Just Commissions.</h2>
+        </div>
+
+        <div class="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-3">
+            <div class="col" *ngFor="let b of benefits; let i = index">
+                <article class="pp-benefit h-100 reveal-up" [attr.data-delay]="(i % 3) + 1">
+                    <div class="pp-benefit__head">
+                        <span class="pp-benefit__ic">
+                            <img [src]="b.img" alt="" loading="lazy">
+                        </span>
+                        <span class="pp-benefit__num">{{ b.num }}</span>
+                    </div>
+                    <h3>{{ b.title }}</h3>
+                    <p>{{ b.desc }}</p>
+                </article>
+            </div>
+        </div>
+
+        <div class="pp-statement reveal-up">
+            <span class="pp-statement__ic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+            </span>
+            <p>Spend less time managing operations. <b>More time building relationships</b> and growing income.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+  SECTION 4 — CINEMATIC BANNER
+  ============================================================ -->
+<section class="pp-banner section" id="enterprise">
+    <div class="pp-banner__grid"></div>
+
+    <div class="pp-banner__float f1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg></div>
+    <div class="pp-banner__float f2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
+            </path>
+        </svg></div>
+    <div class="pp-banner__float f3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+                d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2">
+            </path>
+            <circle cx="6.5" cy="16.5" r="2.5"></circle>
+            <circle cx="16.5" cy="16.5" r="2.5"></circle>
+        </svg></div>
+    <div class="pp-banner__float f4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18"></path>
+            <path d="m19 9-5 5-4-4-3 3"></path>
+        </svg></div>
+
+    <div class="container">
+        <div class="pp-banner__inner reveal-up">
+            <span class="eyebrow no-rule pp-banner__eyebrow">The OneInsure Advantage</span>
+            <h2>Independent Advisor Mindset. <span class="accent">Enterprise-Level Support.</span></h2>
+            <p>
+                Whether you're an individual advisor, wealth manager, or building a larger agency —
+                OneInsure gives you the infrastructure, support, and product ecosystem to grow bigger
+                with confidence.
+            </p>
+            <button type="button" class="btn btn--orange btn--big" (click)="openLead()">
+                Become a Partner
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+  SECTION 5 — FINAL CTA + TRUST METRICS
+  ============================================================ -->
+<section class="section" id="join">
+    <div class="container">
+        <div class="pp-head reveal-up">
+            <span class="eyebrow">Join the Network</span>
+            <h2>Growth Is Easier When You're Backed by the Right Team.</h2>
+        </div>
+
+        <div class="row g-3 row-cols-2 row-cols-lg-4 pp-metrics">
+            <div class="col" *ngFor="let m of metrics; let i = index">
+                <div class="pp-metric h-100 reveal-up" [attr.data-delay]="(i % 4) + 1">
+                    <div class="pp-metric__val" [class.pp-metric__val--text]="m.text">
+                        <span class="u" *ngIf="m.prefix">{{ m.prefix }}</span>{{ m.display }}<span class="u"
+                            *ngIf="m.suffix">{{ m.suffix }}</span>
+                    </div>
+                    <div class="pp-metric__label">{{ m.label }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pp-finalcta reveal-up">
+            <p class="pp-lead">
+                Join a network designed to help insurance advisors build stronger client relationships,
+                smoother operations, and a more scalable business.
+            </p>
+            <div class="pp-finalcta__btns">
+                <button type="button" class="btn btn--orange btn--big" (click)="openLead()">
+                    Join OneInsure
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+                <!-- <a class="btn btn--outline btn--big" routerLink="/" fragment="consult">Schedule a Discussion</a> -->
+                <a class="btn btn--outline btn--big" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
+                    target="_blank">Schedule a Discussion</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+  LEAD MODAL — Partner application
+  ============================================================ -->
+<div class="pp-modal" [class.open]="leadOpen" role="dialog" aria-modal="true" aria-labelledby="leadTitle"
+    (click)="closeLead()">
+    <div class="pp-modal__panel" (click)="$event.stopPropagation()">
+        <button class="pp-modal__close" type="button" aria-label="Close" (click)="closeLead()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
+        <!-- FORM -->
+        <ng-container *ngIf="!leadDone">
+            <div class="pp-modal__head">
+                <span class="eyebrow">Partner Application</span>
+                <h3 id="leadTitle">Become a OneInsure Partner</h3>
+                <p>Share a few details and our partnerships team will reach out to get you onboarded.</p>
+            </div>
+
+            <form class="pp-lead-form" [formGroup]="leadForm" (ngSubmit)="submitLead()" novalidate>
+                <div class="row g-3">
+
+                    <div class="col-12 col-sm-6 form-field">
+                        <label for="lf-name">Full Name <span class="req">*</span></label>
+                        <input id="lf-name" type="text" formControlName="name" placeholder="e.g. Renu Agarwal"
+                            [class.invalid]="invalid('name')" autocomplete="off" />
+                        <small class="form-err" *ngIf="invalid('name')">Please enter your full name.</small>
+                    </div>
+
+                    <div class="col-12 col-sm-6 form-field">
+                        <label for="lf-phone">Phone <span class="req">*</span></label>
+                        <input id="lf-phone" type="tel" formControlName="phone" placeholder="98765 43210"
+                            inputmode="numeric" maxlength="10" (input)="onPhoneInput($event)"
+                            [class.invalid]="invalid('phone')" autocomplete="off" />
+                        <small class="form-err" *ngIf="invalid('phone')">Enter a valid 10-digit mobile number.</small>
+                    </div>
+
+                    <div class="col-12 col-sm-6 form-field">
+                        <label for="lf-email">Email <span class="req">*</span></label>
+                        <input id="lf-email" type="email" formControlName="email" placeholder="you@email.com"
+                            [class.invalid]="invalid('email')" autocomplete="off" />
+                        <small class="form-err" *ngIf="invalid('email')">
+                            {{ leadForm.get('email')?.errors?.['required'] ? 'Please enter your email.' : 'Enter a valid
+                            email address.' }}
+                        </small>
+                    </div>
+
+                    <div class="col-12 col-sm-6 form-field">
+                        <label for="lf-company">Company Name <span class="opt">(optional)</span></label>
+                        <input id="lf-company" type="text" formControlName="company" placeholder="Your firm / agency"
+                            autocomplete="off" />
+                    </div>
+
+                    <div class="col-12 col-sm-6 form-field">
+                        <label for="lf-city">City <span class="req">*</span></label>
+                        <input id="lf-city" type="text" formControlName="city" placeholder="e.g. Pune"
+                            [class.invalid]="invalid('city')" autocomplete="off" />
+                        <small class="form-err" *ngIf="invalid('city')">
+                            {{ leadForm.get('city')?.errors?.['minlength'] ? 'City must be at least 3 characters.' :
+                            'Please enter your city.' }}
+                        </small>
+                    </div>
+
+                    <div class="col-12 col-sm-6 form-field">
+                        <label for="lf-exp">Experience in Insurance Selling <span class="req">*</span></label>
+                        <select id="lf-exp" formControlName="experience" [class.invalid]="invalid('experience')">
+                            <option value="" disabled>Select experience</option>
+                            <option *ngFor="let e of experienceOptions" [value]="e">{{ e }}</option>
+                        </select>
+                        <small class="form-err" *ngIf="invalid('experience')">Please select your experience.</small>
+                    </div>
+
+                    <!-- POS code (required) -->
+                    <div class="col-12 form-field">
+                        <label>Do you have an existing POS code? <span class="req">*</span></label>
+                        <div class="pp-seg" role="radiogroup" aria-label="Existing POS code">
+                            <label *ngFor="let o of posOptions" [class.is-disabled]="o === 'Yes'">
+                                <input type="radio" formControlName="posCode" [value]="o"
+                                    [attr.disabled]="o === 'Yes' ? '' : null" />
+                                <span>{{ o }}</span>
+                            </label>
+                        </div>
+                        <small class="form-err" *ngIf="invalid('posCode')">Please select an option.</small>
+                    </div>
+
+                    <!-- Insurance types (one active by default) -->
+                    <div class="col-12 form-field">
+                        <label>What types of insurance do you sell? <span class="opt">(select all that
+                                apply)</span></label>
+                        <div class="pp-chips">
+                            <label class="pp-chip" *ngFor="let p of products" [class.is-on]="p.checked">
+                                <input type="checkbox" [checked]="p.checked" (change)="toggleProduct(p)" />
+                                <span>{{ p.value }}</span>
+                            </label>
+                        </div>
+                        <small class="form-err" *ngIf="productsInvalid">Please select at least one insurance
+                            type.</small>
+                    </div>
+
+                    <!-- Portfolio size with ₹ symbol -->
+                    <div class="col-12 form-field">
+                        <label for="lf-portfolio">Size of your portfolio in INR Lakhs <span class="opt">(if
+                                applicable)</span></label>
+                        <div class="pp-money" [class.invalid]="invalid('portfolioLakhs')">
+                            <span class="pp-money__sym">₹</span>
+                            <input id="lf-portfolio" type="number" min="0" step="0.5" formControlName="portfolioLakhs"
+                                placeholder="e.g. 45" />
+                        </div>
+                        <small class="form-err" *ngIf="invalid('portfolioLakhs')">Enter a valid amount.</small>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn--orange btn--big pp-lead-form__submit"
+                            [disabled]="submitting">
+                            {{ submitting ? 'Submitting…' : 'Submit Application' }}
+                            <svg *ngIf="!submitting" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                        <div class="form-err form-err--server" *ngIf="serverError">{{ serverError }}</div>
+                        <p class="pp-lead-form__note">
+                            By submitting, you agree to be contacted by the OneInsure partnerships team. We respect your
+                            privacy.
+                        </p>
+                    </div>
+
+                </div>
+            </form>
+        </ng-container>
+
+        <!-- SUCCESS -->
+        <div class="pp-modal__success" *ngIf="leadDone">
+            <div class="tick">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h3>Application received!</h3>
+            <p>Thank you — our partnerships team will reach out shortly to take things forward.</p>
+            <button type="button" class="btn btn--outline btn--big" (click)="closeLead()">Close</button>
+        </div>
+    </div>
+</div>

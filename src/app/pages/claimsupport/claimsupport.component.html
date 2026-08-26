@@ -1,0 +1,1196 @@
+<!-- ============================================================
+  SECTION 1 — SAHAY HERO
+  ============================================================ -->
+<section class="hero section" id="sahay-hero">
+  <div class="container">
+    <div class="row g-5 align-items-center hero__inner">
+      <div class="col-12 col-lg-6">
+        <span class="eyebrow reveal-up">Claims Support · Powered by Sahay AI</span>
+        <h1 class="reveal-up" data-delay="1">Have a claim question? <span class="accent">Ask Sahay.</span></h1>
+        <p class="reveal-up" data-delay="2">Sahay is our AI advisor who can help you check claim status, understand
+          your coverage, guide you through the filing process, and answer common questions — instantly, any time.</p>
+
+        <div class="hero__cta reveal-up" data-delay="3">
+          <a class="btn btn--orange btn--big" (click)="openSahay()" style="cursor:pointer">
+            Chat with Sahay
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a class="btn btn--ghost-blue btn--big" (click)="scrollToId('track')" style="cursor:pointer">Track a Claim</a>
+        </div>
+
+        <div class="hero__trust reveal-up" data-delay="4">
+          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg> 24×7 Available</span>
+          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg> IRDAI Compliant</span>
+          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+              </path>
+            </svg> Instant Replies</span>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <div class="sahay-card reveal-right" aria-hidden="true">
+          <div class="sahay-card__head">
+            <div class="sahay-avatar">S</div>
+            <div>
+              <div class="sahay-card__name">Sahay</div>
+              <div class="sahay-card__role">AI Advisor · Online now</div>
+            </div>
+          </div>
+          <div class="sahay-msgs">
+            <div class="sahay-msg">Hi! I'm Sahay. I can help you check claim status, explain coverage, or guide you
+              through filing. What would you like to do?</div>
+            <div class="sahay-msg sahay-msg--user">What's the status of my hospital claim?</div>
+            <div class="typing"><span></span><span></span><span></span></div>
+          </div>
+          <div class="sahay-chips">
+            <button class="sahay-chip" (click)="openSahay()">Check claim status</button>
+            <button class="sahay-chip" (click)="openSahay()">Network hospitals near me</button>
+            <button class="sahay-chip" (click)="openSahay()">What documents do I need?</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECTION 2 — TRACK YOUR CLAIM
+  ============================================================ -->
+<section class="track section" id="track">
+  <div class="container">
+    <div class="track__inner reveal-up">
+      <h2>Track Your Claim</h2>
+      <p>Enter your claim number below to get a real-time status update.</p>
+      <form class="track__form" autocomplete="off" (ngSubmit)="onTrackSubmit(claimNo.value)">
+        <input #claimNo type="text" name="claimNo" placeholder="Enter Claim Number  (e.g. ONI-2026-00482431)"
+          aria-label="Claim number">
+        <button type="submit" class="btn btn--orange">
+          Track Now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+      <span class="track__help">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        You can find your claim number in your confirmation email or SMS.
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECTION 3 — HOW TO FILE A CLAIM
+  ============================================================ -->
+<section class="fileclaim section section--muted" id="fileclaim">
+  <div class="container">
+    <div class="section__head reveal-up">
+      <span class="eyebrow">Filing a Claim</span>
+      <h2>We File. We Follow Up. You Recover</h2>
+      <p class="lead">You don't have to chase your insurer. Tell us once, and we take it from there.</p>
+    </div>
+
+    <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-lg-4 steps">
+      <div class="col">
+        <div class="step reveal-up">
+          <div class="step__num" data-n="1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+          </div>
+          <h3>Report the Incident</h3>
+          <p>Notify us as soon as possible via app, website, or our claims helpline. We intimate your insurer on your
+            behalf, the same day.</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="step reveal-up" data-delay="1">
+          <div class="step__num" data-n="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+          </div>
+          <h3>Share Your Documents</h3>
+          <p>Upload what you have. We check it against your insurer's checklist and flag gaps before submission — so
+            your claim isn't rejected on a technicality.</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="step reveal-up" data-delay="2">
+          <div class="step__num" data-n="3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <h3>We Follow Up</h3>
+          <p>Your dedicated claims manager tracks the file with the insurer, answers their queries, and pushes back if
+            something looks unfair.</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="step reveal-up" data-delay="3">
+          <div class="step__num" data-n="4">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <h3>Settlement</h3>
+          <p>The insurer releases the approved amount to your account, or settles directly with the hospital or garage.
+            We stay with you through the whole process.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECTION 4 — TYPES OF CLAIMS 
+  ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section__head reveal-up">
+      <span class="eyebrow">Choose Your Claim Type</span>
+      <h2>What Kind of Claim Do You Need to File?</h2>
+      <p class="lead">Select your claim type to get started.</p>
+    </div>
+
+    <!-- Tab nav -->
+    <div class="tabs reveal-up" role="tablist">
+      <button class="tab" [class.is-active]="activeTab === 'health'" (click)="activeTab = 'health'" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+        </svg>
+        Health
+      </button>
+      <button class="tab" [class.is-active]="activeTab === 'motor'" (click)="activeTab = 'motor'" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path
+            d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2">
+          </path>
+          <circle cx="6.5" cy="16.5" r="2.5"></circle>
+          <circle cx="16.5" cy="16.5" r="2.5"></circle>
+        </svg>
+        Motor
+      </button>
+      <button class="tab" [class.is-active]="activeTab === 'life'" (click)="activeTab = 'life'" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+          </path>
+        </svg>
+        Life / Term
+      </button>
+      <button class="tab" [class.is-active]="activeTab === 'home'" (click)="activeTab = 'home'" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        Home
+      </button>
+      <button class="tab" [class.is-active]="activeTab === 'travel'" (click)="activeTab = 'travel'" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path
+            d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z">
+          </path>
+        </svg>
+        Travel
+      </button>
+    </div>
+
+    <!-- HEALTH -->
+    <div class="tab-panel" [class.is-active]="activeTab === 'health'" data-panel="health">
+      <div class="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <img src="assets/images/icons/general/cashless.png" alt="" loading="lazy">
+            </div>
+            <h3 class="claim-card__title">Planned Hospitalisation <br><span
+                style="color:var(--c-blue-deep);font-size:13px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700">Cashless</span>
+            </h3>
+            <p class="claim-card__sub">For surgeries or treatments planned in advance</p>
+            <ul>
+              <li>Inform us 48–72 hours before admission</li>
+              <li>Get pre-authorisation approval from us</li>
+              <li>Bills settled directly with hospital at discharge</li>
+              <li>Only at network hospitals</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--ghost-blue" (click)="goToConsult()" style="cursor:pointer">Find a Network
+                Hospital</a>
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">Start Pre-Auth
+                Request</a>
+            </div>
+          </article>
+        </div>
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <img src="assets/images/icons/general/hospitalisation.png" alt="" loading="lazy">
+            </div>
+            <h3 class="claim-card__title">Emergency Hospitalisation <br><span
+                style="color:var(--c-blue-deep);font-size:13px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700">Cashless</span>
+            </h3>
+            <p class="claim-card__sub">For accidents or sudden illness</p>
+            <ul>
+              <li>Get admitted at a network hospital</li>
+              <li>Notify us within 24 hours of admission</li>
+              <li>Our team coordinates directly with the hospital</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">Notify Us Now</a>
+            </div>
+          </article>
+        </div>
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <img src="assets/images/icons/general/low-cost.png" alt="" loading="lazy">
+            </div>
+            <h3 class="claim-card__title">Reimbursement</h3>
+            <p class="claim-card__sub">Treated at a non-network hospital or paid out of pocket</p>
+            <ul>
+              <li>Pay bills yourself at the time of treatment</li>
+              <li>Submit documents within 15 days of discharge</li>
+              <li>Eligible amount transferred to your bank account</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">File Reimbursement
+                Claim</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOTOR -->
+    <div class="tab-panel" [class.is-active]="activeTab === 'motor'" data-panel="motor">
+      <div class="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <img src="assets/images/icons/general/own-damage.png" alt="" loading="lazy">
+            </div>
+            <h3 class="claim-card__title">Own Damage</h3>
+            <p class="claim-card__sub">Accident, fire, flood, or natural calamity</p>
+            <ul>
+              <li>Inform us immediately after the incident</li>
+              <li>Don't move vehicle before inspection if possible</li>
+              <li>Cashless repairs at network garages available</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--ghost-blue" (click)="goToConsult()" style="cursor:pointer">Locate Network
+                Garage</a>
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">File Claim</a>
+            </div>
+          </article>
+        </div>
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <img src="assets/images/icons/knowledgebase/motor.png" alt="" loading="lazy">
+            </div>
+            <h3 class="claim-card__title">Theft</h3>
+            <p class="claim-card__sub">Vehicle stolen</p>
+            <ul>
+              <li>File an FIR immediately</li>
+              <li>Inform us within 24 hours</li>
+              <li>Submit FIR copy, RC book, and all keys</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">File Theft Claim</a>
+            </div>
+          </article>
+        </div>
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <img src="assets/images/icons/general/third-party.png" alt="" loading="lazy">
+            </div>
+            <h3 class="claim-card__title">Third-Party</h3>
+            <p class="claim-card__sub">Damage to another person or their property</p>
+            <ul>
+              <li>Handled through Motor Accident Claims Tribunal (MACT)</li>
+              <li>We provide legal support throughout the process</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--ghost-blue" (click)="openClaimForm()" style="cursor:pointer">Know More</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIFE / TERM -->
+    <div class="tab-panel" [class.is-active]="activeTab === 'life'" data-panel="life">
+      <div class="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <img src="assets/images/icons/knowledgebase/life.png" alt="" loading="lazy">
+            </div>
+            <h3 class="claim-card__title">Death Claim <br><span
+                style="color:var(--c-blue-deep);font-size:13px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700">Term
+                &amp; Life</span></h3>
+            <p class="claim-card__sub">Filed by the nominee on the death of the life assured</p>
+            <ul>
+              <li>Intimate us as early as possible with the policy number</li>
+              <li>Submit the death certificate and nominee KYC</li>
+              <li>For unnatural death, FIR &amp; post-mortem report are required</li>
+              <li>Sum assured paid directly to the registered nominee</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--ghost-blue d-none" (click)="openClaimForm()" style="cursor:pointer">Who Is My
+                Nominee?</a>
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">Intimate a Death
+                Claim</a>
+            </div>
+          </article>
+        </div>
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <img src="assets/images/icons/calculators/health-cover.png" alt="" loading="lazy">
+            </div>
+            <h3 class="claim-card__title">Terminal &amp; Critical Illness <br><span
+                style="color:var(--c-blue-deep);font-size:13px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700">Accelerated</span>
+            </h3>
+            <p class="claim-card__sub">An advance payout while the life assured is still living</p>
+            <ul>
+              <li>Available if your plan includes a terminal/critical illness rider</li>
+              <li>Submit a diagnosis certified by a registered specialist</li>
+              <li>Benefit is paid to the policyholder, subject to plan terms</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--ghost-blue d-none" (click)="openClaimForm()" style="cursor:pointer">Check Rider
+                Eligibility</a>
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">File an Illness
+                Claim</a>
+            </div>
+          </article>
+        </div>
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <img src="assets/images/icons/calculators/guaranteed-return.png" alt="" loading="lazy">
+            </div>
+            <h3 class="claim-card__title">Maturity &amp; Survival Benefit</h3>
+            <p class="claim-card__sub">For endowment, savings &amp; money-back plans on maturity</p>
+            <ul>
+              <li>We notify you before the maturity date — no rush</li>
+              <li>Submit the discharge form, policy bond and bank details</li>
+              <li>Maturity amount credited to your registered bank account</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">Claim Maturity
+                Benefit</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOME -->
+    <div class="tab-panel" [class.is-active]="activeTab === 'home'" data-panel="home">
+      <div class="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <img src="assets/images/icons/general/comprehensive-cover.png" alt="" loading="lazy">
+            </div>
+            <h3 class="claim-card__title">Structure Damage</h3>
+            <p class="claim-card__sub">Fire, flood, earthquake, or damage to the building</p>
+            <ul>
+              <li>Document damage with photos and videos immediately</li>
+              <li>Do not carry out repairs before our inspection</li>
+              <li>File within 7 days of the incident</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">File Structure
+                Claim</a>
+            </div>
+          </article>
+        </div>
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                </path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <h3 class="claim-card__title">Contents &amp; Belongings</h3>
+            <p class="claim-card__sub">Damage or loss of furniture, appliances, or valuables</p>
+            <ul>
+              <li>Prepare an inventory of damaged or lost items</li>
+              <li>Receipts or photos of belongings help speed up assessment</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">File Contents
+                Claim</a>
+            </div>
+          </article>
+        </div>
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+              </svg>
+            </div>
+            <h3 class="claim-card__title">Burglary &amp; Theft</h3>
+            <p class="claim-card__sub">Items stolen from your home</p>
+            <ul>
+              <li>File an FIR immediately</li>
+              <li>Submit FIR copy and a list of stolen items</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">File Burglary
+                Claim</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAVEL -->
+    <div class="tab-panel" [class.is-active]="activeTab === 'travel'" data-panel="travel">
+      <div class="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-4">
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <img src="assets/images/icons/general/hospitalisation.png" alt="" loading="lazy">
+            </div>
+            <h3 class="claim-card__title">Medical Emergency Abroad</h3>
+            <p class="claim-card__sub">Hospitalisation or treatment while travelling</p>
+            <ul>
+              <li>Call our international helpline immediately</li>
+              <li>Cashless hospitalisation at partner hospitals abroad</li>
+              <li>Retain all medical bills and reports</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">International
+                Helpline</a>
+            </div>
+          </article>
+        </div>
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <img src="assets/images/icons/knowledgebase/travel.png" alt="" loading="lazy">
+            </div>
+            <h3 class="claim-card__title">Trip Cancellation</h3>
+            <p class="claim-card__sub">Trip cancelled or cut short due to covered reasons</p>
+            <ul>
+              <li>Submit proof of reason for cancellation</li>
+              <li>Airline and hotel cancellation receipts required</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">File Cancellation
+                Claim</a>
+            </div>
+          </article>
+        </div>
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.5 3h-19L4 16"></path>
+                <path d="M9 5V3h6v2"></path>
+              </svg>
+            </div>
+            <h3 class="claim-card__title">Baggage Loss or Delay</h3>
+            <p class="claim-card__sub">Checked baggage lost, damaged, or delayed by airline</p>
+            <ul>
+              <li>Obtain a Property Irregularity Report (PIR) from the airline</li>
+              <li>For delay claims, keep receipts for essential purchases</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">File Baggage Claim</a>
+            </div>
+          </article>
+        </div>
+        <div class="col">
+          <article class="claim-card h-100">
+            <div class="claim-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="claim-card__title">Flight Delay / Missed Connection</h3>
+            <p class="claim-card__sub">Flight delayed beyond threshold or missed connection</p>
+            <ul>
+              <li>Retain boarding passes and airline communication</li>
+              <li>Keep receipts for meals or accommodation if applicable</li>
+            </ul>
+            <div class="claim-card__ctas">
+              <a class="btn btn--sm btn--orange" (click)="openClaimForm()" style="cursor:pointer">File Delay Claim</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECTION 5 — DOCUMENTS CHECKLIST
+  (checkbox tick + PDF download hidden for now — markup retained)
+  ============================================================ -->
+<section class="section section--muted">
+  <div class="container">
+    <div class="section__head reveal-up">
+      <span class="eyebrow">What You'll Need</span>
+      <h2>Documents Checklist</h2>
+      <p class="lead">Having the right documents ready speeds up your claim. Download the checklist for your type.</p>
+    </div>
+
+    <div class="docs reveal-up">
+      <div class="row g-2">
+        <div class="col-12 col-lg-3">
+          <div class="docs__menu" role="tablist">
+            <button class="doc-tab" [class.is-active]="activeDoc === 'health'" (click)="activeDoc = 'health'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+              Health
+              <span class="doc-tab__count">6</span>
+            </button>
+            <button class="doc-tab" [class.is-active]="activeDoc === 'motor'" (click)="activeDoc = 'motor'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2">
+                </path>
+                <circle cx="6.5" cy="16.5" r="2.5"></circle>
+                <circle cx="16.5" cy="16.5" r="2.5"></circle>
+              </svg>
+              Motor
+              <span class="doc-tab__count">7</span>
+            </button>
+            <button class="doc-tab" [class.is-active]="activeDoc === 'life'" (click)="activeDoc = 'life'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                </path>
+              </svg>
+              Life / Term
+              <span class="doc-tab__count">7</span>
+            </button>
+            <button class="doc-tab" [class.is-active]="activeDoc === 'home'" (click)="activeDoc = 'home'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              </svg>
+              Home
+              <span class="doc-tab__count">6</span>
+            </button>
+            <button class="doc-tab" [class.is-active]="activeDoc === 'travel'" (click)="activeDoc = 'travel'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z">
+                </path>
+              </svg>
+              Travel
+              <span class="doc-tab__count">6</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-9">
+          <div class="docs__panel" [class.is-active]="activeDoc === 'health'" data-docpanel="health">
+            <h3>Health Claim Documents</h3>
+            <p class="sub">Tick off as you gather each one. Use the download button for a printable checklist.</p>
+            <div class="docs__list">
+              <label><input type="checkbox"><span class="check"></span> Claim form</label>
+              <label><input type="checkbox"><span class="check"></span> Hospital bills and receipts</label>
+              <label><input type="checkbox"><span class="check"></span> Discharge summary</label>
+              <label><input type="checkbox"><span class="check"></span> Doctor's prescription</label>
+              <label><input type="checkbox"><span class="check"></span> Diagnostic reports</label>
+              <label><input type="checkbox"><span class="check"></span> Policy document copy</label>
+            </div>
+            <a href="#" class="docs__download">Health Claim Checklist (PDF)</a>
+          </div>
+
+          <div class="docs__panel" [class.is-active]="activeDoc === 'motor'" data-docpanel="motor">
+            <h3>Motor Claim Documents</h3>
+            <p class="sub">Tick off as you gather each one. Use the download button for a printable checklist.</p>
+            <div class="docs__list">
+              <label><input type="checkbox"><span class="check"></span> Claim form</label>
+              <label><input type="checkbox"><span class="check"></span> RC book copy</label>
+              <label><input type="checkbox"><span class="check"></span> Driving licence</label>
+              <label><input type="checkbox"><span class="check"></span> FIR (theft or third-party)</label>
+              <label><input type="checkbox"><span class="check"></span> Repair estimate</label>
+              <label><input type="checkbox"><span class="check"></span> Photos of damage</label>
+              <label><input type="checkbox"><span class="check"></span> Policy document copy</label>
+            </div>
+            <a href="#" class="docs__download">Motor Claim Checklist (PDF)</a>
+          </div>
+
+          <div class="docs__panel" [class.is-active]="activeDoc === 'life'" data-docpanel="life">
+            <h3>Life / Term Claim Documents</h3>
+            <p class="sub">For death claims these are submitted by the nominee. Use the download button for a printable
+              checklist.</p>
+            <div class="docs__list">
+              <label><input type="checkbox"><span class="check"></span> Claim intimation / claim form</label>
+              <label><input type="checkbox"><span class="check"></span> Original policy document (bond)</label>
+              <label><input type="checkbox"><span class="check"></span> Death certificate (municipal
+                authority)</label>
+              <label><input type="checkbox"><span class="check"></span> Nominee's ID &amp; address proof</label>
+              <label><input type="checkbox"><span class="check"></span> Nominee's bank details / cancelled
+                cheque</label>
+              <label><input type="checkbox"><span class="check"></span> Medical / hospital records (if illness
+                related)</label>
+              <label><input type="checkbox"><span class="check"></span> FIR &amp; post-mortem report (unnatural
+                death)</label>
+            </div>
+            <a href="#" class="docs__download">Life / Term Claim Checklist (PDF)</a>
+          </div>
+
+          <div class="docs__panel" [class.is-active]="activeDoc === 'home'" data-docpanel="home">
+            <h3>Home Claim Documents</h3>
+            <p class="sub">Tick off as you gather each one. Use the download button for a printable checklist.</p>
+            <div class="docs__list">
+              <label><input type="checkbox"><span class="check"></span> Claim form</label>
+              <label><input type="checkbox"><span class="check"></span> Photos of damage</label>
+              <label><input type="checkbox"><span class="check"></span> FIR or fire brigade report</label>
+              <label><input type="checkbox"><span class="check"></span> Repair or replacement estimates</label>
+              <label><input type="checkbox"><span class="check"></span> Ownership proof</label>
+              <label><input type="checkbox"><span class="check"></span> Policy document copy</label>
+            </div>
+            <a href="#" class="docs__download">Home Claim Checklist (PDF)</a>
+          </div>
+
+          <div class="docs__panel" [class.is-active]="activeDoc === 'travel'" data-docpanel="travel">
+            <h3>Travel Claim Documents</h3>
+            <p class="sub">Tick off as you gather each one. Use the download button for a printable checklist.</p>
+            <div class="docs__list">
+              <label><input type="checkbox"><span class="check"></span> Claim form</label>
+              <label><input type="checkbox"><span class="check"></span> Travel tickets and itinerary</label>
+              <label><input type="checkbox"><span class="check"></span> Medical reports (if applicable)</label>
+              <label><input type="checkbox"><span class="check"></span> Airline letters for delays/cancellations</label>
+              <label><input type="checkbox"><span class="check"></span> Expense receipts</label>
+              <label><input type="checkbox"><span class="check"></span> Policy document copy</label>
+            </div>
+            <a href="#" class="docs__download">Travel Claim Checklist (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECTION 6 — CLAIM TIMELINE
+  (progress line now flows Claim Submitted → Settlement)
+  ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section__head reveal-up">
+      <span class="eyebrow">What to Expect</span>
+      <h2>What We Do Once You've Told Us</h2>
+      <p class="lead">Here's who's doing what at every stage — and where we step in.</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-5 g-4 timeline reveal-up">
+      <div class="col">
+        <div class="tl-stage">
+          <div class="tl-dot" data-n="1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <h4>Claim Registered</h4>
+          <p>We intimate your insurer and send you a claim number by email and SMS, so there's a record from day one.
+          </p>
+          <span class="tl-stage__time">Within 24 hrs</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="tl-stage">
+          <div class="tl-dot" data-n="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="9" y1="15" x2="15" y2="15"></line>
+            </svg>
+          </div>
+          <h4>Document Check</h4>
+          <p>We review your documents against your insurer's requirement list and come back to you on anything missing —
+            before it reaches them.</p>
+          <span class="tl-stage__time">2–3 working days</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="tl-stage">
+          <div class="tl-dot" data-n="3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <h4>Filed & Tracked</h4>
+          <p>Your file goes to the insurer's assessor. We follow up, respond to their queries, and keep you posted so
+            you're never left guessing.</p>
+          <span class="tl-stage__time">5–7 working days</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="tl-stage">
+          <div class="tl-dot" data-n="4">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M9 11l3 3L22 4"></path>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+            </svg>
+          </div>
+          <h4>Insurer's Decision</h4>
+          <p>Approval, partial approval, or rejection. We explain the reasoning in plain language — and if we believe
+            the call is wrong, we take it up with the insurer.</p>
+          <span class="tl-stage__time">We'll Call You</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="tl-stage">
+          <div class="tl-dot" data-n="5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+              <line x1="2" y1="10" x2="22" y2="10"></line>
+            </svg>
+          </div>
+          <h4>Settlement</h4>
+          <p>The insurer disburses to your account or settles directly with the hospital or garage. We confirm the money
+            has landed before we close the file.</p>
+          <span class="tl-stage__time">3–5 working days</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- <p class="tl-note reveal-up">
+      Timelines may vary based on claim type and document completeness.
+      <a (click)="openSahay()" style="cursor:pointer">Ask Sahay</a> for a real-time status update anytime.
+    </p> -->
+    <p class="tl-note reveal-up">Timelines are set by your insurer and vary by claim type and document completeness. Our part — intimation,
+      document checks, follow-up — we control</p>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECTION 7 — ESCALATIONS & GRIEVANCES
+  ============================================================ -->
+<section class="section section--muted">
+  <div class="container">
+    <div class="section__head reveal-up">
+      <span class="eyebrow">Escalations &amp; Grievances</span>
+      <h2>Not Satisfied With Your Claim Outcome?</h2>
+      <p class="lead">We're committed to fair and transparent decisions. If you feel your claim was handled
+        incorrectly, here's how to escalate.</p>
+    </div>
+
+    <div class="esc">
+      <div class="esc-step reveal-up">
+        <div class="esc-step__num">1</div>
+        <div>
+          <h3>Contact Our Claims Team</h3>
+          <p>Reach out with your claim number and concern. We aim to resolve all escalations within <strong>5 working
+              days</strong>.</p>
+        </div>
+      </div>
+      <div class="esc-step reveal-up" data-delay="1">
+        <div class="esc-step__num">2</div>
+        <div>
+          <h3>Raise a Formal Grievance</h3>
+          <p>File through our Grievance Portal for a written response within <strong>15 days</strong>, as per IRDAI
+            guidelines.</p>
+        </div>
+      </div>
+      <div class="esc-step reveal-up" data-delay="2">
+        <div class="esc-step__num">3</div>
+        <div>
+          <h3>Approach the Insurance Ombudsman</h3>
+          <p>An independent, free resolution service available if you remain unsatisfied.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="esc__ctas reveal-up">
+      <a class="btn btn--orange" (click)="openGrievance($event)" style="cursor:pointer">Raise a Grievance</a>
+      <a href="#" class="btn btn--ghost">Find Your Ombudsman</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECTION 8 — TALK TO A CLAIMS EXPERT
+  (phone → tel:, email → mailto:, Schedule Callback → #consult)
+  ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section__head reveal-up">
+      <span class="eyebrow">Real People, Real Help</span>
+      <h2>Need to Speak to Someone?</h2>
+      <p class="lead">For complex claims or situations where you need a human touch, our experts are here.</p>
+    </div>
+
+    <div class="row g-3 row-cols-1 row-cols-md-3">
+      <div class="col">
+        <div class="contact-card h-100 reveal-up">
+          <div class="contact-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+              </path>
+            </svg>
+          </div>
+          <h3>Call Us</h3>
+          <a class="big" href="tel:918655986559">86559 86559</a>
+          <div class="meta">Toll-free · Mon–Sat · 9am–6pm</div>
+          <div class="note">Keep your policy number and claim number handy.</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="contact-card h-100 reveal-up" data-delay="1">
+          <div class="contact-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <h3>Email Us</h3>
+          <a class="big" style="font-size:20px" href="mailto:support@oneinsure.com">support&#64;oneinsure.com</a>
+          <div class="meta">We respond within 2 working days.</div>
+          <a href="mailto:support@oneinsure.com" class="btn btn--sm btn--ghost-blue"
+            style="align-self:flex-start;margin-top:auto">Compose Email</a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="contact-card h-100 reveal-up" data-delay="2">
+          <div class="contact-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <h3>Request a Callback</h3>
+          <div class="meta">Pick a time that works for you. Our expert calls back at your preferred slot.</div>
+          <!-- <a class="btn btn--orange btn--sm" (click)="openClaimForm()"
+            style="align-self:flex-start;margin-top:auto;cursor:pointer">Schedule Callback</a> -->
+          <a class="btn btn--orange btn--sm" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
+            target="_blank" style="align-self:flex-start;margin-top:auto;cursor:pointer">Schedule Callback</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECTION 9 — FAQs
+  ============================================================ -->
+<section class="section section--muted">
+  <div class="container">
+    <div class="section__head reveal-up">
+      <span class="eyebrow">Common Questions</span>
+      <h2>Frequently Asked Questions</h2>
+      <p class="lead">Quick answers to the questions we get most often. Still unsure? Ask Sahay.</p>
+    </div>
+
+    <div class="row g-3 row-cols-1 row-cols-lg-2 faqs">
+      <div class="col" *ngFor="let item of faqs; let i = index">
+        <div class="faq" [class.is-open]="openFaq === i">
+          <button class="faq__q" (click)="toggleFaq(i)">
+            {{ item.q }}
+            <span class="faq__icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div class="faq__a">
+            <div class="faq__a-inner">{{ item.a }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  Floating Sahay chat bubble
+  ============================================================ -->
+<a class="sahay-fab" (click)="openSahay()" aria-label="Chat with Sahay">
+  <span class="sahay-fab__avatar">S</span>
+  <span class="label">Need help? Chat with Sahay →</span>
+</a>
+
+<!-- ============================================================
+  Grievance Redressal modal (opened by "Raise a Grievance")
+  ============================================================ -->
+<div class="grv" *ngIf="grievanceOpen" (click)="onGrvBackdrop($event)">
+  <div class="grv__panel" role="dialog" aria-modal="true" aria-label="Grievance Redressal">
+    <button class="grv__close" (click)="closeGrievance()" aria-label="Close">&times;</button>
+    <div class="grv__head">
+      <div class="grv__icon">
+        <svg fill="none" height="20" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24" width="20">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 8v4m0 4h.01"></path>
+        </svg>
+      </div>
+      <div>
+        <h3>Grievance Redressal</h3>
+        <p>Response within 48 business hours</p>
+      </div>
+    </div>
+    <p class="grv__lede">Reach us through any channel below. Every concern is reviewed by a dedicated officer.</p>
+    <div class="grv__channels">
+      <a class="grv__ch" href="mailto:support@oneinsure.com">
+        <svg fill="none" height="20" stroke="#0d2b55" stroke-width="2" viewBox="0 0 24 24" width="20">
+          <rect height="16" rx="2" width="20" x="2" y="4"></rect>
+          <path d="m2 7 10 7 10-7"></path>
+        </svg>
+        <span><b>Email</b><i>support&#64;oneinsure.com</i></span>
+      </a>
+      <a class="grv__ch" href="tel:+918655986559">
+        <svg fill="none" height="20" stroke="#0d2b55" stroke-width="2" viewBox="0 0 24 24" width="20">
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z">
+          </path>
+        </svg>
+        <span><b>Call</b><i>+91 86559 86559</i></span>
+      </a>
+      <a class="grv__ch" href="https://wa.me/918655986559" target="_blank" rel="noopener">
+        <svg fill="#0d2b55" height="20" viewBox="0 0 24 24" width="20">
+          <path
+            d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.22-1.63A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.22-3.48-8.52zM12 22a9.93 9.93 0 0 1-5.09-1.4l-.37-.22-3.69.97.99-3.6-.24-.37A9.94 9.94 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z">
+          </path>
+        </svg>
+        <span><b>WhatsApp</b><i>+91 86559 86559</i></span>
+      </a>
+    </div>
+  </div>
+</div>
+<!-- ============================================================
+  FILE-A-CLAIM modal 
+  ============================================================ -->
+<div class="cs-modal" *ngIf="claimOpen" [class.open]="claimOpen" role="dialog" aria-modal="true"
+  aria-labelledby="claimTitle" (click)="closeClaimForm()">
+  <div class="cs-modal__panel" (click)="$event.stopPropagation()">
+    <button class="cs-modal__close" type="button" aria-label="Close" (click)="closeClaimForm()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- FORM -->
+    <ng-container *ngIf="!claimDone">
+      <div class="cs-modal__head">
+        <span class="eyebrow">File a Claim</span>
+        <h3 id="claimTitle">File a Claim</h3>
+        <p>Share a few details and our claims team will take it from here.</p>
+      </div>
+
+      <form class="claim-form" [formGroup]="claimForm" (ngSubmit)="submitClaim()" novalidate>
+        <div class="row g-3">
+
+          <!-- BASIC DETAILS -->
+          <!-- <div class="col-12 claim-form__divider">Basic Details</div> -->
+
+          <div class="col-12 col-sm-6 form-field">
+            <label for="cf-name">Full Name (as per policy)</label>
+            <input id="cf-name" type="text" formControlName="fullName" placeholder="e.g. Akshay Sharma"
+              [class.invalid]="invalid('fullName')" autocomplete="off" />
+            <small class="form-err" *ngIf="invalid('fullName')">Please enter your full name.</small>
+          </div>
+
+          <div class="col-12 col-sm-6 form-field">
+            <label for="cf-policy">Policy Number <span class="req">*</span></label>
+            <input id="cf-policy" type="text" formControlName="policyNumber" placeholder="e.g. OI/2024/HL/00123"
+              [class.invalid]="invalid('policyNumber')" autocomplete="off" />
+            <small class="form-err" *ngIf="invalid('policyNumber')">Please enter your policy number.</small>
+          </div>
+
+          <!-- CONTACT DETAILS -->
+
+
+          <div class="col-12 col-sm-6 form-field">
+            <label for="cf-mobile">Mobile Number <span class="req">*</span></label>
+            <input id="cf-mobile" type="tel" formControlName="mobile" placeholder="10-digit mobile"
+              [class.invalid]="invalid('mobile')" autocomplete="off" />
+            <small class="form-err" *ngIf="invalid('mobile')">Enter a valid 10-digit mobile number.</small>
+          </div>
+
+          <div class="col-12 col-sm-6 form-field">
+            <label for="cf-email">Email ID <span class="req">*</span></label>
+            <input id="cf-email" type="email" formControlName="email" placeholder="you@example.com"
+              [class.invalid]="invalid('email')" autocomplete="off" />
+            <small class="form-err" *ngIf="invalid('email')">Enter a valid email address.</small>
+          </div>
+
+          <div class="col-12 form-field">
+            <label>Did you buy this policy through OneInsure?</label>
+            <div class="cs-seg" role="radiogroup" aria-label="Bought through OneInsure">
+              <label *ngFor="let o of viaOptions">
+                <input type="radio" formControlName="viaOneInsure" [value]="o" />
+                <span>{{ o }}</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- INSURANCE TYPE -->
+
+
+          <div class="col-12 form-field">
+            <label>Type of Insurance <span class="req">*</span></label>
+            <div class="cs-seg" role="radiogroup" aria-label="Insurance type">
+              <label *ngFor="let t of insTypes">
+                <input type="radio" formControlName="insType" [value]="t.value" (change)="onInsTypeChange(t.value)" />
+                <span>{{ t.label }}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 form-field">
+            <label>Insurer <span class="req">*</span></label>
+            <select formControlName="insurer" [class.invalid]="invalid('insurer')">
+              <option value="" disabled>Select…</option>
+              <option *ngFor="let i of insurers">{{ i }}</option>
+            </select>
+            <small class="form-err" *ngIf="invalid('insurer')">Please select a insurer.</small>
+            <!-- <div class="cs-seg cs-seg--wrap" role="radiogroup" aria-label="Insurer">
+              <label *ngFor="let i of insurers">
+                <input type="radio" formControlName="insurer" [value]="i" />
+                <span>{{ i }}</span>
+              </label>
+            </div> -->
+          </div>
+
+          <div class="col-12 col-sm-6 form-field">
+            <label>Claim Type <span class="req">*</span></label>
+            <select formControlName="claimSubType" [class.invalid]="invalid('claimSubType')">
+              <option value="" disabled>Select…</option>
+              <option *ngFor="let c of claimTypeOptions">{{ c }}</option>
+            </select>
+            <small class="form-err" *ngIf="invalid('claimSubType')">Please select a claim type.</small>
+            <!-- <div class="cs-seg cs-seg--wrap" role="radiogroup" aria-label="Claim type">
+              <label *ngFor="let c of claimTypeOptions">
+                <input type="radio" formControlName="claimSubType" [value]="c" />
+                <span>{{ c }}</span>
+              </label>
+            </div> -->
+
+          </div>
+
+          <!-- CLAIM DETAILS -->
+
+
+          <div class="col-12 form-field">
+            <label for="cf-details">Tell us what happened</label>
+            <textarea id="cf-details" rows="4" formControlName="details"
+              placeholder="Include: date of event, brief description, hospital/garage name (if any), and estimated claim amount"></textarea>
+            <small class="form-err" *ngIf="invalid('details')">Please enter min 10 characters.</small>
+          </div>
+
+          <!-- DECLARATION -->
+          <div class="col-12">
+            <label class="cs-declaration" [class.invalid]="invalid('declaration')">
+              <input type="checkbox" formControlName="declaration" />
+              <span>I confirm the details shared above are true to the best of my knowledge.</span>
+            </label>
+            <!-- <small class="form-err" *ngIf="invalid('declaration')">Please confirm the declaration to continue.</small> -->
+          </div>
+
+          <div class="col-12">
+            <button type="submit" class="btn btn--orange btn--big claim-form__submit" [disabled]="submitting">
+              {{ submitting ? 'Submitting…' : 'Submit Claim' }}
+              <svg *ngIf="!submitting" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+            <div class="form-err form-err--server" *ngIf="serverError">{{ serverError }}</div>
+            <p class="claim-form__note">
+              By submitting, you agree to be contacted by the OneInsure claims team. We respect your privacy.
+            </p>
+          </div>
+
+        </div>
+      </form>
+    </ng-container>
+
+    <!-- SUCCESS -->
+    <div class="cs-modal__success" *ngIf="claimDone">
+      <div class="tick">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h4>Claim Submitted! Your SR number is</h4>
+      <h1>{{this.SRNumber}}</h1>
+      <p>Thank you — our claims team will review your details and reach out shortly with the next steps.</p>
+      <button type="button" class="btn btn--outline btn--big" (click)="closeClaimForm()">Close</button>
+    </div>
+  </div>
+</div>

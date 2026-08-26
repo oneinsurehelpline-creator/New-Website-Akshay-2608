@@ -1,0 +1,611 @@
+<!-- ============================================================
+     KNOWLEDGE BASE  ·  Hub (hero · most read · browse · help)
+     and the in-page Article Reader.
+     ============================================================ -->
+
+<!-- Reading progress (reader only) -->
+<div class="kb-progress" *ngIf="activeArticle" aria-hidden="true">
+    <div class="kb-progress__bar" [style.width.%]="progress"></div>
+</div>
+
+<!-- ============================================================ HUB -->
+<ng-container *ngIf="!activeArticle">
+
+    <!-- ============ HERO + SEARCH ============ -->
+    <section class="kb-hero section" id="top">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="reveal-up">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                    <span class="sep">/</span>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span class="here">Knowledge Base</span>
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="kb-hero__inner">
+                <span class="eyebrow no-rule reveal-up">Knowledge Base · Insurance, understood</span>
+
+                <h1 class="reveal-up" data-delay="1">Your insurance questions,<br>
+                    <em>answered clearly.</em>
+                </h1>
+
+                <p class="kb-hero__sub reveal-up" data-delay="2">
+                    No jargon, no sales pitch — just honest, plain-language guidance on everything from term cover to
+                    travel claims.
+                </p>
+
+                <!-- Search -->
+                <div class="kb-search reveal-up" data-delay="2" [class.is-focused]="searchFocused"
+                    [class.is-open]="searchOpen" [class.has-text]="query.length > 0">
+                    <div class="kb-search__box">
+                        <svg class="kb-search__icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input id="kbInput" type="text" autocomplete="off" [(ngModel)]="query"
+                            (ngModelChange)="onSearchInput()" (focus)="onSearchFocus()" (keydown.enter)="goSearch()"
+                            placeholder="Ask a question — try “how much term cover do I need?”"
+                            aria-label="Search the knowledge base">
+                        <button type="button" class="kb-search__clear" (click)="clearSearch()" aria-label="Clear">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                        <button type="button" class="btn btn--orange kb-search__go" (click)="goSearch()">
+                            <span>Search</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Dropdown -->
+                    <div class="kb-drop">
+                        <!-- Empty state -->
+                        <div class="kb-empty" *ngIf="noResults">
+                            <div class="kb-empty__ic">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                                    <path d="M2 2l7.586 7.586"></path>
+                                    <circle cx="11" cy="11" r="2"></circle>
+                                </svg>
+                            </div>
+                            <h4>We’re still writing this one</h4>
+                            <p>We don’t have an article on that just yet — but we’re constantly updating our knowledge
+                                base. In the meantime, a OneInsure advisor can answer it for you directly.</p>
+                            <button type="button" class="btn btn--orange" (click)="openModal('unsure')">
+                                Ask an advisor instead
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Quick answer + related -->
+                        <ng-container *ngIf="!noResults && quickAnswer as top">
+                            <button type="button" class="kb-answer" (click)="openArticle(top.id)">
+                                <span class="kb-answer__label">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="9" y1="18" x2="15" y2="18"></line>
+                                        <line x1="10" y1="22" x2="14" y2="22"></line>
+                                        <path
+                                            d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14">
+                                        </path>
+                                    </svg>
+                                    Quick answer
+                                </span>
+                                <span class="kb-answer__q">{{ top.title }}</span>
+                                <span class="kb-answer__text">{{ top.meta }}</span>
+                                <span class="kb-answer__cta">Read the full article
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </span>
+                            </button>
+
+                            <ng-container *ngIf="relatedHits.length">
+                                <div class="kb-drop__label">Related questions</div>
+                                <div class="kb-drop__list">
+                                    <button type="button" class="kb-hit" *ngFor="let a of relatedHits"
+                                        (click)="openArticle(a.id)">
+                                        <span class="kb-hit__ic">
+                                            <ng-container [ngTemplateOutlet]="catIcon"
+                                                [ngTemplateOutletContext]="{ $implicit: catById[a.cat].icon }"></ng-container>
+                                        </span>
+                                        <span class="kb-hit__body">
+                                            <span class="kb-hit__q">{{ a.title }}</span>
+                                            <span class="kb-hit__meta">{{ catById[a.cat].name }} · {{ a.readTime }}
+                                                min</span>
+                                        </span>
+                                        <span class="kb-hit__arrow">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                                <polyline points="7 7 17 7 17 17"></polyline>
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <!-- Popular chips -->
+                <div class="kb-popular reveal-up" data-delay="3">
+                    <span class="kb-popular__lbl">Popular questions</span>
+                    <button type="button" class="kb-chip" *ngFor="let q of popular" (click)="pickPopular(q)">{{ q
+                        }}</button>
+                </div>
+
+                <!-- Stats -->
+                <div class="kb-hero__stats reveal-up" data-delay="3">
+                    <span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                        53 in-depth articles
+                    </span>
+                    <span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        7 insurance topics
+                    </span>
+                    <span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <polyline points="9 12 11 14 15 10"></polyline>
+                        </svg>
+                        IRDAI-aligned &amp; India-specific
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ MOST READ (carousel) ============ -->
+    <section class="section section--tight" id="kbFeat">
+        <div class="container">
+            <div class="kb-feat__head reveal">
+                <div class="kb-feat__title">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z">
+                        </path>
+                    </svg>
+                    <h2>Most read this week</h2>
+                </div>
+                <div class="kb-feat__nav">
+                    <button type="button" class="vnav-btn"
+                        (click)="featTrack.scrollBy({ left: -340, behavior: 'smooth' })" aria-label="Previous">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button type="button" class="vnav-btn"
+                        (click)="featTrack.scrollBy({ left: 340, behavior: 'smooth' })" aria-label="Next">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="kb-strip__viewport">
+                <div class="kb-strip" #featTrack>
+                    <button type="button" class="kb-fcard" *ngFor="let a of featured" (click)="openArticle(a.id)">
+                        <span class="kb-fcard__badge">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z">
+                                </path>
+                            </svg>
+                            Most read
+                        </span>
+                        <span class="kb-fcard__q">{{ a.title }}</span>
+                        <span class="kb-fcard__foot">
+                            <span class="kb-fcard__cat">{{ catById[a.cat].name }}</span>
+                            <span class="kb-fcard__read">{{ a.readTime }} min
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ BROWSE BY TOPIC (tabs) ============ -->
+    <section class="section section--neutral" id="kbCats">
+        <div class="container">
+            <div class="kb-cats__head reveal">
+                <span class="eyebrow">Browse by topic</span>
+                <h2>Find your way around</h2>
+                <p class="kb-cats__lead">Pick a topic and dig in, or use search above to jump straight to an answer.</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="kb-tabs reveal" role="tablist" aria-label="Insurance topics">
+                <button type="button" class="kb-tab" *ngFor="let c of categories" role="tab"
+                    [class.active]="activeCat === c.id" [attr.aria-selected]="activeCat === c.id"
+                    (click)="setTab(c.id)">
+                    <span class="kb-tab__ic">
+                        <ng-container [ngTemplateOutlet]="catIcon"
+                            [ngTemplateOutletContext]="{ $implicit: c.icon }"></ng-container>
+                    </span>
+                    {{ c.tab }}
+                </button>
+            </div>
+
+            <!-- Active category panel -->
+            <div class="kb-cat" *ngIf="activeCategory as c" role="tabpanel">
+                <div class="kb-cat__head">
+                    <div class="kb-cat__ic">
+                        <ng-container [ngTemplateOutlet]="catIcon"
+                            [ngTemplateOutletContext]="{ $implicit: c.icon }"></ng-container>
+                    </div>
+                    <div class="kb-cat__t">
+                        <h3>{{ c.name }}</h3>
+                        <p>{{ c.blurb }}</p>
+                    </div>
+                    <span class="kb-cat__count">{{ c.count }} articles</span>
+                </div>
+
+                <div class="kb-list">
+                    <button type="button" class="kb-row" *ngFor="let a of activeArticles; let i = index"
+                        (click)="openArticle(a.id)">
+                        <span class="kb-row__n">{{ (i + 1) < 10 ? '0' : '' }}{{ i + 1 }}</span>
+                                <span class="kb-row__q">{{ a.title }}</span>
+                                <span class="kb-row__read">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    {{ a.readTime }} min
+                                </span>
+                                <span class="kb-row__arrow">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ STILL HAVE QUESTIONS ============ -->
+    <section class="kb-help section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8 kb-help__inner text-center reveal">
+                    <span class="oi-rule"></span>
+                    <h2>Still can’t find what you need?</h2>
+                    <p>Some questions are easier to talk through than to read about. Book a free call and <br> an
+                        IRDAI-licensed advisor will help you find your right fit — no pressure, ever.</p>
+                    <button type="button" class="btn btn--orange btn--big" (click)="openModal('unsure')">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                        Book a free call
+
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-container>
+
+<!-- ============================================================ READER -->
+<main class="kb-reader section" *ngIf="activeArticle as a">
+    <div class="container kb-reader__wrap">
+        <button type="button" class="kb-back" (click)="showHub()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            All articles
+        </button>
+
+        <article class="kb-article">
+            <div class="kb-article__crumb">
+                <span class="kb-catchip">
+                    <ng-container [ngTemplateOutlet]="catIcon"
+                        [ngTemplateOutletContext]="{ $implicit: catById[a.cat].icon }"></ng-container>
+                    {{ catById[a.cat].name }}
+                </span>
+                <span class="kb-readtime">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    {{ a.readTime }} min read
+                </span>
+            </div>
+
+            <h1>{{ a.title }}</h1>
+
+            <div class="kb-short">
+                <div class="kb-short__label">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="9" y1="18" x2="15" y2="18"></line>
+                        <line x1="10" y1="22" x2="14" y2="22"></line>
+                        <path
+                            d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14">
+                        </path>
+                    </svg>
+                    The short answer
+                </div>
+                <p>{{ a.meta }}</p>
+            </div>
+
+            <!-- Article body (safe, self-authored HTML) -->
+            <div class="kb-body" [innerHTML]="a.html"></div>
+
+            <!-- FAQs -->
+            <div class="kb-faqs" *ngIf="a.faqs.length">
+                <div class="kb-faqs__h">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12" y2="17.01"></line>
+                    </svg>
+                    Frequently Asked
+                </div>
+                <div class="kb-faq" *ngFor="let f of a.faqs; let i = index" [class.is-open]="openFaqs.has(i)">
+                    <button type="button" class="kb-faq__q" (click)="toggleFaq(i)">
+                        {{ f.q }}
+                        <span class="kb-faq__ic">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="kb-faq__a">
+                        <div class="kb-faq__a-in">{{ f.a }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Author -->
+            <div class="kb-author" *ngIf="activeAuthor as au">
+                <span class="kb-au__ava">{{ au.initials }}</span>
+                <div class="kb-au__body">
+                    <div class="kb-au__lbl">Written &amp; reviewed by</div>
+                    <div class="kb-au__name">{{ au.name }}</div>
+                    <div class="kb-au__role">{{ au.role }} · OneInsure</div>
+                </div>
+                <span class="kb-au__badge">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 12l2 2 4-4"></path>
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg>
+                    Verified expert
+                </span>
+            </div>
+
+            <!-- Personalised CTA -->
+            <div class="kb-cta">
+                <div class="kb-cta__t">
+                    <div class="kb-cta__rule"></div>
+                    <h3>{{ a.cta.heading }}</h3>
+                    <p>{{ a.cta.sub }}</p>
+                </div>
+                <div>
+                    <button type="button" class="btn btn--orange btn--big kb-cta__btn" (click)="openModal(a.cat)">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                        {{ a.cta.button }}
+
+                    </button>
+                    <span class="kb-cta__free">Free · No obligation · IRDAI-licensed advisor</span>
+                </div>
+            </div>
+
+            <!-- Related -->
+            <div class="kb-related" *ngIf="related.length">
+                <div class="kb-related__h">Keep Reading</div>
+                <div class="kb-related__grid">
+                    <button type="button" class="kb-acard" *ngFor="let r of related" (click)="openArticle(r.id)">
+                        <div class="kb-acard__q">{{ r.title }}</div>
+                        <div class="kb-acard__snip">{{ r.meta }}</div>
+                        <div class="kb-acard__foot">
+                            <span class="kb-acard__read">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                {{ r.readTime }} min
+                            </span>
+                            <span class="kb-acard__arrow">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </article>
+    </div>
+</main>
+
+<!-- ============ FLOATING CTA (no label) ============ -->
+<button type="button" class="kb-fab" (click)="openModal('unsure')" aria-label="Talk to an advisor">
+    <span class="kb-fab__avatar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+            <path
+                d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
+            </path>
+        </svg>
+    </span>
+</button>
+
+<!-- ============ BOOK A CALL MODAL ============ -->
+<div class="kb-modal is-open" role="dialog" aria-modal="true" aria-labelledby="cfTitle" *ngIf="modalOpen">
+    <div class="kb-modal__scrim" (click)="closeModal()"></div>
+    <div class="kb-modal__card">
+        <div class="kb-modal__top">
+            <button type="button" class="kb-modal__close" (click)="closeModal()" aria-label="Close">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="kb-modal__ey">Talk to a real advisor</div>
+            <h3 id="cfTitle">Book a free call</h3>
+            <p>Leave your details and an IRDAI-licensed advisor will call you back — usually within 12 minutes on
+                weekdays.</p>
+        </div>
+
+        <form class="kb-form" [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off" novalidate>
+            <div class="kb-ff">
+                <label for="cf_name">Your name</label>
+                <input type="text" id="cf_name" formControlName="name" placeholder="Priya S."
+                    [class.is-invalid]="invalid('name')">
+                <span class="kb-ff__err" *ngIf="invalid('name')">
+                    <ng-container *ngIf="cf['name'].errors?.['required']">Please add your name.</ng-container>
+                    <ng-container *ngIf="cf['name'].errors?.['maxlength']">Name is a little too long.</ng-container>
+                </span>
+            </div>
+
+            <div class="kb-ff">
+                <label for="cf_phone">Phone</label>
+                <input type="tel" id="cf_phone" formControlName="phone" placeholder="98765 43210" inputmode="numeric"
+                    maxlength="10" (input)="onPhoneInput($event)" [class.is-invalid]="invalid('phone')">
+                <span class="kb-ff__err" *ngIf="invalid('phone')">
+                    <ng-container *ngIf="cf['phone'].errors?.['required']">Please add your phone number.</ng-container>
+                    <ng-container *ngIf="cf['phone'].errors?.['pattern']">Enter a valid 10-digit mobile
+                        number.</ng-container>
+                </span>
+            </div>
+
+            <div class="kb-ff">
+                <label for="cf_need">Looking for</label>
+                <select id="cf_need" formControlName="need" [class.is-invalid]="invalid('need')">
+                    <option value="">Choose one</option>
+                    <option value="health">Health insurance</option>
+                    <option value="term">Term insurance</option>
+                    <option value="life">Life insurance</option>
+                    <option value="motor">Motor insurance</option>
+                    <option value="unsure">Not sure yet</option>
+                </select>
+                <span class="kb-ff__err" *ngIf="invalid('need')">
+                    Let us know what you’re looking for.
+                </span>
+            </div>
+
+            <button type="submit" class="btn btn--orange kb-form__submit" [disabled]="submitting">
+                {{ submitting ? 'Sending…' : 'Talk to advisor' }}
+                <svg *ngIf="!submitting" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+
+            <p class="kb-form__legal">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Your data stays private. No spam, ever.
+            </p>
+        </form>
+    </div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div class="kb-toast" [class.show]="toastShow" [class.kb-toast--error]="toastType === 'error'" role="status">
+    <svg *ngIf="toastType === 'success'" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+    </svg>
+    <svg *ngIf="toastType === 'error'" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+    <span>{{ toastMsg }}</span>
+</div>
+
+<!-- ============ CATEGORY ICON SET ============ -->
+<ng-template #catIcon let-icon>
+    <ng-container [ngSwitch]="icon">
+        <img *ngSwitchCase="'ph-book-open-text'" src="assets/images/icons/knowledgebase/basics.png" alt=""
+            loading="lazy">
+        <img *ngSwitchCase="'ph-heart'" src="assets/images/icons/knowledgebase/life.png" alt="" loading="lazy">
+        <img *ngSwitchCase="'ph-piggy-bank'" src="assets/images/icons/knowledgebase/savings.png" alt=""
+            loading="lazy">
+        <img *ngSwitchCase="'ph-umbrella-simple'" src="assets/images/icons/knowledgebase/term.png" alt=""
+            loading="lazy">
+        <img *ngSwitchCase="'ph-first-aid-kit'" src="assets/images/icons/knowledgebase/health.png" alt=""
+            loading="lazy">
+        <img *ngSwitchCase="'ph-car-simple'" src="assets/images/icons/knowledgebase/motor.png" alt="" loading="lazy">
+        <img *ngSwitchCase="'ph-airplane-tilt'" src="assets/images/icons/knowledgebase/travel.png" alt=""
+            loading="lazy">
+        <svg *ngSwitchDefault viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12" y2="17.01"></line>
+        </svg>
+    </ng-container>
+</ng-template>

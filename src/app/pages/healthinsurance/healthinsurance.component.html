@@ -1,0 +1,362 @@
+<!-- ============ HERO ============ -->
+<section class="hero section" id="top">
+    <div class="container hero__inner text-center">
+
+        <nav aria-label="breadcrumb" class="reveal-up">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                <span class="sep">/</span>
+                <li class="breadcrumb-item"><a routerLink="/" fragment="products">Products</a></li>
+                <span class="sep">/</span>
+                <li class="breadcrumb-item active" aria-current="page"><span class="here">Health Insurance</span></li>
+            </ol>
+        </nav>
+
+        <div class="hero__chip">
+            <span class="dot"></span>
+            Cashless at 10,000+ hospitals · Covers your whole family
+        </div>
+
+        <h1 class="hero__h1">
+            A hospital bill shouldn't be the thing that<br />
+            <em>wipes out your savings.</em>
+        </h1>
+
+        <p class="hero__sub">
+            One serious illness can wipe out a decade of savings. The right health plan stops that — for less than you
+            think.
+        </p>
+
+        <div class="hero__cta">
+            <!-- <a class="btn btn--orange btn--big" href="#compare"
+                (click)="$event.preventDefault(); scrollTo('compare')">Compare health plans →</a> -->
+            <a class="btn btn--orange btn--big"
+                href="http://www.oneinsure.com/1sbsso/ssoredirect?email=sagar.kulkarni%40oneinsure.com.DUM&mobile=8591416559&name=SAGAR%20SATISH%20KULKARNI&roleId=1&userId=6561DUM&lob=Health&BranchId=220260729783"
+                target="_blank">Compare health plans</a>
+            <a class="btn btn--outline btn--big" href="#videos"
+                (click)="$event.preventDefault(); scrollTo('videos')">Watch how it works</a>
+        </div>
+
+        <div class="hero__trust">
+            <div class="hero__trust-item" *ngFor="let t of trust">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                {{ t }}
+            </div>
+        </div>
+
+        <div class="row g-3 justify-content-center hero__stats">
+            <div class="col-6 col-lg-3" *ngFor="let s of stats">
+                <div class="hstat h-100">
+                    <div class="hstat__num">{{ s.num }}<span>{{ s.sup }}</span></div>
+                    <div class="hstat__lbl">{{ s.lbl }}</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============ SUBNAV ============ -->
+<nav class="subnav" id="subnav">
+    <div class="container subnav__inner">
+        <ul class="subnav__links">
+            <li *ngFor="let s of subnav">
+                <a [class.active]="activeSection === s.id" href="#{{ s.id }}"
+                    (click)="$event.preventDefault(); scrollTo(s.id)">{{ s.label }}</a>
+            </li>
+        </ul>
+        <!-- <a routerLink="/" fragment="consult" class="btn btn--orange subnav__cta">Talk to an advisor</a> -->
+        <a class="btn btn--orange subnav__cta" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
+            target="_blank">Talk to an advisor</a>
+    </div>
+</nav>
+
+<!-- ============ WHY HEALTH / POINTERS ============ -->
+<section class="why section" id="why" #sectionRef>
+    <div class="container">
+        <div class="row g-5 align-items-center">
+
+            <div class="col-lg-6">
+                <div class="why__copy reveal-left">
+                    <span class="eyebrow">Why health insurance</span>
+                    <h2>Medical costs are rising<br />faster than <span class="accent">your salary.</span></h2>
+                    <p>A single hospitalisation averages ₹1.5–3 lakh today. Cancer treatment can cross ₹30 lakh. The
+                        right policy makes those numbers someone else's problem.</p>
+                    <!-- <a class="btn btn--blue" href="#compare" (click)="$event.preventDefault(); scrollTo('compare')">See
+                        plans &amp; premiums →</a> -->
+                    <a class="btn btn--blue"
+                        href="http://www.oneinsure.com/1sbsso/ssoredirect?email=sagar.kulkarni%40oneinsure.com.DUM&mobile=8591416559&name=SAGAR%20SATISH%20KULKARNI&roleId=1&userId=6561DUM&lob=Health&BranchId=220260729783"
+                        target="_blank">See
+                        plans &amp; premiums →</a>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="points reveal-right">
+                    <div class="point" *ngFor="let p of whyPoints; let i = index" [attr.data-delay]="i">
+                        <div class="point__icon" [ngSwitch]="p.icon">
+                            <img *ngSwitchCase="'activity'" src="assets/images/icons/general/cashless.png" alt=""
+                                loading="lazy">
+                            <img *ngSwitchCase="'users'" src="assets/images/icons/general/third-party.png" alt=""
+                                loading="lazy">
+                            <img *ngSwitchCase="'heart'" src="assets/images/icons/general/hospitalisation.png" alt=""
+                                loading="lazy">
+                            <img *ngSwitchCase="'rupee'" src="assets/images/icons/general/tax-benefit.png" alt=""
+                                loading="lazy">
+                        </div>
+                        <div>
+                            <div class="point__t">{{ p.title }}</div>
+                            <div class="point__d">{{ p.desc }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============ EXPLAINER VIDEOS ============ -->
+<section class="vids section" id="videos" #sectionRef>
+    <div class="container">
+        <div class="vids__head text-center mx-auto reveal-up">
+            <span class="eyebrow">Health cover, explained simply</span>
+            <h2>Watch before you <span class="accent">buy.</span></h2>
+            <p>Seven short videos covering every decision you'll face — from picking a sum insured to filing a cashless
+                claim. Made by our advisors, in plain language.</p>
+        </div>
+
+        <div class="vids__viewport">
+            <div class="vids__track" #vidsTrack (scroll)="onVideoScroll()">
+                <article class="vcard" *ngFor="let v of videos">
+                    <a class="vcard__media" [href]="v.url" target="_blank" rel="noopener" [class.has-thumb]="v.thumb"
+                        [style.backgroundImage]="v.thumb ? 'url(' + v.thumb + ')' : null"
+                        (click)="openVideo(v, $event)">
+                        <span class="num">{{ v.num }}</span>
+                        <div class="vcard__play">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"></path>
+                            </svg>
+                        </div>
+                        <span class="vcard__cap">{{ v.cap }}</span>
+                        <span class="dur">{{ v.dur }}</span>
+                    </a>
+                    <div class="vcard__body">
+                        <div class="vcard__topic">{{ v.topic }}</div>
+                        <h4>{{ v.title }}</h4>
+                        <p>{{ v.desc }}</p>
+                        <a class="vcard__cta" [href]="v.url" target="_blank" rel="noopener"
+                            (click)="openVideo(v, $event)">Watch · {{ v.dur }} →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div class="vids__nav">
+            <button class="vnav-btn" (click)="scrollVideos(-1)" aria-label="Previous">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <span class="vnav-count">{{ videoCount | number: '2.0-0' }} / {{ videos.length | number: '2.0-0' }}</span>
+            <div class="vnav-progress">
+                <div class="vnav-progress__bar" [style.width.%]="videoProgress"></div>
+            </div>
+            <button class="vnav-btn" (click)="scrollVideos(1)" aria-label="Next">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ============ COMPARER ============ -->
+<section class="cmp section d-none" id="compare" #sectionRef>
+    <div class="container">
+        <div class="cmp__head text-center mx-auto reveal-up">
+            <span class="eyebrow">Side-by-side, no marketing</span>
+            <h2>Compare every health plan — <span class="accent">one table.</span></h2>
+            <p>Network hospitals, restoration, room rent limits, claim settlement — the metrics that matter. Pick up to
+                3 to compare side by side.</p>
+        </div>
+
+        <div class="cmp__filters reveal-up">
+            <div class="cf" *ngFor="let f of filters">
+                <label class="cf__lbl">{{ f.label }}</label>
+                <select class="cf__sel">
+                    <option *ngFor="let o of f.options">{{ o }}</option>
+                </select>
+            </div>
+            <div class="cmp__sort">
+                <button *ngFor="let s of sortOptions" [class.active]="activeSort === s" (click)="activeSort = s">{{ s
+                    }}</button>
+            </div>
+        </div>
+
+        <div class="ctable reveal-up">
+            <div class="ctable__head">
+                <div>Insurer &amp; Plan</div>
+                <div>Claim Ratio</div>
+                <div>Network</div>
+                <div>Restore</div>
+                <div></div>
+            </div>
+
+            <div class="crow" *ngFor="let p of visiblePlans" [class.recommended]="p.recommended">
+                <div class="cinsurer">
+                    <div class="cinsurer__logo" [class.cinsurer__logo--img]="p.logoImg"
+                        [style.background]="p.logoImg ? '#fff' : p.logoColor">
+                        <img *ngIf="p.logoImg" [src]="p.logoImg" [alt]="p.insurer + ' logo'" />
+                        <span *ngIf="!p.logoImg">{{ p.logo }}</span>
+                    </div>
+                    <div>
+                        <div class="cinsurer__name">
+                            {{ p.insurer }}
+                            <span class="rec-badge" *ngIf="p.recommended">Recommended</span>
+                            <span class="rec-badge" *ngIf="p.tag" [style.background]="p.tagColor">{{ p.tag }}</span>
+                        </div>
+                        <div class="cinsurer__plan">{{ p.plan }}</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="cval" [class.cval--warn]="p.claimRatioWarn">{{ p.claimRatio }}</div>
+                    <div class="cval__sub">{{ p.claimRatioSub }}</div>
+                </div>
+                <div>
+                    <div class="cval">{{ p.network }}</div>
+                    <div class="cval__sub">{{ p.networkSub }}</div>
+                </div>
+                <div>
+                    <div class="cbadge" [ngClass]="'cbadge--' + p.restoreBadge">{{ p.restore }}</div>
+                </div>
+                <div class="cact">
+                    <a class="btn" [ngClass]="p.recommended ? 'btn--orange' : 'btn--outline'" routerLink="/"
+                        fragment="consult">
+                        {{ p.recommended ? 'Get this plan' : 'View plan' }} →
+                    </a>
+                    <label class="compare">
+                        <input type="checkbox" [checked]="isSelected(p.key)"
+                            [disabled]="!isSelected(p.key) && selectedKeys.length >= MAX_COMPARE"
+                            (change)="toggleCompare(p.key)" />
+                        Compare
+                    </label>
+                </div>
+            </div>
+
+            <div class="crow crow--more" *ngIf="hasHiddenPlans">
+                <button type="button" class="showmore" (click)="showAllPlans = !showAllPlans">
+                    {{ showMoreLabel }}
+                </button>
+            </div>
+        </div>
+
+        <div class="ctray" [class.has-items]="selectedKeys.length > 0">
+            <span class="ctray__lbl">Comparing {{ selectedKeys.length }}</span>
+            <div class="ctray__slots">
+                <span class="cslot" *ngIf="selectedPlans.length === 0" data-empty>Pick up to three plans to
+                    compare</span>
+                <span class="cslot filled" *ngFor="let p of selectedPlans">
+                    {{ p.insurer }} · {{ p.plan }}
+                    <span class="x" (click)="removeSelected(p.key)">×</span>
+                </span>
+            </div>
+            <button class="btn btn--orange" [disabled]="selectedKeys.length < 2" (click)="openModal()">
+                {{ compareBtnLabel }}
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ============ COMPARE MODAL ============ -->
+<div class="cmodal" [class.open]="modalOpen" role="dialog" aria-modal="true" aria-labelledby="cmodalTitle"
+    (click)="closeModal()">
+    <div class="cmodal__panel" (click)="$event.stopPropagation()">
+        <div class="cmodal__hd">
+            <div>
+                <span class="eyebrow cmodal__eyebrow">Side-by-side</span>
+                <h3 id="cmodalTitle">Your shortlisted health plans</h3>
+            </div>
+            <button class="cmodal__close" (click)="closeModal()" aria-label="Close">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div class="cmodal__bd">
+            <table class="cmtbl">
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="cmtbl__param">Parameter</div>
+                        </th>
+                        <th *ngFor="let p of selectedPlans">
+                            <div class="ch">
+                                <div class="d-flex gap-1">
+                                    <div class="ch__logo" [class.ch__logo--img]="p.logoImg"
+                                        [style.background]="p.logoImg ? '#fff' : p.logoColor">
+                                        <img *ngIf="p.logoImg" [src]="p.logoImg" [alt]="p.insurer + ' logo'" />
+                                        <span *ngIf="!p.logoImg">{{ p.logo }}</span>
+                                    </div>
+                                    <div class="text-start text-nowrap">
+                                        <div class="ch__name">{{ p.insurer }}</div>
+                                        <div class="ch__plan">{{ p.plan }}</div>
+                                    </div>
+                                </div>
+                                <button class="ch__remove" (click)="removeSelected(p.key)">×</button>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let sec of compareSections">
+                        <tr class="cm-section">
+                            <td [attr.colspan]="selectedPlans.length + 1">
+                                <span class="cm-section__label">{{ sec.title }}</span>
+                            </td>
+                        </tr>
+                        <tr *ngFor="let row of sec.rows">
+                            <td>
+                                {{ row.label }}
+                                <span class="row__hint" *ngIf="row.hint">{{ row.hint }}</span>
+                            </td>
+                            <td *ngFor="let p of selectedPlans" [ngClass]="cellClass(p, row.label)">
+                                {{ cellValue(p, row.label) }}
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="cmodal__ft">
+            <p class="note">Need help? An IRDAI-certified advisor can walk you through every row in 20 minutes.</p>
+            <a routerLink="/" fragment="consult" class="btn btn--orange">Talk to an advisor →</a>
+        </div>
+    </div>
+</div>
+
+<!-- ============ FOOTER CTA ============ -->
+<section class="pagefoot section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 text-center reveal-up">
+                <span class="eyebrow">Still unsure? That's normal.</span>
+                <h3>The right health plan takes twenty minutes to find — not months.</h3>
+                <p>An IRDAI-certified advisor reviews your needs, flags the waiting-period traps, and shortlists the
+                    plans that actually fit. No upsell.</p>
+                <!-- <a class="btn btn--orange btn--big" routerLink="/" fragment="consult">Book my free call →</a> -->
+                <a class="btn btn--orange btn--big" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
+                    target="_blank">Book my free call →</a>
+            </div>
+        </div>
+    </div>
+</section>

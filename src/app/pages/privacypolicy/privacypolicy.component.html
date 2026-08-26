@@ -1,0 +1,522 @@
+<!-- ============ HERO ============ -->
+<section class="hero section" id="top">
+    <div class="container hero__inner text-center">
+
+        <nav aria-label="breadcrumb" class="reveal-up">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                <span class="sep">/</span> 
+                <li class="breadcrumb-item active" aria-current="page"><span class="here">Privacy Policy</span></li>
+            </ol>
+        </nav>
+
+        <div class="hero__chip">
+            <span class="dot"></span>
+            Your data is yours. We're just looking after it.
+        </div>
+
+        <h1 class="hero__h1">How we handle <br> <em>your information.</em></h1>
+
+        <p class="hero__sub">
+            Short, honest, in plain English. We're an IRDAI-licensed broker — and we treat the data you share like you'd
+            want a bank to.
+        </p>
+
+        <div class="hero__meta">
+            <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                Last updated · {{ lastUpdated }}
+            </span>
+            <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                IRDAI-licensed broker
+            </span>
+            <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                SSL encrypted end-to-end
+            </span>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============ TL;DR STRIP ============ -->
+<section class="tldr section">
+    <div class="container tldr__wrap">
+        <div class="row g-3">
+            <div class="col-6 col-lg-3" *ngFor="let c of tldr; let i = index">
+                <div class="tldr-card h-100 reveal" [attr.data-delay]="i">
+                    <div class="tldr-card__icon" [ngSwitch]="c.icon">
+                        <svg *ngSwitchCase="'user'" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <svg *ngSwitchCase="'lock'" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <svg *ngSwitchCase="'share'" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 11h-6"></path>
+                        </svg>
+                        <svg *ngSwitchCase="'optout'" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 6h18M3 12h18M3 18h18"></path>
+                        </svg>
+                    </div>
+                    <div class="tldr-card__t">{{ c.title }}</div>
+                    <div class="tldr-card__d">{{ c.desc }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ POLICY ============ -->
+<section class="policy section" id="policy">
+    <div class="container policy__wrap">
+        <div class="row g-5">
+
+            <!-- TOC -->
+            <aside class="col-lg-3">
+                <div class="toc">
+                    <div class="toc__label">On this page</div>
+                    <ul class="toc__list">
+                        <li *ngFor="let t of toc">
+                            <a [href]="'#' + t.id" [class.active]="activeSection === t.id"
+                                (click)="$event.preventDefault(); scrollTo(t.id)">{{ t.label }}</a>
+                        </li>
+                    </ul>
+
+                    <div class="toc__cta">
+                        <div class="toc__cta-t">Have a question?</div>
+                        <div class="toc__cta-d">Our team responds within one working day.</div>
+                        <a href="mailto:privacy@oneinsure.com">
+                            Write to us
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- BODY -->
+            <div class="col-lg-9">
+                <div class="policy__body">
+
+                    <article class="section-card reveal-up" id="sec-overview">
+                        <div class="section-card__num">01 / OVERVIEW</div>
+                        <h2 class="section-card__h">The short <em>version.</em></h2>
+                        <div class="plain">
+                            <div class="plain__ic">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                </svg>
+                            </div>
+                            <div class="plain__txt">
+                                <div class="plain__lbl">In plain English</div>
+                                <div class="plain__d">This policy explains what we collect, why, where it goes, and how we
+                                    keep it safe. If anything's unclear — write to us.</div>
+                            </div>
+                        </div>
+                        <div class="section-card__body">
+                            <p>This Privacy Policy governs the manner in which OneInsure collects, uses, maintains, and
+                                discloses information from users of <strong>www.oneinsure.com</strong>. It applies to the
+                                site and every product and service we offer.</p>
+                            <p>OneInsure is powered by <strong>Robinhood Insurance Broker Limited</strong>, a licensed
+                                insurance broking company registered with the Insurance Regulatory and Development
+                                Authority of India (IRDAI · License Code 386).</p>
+                        </div>
+                    </article>
+
+                    <article class="section-card reveal-up" id="sec-personal">
+                        <div class="section-card__num">02 / PERSONAL INFORMATION</div>
+                        <h2 class="section-card__h">What you tell us about <em>yourself.</em></h2>
+                        <div class="plain">
+                            <div class="plain__ic">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <div class="plain__txt">
+                                <div class="plain__lbl">In plain English</div>
+                                <div class="plain__d">Name, contact, payment info — only what's needed to find you a
+                                    policy. Skip a field and we'll skip a step. You can also browse without telling us
+                                    anything.</div>
+                            </div>
+                        </div>
+                        <div class="section-card__body">
+                            <p>We collect personal identification details when you register, place an order, subscribe to
+                                a newsletter, respond to a survey, fill a form, or use any other resource on our site.
+                                This may include your name, email, mailing address, phone number, and payment details.
+                            </p>
+                            <p>You can visit the site anonymously. We only collect personal information when you
+                                voluntarily provide it — and you can refuse, though that may limit some features.</p>
+                        </div>
+                    </article>
+
+                    <article class="section-card reveal-up" id="sec-nonpersonal">
+                        <div class="section-card__num">03 / NON-PERSONAL DATA</div>
+                        <h2 class="section-card__h">Technical stuff we see <em>automatically.</em></h2>
+                        <div class="plain">
+                            <div class="plain__ic">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                            </div>
+                            <div class="plain__txt">
+                                <div class="plain__lbl">In plain English</div>
+                                <div class="plain__d">Your browser, your OS, your connection type. Anonymous, aggregated,
+                                    used to make the site faster — never to identify you.</div>
+                            </div>
+                        </div>
+                        <div class="section-card__body">
+                            <p>When you interact with our site, we may collect anonymous technical information — your
+                                browser name, device type, operating system, internet service provider, and similar
+                                connection details. None of this identifies you personally.</p>
+                        </div>
+                    </article>
+
+                    <article class="section-card reveal-up" id="sec-cookies">
+                        <div class="section-card__num">04 / COOKIES</div>
+                        <h2 class="section-card__h">The cookie <em>conversation.</em></h2>
+                        <div class="plain">
+                            <div class="plain__ic">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path>
+                                    <path d="M8.5 8.5v.01"></path>
+                                    <path d="M16 15.5v.01"></path>
+                                    <path d="M12 12v.01"></path>
+                                    <path d="M11 17v.01"></path>
+                                    <path d="M7 14v.01"></path>
+                                </svg>
+                            </div>
+                            <div class="plain__txt">
+                                <div class="plain__lbl">In plain English</div>
+                                <div class="plain__d">Small files on your computer that remember your session. Turn them
+                                    off in your browser if you want — some things may break.</div>
+                            </div>
+                        </div>
+                        <div class="section-card__body">
+                            <p>Our site may use cookies to enhance your experience. Your browser places cookies on your
+                                device for record-keeping and to remember preferences.</p>
+                            <p>You can change your browser settings to refuse cookies or alert you when they're being
+                                sent. Note that some parts of the site may not function properly if you disable them.</p>
+                        </div>
+                    </article>
+
+                    <article class="section-card reveal-up" id="sec-use">
+                        <div class="section-card__num">05 / HOW WE USE IT</div>
+                        <h2 class="section-card__h">What we do with your <em>information.</em></h2>
+                        <div class="plain">
+                            <div class="plain__ic">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 11 12 14 22 4"></polyline>
+                                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                                </svg>
+                            </div>
+                            <div class="plain__txt">
+                                <div class="plain__lbl">In plain English</div>
+                                <div class="plain__d">To find your policy, take your payment, improve the service, and
+                                    email you stuff you said yes to. That's it.</div>
+                            </div>
+                        </div>
+                        <div class="section-card__body">
+                            <div class="purpose-grid">
+                                <div class="purp">
+                                    <div class="purp__ic">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path
+                                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="purp__t">To improve customer service</div>
+                                        <div class="purp__d">Respond to your requests and support needs faster.</div>
+                                    </div>
+                                </div>
+                                <div class="purp">
+                                    <div class="purp__ic">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path
+                                                d="M12 1v6m0 10v6m11-11h-6M7 12H1m17.36-7.36l-4.24 4.24M9.88 14.12l-4.24 4.24m12.72 0l-4.24-4.24M9.88 9.88L5.64 5.64">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="purp__t">To personalize your experience</div>
+                                        <div class="purp__d">Understand how people use the site so we can make it better.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="purp">
+                                    <div class="purp__ic">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect>
+                                            <line x1="2" y1="10" x2="22" y2="10"></line>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="purp__t">To process payments</div>
+                                        <div class="purp__d">Only to complete the order you placed. Never shared
+                                            otherwise.</div>
+                                    </div>
+                                </div>
+                                <div class="purp">
+                                    <div class="purp__ic">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                            </path>
+                                            <polyline points="22,6 12,13 2,6"></polyline>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="purp__t">To send periodic emails</div>
+                                        <div class="purp__d">Updates, news, helpful resources — only if you opted in.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="purp">
+                                    <div class="purp__ic">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="purp__t">To gather feedback</div>
+                                        <div class="purp__d">So we can fix what's broken and build what you actually need.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="purp">
+                                    <div class="purp__ic">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polygon
+                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                            </polygon>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="purp__t">To run promotions or surveys</div>
+                                        <div class="purp__d">When you've signed up to hear from us about things we think
+                                            you'll like.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3">Every email we send has a one-click unsubscribe at the bottom. You can also
+                                email us at any time and we'll take you off the list.</p>
+                        </div>
+                    </article>
+
+                    <article class="section-card reveal-up" id="sec-protect">
+                        <div class="section-card__num">06 / HOW WE PROTECT IT</div>
+                        <h2 class="section-card__h">Security, the way <em>banks do it.</em></h2>
+                        <div class="plain">
+                            <div class="plain__ic">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </div>
+                            <div class="plain__txt">
+                                <div class="plain__lbl">In plain English</div>
+                                <div class="plain__d">Everything sensitive moves over SSL with digital signatures.
+                                    Nothing critical is ever stored in plaintext.</div>
+                            </div>
+                        </div>
+                        <div class="section-card__body">
+                            <p>We adopt strict data-collection, storage, and processing practices to protect against
+                                unauthorized access, alteration, disclosure, or destruction of your personal information,
+                                username, password, transaction data, and anything else stored on our site.</p>
+                            <div class="security">
+                                <div class="security__ic">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="security__t">SSL-encrypted &amp; digitally signed</div>
+                                    <div class="security__d">Sensitive data exchanged between your browser and our servers
+                                        travels over an SSL-secured channel — encrypted, signed, and verifiable.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="section-card reveal-up" id="sec-share">
+                        <div class="section-card__num">07 / SHARING</div>
+                        <h2 class="section-card__h">Who else <em>sees it.</em></h2>
+                        <div class="plain">
+                            <div class="plain__ic">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
+                            </div>
+                            <div class="plain__txt">
+                                <div class="plain__lbl">In plain English</div>
+                                <div class="plain__d">Only with insurers and service partners who help us send you emails,
+                                    SMS, WhatsApp, or calls — and only with your permission.</div>
+                            </div>
+                        </div>
+                        <div class="section-card__body">
+                            <p>We may use third-party service providers to help us operate our business and the site, or
+                                to perform activities on our behalf — sending email, SMS, WhatsApp messages, voice calls,
+                                or video calls.</p>
+                            <p>We share your information with these third parties only for those specific, limited
+                                purposes, and only after you've given us your permission.</p>
+                        </div>
+                    </article>
+
+                    <article class="section-card reveal-up" id="sec-thirdparty">
+                        <div class="section-card__num">08 / THIRD-PARTY SITES</div>
+                        <h2 class="section-card__h">Links that <em>leave us.</em></h2>
+                        <div class="plain">
+                            <div class="plain__ic">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </div>
+                            <div class="plain__txt">
+                                <div class="plain__lbl">In plain English</div>
+                                <div class="plain__d">When you click a link to another site — an insurer, a partner —
+                                    their policy applies. We can't control what they do.</div>
+                            </div>
+                        </div>
+                        <div class="section-card__body">
+                            <p>You may find advertising or content on our site that links to the sites of our partners,
+                                suppliers, advertisers, sponsors, licensors, and other third parties. We don't control
+                                what appears on those sites and aren't responsible for the practices they employ.</p>
+                            <p>Those sites have their own privacy policies and customer service terms. Browsing or
+                                interacting on any other website — including ones linked from ours — is subject to that
+                                website's own policies.</p>
+                        </div>
+                    </article>
+
+                    <article class="section-card reveal-up" id="sec-changes">
+                        <div class="section-card__num">09 / CHANGES</div>
+                        <h2 class="section-card__h">When this policy <em>changes.</em></h2>
+                        <div class="plain">
+                            <div class="plain__ic">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="23 4 23 10 17 10"></polyline>
+                                    <polyline points="1 20 1 14 7 14"></polyline>
+                                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                                </svg>
+                            </div>
+                            <div class="plain__txt">
+                                <div class="plain__lbl">In plain English</div>
+                                <div class="plain__d">We update this page from time to time. When it's a meaningful
+                                    change, we'll email you. Worth a check every now and then.</div>
+                            </div>
+                        </div>
+                        <div class="section-card__body">
+                            <p>OneInsure may update this Privacy Policy at any time. When we do, we revise the date at the
+                                top of this page and notify you by email. We encourage you to check this page
+                                periodically to stay informed about how we protect your information.</p>
+                        </div>
+                    </article>
+
+                    <article class="section-card reveal-up" id="sec-accept">
+                        <div class="section-card__num">10 / ACCEPTANCE</div>
+                        <h2 class="section-card__h">By using the site, you <em>accept this.</em></h2>
+                        <div class="plain">
+                            <div class="plain__ic">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <div class="plain__txt">
+                                <div class="plain__lbl">In plain English</div>
+                                <div class="plain__d">If you use the site, you're agreeing to this policy. If anything
+                                    here doesn't sit right — don't use it, and let us know why.</div>
+                            </div>
+                        </div>
+                        <div class="section-card__body">
+                            <p>By using <strong>www.oneinsure.com</strong>, you accept the terms of this policy. If you
+                                don't agree, we ask that you not use the website.</p>
+                            <p>Your continued use of the site after we post changes will be deemed acceptance of those
+                                changes.</p>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============ CONTACT CTA ============ -->
+<section class="contact section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 text-center contact__inner reveal-up">
+                <span class="eyebrow">Concerns? Questions?</span>
+                <h2>Talk to a <em>real human.</em></h2>
+                <p>If anything on this page doesn't sit right — or you want your data removed — write to us and a person
+                    will get back to you within one working day.</p>
+                <div class="contact__opts">
+                    <a href="mailto:privacy@oneinsure.com" class="btn btn--orange btn--big">
+                        Email privacy&#64;oneinsure.com
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    <a href="tel:+918655986559" class="btn btn--outline btn--big">Call +91 86559 86559</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,12 @@
+{
+    "api": {
+        "baseUrl": "http://localhost:4000/api/"
+    },
+    "Careers": {
+        "FromEmail": "support@oneinsure.com",
+        "ToEmail": "recruitment@oneinsure.com"
+    },
+    "ClaimSrNumber": {
+        "AssignedUserName": "aliabbas.sayyed@oneinsure.com"
+    }
+}

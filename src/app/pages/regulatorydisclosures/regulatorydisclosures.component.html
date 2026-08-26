@@ -1,0 +1,211 @@
+<!-- ============ HERO ============ -->
+<section class="hero section" id="top">
+    <div class="container hero__inner text-center">
+
+        <nav aria-label="breadcrumb" class="reveal-up">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                <span class="sep">/</span>
+                <li class="breadcrumb-item active" aria-current="page"><span class="here">Regulatory Disclosures</span>
+                </li>
+            </ol>
+        </nav>
+
+        <div class="hero__chip">
+            <span class="dot"></span>
+            Statutory &amp; regulatory disclosures
+        </div>
+
+        <h1 class="hero__h1">Everything we're required <br> to disclose.</h1>
+
+        <p class="hero__sub">
+            Reports, policies, and governance information published by Robinhood Insurance Broker
+            Limited (OneInsure), in line with applicable regulatory requirements.
+        </p>
+
+        <div class="hero__meta">
+            <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                Last updated · {{ lastUpdated }}
+            </span>
+            <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                IRDAI-licensed broker
+            </span>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============ DISCLOSURES ============ -->
+<section class="policy section" id="policy">
+    <div class="container policy__wrap">
+
+        <div *ngIf="loadError" class="alert-box reveal-up">
+            Disclosures couldn't be loaded right now. Please refresh, or write to
+            <a href="mailto:support@oneinsure.com">support&#64;oneinsure.com</a>.
+        </div>
+
+        <div class="row g-5" *ngIf="!loadError">
+
+            <!-- TOC -->
+            <aside class="col-lg-3">
+                <div class="toc">
+                    <div class="toc__label">On this page</div>
+                    <ul class="toc__list">
+                        <li *ngFor="let s of sections">
+                            <a [href]="'#' + s.id" [class.active]="activeSection === s.id"
+                                (click)="$event.preventDefault(); scrollTo(s.id)">{{ s.title }}</a>
+                        </li>
+                    </ul>
+
+                    <div class="toc__cta">
+                        <div class="toc__cta-t">Have a question?</div>
+                        <div class="toc__cta-d">Our compliance team responds within one working day.</div>
+                        <a href="mailto:support@oneinsure.com">
+                            Write to us
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- BODY -->
+            <div class="col-lg-9">
+                <div class="policy__body">
+
+                    <article class="section-card reveal-up" *ngFor="let s of sections" [id]="s.id">
+                        <div class="section-card__num">{{ s.num }} / {{ s.title | uppercase }}</div>
+                        <h2 class="section-card__h">{{ s.title }}</h2>
+                        <p class="section-card__summary">{{ s.summary }}</p>
+
+                        <!-- Document list sections -->
+                        <ng-container *ngIf="hasDocs(s)">
+                            <div class="doclist" *ngIf="s.documents && s.documents.length; else noDocs">
+                                <a class="doc" *ngFor="let d of s.documents" [href]="d.url" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <div class="doc__ic">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path
+                                                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z">
+                                            </path>
+                                            <polyline points="14 2 14 8 20 8"></polyline>
+                                        </svg>
+                                    </div>
+                                    <div class="doc__txt">
+                                        <div class="doc__t">{{ d.title }}</div>
+                                        <div class="doc__m" *ngIf="d.meta">{{ d.meta }}</div>
+                                    </div>
+                                    <div class="doc__dl">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                            <polyline points="7 10 12 15 17 10"></polyline>
+                                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                                        </svg>
+                                    </div>
+                                </a>
+                            </div>
+                            <ng-template #noDocs>
+                                <div class="empty-state">Documents for this section have not been published yet.
+                                    Check back soon.</div>
+                            </ng-template>
+                        </ng-container>
+
+                        <!-- Investor grievance contact -->
+                        <div class="contact-card" *ngIf="hasContact(s) && s.contact">
+                            <div class="contact-card__row">
+                                <span class="contact-card__lbl">Name</span>
+                                <span class="contact-card__val">{{ s.contact.name || 'Not yet provided' }}</span>
+                            </div>
+                            <div class="contact-card__row">
+                                <span class="contact-card__lbl">Designation</span>
+                                <span class="contact-card__val">{{ s.contact.designation || 'Not yet provided'
+                                    }}</span>
+                            </div>
+                            <div class="contact-card__row">
+                                <span class="contact-card__lbl">Email</span>
+                                <span class="contact-card__val">
+                                    <a *ngIf="s.contact.email; else noEmail"
+                                        [href]="'mailto:' + s.contact.email">{{ s.contact.email }}</a>
+                                    <ng-template #noEmail>Not yet provided</ng-template>
+                                </span>
+                            </div>
+                            <div class="contact-card__row" *ngIf="s.contact.phone">
+                                <span class="contact-card__lbl">Phone</span>
+                                <span class="contact-card__val"><a [href]="'tel:' + s.contact.phone">{{
+                                        s.contact.phone }}</a></span>
+                            </div>
+                        </div>
+
+                        <!-- Board & committee composition -->
+                        <ng-container *ngIf="hasBoard(s)">
+                            <div class="board" *ngIf="s.people && s.people.length; else noBoard">
+                                <div class="board__group-t">Board of Directors</div>
+                                <div class="board__row" *ngFor="let p of s.people">
+                                    <span class="board__name">{{ p.name }}</span>
+                                    <span class="board__role">{{ p.role }}</span>
+                                </div>
+                            </div>
+                            <ng-template #noBoard>
+                                <div class="empty-state">Board composition has not been published yet.</div>
+                            </ng-template>
+
+                            <div class="board" *ngIf="s.committees && s.committees.length">
+                                <div class="board__group-t">Committees</div>
+                                <div class="committee" *ngFor="let c of s.committees">
+                                    <div class="committee__t">{{ c.name }}</div>
+                                    <div class="committee__members">{{ c.members.join(', ') }}</div>
+                                </div>
+                            </div>
+                        </ng-container>
+
+                    </article>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============ CONTACT CTA ============ -->
+<section class="contact section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 text-center contact__inner reveal-up">
+                <span class="eyebrow">Questions about these disclosures?</span>
+                <h2>Talk to our <em>compliance team.</em></h2>
+                <p>If you can't find what you're looking for, or need a document that isn't listed here yet, write to
+                    us and we'll get back to you within one working day.</p>
+                <div class="contact__opts">
+                    <a href="mailto:support@oneinsure.com" class="btn btn--orange btn--big">
+                        Email support&#64;oneinsure.com
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    <a href="tel:+918655986559" class="btn btn--outline btn--big">Call +91 86559 86559</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

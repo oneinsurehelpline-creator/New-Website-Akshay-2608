@@ -1,0 +1,216 @@
+<!-- HERO CAROUSEL -->
+<section class="hcar" id="top" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+    <div class="hcar__track" #track [style.transform]="'translateX(' + (-current * 100) + '%)'"
+        (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+
+        <!-- SLIDE 1 — Overview hero -->
+        <div class="hcar__slide" [class.is-active]="current === 0">
+            <section class="hero">
+                <div class="container hero__inner">
+                    <nav aria-label="breadcrumb" class="reveal-up">
+                        <ol class="breadcrumb mb-3 mt-3">
+                            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                            <span class="sep">/</span>
+                            <li class="breadcrumb-item"><a routerLink="/" fragment="products">Products</a></li>
+                            <span class="sep">/</span>
+                            <li class="breadcrumb-item active" aria-current="page"><span class="here">Life
+                                    Investment Plans</span></li>
+                        </ol>
+                    </nav>
+
+                    <div class="hero__chip">
+                        <span class="dot"></span>
+                        Guaranteed returns · Life cover included · Tax-free maturity
+                    </div>
+
+                    <h1 class="hero__h1">
+                        Your money should grow whether
+                        <em>the market goes up or down</em>
+                    </h1>
+
+                    <p class="hero__sub">
+                        Locked-in returns. Life cover built in. Tax-free at maturity. No exposure to market volatility.
+                    </p>
+
+                    <div class="hero__cta">
+                        <a class="btn btn--orange btn--big" href="#compare"
+                            (click)="$event.preventDefault(); scrollTo('compare')">Compare plans →</a>
+                        <a class="btn btn--outline btn--big" href="#videos"
+                            (click)="$event.preventDefault(); scrollTo('videos')">Watch how it works</a>
+                    </div>
+
+                    <div class="hero__trust">
+                        <div class="hero__trust-item" *ngFor="let t of trust">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            {{ t }}
+                        </div>
+                    </div>
+
+                    <div class="hero__stats">
+                        <div class="hstat" *ngFor="let s of stats">
+                            <div class="hstat__num">{{ s.num }}<span>{{ s.unit }}</span></div>
+                            <div class="hstat__lbl">{{ s.label }}</div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- SLIDE 2 — Income replacement for women -->
+        <div class="hcar__slide" [class.is-active]="current === 1">
+            <section class="hslide--photo">
+                <div class="hslide__copy">
+                    <span class="eyebrow">Income replacement · For women</span>
+                    <h2 class="hslide__h">Your income shouldn't stop <em>when life takes a turn.</em></h2>
+                    <p class="hslide__sub">A guaranteed long-term income stream — designed to support you through career
+                        breaks, life transitions, and evolving priorities.</p>
+                    <div class="hl">
+                        <span class="hl__pre">Invest ₹{{ formatK(womenPlanDetails[0]?.InvestmentAmount)}}/month for
+                            {{womenPlanDetails[0]?.InvestmentYears}} years</span>
+                        <span class="hl__big">₹{{ formatValue(womenPlanDetails[0]?.GainAmount) }}
+                            <span>{{ formatUnit(womenPlanDetails[0]?.GainAmount, true) }}</span></span>
+                        <span class="hl__post">Guaranteed income, every year, for {{womenPlanDetails[0]?.IncomeYears}}
+                            years</span>
+                        <span class="hl__chip">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Return of premium at maturity
+                        </span>
+                    </div>
+                    <div class="hslide__cta">
+                        <a class="btn btn--orange btn--big" routerLink="/" fragment="consult">Plan your future income
+                            →</a>
+                        <a class="btn btn--outline btn--big d-none" href="#compare"
+                            (click)="$event.preventDefault(); scrollTo('compare')">Explore guaranteed benefits</a>
+                    </div>
+                    <p class="hslide__tag">Your ambitions may pause. Your income doesn't have to.</p>
+                </div>
+                <div class="hslide__media2">
+                    <div class="hslide__bg" [style.backgroundImage]="'url(' + slideImages.women + ')'"></div>
+                    <div class="media-chip" style="right:28px;bottom:28px">
+                        <div class="media-chip__lbl">Every year, guaranteed</div>
+                        <div class="media-chip__val"><span class="dot"></span>
+                            ₹{{ formatValue(womenPlanDetails[0]?.GainAmount) }}{{
+                            formatUnit(womenPlanDetails[0]?.GainAmount) }} income</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SLIDE 3 — Child's future / education -->
+        <div class="hcar__slide" [class.is-active]="current === 2">
+            <section class="hslide--photo">
+                <div class="hslide__copy">
+                    <span class="eyebrow">Child's future · Education abroad</span>
+                    <h2 class="hslide__h">Their ambitions shouldn't wait <em>for a good market year.</em></h2>
+                    <p class="hslide__sub">Lock in a guaranteed education corpus today. A built-in premium waiver keeps
+                        the goal fully funded — even if you're no longer there to pay.</p>
+                    <div class="hl">
+                        <span class="hl__pre">From ₹{{ formatK(childPlanDetails[0]?.InvestmentAmount)}}/month</span>
+                        <span class="hl__big">₹{{ formatValue(childPlanDetails[0]?.GainAmount)}} <span>{{
+                                formatUnit(childPlanDetails[0]?.GainAmount, true)}}</span></span>
+                        <span class="hl__post">Guaranteed corpus, ready when they are</span>
+                        <span class="hl__chip">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Premium waiver included
+                        </span>
+                    </div>
+                    <div class="hslide__cta">
+                        <a class="btn btn--orange btn--big" routerLink="/" fragment="consult">Plan their future →</a>
+                        <a class="btn btn--outline btn--big d-none" href="#compare"
+                            (click)="$event.preventDefault(); scrollTo('compare')">Explore child plans</a>
+                    </div>
+                    <p class="hslide__tag">Start today. Graduate them debt-free.</p>
+                </div>
+                <div class="hslide__media2">
+                    <div class="hslide__bg" style="background-position:48% center"
+                        [style.backgroundImage]="'url(' + slideImages.child + ')'"></div>
+                    <div class="media-chip" style="right:28px;bottom:28px">
+                        <div class="media-chip__lbl">Locked in from day one</div>
+                        <div class="media-chip__val"><span class="dot"></span>
+                            ₹{{ formatValue(childPlanDetails[0]?.GainAmount) }}{{
+                            formatUnit(childPlanDetails[0]?.GainAmount) }} income</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SLIDE 4 — Retirement / second income -->
+        <div class="hcar__slide" [class.is-active]="current === 3">
+            <section class="hslide--photo">
+                <div class="hslide__copy">
+                    <span class="eyebrow">Retirement · Second income</span>
+                    <h2 class="hslide__h">Build a paycheck that <em>outlasts your career.</em></h2>
+                    <p class="hslide__sub">Convert today's savings into a guaranteed monthly income for life after work
+                        — never at the mercy of how the market feels that year.</p>
+                    <div class="hl">
+                        <span class="hl__pre">Invest ₹{{ formatK(retirementPlanDetails[0]?.InvestmentAmount)}}/month for
+                            {{retirementPlanDetails[0]?.InvestmentYears}} years</span>
+                        <span class="hl__big">₹{{ formatValue(retirementPlanDetails[0]?.GainAmount) }}
+                            <span>{{ formatUnit(retirementPlanDetails[0]?.GainAmount, true)
+                                }}</span></span>
+                        <span class="hl__post">Guaranteed income, every single month</span>
+                        <span class="hl__chip">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Income for up to {{retirementPlanDetails[0]?.IncomeYears}} years
+                        </span>
+                    </div>
+                    <div class="hslide__cta">
+                        <a class="btn btn--orange btn--big" routerLink="/" fragment="consult">Plan my retirement income
+                            →</a>
+                        <a class="btn btn--outline btn--big d-none" href="#compare"
+                            (click)="$event.preventDefault(); scrollTo('compare')">Explore income plans</a>
+                    </div>
+                    <p class="hslide__tag">Retire from work. Never from income.</p>
+                </div>
+                <div class="hslide__media2">
+                    <div class="hslide__bg" style="background-position:62% center"
+                        [style.backgroundImage]="'url(' + slideImages.retire + ')'"></div>
+                    <div class="media-chip" style="right:28px;bottom:28px">
+                        <div class="media-chip__lbl">Every month, guaranteed</div>
+                        <div class="media-chip__val"><span class="dot"></span>
+                            ₹{{ formatValue(retirementPlanDetails[0]?.GainAmount) }}{{
+                            formatUnit(retirementPlanDetails[0]?.GainAmount) }} income</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div><!-- /hcar__track -->
+
+    <button class="hcar__arrow hcar__arrow--prev" (click)="prev()" aria-label="Previous slide">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+    </button>
+    <button class="hcar__arrow hcar__arrow--next" (click)="next()" aria-label="Next slide">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+    </button>
+
+    <div class="hcar__dots">
+        <button *ngFor="let d of dots; let i = index" class="hcar__dot" [class.is-active]="current === i"
+            (click)="go(i)">
+            {{ d.label }}<span class="hcar__dot-i"></span>
+        </button>
+    </div>
+
+    <div class="hcar__progress">
+        <div class="hcar__progress-bar" #progressBar></div>
+    </div>
+</section>

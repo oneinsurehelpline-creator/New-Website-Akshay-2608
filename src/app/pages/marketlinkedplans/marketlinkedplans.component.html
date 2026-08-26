@@ -1,0 +1,259 @@
+<!-- ============ HERO ============ -->
+<section class="hero section" id="top">
+    <div class="container hero__inner text-center">
+
+        <nav aria-label="breadcrumb" class="reveal-up">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                <span class="sep">/</span>
+                <li class="breadcrumb-item"><a routerLink="/" fragment="products">Products</a></li>
+                <span class="sep">/</span>
+                <li class="breadcrumb-item active" aria-current="page"><span class="here">Market-Linked Plans</span>
+                </li>
+            </ol>
+        </nav>
+
+        <div class="hero__chip">
+            <span class="dot"></span>
+            ULIP &amp; TULIP · Growth with protection
+        </div>
+
+        <h1 class="hero__h1">
+            Invest smarter.<br />
+            Stay protected <em>while your money grows.</em>
+        </h1>
+
+        <p class="hero__sub">
+            Unit Linked Insurance Plans combine life cover with market-linked returns — your premium works double duty.
+            Here's everything you need to know before you invest.
+        </p>
+
+        <div class="hero__cta">
+            <a class="btn btn--orange btn--big" href="#funds"
+                (click)="$event.preventDefault(); scrollTo('funds')">Compare fund options →</a>
+            <a class="btn btn--outline btn--big" href="#how-it-works"
+                (click)="$event.preventDefault(); scrollTo('how-it-works')">How it works</a>
+        </div>
+
+        <div class="hero__trust">
+            <div class="hero__trust-item" *ngFor="let t of trust">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                {{ t }}
+            </div>
+        </div>
+
+        <div class="row g-3 justify-content-center hero__stats">
+            <div class="col-6 col-lg-3" *ngFor="let s of stats">
+                <div class="hstat h-100">
+                    <div class="hstat__num">{{ s.num }}<span>{{ s.sup }}</span></div>
+                    <div class="hstat__lbl">{{ s.lbl }}</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============ WHAT IS A ULIP ============ -->
+<section class="why section" id="about" #sectionRef>
+    <div class="container">
+        <div class="row g-5 align-items-center">
+
+            <div class="col-lg-6">
+                <div class="why__copy reveal-left">
+                    <span class="eyebrow">What is a ULIP?</span>
+                    <h2>Insurance and <span class="accent">investment</span><br> in one product</h2>
+                    <p>A Unit Linked Insurance Plan (ULIP) splits your premium into two parts — a portion pays for life
+                        insurance cover and the rest is invested in equity, debt, or balanced funds of your choice. You
+                        get market-linked returns with the security of a life cover floor.</p>
+                    <!-- <a class="btn btn--blue" routerLink="/" fragment="consult">Talk to an advisor →</a> -->
+                    <a class="btn btn--blue" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
+                        target="_blank">Talk to an advisor →</a>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="points reveal-right">
+                    <div class="point" *ngFor="let p of whyPoints; let i = index" [attr.data-delay]="i">
+                        <div class="point__icon" [ngSwitch]="p.icon">
+                            <img *ngSwitchCase="'trend'" src="assets/images/icons/calculators/guaranteed-return.png"
+                                alt="" loading="lazy">
+                            <img *ngSwitchCase="'shield'" src="assets/images/icons/knowledgebase/term.png" alt=""
+                                loading="lazy">
+                            <svg *ngSwitchCase="'switch'" width="26" height="26" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            <img *ngSwitchCase="'lock'" src="assets/images/icons/general/tax-benefit.png" alt=""
+                                loading="lazy">
+                        </div>
+                        <div>
+                            <div class="point__t">{{ p.title }}</div>
+                            <div class="point__d">{{ p.desc }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="how section" id="how-it-works" #sectionRef>
+    <div class="container">
+        <div class="how__head text-center mx-auto reveal-up">
+            <span class="eyebrow">Process</span>
+            <h2>How a ULIP <span class="accent">works</span></h2>
+            <p>Your premium does two jobs every month — protecting your family and growing your wealth simultaneously.
+            </p>
+        </div>
+
+        <div class="steps">
+            <div class="row g-4">
+                <div class="col-6 col-lg-3" *ngFor="let s of steps; let i = index">
+                    <div class="step reveal" [attr.data-delay]="i">
+                        <div class="step__num">{{ s.num }}</div>
+                        <div class="step__t">{{ s.title }}</div>
+                        <div class="step__d">{{ s.desc }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FUND OPTIONS ============ -->
+<section class="funds section" id="funds" #sectionRef>
+    <div class="container">
+        <div class="funds__head text-center mx-auto reveal-up">
+            <span class="eyebrow">Fund Options</span>
+            <h2>Compare fund <span class="accent">types</span></h2>
+            <p>Every ULIP lets you choose where your money is invested. Pick based on your investment horizon and risk
+                tolerance.</p>
+        </div>
+
+        <div class="ftable reveal-up">
+            <div class="ftable__head">
+                <div>Fund Type</div>
+                <div>Risk</div>
+                <div>Allocation</div>
+                <div>10-yr CAGR (avg)</div>
+                <div>Best For</div>
+            </div>
+
+            <div class="frow" *ngFor="let f of funds" [class.top-pick]="f.topPick">
+                <div>
+                    <div class="fund-name">
+                        {{ f.name }}
+                        <span class="top-badge" *ngIf="f.topPick">Top pick</span>
+                    </div>
+                    <div class="fund-sub">{{ f.sub }}</div>
+                </div>
+                <div><span class="risk-pill" [ngClass]="f.riskClass">{{ f.riskLabel }}</span></div>
+                <div>
+                    <div class="fval">{{ f.alloc }}</div>
+                    <div class="fval__sub">{{ f.allocSub }}</div>
+                </div>
+                <div>
+                    <div class="fval positive">{{ f.cagr }}</div>
+                </div>
+                <div>
+                    <div class="fval__sub">{{ f.bestFor }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ BENEFITS ============ -->
+<section class="benefits section" id="benefits" #sectionRef>
+    <div class="container">
+        <div class="benefits__head text-center mx-auto reveal-up">
+            <span class="eyebrow">Why choose a ULIP?</span>
+            <h2>Benefits of <span class="accent">market-linked plans</span></h2>
+            <p>Beyond just returns, ULIPs offer a combination of features that make them uniquely powerful for long-term
+                wealth creation.</p>
+        </div>
+
+        <div class="row g-4 ben__grid">
+            <div class="col-12 col-md-6 col-lg-4" *ngFor="let b of benefits; let i = index">
+                <div class="bcard h-100 reveal" [attr.data-delay]="i % 3">
+                    <div class="bcard__ic" [style.color]="b.iconColor" [ngSwitch]="b.icon">
+                        <img *ngSwitchCase="'trend'" src="assets/images/icons/calculators/fire-number.png" alt=""
+                            loading="lazy">
+                        <img *ngSwitchCase="'shield'" src="assets/images/icons/calculators/tax-savings.png" alt=""
+                            loading="lazy">
+                        <svg *ngSwitchCase="'edit'" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        <svg *ngSwitchCase="'clock'" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <img *ngSwitchCase="'heart'" src="assets/images/icons/general/comprehensive-cover.png" alt=""
+                            loading="lazy">
+                        <svg *ngSwitchCase="'monitor'" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3>{{ b.title }}</h3>
+                    <p>{{ b.desc }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ ULIP vs TRADITIONAL ============ -->
+<section class="compare-section section" id="compare" #sectionRef>
+    <div class="container">
+        <div class="compare-section__head text-center mx-auto reveal-up">
+            <span class="eyebrow">Quick Comparison</span>
+            <h2>ULIP vs traditional <span class="accent">insurance plans</span></h2>
+        </div>
+
+        <div class="ctable-wrap reveal-up">
+            <table class="ctable">
+                <thead>
+                    <tr>
+                        <th *ngFor="let h of compareHeaders">{{ h }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of compareRows">
+                        <td>{{ row.feature }}</td>
+                        <td *ngFor="let c of row.cells" [ngClass]="c.cls">{{ c.text }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER CTA ============ -->
+<section class="pagefoot section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 text-center reveal-up">
+                <span class="eyebrow">Get started</span>
+                <h3>Not sure which fund suits your goals?</h3>
+                <p>Our advisors will match you with the right ULIP and fund mix based on your risk profile, time
+                    horizon, and tax situation — for free.</p>
+                <!-- <a class="btn btn--orange btn--big" routerLink="/" fragment="consult">Book a free consultation →</a> -->
+                <a class="btn btn--orange btn--big" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
+                    target="_blank">Book a free consultation →</a>
+            </div>
+        </div>
+    </div>
+</section>
