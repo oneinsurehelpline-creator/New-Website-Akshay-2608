@@ -20,7 +20,7 @@ export class CarouselHeaderComponent {
 
   /** Hero deck carousel state */
   readonly TOTAL = 4;
-  private readonly AUTO_MS = 6000;
+  private readonly AUTO_MS = 60000;
   current = 0;
   progress = 0;                 // bound to the progress bar width (%)
   companyAge = 0;

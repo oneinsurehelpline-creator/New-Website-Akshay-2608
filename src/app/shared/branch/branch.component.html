@@ -3,20 +3,65 @@
 <div class="bl-wrap" *ngIf="mode === 'control'">
     <p class="bl-label" *ngIf="label">{{ label }}</p>
 
-    <div class="pin-box">
-        <svg class="pin-box__icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" viewBox="0 0 24 24">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path>
-            <circle cx="12" cy="9" r="2.5"></circle>
-        </svg>
+    <div class="branch-search">
 
-        <input class="pin-box__input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off"
-            [placeholder]="placeholder" [ngModel]="pincode" (ngModelChange)="onPinChange($event)"
-            (keypress)="onKeyPress($event)" (paste)="onPaste($event)" (keyup.enter)="search()" />
+        <!-- Search Box -->
+        <div class="branch-search">
+            <div class="pin-box">
+                <svg class="pin-box__icon" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z">
+                    </path>
 
-        <button class="btn btn--blue pin-box__btn" type="button" [disabled]="!canSearch" (click)="search()">
-            Search
-        </button>
+                    <circle cx="12" cy="9" r="2.5"></circle>
+                </svg>
+
+                <input class="pin-box__input" type="text" autocomplete="off" [placeholder]="placeholder"
+                    [(ngModel)]="city" (input)="branchSearch(city)" />
+
+                <!-- Optional clear button -->
+                <button *ngIf="city" type="button" class="pin-box__clear" (click)="city = ''; filteredLocations = []"
+                    aria-label="Clear search">
+                    ×
+                </button>
+            </div>
+        </div>
+
+
+
+        <!-- Dropdown -->
+        <div *ngIf="filteredLocations?.length > 0" class="pin-box__dropdown">
+
+            <ul>
+                <li *ngFor="let loc of filteredLocations" (click)="selectLocation(loc)">
+                    <span class="location-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z">
+                            </path>
+
+                            <circle cx="12" cy="9" r="2.2">
+                            </circle>
+                        </svg>
+                    </span>
+
+                    <span class="location-content">
+                        <span class="location-name">
+                            {{ loc.City || loc.Name }}
+                        </span>
+
+                        <span class="location-subtitle" *ngIf="loc.Name && loc.City && loc.Name !== loc.City">
+                            {{ loc.Name }}
+                        </span>
+                    </span>
+
+                    <span class="location-arrow">
+                        →
+                    </span>
+                </li>
+            </ul>
+        </div>
+
     </div>
 </div>
 
@@ -43,13 +88,11 @@
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path>
                     <circle cx="12" cy="9" r="2.5"></circle>
                 </svg>
-                <input class="pin-box__input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6"
-                    autocomplete="off" placeholder="Enter pincode" [ngModel]="pincode"
-                    (ngModelChange)="onPinChange($event)" (keypress)="onKeyPress($event)" (paste)="onPaste($event)"
-                    (keyup.enter)="pageSearch()" />                
-                <button class="btn btn--blue pin-box__btn" type="button" [disabled]="!canSearch" (click)="pageSearch()">
+                <input class="pin-box__input" type="text" autocomplete="off" placeholder="Enter city name"
+                    [(ngModel)]="city" (input)="branchSearch(city)" />
+                <!-- <button class="btn btn--blue pin-box__btn" type="button" [disabled]="!canSearch" (click)="pageSearch()">
                     Search
-                </button>
+                </button> -->
                 <button *ngIf="pincode" class="pin-box__clear" type="button" (click)="clearPincode()"
                     aria-label="Clear pincode and show all branches">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
