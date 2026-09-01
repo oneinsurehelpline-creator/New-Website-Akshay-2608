@@ -6,6 +6,11 @@ interface ThreeUpItem {
   desc: string;
 }
 
+interface CoverItem {
+  icon: string;
+  text: string;
+}
+
 interface FaqItem {
   q: string;
   a: string;
@@ -40,12 +45,28 @@ export class CriticalillnessplansComponent implements AfterViewInit, OnDestroy {
   ];
 
   // ---------- WHAT IT COVERS ----------
-  covers = [
-    'Cancer, heart attack, stroke, kidney failure, major organ transplant and 25+ more',
-    'A single tax-free lump sum paid on diagnosis, no bills required',
-    'Income replacement during months of treatment and recovery',
-    "Costs health insurance won't touch — travel, home care, loan EMIs, a second opinion abroad",
-    'Available as a standalone plan or as a rider on term insurance',
+  coversIcon = 'assets/images/icons/15_Critical_Illness.png';
+  covers: CoverItem[] = [
+    {
+      icon: 'assets/images/icons/calculators/health-cover.png',
+      text: 'Cancer, heart attack, stroke, kidney failure, major organ transplant and 25+ more',
+    },
+    {
+      icon: 'assets/images/icons/general/tax-benefit.png',
+      text: 'A single tax-free lump sum paid on diagnosis, no bills required',
+    },
+    {
+      icon: 'assets/images/icons/calculators/guaranteed-return.png',
+      text: 'Income replacement during months of treatment and recovery',
+    },
+    {
+      icon: 'assets/images/icons/knowledgebase/travel.png',
+      text: "Costs health insurance won't touch — travel, home care, loan EMIs, a second opinion abroad",
+    },
+    {
+      icon: 'assets/images/icons/knowledgebase/term.png',
+      text: 'Available as a standalone plan or as a rider on term insurance',
+    },
   ];
 
   // ---------- HOW IT WORKS ----------

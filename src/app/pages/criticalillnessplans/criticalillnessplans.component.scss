@@ -177,6 +177,20 @@
     line-height: 1.2;
 }
 
+.section__head--icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section__head-icon {
+    width: 84px;
+    height: 84px;
+    object-fit: contain;
+    margin-bottom: 2px;
+    filter: drop-shadow(0 12px 20px rgba(13, 43, 85, .18));
+}
+
 /* ============ WHAT IT COVERS ============ */
 .plp-cover {
     display: flex;
@@ -197,13 +211,19 @@
 
 .plp-cover__ic {
     flex-shrink: 0;
-    width: 30px;
-    height: 30px;
-    border-radius: 9px;
-    background: var(--blue-soft);
-    color: var(--blue);
+    width: 44px;
+    height: 44px;
     display: grid;
     place-items: center;
+    margin-top: -4px;
+
+    img {
+        width: 140%;
+        height: 140%;
+        max-width: 140%;
+        object-fit: contain;
+        filter: drop-shadow(0 6px 10px rgba(13, 43, 85, .16));
+    }
 }
 
 .plp-cover__t {

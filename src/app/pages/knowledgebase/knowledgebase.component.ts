@@ -8,6 +8,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, timeout } from 'rxjs/operators';
 import { LeadService } from '../../services/lead.service';
+import { ScheduleModalService } from 'src/app/shared/schedule-modal/schedule-modal.service';
 import {
   KB_ARTICLES,
   KB_CATEGORIES,
@@ -288,8 +289,6 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
       PageData: pageData,
     };
 
-    const scheduleCall = 'https://schedule.oneinsure.com/book/get-expert-guidance-web';
-
     this.submitting = true;
 
     this.leadService.CustomerDetails(cdto).pipe(
@@ -301,7 +300,7 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
         this.closeModal();
         this.form.reset({ name: '', phone: '', need: '' });
         this.showToast(`Thanks ${firstName} — an advisor will call you shortly.`, 'success');
-        window.location.assign(scheduleCall);
+        this.scheduleModal.open();
       },
       error: (err) => {
         console.error('CustomerDetails failed:', err);
@@ -309,7 +308,7 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
           ? 'The server took too long to respond. Please try again.'
           : 'Something went wrong sending your request. Please try again.';
         this.showToast(msg, 'error');
-        window.location.assign(scheduleCall);
+        this.scheduleModal.open();
       },
     });
   }
@@ -349,6 +348,7 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
     private host: ElementRef<HTMLElement>,
     private fb: FormBuilder,
     private leadService: LeadService,
+    private scheduleModal: ScheduleModalService,
   ) {
     // index lookups + search text
     this.categories.forEach((c) => (this.catById[c.id] = c));

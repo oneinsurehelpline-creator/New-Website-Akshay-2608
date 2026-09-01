@@ -51,7 +51,8 @@
           <!-- <a class="mega__foot" href="#" [appScrollTo]="'consult'" (click)="closeMenus()">
             Not sure what you need? Talk to an advisor →
           </a> -->
-          <a class="mega__foot" href="https://schedule.oneinsure.com/book/get-expert-guidance-web" target="_blank">
+          <a class="mega__foot" href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink
+            (click)="closeMenus()">
             Not sure what you need? Talk to an advisor →
           </a>
         </div>
@@ -72,7 +73,7 @@
         <span class="wa-dot"></span> Chat on WhatsApp
       </a>
       <!-- <a class="btn btn--blue" href="#" [appScrollTo]="'consult'" (click)="closeMenus()">Book a Free Call</a> -->
-      <a class="btn btn--blue" href="https://schedule.oneinsure.com/book/get-expert-guidance-web" target="_blank">Book a
+      <a class="btn btn--blue" href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Book a
         Free Call</a>
     </div>
 

@@ -6,6 +6,11 @@ interface ThreeUpItem {
   desc: string;
 }
 
+interface CoverItem {
+  svgKey: 'fire' | 'riot' | 'storm' | 'earthquake' | 'water';
+  text: string;
+}
+
 interface FaqItem {
   q: string;
   a: string;
@@ -40,12 +45,13 @@ export class FireinsuranceComponent implements AfterViewInit, OnDestroy {
   ];
 
   // ---------- WHAT IT COVERS ----------
-  covers = [
-    'Fire, lightning, explosion and implosion',
-    'Riot, strike, malicious damage and terrorism',
-    'Storm, cyclone, flood and inundation',
-    'Earthquake, landslide and subsidence',
-    'Impact damage, bursting of water tanks and pipes',
+  coversIcon = 'assets/images/icons/20_Fire_Insurance.png';
+  covers: CoverItem[] = [
+    { svgKey: 'fire', text: 'Fire, lightning, explosion and implosion' },
+    { svgKey: 'riot', text: 'Riot, strike, malicious damage and terrorism' },
+    { svgKey: 'storm', text: 'Storm, cyclone, flood and inundation' },
+    { svgKey: 'earthquake', text: 'Earthquake, landslide and subsidence' },
+    { svgKey: 'water', text: 'Impact damage, bursting of water tanks and pipes' },
   ];
 
   // ---------- WHY IT MATTERS ----------

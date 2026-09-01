@@ -444,20 +444,20 @@
 }
 
 .orb .bullet {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+    width: 38px;
+    height: 38px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
     flex-shrink: 0
 }
 
-.orb .bullet svg {
-    width: 15px;
-    height: 15px;
-    display: block
+.orb .bullet img {
+    width: 150%;
+    height: 150%;
+    max-width: 150%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(13, 43, 85, .22));
 }
 
 /* orbs cluster tightly around character, nothing bleeds left past 8% */
@@ -467,18 +467,10 @@
     animation: floatA 5.5s ease-in-out infinite
 }
 
-.orb.b1 .bullet {
-    background: var(--blue)
-}
-
 .orb.b2 {
     right: -25%;
     top: 20%;
     animation: floatB 6.5s ease-in-out infinite
-}
-
-.orb.b2 .bullet {
-    background: var(--orange)
 }
 
 .orb.b3 {
@@ -488,10 +480,6 @@
     animation-delay: -1s
 }
 
-.orb.b3 .bullet {
-    background: #0D2B55
-}
-
 .orb.b4 {
     right: -15%;
     top: 74%;
@@ -499,19 +487,11 @@
     animation-delay: -2s
 }
 
-.orb.b4 .bullet {
-    background: var(--blue)
-}
-
 .orb.b5 {
     left: 28%;
     bottom: 3%;
     animation: floatA 5.2s ease-in-out infinite;
     animation-delay: -1.4s
-}
-
-.orb.b5 .bullet {
-    background: var(--orange)
 }
 
 @keyframes floatA {

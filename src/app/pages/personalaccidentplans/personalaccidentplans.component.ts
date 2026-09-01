@@ -6,6 +6,11 @@ interface ThreeUpItem {
   desc: string;
 }
 
+interface CoverItem {
+  icon: string;
+  text: string;
+}
+
 interface FaqItem {
   q: string;
   a: string;
@@ -40,12 +45,28 @@ export class PersonalaccidentplansComponent implements AfterViewInit, OnDestroy 
   ];
 
   // ---------- WHAT IT COVERS ----------
-  covers = [
-    'Accidental death — lump sum to your nominee',
-    'Permanent total or partial disability — lump sum scaled to the loss',
-    "Temporary disability — a weekly payout while you're unable to work",
-    'Hospitalisation, ambulance, and broken-bone expenses',
-    'Optional education benefit for your children',
+  coversIcon = 'assets/images/icons/14_Personal_Accident.png';
+  covers: CoverItem[] = [
+    {
+      icon: 'assets/images/icons/knowledgebase/life.png',
+      text: 'Accidental death — lump sum to your nominee',
+    },
+    {
+      icon: 'assets/images/icons/general/comprehensive-cover.png',
+      text: 'Permanent total or partial disability — lump sum scaled to the loss',
+    },
+    {
+      icon: 'assets/images/icons/general/low-cost.png',
+      text: "Temporary disability — a weekly payout while you're unable to work",
+    },
+    {
+      icon: 'assets/images/icons/calculators/health-cover.png',
+      text: 'Hospitalisation, ambulance, and broken-bone expenses',
+    },
+    {
+      icon: 'assets/images/icons/knowledgebase/basics.png',
+      text: 'Optional education benefit for your children',
+    },
   ];
 
   // ---------- WHY IT MATTERS ----------

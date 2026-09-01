@@ -4,6 +4,7 @@ import { ViewportScroller } from '@angular/common';
 import { Router } from '@angular/router';
 import { LeadService } from '../../services/lead.service';
 import { UtilityService } from 'src/app/services/utility.service';
+import { ScheduleModalService } from 'src/app/shared/schedule-modal/schedule-modal.service';
 import { finalize, timeout } from 'rxjs/operators';
 
 type CalcKey = 'life' | 'guaranteed' | 'health' | 'fire' | 'tax';
@@ -29,7 +30,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     private viewport: ViewportScroller,
     private router: Router,
     private leadService: LeadService,
-    private utility: UtilityService
+    private utility: UtilityService,
+    private scheduleModal: ScheduleModalService
   ) {
     this.consultForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.maxLength(40)]],
@@ -87,8 +89,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       PageData: pageData,
     };
 
-    const scheduleCall = 'https://schedule.oneinsure.com/book/get-expert-guidance-web';
-
     this.consultSubmitting = true;
     this.utility.loading('Submitting…', 'Sending your consultation request.');
 
@@ -101,7 +101,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         this.consultDone = true;
         this.utility.success('Request received!', 'Our advisor will call you at your preferred time.');
         this.consultForm.reset({ help: 'Starting from scratch', time: 'Morning (9–12)' });
-        window.location.assign(scheduleCall);
+        this.scheduleModal.open();
       },
       error: (err) => {
         console.error('CustomerDetails failed:', err);
@@ -109,7 +109,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           ? 'The server took too long to respond. Please try again or reach us on WhatsApp.'
           : 'Something went wrong sending your request. Please try again, or reach us on WhatsApp.';
         this.utility.error('Could not send', this.consultError);
-        window.location.assign(scheduleCall);
+        this.scheduleModal.open();
       },
     });
   }

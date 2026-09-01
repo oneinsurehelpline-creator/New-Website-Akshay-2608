@@ -31,43 +31,8 @@
                     </button>
                     <!-- <a class="btn btn--outline btn--big" routerLink="/" fragment="consult">Talk to Our Team</a> -->
                     <a class="btn btn--outline btn--big"
-                        href="https://schedule.oneinsure.com/book/get-expert-guidance-web" target="_blank">Talk to Our
+                        href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Talk to Our
                         Team</a>
-                </div>
-
-                <div class="row g-3 pp-hero__trust">
-                    <div class="col-6" *ngFor="let t of trust">
-                        <div class="pp-trust-item">
-                            <span class="pp-trust-item__ic">
-                                <ng-container [ngSwitch]="t.icon">
-                                    <svg *ngSwitchCase="'briefcase'" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <rect x="2" y="7" width="20" height="14" rx="2"></rect>
-                                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                                    </svg>
-                                    <svg *ngSwitchCase="'users'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="9" cy="7" r="4"></circle>
-                                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                    </svg>
-                                    <svg *ngSwitchCase="'bolt'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline>
-                                    </svg>
-                                    <svg *ngSwitchCase="'megaphone'" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M3 11l18-5v12L3 14v-3z"></path>
-                                        <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path>
-                                    </svg>
-                                </ng-container>
-                            </span>
-                            {{ t.label }}
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -75,7 +40,7 @@
             <div class="col-lg-6 reveal-right">
                 <div class="pp-hero__visual">
                     <div class="pp-hero__photo-frame">
-                        <img src="assets/images/1774855103468.jpg" alt="OneInsure partner advisors" />
+                        <img src="assets/images/partner-advisors.png" alt="OneInsure partner advisors" />
                     </div>
 
                     <!-- Existing-partner login — hidden for now, will be built later.
@@ -120,7 +85,6 @@
 <section class="section" id="why">
     <div class="container">
         <div class="pp-head reveal-up">
-            <span class="eyebrow">Why Partner With Us</span>
             <h2>You Bring the Relationships. We Help You Scale Them.</h2>
             <p class="pp-lead">Everything an independent advisor needs to compete like an enterprise — without the
                 overhead.</p>
@@ -147,7 +111,6 @@
 <section class="section section--neutral" id="benefits">
     <div class="container">
         <div class="pp-head reveal-up">
-            <span class="eyebrow">The Full Toolkit</span>
             <h2>Everything You Need to Grow — Beyond Just Commissions.</h2>
         </div>
 
@@ -211,7 +174,6 @@
 
     <div class="container">
         <div class="pp-banner__inner reveal-up">
-            <span class="eyebrow no-rule pp-banner__eyebrow">The OneInsure Advantage</span>
             <h2>Independent Advisor Mindset. <span class="accent">Enterprise-Level Support.</span></h2>
             <p>
                 Whether you're an individual advisor, wealth manager, or building a larger agency —
@@ -236,7 +198,6 @@
 <section class="section" id="join">
     <div class="container">
         <div class="pp-head reveal-up">
-            <span class="eyebrow">Join the Network</span>
             <h2>Growth Is Easier When You're Backed by the Right Team.</h2>
         </div>
 
@@ -267,8 +228,7 @@
                     </svg>
                 </button>
                 <!-- <a class="btn btn--outline btn--big" routerLink="/" fragment="consult">Schedule a Discussion</a> -->
-                <a class="btn btn--outline btn--big" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
-                    target="_blank">Schedule a Discussion</a>
+                <a class="btn btn--outline btn--big" href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Schedule a Discussion</a>
             </div>
         </div>
     </div>
@@ -291,7 +251,6 @@
         <!-- FORM -->
         <ng-container *ngIf="!leadDone">
             <div class="pp-modal__head">
-                <span class="eyebrow">Partner Application</span>
                 <h3 id="leadTitle">Become a OneInsure Partner</h3>
                 <p>Share a few details and our partnerships team will reach out to get you onboarded.</p>
             </div>
