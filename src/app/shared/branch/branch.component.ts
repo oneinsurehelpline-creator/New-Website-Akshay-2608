@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LeadService } from 'src/app/services/lead.service';
@@ -12,7 +13,7 @@ export class BranchComponent implements OnInit, OnDestroy {
 
   mode: 'control' | 'page' = 'control';
 
-  label = 'Prefer meeting us in-person?';
+  @Input() label = 'Prefer meeting us in-person?';
   placeholder = 'Enter pincode to check';
   locationType = 3;
 
@@ -24,17 +25,23 @@ export class BranchComponent implements OnInit, OnDestroy {
   noExactMatch = false;             // true when a searched pincode had no direct hit
   searchedPin = '';
   loaded = false;
+  private readonly isBrowser: boolean;
 
   constructor(
     private leadService: LeadService,
     private sanitizer: DomSanitizer,
     private router: Router,
     private route: ActivatedRoute,
-  ) { }
+    @Inject(PLATFORM_ID) platformId: Object,
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnInit(): void {
     this.mode = this.route.snapshot.data['branchPage'] ? 'page' : 'control';
-    this.getLocations();
+    if (this.isBrowser) {
+      this.getLocations();
+    }
 
     // On the page, re-render whenever the ?pincode query param changes.
     if (this.mode === 'page') {

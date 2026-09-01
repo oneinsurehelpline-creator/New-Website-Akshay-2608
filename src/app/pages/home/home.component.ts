@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, HostListener, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ViewportScroller } from '@angular/common';
+import { ViewportScroller, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { LeadService } from '../../services/lead.service';
 import { UtilityService } from 'src/app/services/utility.service';
@@ -24,6 +24,8 @@ interface Insurer {
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
+  private readonly isBrowser: boolean;
+
   constructor(
     private host: ElementRef<HTMLElement>,
     private fb: FormBuilder,
@@ -31,8 +33,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private leadService: LeadService,
     private utility: UtilityService,
-    private scheduleModal: ScheduleModalService
+    private scheduleModal: ScheduleModalService,
+    @Inject(PLATFORM_ID) platformId: Object,
   ) {
+    this.isBrowser = isPlatformBrowser(platformId);
     this.consultForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.maxLength(40)]],
       lastName: ['', [Validators.required, Validators.maxLength(40)]],
@@ -122,10 +126,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadInsurers();
+    if (this.isBrowser) {
+      this.loadInsurers();
+    }
   }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     this.initReveal();
     this.initCounters();
     // this.testiCompute();
@@ -136,7 +145,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.revealIo?.disconnect();
     this.countIo?.disconnect();
     this.stopTesti();
-    document.body.style.overflow = '';
+    if (this.isBrowser) {
+      document.body.style.overflow = '';
+    }
   }
 
   // ============ INSURER LOGOS ============
@@ -344,7 +355,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('testiTrack') private testiTrack?: ElementRef<HTMLElement>;
   private readonly testiTotal = 6;
   testiIdx = 0;
-  testiPerView = window.innerWidth < 900 ? 1 : 3;;
+  testiPerView = typeof window !== 'undefined' ? (window.innerWidth < 900 ? 1 : 3) : 3;
   testiDots: number[] = [0, 1, 2, 3];
   testiTransform = 'translateX(0)';
   private testiTimer?: ReturnType<typeof setInterval>;

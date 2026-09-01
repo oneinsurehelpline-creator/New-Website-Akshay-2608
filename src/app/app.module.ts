@@ -1,5 +1,5 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,7 +27,8 @@ export function loadConfig(configService: ConfigService) {
       useFactory: loadConfig,
       deps: [ConfigService],
       multi: true
-    }
+    },
+    provideClientHydration()
   ],
   bootstrap: [AppComponent]
 })
