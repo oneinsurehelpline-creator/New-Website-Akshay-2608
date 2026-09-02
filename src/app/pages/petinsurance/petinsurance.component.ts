@@ -7,6 +7,12 @@ interface ThreeUpItem {
   desc: string;
 }
 
+interface CoverItem {
+  img?: string;
+  svgKey?: 'liability' | 'lost';
+  text: string;
+}
+
 interface FaqItem {
   q: string;
   a: string;
@@ -38,12 +44,28 @@ export class PetinsuranceComponent implements AfterViewInit, OnDestroy {
   // ---------- TRUST STRIP (reusable) ----------
 
   // ---------- WHAT IT COVERS ----------
-  covers = [
-    'Surgery and hospitalisation after accidents or illness',
-    'OPD consultations, diagnostics and prescribed medication',
-    'Third-party liability if your pet injures someone or damages property',
-    'Theft, loss or straying, with advertising costs on some plans',
-    'Terminal illness and mortality benefit',
+  coversIcon = 'assets/images/icons/04_Pet_Insurance.png';
+  covers: CoverItem[] = [
+    {
+      img: 'assets/images/icons/general/cashless.png',
+      text: 'Surgery and hospitalisation after accidents or illness',
+    },
+    {
+      img: 'assets/images/icons/calculators/health-cover.png',
+      text: 'OPD consultations, diagnostics and prescribed medication',
+    },
+    {
+      svgKey: 'liability',
+      text: 'Third-party liability if your pet injures someone or damages property',
+    },
+    {
+      svgKey: 'lost',
+      text: 'Theft, loss or straying, with advertising costs on some plans',
+    },
+    {
+      img: 'assets/images/icons/calculators/guaranteed-return.png',
+      text: 'Terminal illness and mortality benefit',
+    },
   ];
 
   // ---------- WHY IT MATTERS ----------

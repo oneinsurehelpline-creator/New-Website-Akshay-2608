@@ -17,6 +17,16 @@
                     Valid through 13 Nov 2026
                 </p>
 
+                <p class="footer__address">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span>Robinhood Insurance Broker Ltd., 501–503, Sigma Building, Hiranandani Gardens, Powai,
+                        Mumbai, Maharashtra 400076</span>
+                </p>
+
                 <div class="footer__social">
                     <a *ngFor="let s of socials" [href]="s.href" target="_blank" rel="noopener noreferrer"
                         [attr.aria-label]="s.label">
@@ -53,7 +63,8 @@
                         <a *ngSwitchCase="!!link.fragment" href="#" [appScrollTo]="link.fragment!">{{ link.label }}</a>
                         <a *ngSwitchCase="!!link.route" [routerLink]="link.route">{{ link.label }}</a>
                         <a *ngSwitchDefault [href]="link.href" [attr.target]="link.newTab ? '_blank' : null"
-                            [attr.rel]="link.newTab ? 'noopener noreferrer' : null">{{ link.label }}</a>
+                            [attr.rel]="link.newTab ? 'noopener noreferrer' : null"
+                            [appScheduleLink]="isScheduleLink(link.href)">{{ link.label }}</a>
                     </li>
                 </ul>
             </div>

@@ -57,8 +57,8 @@ interface CoverCard {
 }
 
 interface QuoteLink {
-  key: 'car' | 'bike';
-  icon: 'car' | 'bike';
+  key: 'car' | 'bike' | 'commercial';
+  icon: 'car' | 'bike' | 'commercial';
   eyebrow: string;
   title: string;
   desc: string;
@@ -260,6 +260,20 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
       ],
       cta: 'View bike quotes',
       url: 'https://online.oneinsure.com/two-wheeler-insurance/?_ga=2.184066214.1847325676.1785406708-940937582.1774530673',
+    },
+    {
+      key: 'commercial',
+      icon: 'commercial',
+      eyebrow: 'Business & fleet',
+      title: 'Commercial Vehicle',
+      desc: 'Cover trucks, taxis, and fleet vehicles used for business — GCV, PCV and misc. class options with liability and own-damage protection built around commercial use.',
+      features: [
+        'GCV, PCV & miscellaneous class cover',
+        'Multi-vehicle fleet policies with bulk discounts',
+        'Fast claims support to keep vehicles on the road',
+      ],
+      cta: 'View commercial quotes',
+      url: 'https://online.oneinsure.com/commercial-vehicle-insurance/?_ga=2.184066214.1847325676.1785406708-940937582.1774530673',
     },
   ];
 

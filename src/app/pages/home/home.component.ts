@@ -1,9 +1,10 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, HostListener, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ViewportScroller } from '@angular/common';
+import { ViewportScroller, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { LeadService } from '../../services/lead.service';
 import { UtilityService } from 'src/app/services/utility.service';
+import { ScheduleModalService } from 'src/app/shared/schedule-modal/schedule-modal.service';
 import { finalize, timeout } from 'rxjs/operators';
 
 type CalcKey = 'life' | 'guaranteed' | 'health' | 'fire' | 'tax';
@@ -23,14 +24,19 @@ interface Insurer {
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
+  private readonly isBrowser: boolean;
+
   constructor(
     private host: ElementRef<HTMLElement>,
     private fb: FormBuilder,
     private viewport: ViewportScroller,
     private router: Router,
     private leadService: LeadService,
-    private utility: UtilityService
+    private utility: UtilityService,
+    private scheduleModal: ScheduleModalService,
+    @Inject(PLATFORM_ID) platformId: Object,
   ) {
+    this.isBrowser = isPlatformBrowser(platformId);
     this.consultForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.maxLength(40)]],
       lastName: ['', [Validators.required, Validators.maxLength(40)]],
@@ -87,8 +93,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       PageData: pageData,
     };
 
-    const scheduleCall = 'https://schedule.oneinsure.com/book/get-expert-guidance-web';
-
     this.consultSubmitting = true;
     this.utility.loading('Submitting…', 'Sending your consultation request.');
 
@@ -101,7 +105,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         this.consultDone = true;
         this.utility.success('Request received!', 'Our advisor will call you at your preferred time.');
         this.consultForm.reset({ help: 'Starting from scratch', time: 'Morning (9–12)' });
-        window.location.assign(scheduleCall);
+        this.scheduleModal.open();
       },
       error: (err) => {
         console.error('CustomerDetails failed:', err);
@@ -109,7 +113,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           ? 'The server took too long to respond. Please try again or reach us on WhatsApp.'
           : 'Something went wrong sending your request. Please try again, or reach us on WhatsApp.';
         this.utility.error('Could not send', this.consultError);
-        window.location.assign(scheduleCall);
+        this.scheduleModal.open();
       },
     });
   }
@@ -122,10 +126,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadInsurers();
+    if (this.isBrowser) {
+      this.loadInsurers();
+    }
   }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     this.initReveal();
     this.initCounters();
     // this.testiCompute();
@@ -136,7 +145,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.revealIo?.disconnect();
     this.countIo?.disconnect();
     this.stopTesti();
-    document.body.style.overflow = '';
+    if (this.isBrowser) {
+      document.body.style.overflow = '';
+    }
   }
 
   // ============ INSURER LOGOS ============
@@ -344,7 +355,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('testiTrack') private testiTrack?: ElementRef<HTMLElement>;
   private readonly testiTotal = 6;
   testiIdx = 0;
-  testiPerView = window.innerWidth < 900 ? 1 : 3;;
+  testiPerView = typeof window !== 'undefined' ? (window.innerWidth < 900 ? 1 : 3) : 3;
   testiDots: number[] = [0, 1, 2, 3];
   testiTransform = 'translateX(0)';
   private testiTimer?: ReturnType<typeof setInterval>;

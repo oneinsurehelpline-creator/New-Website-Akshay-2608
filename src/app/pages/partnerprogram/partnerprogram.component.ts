@@ -57,13 +57,6 @@ export class PartnerprogramComponent implements AfterViewInit, OnDestroy {
   // ------------------------------------------------------------------
   showLoginCard = false;
 
-  trust = [
-    { label: 'Multi-Insurer Access', icon: 'briefcase' },
-    { label: 'Dedicated Backend Support', icon: 'users' },
-    { label: 'Faster Closures', icon: 'bolt' },
-    { label: 'Marketing Support', icon: 'megaphone' },
-  ];
-
   // ------------------------------------------------------------------
   //  SECTION 2 — WHY JOIN
   // ------------------------------------------------------------------

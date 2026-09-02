@@ -28,6 +28,10 @@ export class FooterComponent {
   onGrvBackdrop(e: MouseEvent): void {
     if ((e.target as HTMLElement).classList.contains('grv')) { this.closeGrievance(); }
   }
+
+  isScheduleLink(href?: string): boolean {
+    return !!href && href.includes('schedule.oneinsure.com');
+  }
   @HostListener('document:keydown.escape') onEsc(): void {
     if (this.grievanceOpen) { this.closeGrievance(); }
   }

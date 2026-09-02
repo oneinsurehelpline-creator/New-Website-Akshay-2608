@@ -7,6 +7,8 @@ import { FooterComponent } from './footer/footer.component';
 import { ScrollToDirective } from './scroll-to.directive';
 import { BranchComponent } from './branch/branch.component';
 import { VideoModalComponent } from './video-modal/video-modal.component';
+import { ScheduleModalComponent } from './schedule-modal/schedule-modal.component';
+import { ScheduleCtaDirective } from './schedule-modal/schedule-cta.directive';
 
 
 
@@ -16,7 +18,9 @@ import { VideoModalComponent } from './video-modal/video-modal.component';
     FooterComponent,
     ScrollToDirective,
     BranchComponent,
-    VideoModalComponent
+    VideoModalComponent,
+    ScheduleModalComponent,
+    ScheduleCtaDirective
   ],
   imports: [
     CommonModule,
@@ -28,7 +32,9 @@ import { VideoModalComponent } from './video-modal/video-modal.component';
     FooterComponent,
     ScrollToDirective,
     BranchComponent,
-    VideoModalComponent
+    VideoModalComponent,
+    ScheduleModalComponent,
+    ScheduleCtaDirective
   ]
 })
 export class SharedModule { }

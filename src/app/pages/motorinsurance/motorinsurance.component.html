@@ -66,8 +66,7 @@
             </li>
         </ul>
         <!-- <a routerLink="/" fragment="consult" class="btn btn--orange subnav__cta">Talk to an advisor</a> -->
-        <a class="btn btn--orange subnav__cta" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
-            target="_blank">Talk to an advisor</a>
+        <a class="btn btn--orange subnav__cta" href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Talk to an advisor</a>
     </div>
 </nav>
 
@@ -78,7 +77,6 @@
 
             <div class="col-lg-6">
                 <div class="why__copy reveal-left">
-                    <span class="eyebrow">Why motor insurance</span>
                     <h2>It's the law — but it's also<br />genuinely <em>good protection.</em></h2>
                     <p>TP cover is mandatory, but comprehensive does far more — your vehicle, your passengers, and any
                         third
@@ -118,7 +116,6 @@
 <section class="covertypes section" id="covertypes">
     <div class="container">
         <div class="covertypes__head text-center mx-auto reveal">
-            <span class="eyebrow">Three types of cover</span>
             <h2>Know what you're <span class="accent">buying.</span></h2>
             <p>Motor policies come in three flavours. Most people should be on comprehensive — but here's exactly what
                 each
@@ -159,7 +156,6 @@
 <section class="vids section" id="videos">
     <div class="container">
         <div class="vids__head text-center mx-auto reveal-up">
-            <span class="eyebrow">Motor insurance, simplified</span>
             <h2>Watch before you <span class="accent">renew.</span></h2>
             <p>Seven short videos — IDV, NCB, zero-dep, claims — everything confusing about motor insurance, decoded
                 plainly.</p>
@@ -217,32 +213,20 @@
     <div class="container">
 
         <div class="quote__head text-center mx-auto reveal">
-            <span class="eyebrow">Get your quote</span>
             <h2>Two minutes to a price you can <span class="accent">actually buy.</span></h2>
             <p>Fill in your vehicle details and we'll pull live quotes from top insurers — no sales calls, no follow-up
                 spam.</p>
         </div>
 
-        <!-- ---- Vehicle quote cards (car / bike) ---- -->
+        <!-- ---- Vehicle quote cards (car / bike / commercial) ---- -->
         <div class="row g-4 justify-content-center qlinks">
-            <div class="col-12 col-md-6 col-lg-5" *ngFor="let ql of quoteLinks">
+            <div class="col-12 col-md-6 col-lg-4" *ngFor="let ql of quoteLinks">
                 <div class="qlink h-100" [ngClass]="'qlink--' + ql.key">
                     <div class="qlink__icon" [ngSwitch]="ql.icon">
-                        <svg *ngSwitchCase="'car'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M6.5 7h11l2 5H4.5l2-5z" />
-                            <path d="M4 12h16v4H4z" />
-                            <circle cx="7.5" cy="18" r="1.6" />
-                            <circle cx="16.5" cy="18" r="1.6" />
-                        </svg>
-                        <svg *ngSwitchCase="'bike'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="5.5" cy="17" r="3.5" />
-                            <circle cx="18.5" cy="17" r="3.5" />
-                            <path d="M5.5 17l3-6h5l2 3" />
-                            <path d="M8.5 11h4" />
-                            <path d="M15.5 14l1.5-3h2" />
-                        </svg>
+                        <img *ngSwitchCase="'car'" src="assets/images/icons/general/own-damage.png" alt="" loading="lazy">
+                        <img *ngSwitchCase="'bike'" src="assets/images/icons/09_Car_Bike_Motor.png" alt="" loading="lazy">
+                        <img *ngSwitchCase="'commercial'" src="assets/images/icons/01_Commercial_Vehicle_Insurance.png"
+                            alt="" loading="lazy">
                     </div>
 
                     <span class="qlink__eyebrow">{{ ql.eyebrow }}</span>
@@ -420,7 +404,6 @@
         <!-- ---- RESULTS: top insurers ---- -->
         <div class="qresults" id="quote-results" *ngIf="quotesReady">
             <div class="qresults__head text-center">
-                <span class="eyebrow">Your quotes</span>
                 <h3 *ngIf="quotes.length">Top insurers for your <span class="accent">{{ qf['make'].value }}
                         {{ qf['model'].value }}</span></h3>
                 <h3 *ngIf="!quotes.length">No quotes came back</h3>
@@ -471,13 +454,11 @@
 <!-- ============ FOOTER CTA ============ -->
 <section class="pagefoot section">
     <div class="container text-center">
-        <span class="eyebrow">Need help choosing?</span>
         <h3>Not sure about add-ons or IDV?<br />Call us — it takes five minutes.</h3>
         <p>Our advisors will help you pick the right cover, the right add-ons, and the right insurer for your vehicle
             and
             driving pattern.</p>
         <!-- <a class="btn btn--orange btn--big" routerLink="/" fragment="consult">Talk to an advisor →</a> -->
-        <a class="btn btn--orange btn--big" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
-            target="_blank">Talk to an advisor →</a>
+        <a class="btn btn--orange btn--big" href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Talk to an advisor →</a>
     </div>
 </section>
