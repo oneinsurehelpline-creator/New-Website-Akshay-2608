@@ -78,7 +78,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     min-height: 480px;
     padding-top: 56px
 }
@@ -199,10 +199,7 @@ h2.headline {
     }
 }
 
-.hero__eyebrow {
-    position: absolute;
-    top: 0;
-    left: 0;
+.hero__eyebrow { 
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -243,7 +240,7 @@ h2.headline {
     font: 400 15.5px/1.65 var(--sans);
     color: var(--g600);
     max-width: 520px;
-    min-height: 52px;
+    // min-height: 52px;
 }
 
 .hero__cta {
@@ -394,20 +391,14 @@ h2.headline {
 }
 
 .s2 .hv__image img {
-    transform: translate(220px, 30px);
+    transform: translate(180px, 30px);
 }
-
-/* mascot-community.png ships on a solid dark background (not white/transparent
-   like the other three), so multiply-blending it would just paint a black box.
-   Frame it as a deliberate panel instead of faking a cutout. */
-.s3 .hv__image img {
-    mix-blend-mode: normal;
-    border-radius: 28px;
-    // box-shadow: 0 32px 64px -20px rgba(13, 43, 85, .35);
+ 
+.s3 .hv__image img { 
     transform: translate(10px, 30px);
 }
 .s4 .hv__image img {
-    transform: translate(0px, 30px);
+    transform: translate(90px, 30px);
 }
 
 /* Central shield/identity — not an icon, an animated geometric mark */
@@ -3175,8 +3166,8 @@ select.txt-input {
 /* ---- Saarth chat widget (slide 2) ---- */
 .saarth-widget {
     position: absolute;
-    left: 2%;
-    top: 0%;
+    left: 8%;
+    top: 4%;
     z-index: 6;
     width: 220px;
     background: #fff;
@@ -3330,8 +3321,8 @@ select.txt-input {
 /* ---- Claim tracker card (slide 4 — Claims) ---- */
 .claim-tracker {
     position: absolute;
-    right: -38%;
-    top: 16%;
+    right: -20%;
+    top: 20%;
     z-index: 6;
     width: 220px;
     background: #fff;
