@@ -25,12 +25,7 @@
 .branch-search {
     position: relative;
     width: 100%;
-    max-width: 420px;
-
-    /*
-     * Important:
-     * Allows dropdown to escape the search box.
-     */
+    max-width: 260px;
     z-index: 9999;
 }
 
@@ -85,12 +80,12 @@
    ========================================= */
 
 .pin-box__icon {
-    width: 17px;
-    height: 17px;
+    width: 16px;
+    height: 16px;
 
     flex-shrink: 0;
 
-    margin-left: 18px;
+    margin-left: 16px;
 
     color: #9AA3AF;
 
@@ -145,8 +140,8 @@
     align-items: center;
     justify-content: center;
 
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
 
     margin-right: 10px;
 
@@ -187,7 +182,8 @@
     /*
      * Directly below search box.
      */
-    top: calc(100% + 8px);
+    top: auto;
+    bottom: calc(100% + 4px);
     left: 0;
 
     width: 100%;
@@ -217,11 +213,10 @@
 
 
 /* Small animation */
-
 @keyframes dropdownFadeIn {
     from {
         opacity: 0;
-        transform: translateY(-4px);
+        transform: translateY(4px);
     }
 
     to {
@@ -292,9 +287,9 @@
 
     width: 100%;
 
-    min-height: 54px;
+    min-height: 44px;
 
-    padding: 8px 14px;
+    padding: 6px 12px;
 
     box-sizing: border-box;
 
@@ -323,12 +318,12 @@
     align-items: center;
     justify-content: center;
 
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
 
     flex-shrink: 0;
 
-    margin-right: 10px;
+    margin-right: 8px;
 
     border-radius: 50%;
 
@@ -348,6 +343,7 @@
 
 .location-content {
     display: flex;
+    align-items: flex-start;
     flex-direction: column;
 
     min-width: 0;
@@ -363,7 +359,7 @@
     color: #2D3748;
 
     font:
-        600 13px/1.25 var(--sans, 'Montserrat', sans-serif);
+        600 12px/1.25 var(--sans, 'Montserrat', sans-serif);
 
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -375,7 +371,7 @@
     color: #9AA3AF;
 
     font:
-        500 11px/1.2 var(--sans, 'Montserrat', sans-serif);
+        500 10px/1.2 var(--sans, 'Montserrat', sans-serif);
 
     white-space: nowrap;
     text-overflow: ellipsis;
