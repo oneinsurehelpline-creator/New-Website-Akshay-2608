@@ -300,8 +300,8 @@
 }
 
 .point__icon {
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -311,11 +311,9 @@
 }
 
 .point__icon img {
-    width: 200%;
-    height: 200%;
-    max-width: 200%;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 10px rgba(13, 43, 85, .14));
+    width: 100%;
+    height: 100%; 
+    // filter: drop-shadow(0 4px 10px rgba(13, 43, 85, .14));
 }
 
 .point:hover .point__icon {
@@ -565,8 +563,8 @@
 }
 
 .bcard__ic {
-    width: 56px;
-    height: 56px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -574,11 +572,9 @@
 }
 
 .bcard__ic img {
-    width: 200%;
-    height: 200%;
-    max-width: 200%;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 10px rgba(13, 43, 85, .14));
+    width: 100%;
+    height: 100%; 
+    // filter: drop-shadow(0 4px 10px rgba(13, 43, 85, .14));
 }
 
 .bcard h3 {

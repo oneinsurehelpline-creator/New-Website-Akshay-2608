@@ -413,8 +413,8 @@
 }
 
 .point__icon {
-    width: 52px;
-    height: 52px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -423,11 +423,9 @@
 }
 
 .point__icon img {
-    width: 200%;
-    height: 200%;
-    max-width: 200%;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 10px rgba(13, 43, 85, .14));
+    width: 100%;
+    height: 100%; 
+    // filter: drop-shadow(0 4px 10px rgba(13, 43, 85, .14));
 }
 
 .point__t {
@@ -532,8 +530,8 @@
 }
 
 .ctcard__icon {
-    width: 56px;
-    height: 56px;
+    width: 74px;
+    height: 74px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -542,11 +540,9 @@
 }
 
 .ctcard__icon img {
-    width: 200%;
-    height: 200%;
-    max-width: 200%;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 10px rgba(13, 43, 85, .14));
+    width: 100%;
+    height: 100%; 
+    // filter: drop-shadow(0 4px 10px rgba(13, 43, 85, .14));
 }
 
 .ctcard__tag {
@@ -908,19 +904,17 @@
 }
 
 .qlink__icon {
-    width: 76px;
-    height: 76px;
+    width: 80px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 22px;
 
     img {
-        width: 165%;
-        height: 165%;
-        max-width: 165%;
-        object-fit: contain;
-        filter: drop-shadow(0 10px 18px var(--ql-glow));
+        width: 100%;
+        height: 100%; 
+        // filter: drop-shadow(0 10px 18px var(--ql-glow));
     }
 }
 
