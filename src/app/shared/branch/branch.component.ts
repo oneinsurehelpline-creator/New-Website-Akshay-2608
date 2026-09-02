@@ -13,7 +13,7 @@ export class BranchComponent implements OnInit, OnDestroy {
 
   mode: 'control' | 'page' = 'control';
 
-  
+
   placeholder = 'Enter city name';
   @Input() label = 'Prefer meeting us in-person?';
   locationType = 3;
@@ -27,6 +27,7 @@ export class BranchComponent implements OnInit, OnDestroy {
   searchedPin = '';
   loaded = false;
   city: any;
+  existCity: any;
   private readonly isBrowser: boolean;
 
   constructor(
@@ -48,9 +49,15 @@ export class BranchComponent implements OnInit, OnDestroy {
     // On the page, re-render whenever the ?pincode query param changes.
     if (this.mode === 'page') {
       this.route.queryParamMap.subscribe((pm) => {
-        this.pincode = (pm.get('pincode') || '').replace(/\D/g, '').slice(0, 6);
-        this.renderPage();
+        this.city = (pm.get('city') || '');
+        this.branchSearch(this.city);
+        window.history.replaceState(
+          {},
+          document.title,
+          window.location.pathname
+        );
       });
+
     }
   }
 
@@ -94,11 +101,15 @@ export class BranchComponent implements OnInit, OnDestroy {
         : Array.isArray(res) ? res
           : [];
       this.loaded = true;
-      if (this.mode === 'page') { this.renderPage(); }
+      if (this.mode === 'page') { this.branchSearch(this.city); }
     });
   }
   branchSearch(city: any) {
-
+    if (!city) {
+      this.filteredLocations = this.locations;
+      this.selectLocation(this.filteredLocations[0] ?? null);
+      return;
+    }
     const search = city?.trim().toLowerCase();
 
     if (!search) {
@@ -109,58 +120,43 @@ export class BranchComponent implements OnInit, OnDestroy {
     this.filteredLocations = this.locations.filter((location: any) =>
       location.City?.toLowerCase().includes(search)
     );
+    this.selectLocation(this.filteredLocations[0] ?? null);
   }
 
   // ---- control mode: open the full page in a new tab, then clear the box ----
-  search(): void {
-    if (!this.canSearch) { return; }
+  // search(): void {
+  //   if (!this.canSearch) { return; }
+  //   const url = this.router.serializeUrl(
+  //     this.router.createUrlTree(['/BranchLocator'], {
+  //       queryParams: { pincode: this.pincode.trim() },
+  //     }),
+  //   );
+  //   window.open(url, '_blank');
+  //   this.pincode = '';   // reset the input after launching the search
+  // }
+
+  // ---- page mode: refine search updates the URL (keeps it shareable/back-able) ----
+  pageSearch(city: any): void {
+    // if (!this.canSearch) { return; }
+
     const url = this.router.serializeUrl(
       this.router.createUrlTree(['/BranchLocator'], {
-        queryParams: { pincode: this.pincode.trim() },
+        queryParams: { city: city },
       }),
     );
     window.open(url, '_blank');
-    this.pincode = '';   // reset the input after launching the search
-  }
-
-  // ---- page mode: refine search updates the URL (keeps it shareable/back-able) ----
-  pageSearch(): void {
-    if (!this.canSearch) { return; }
-    this.router.navigate(['/BranchLocator'], {
-      queryParams: { pincode: this.pincode.trim() },
-    });
+    this.existCity= '';
+    this.pincode = '';
   }
 
   /** Clear the field. On the page, drop the ?pincode so ALL branches show again. */
-  clearPincode(): void {
-    this.pincode = '';
-    if (this.mode === 'page') {
-      // No query params -> the queryParamMap subscription re-renders with all branches.
-      this.router.navigate(['/BranchLocator']);
-    }
-  }
-
-  /** Build the list + selection for the full page from the current pincode. */
-  private renderPage(): void {
-    if (!this.loaded) { return; }               // wait until locations arrive
-    const q = this.pincode.trim();
-
-    if (/^\d{6}$/.test(q)) {
-      this.searchedPin = q;
-      const exact = this.locations.filter(
-        (l) => (l.Pincode || '').toString().trim() === q,
-      );
-      this.noExactMatch = exact.length === 0;
-      this.filteredLocations = exact.length ? exact : this.locations;
-    } else {
-      // No / invalid pincode (e.g. the footer link) -> show everything.
-      this.searchedPin = '';
-      this.noExactMatch = false;
-      this.filteredLocations = this.locations;
-    }
-
-    this.selectLocation(this.filteredLocations[0] ?? null);
-  }
+  // clearPincode(): void {
+  //   this.pincode = '';
+  //   if (this.mode === 'page') {
+  //     // No query params -> the queryParamMap subscription re-renders with all branches.
+  //     this.router.navigate(['/BranchLocator']);
+  //   }
+  // }
 
   selectLocation(loc: any): void {
     this.selectedLocation = loc;

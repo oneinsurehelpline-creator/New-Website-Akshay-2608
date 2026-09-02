@@ -17,10 +17,10 @@
                 </svg>
 
                 <input class="pin-box__input" type="text" autocomplete="off" [placeholder]="placeholder"
-                    [(ngModel)]="city" (input)="branchSearch(city)" />
+                    [(ngModel)]="existCity" (input)="branchSearch(existCity)" />
 
                 <!-- Optional clear button -->
-                <button *ngIf="city" type="button" class="pin-box__clear" (click)="city = ''; filteredLocations = []"
+                <button *ngIf="existCity" type="button" class="pin-box__clear" (click)="existCity = ''; filteredLocations = []"
                     aria-label="Clear search">
                     ×
                 </button>
@@ -30,7 +30,7 @@
 
 
         <!-- Dropdown -->
-        <div *ngIf="filteredLocations?.length > 0" class="pin-box__dropdown">
+        <div *ngIf="existCity &&filteredLocations?.length > 0" class="pin-box__dropdown">
 
             <ul>
                 <li *ngFor="let loc of filteredLocations" (click)="selectLocation(loc)">
@@ -45,7 +45,7 @@
                         </svg>
                     </span>
 
-                    <span class="location-content">
+                    <span class="location-content" (click)="pageSearch(loc.City)">
                         <span class="location-name">
                             {{ loc.City || loc.Name }}
                         </span>
@@ -78,7 +78,7 @@
                 No branch found for <b>{{ searchedPin }}</b> — showing all our locations instead.
             </p>
             <p class="branch-page__sub" *ngIf="!searchedPin">
-                Browse all {{ filteredLocations.length }} OneInsure branches, or search by pincode.
+                Browse all {{ filteredLocations.length }} OneInsure branches, or search by city.
             </p>
 
             <!-- refine search -->
@@ -93,8 +93,8 @@
                 <!-- <button class="btn btn--blue pin-box__btn" type="button" [disabled]="!canSearch" (click)="pageSearch()">
                     Search
                 </button> -->
-                <button *ngIf="pincode" class="pin-box__clear" type="button" (click)="clearPincode()"
-                    aria-label="Clear pincode and show all branches">
+                <button *ngIf="city" class="pin-box__clear" type="button" 
+                    aria-label="Clear pincode and show all branches" (click)="city = ''; branchSearch('')">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
                         stroke-linecap="round">
                         <path d="M6 6l12 12M18 6L6 18"></path>
