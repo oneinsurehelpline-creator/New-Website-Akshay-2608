@@ -1,0 +1,11 @@
+<div class="smodal" *ngIf="isOpen" (click)="onBackdrop($event)">
+    <div class="smodal__panel" role="dialog" aria-modal="true" aria-label="Book a free call">
+        <button class="smodal__close" (click)="close()" aria-label="Close">&times;</button>
+        <div class="smodal__frame">
+            <iframe [src]="embedUrl" title="Book a call with OneInsure" frameborder="0"></iframe>
+        </div>
+        <a class="smodal__fallback" [href]="scheduleUrl" target="_blank" rel="noopener">
+            Trouble booking here? Open in a new tab →
+        </a>
+    </div>
+</div>

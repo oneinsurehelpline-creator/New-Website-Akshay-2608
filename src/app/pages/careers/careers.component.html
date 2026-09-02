@@ -2,7 +2,6 @@
 <section class="hero section">
     <div class="container">
         <div class="hero__inner">
-            <span class="eyebrow no-rule reveal-up">We're hiring</span>
             <h1 class="reveal-up" data-delay="1">Build the future of<br>insurance in <span class="accent">India</span>
             </h1>
             <p class="reveal-up" data-delay="2">Join a team that's rewriting the rules of an industry — making insurance
@@ -45,7 +44,6 @@
     <div class="container">
         <div class="row g-5 align-items-center">
             <div class="col-12 col-lg-6 mission__copy reveal-left">
-                <span class="eyebrow">Why OneInsure</span>
                 <h2>We believe insurance should never feel like a trap</h2>
                 <p>Most brokers push products. We push clarity. Since 2007, our IRDAI-certified advisors have helped
                     families make informed decisions — no jargon, no pressure, no hidden incentives.</p>
@@ -64,176 +62,46 @@
 <section class="values section">
     <div class="container">
         <div class="section-head text-center mx-auto reveal-up">
-            <span class="eyebrow no-rule">How we work</span>
-            <h2>Values we actually live by</h2>
+            <h2>The Way we Work</h2>
             <p>Not poster words. These show up in how we give advice, build product, and treat each other every day.</p>
         </div>
 
-        <!-- was repeat(3,1fr) → Bootstrap grid (3 / 2 / 1) -->
-        <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-lg-3">
-            <div class="col">
-                <div class="val-card reveal h-100">
-                    <div class="val-card__icon">
-                        <img src="assets/images/icons/values/customer-centricity.png" alt="" loading="lazy">
-                    </div>
-                    <h3>Customer first, always</h3>
-                    <p>Every decision starts with one question: is this in the customer's best interest? Not the
-                        insurer's, not ours.</p>
+        <!-- Self-centering grid: 3 cards on row one, the remaining 2 center on row two -->
+        <div class="values-grid">
+            <div class="val-card reveal">
+                <div class="val-card__icon">
+                    <img src="assets/images/icons/values/customer-centricity.png" alt="" loading="lazy">
                 </div>
+                <h3>Customer Centricity</h3>
+                <p>Every decision starts with what's best for the customer — not the insurer, not us.</p>
             </div>
-            <div class="col">
-                <div class="val-card reveal h-100" data-delay="1">
-                    <div class="val-card__icon">
-                        <img src="assets/images/icons/values/proactiveness.png" alt="" loading="lazy">
-                    </div>
-                    <h3>Move with urgency</h3>
-                    <p>Claims don't wait. Neither should good ideas. We bias for action and ship, learn, and iterate
-                        fast.</p>
+            <div class="val-card reveal" data-delay="1">
+                <div class="val-card__icon">
+                    <img src="assets/images/icons/values/proactiveness.png" alt="" loading="lazy">
                 </div>
+                <h3>Proactiveness</h3>
+                <p>We don't wait for problems to surface. We spot them first and act.</p>
             </div>
-            <div class="col">
-                <div class="val-card reveal h-100" data-delay="2">
-                    <div class="val-card__icon">
-                        <img src="assets/images/icons/values/integrity.png" alt="" loading="lazy">
-                    </div>
-                    <h3>Radical honesty</h3>
-                    <p>We give feedback directly and receive it gracefully. No politics, no filters — just truth in
-                        service of growth.</p>
+            <div class="val-card reveal" data-delay="2">
+                <div class="val-card__icon">
+                    <img src="assets/images/icons/values/ownership.png" alt="" loading="lazy">
                 </div>
+                <h3>Ownership</h3>
+                <p>No blame game. If something's broken, you fix it — no permission needed.</p>
             </div>
-            <div class="col">
-                <div class="val-card reveal h-100">
-                    <div class="val-card__icon">
-                        <img src="assets/images/icons/values/professionalism.png" alt="" loading="lazy">
-                    </div>
-                    <h3>Data over gut</h3>
-                    <p>Opinions are welcome. Evidence is required. We run experiments, read numbers, and follow the data
-                        wherever it leads.</p>
+            <div class="val-card reveal" data-delay="1">
+                <div class="val-card__icon">
+                    <img src="assets/images/icons/values/professionalism.png" alt="" loading="lazy">
                 </div>
+                <h3>Professionalism</h3>
+                <p>We show up prepared, communicate clearly, and do the work right the first time.</p>
             </div>
-            <div class="col">
-                <div class="val-card reveal h-100" data-delay="1">
-                    <div class="val-card__icon">
-                        <img src="assets/images/icons/values/ownership.png" alt="" loading="lazy">
-                    </div>
-                    <h3>Own the outcome</h3>
-                    <p>No blame game. If something is broken, you have permission — and responsibility — to fix it.</p>
+            <div class="val-card reveal" data-delay="2">
+                <div class="val-card__icon">
+                    <img src="assets/images/icons/values/integrity.png" alt="" loading="lazy">
                 </div>
-            </div>
-            <div class="col">
-                <div class="val-card reveal h-100" data-delay="2">
-                    <div class="val-card__icon">
-                        <img src="assets/images/icons/values/innovation.png" alt="" loading="lazy">
-                    </div>
-                    <h3>Never stop learning</h3>
-                    <p>The insurance landscape is changing. We invest in people who stay curious and turn every setback
-                        into a lesson.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============ BENEFITS ============ -->
-<section class="benefits section">
-    <div class="container">
-        <div class="section-head text-center mx-auto reveal-up">
-            <span class="eyebrow no-rule">What you get</span>
-            <h2>Built for people who build</h2>
-            <p>We take care of the people who take care of our customers.</p>
-        </div>
-
-        <!-- was repeat(4,1fr) → Bootstrap grid (4 / 2 / 1) -->
-        <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-lg-4">
-            <div class="col">
-                <div class="ben-card reveal h-100">
-                    <div class="ben-card__ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="var(--blue)" stroke-width="2">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                            <polyline points="9 22 9 12 15 12 15 22" />
-                        </svg></div>
-                    <h4>Hybrid flexibility</h4>
-                    <p>Work from home, office, or anywhere that works. We care about outcomes, not presence.</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="ben-card reveal h-100" data-delay="1">
-                    <div class="ben-card__ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="var(--blue)" stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                            <polyline points="22 4 12 14.01 9 11.01" />
-                        </svg></div>
-                    <h4>Health cover for family</h4>
-                    <p>Comprehensive health insurance for you, your spouse, and dependants — at no cost to you.</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="ben-card reveal h-100" data-delay="2">
-                    <div class="ben-card__ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="var(--blue)" stroke-width="2">
-                            <line x1="12" y1="1" x2="12" y2="23" />
-                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                        </svg></div>
-                    <h4>Performance bonuses</h4>
-                    <p>Transparent, merit-based incentives. When the company wins, you win.</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="ben-card reveal h-100" data-delay="3">
-                    <div class="ben-card__ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="var(--blue)" stroke-width="2">
-                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-                        </svg></div>
-                    <h4>Learning budget</h4>
-                    <p>₹25,000 / year for courses, certifications, books, or any tool that makes you sharper.</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="ben-card reveal h-100">
-                    <div class="ben-card__ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="var(--blue)" stroke-width="2">
-                            <rect x="2" y="7" width="20" height="14" rx="2" />
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                        </svg></div>
-                    <h4>ESOPs for all</h4>
-                    <p>Equity from day one. We want everyone invested in building something that lasts.</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="ben-card reveal h-100" data-delay="1">
-                    <div class="ben-card__ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="var(--blue)" stroke-width="2">
-                            <circle cx="12" cy="12" r="10" />
-                            <path d="M12 8v4l3 3" />
-                        </svg></div>
-                    <h4>25 days PTO</h4>
-                    <p>Generous paid time off, plus mental health days — because rest is part of the job.</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="ben-card reveal h-100" data-delay="2">
-                    <div class="ben-card__ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="var(--blue)" stroke-width="2">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                            <circle cx="9" cy="7" r="4" />
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                        </svg></div>
-                    <h4>Mentorship program</h4>
-                    <p>Paired with a senior leader from your first week. Your growth is our KPI.</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="ben-card reveal h-100" data-delay="3">
-                    <div class="ben-card__ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="var(--blue)" stroke-width="2">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                            <circle cx="12" cy="10" r="3" />
-                        </svg></div>
-                    <h4>Pan-India roles</h4>
-                    <p>Mumbai, Pune, Bengaluru, Delhi, and remote. Work where you do your best thinking.</p>
-                </div>
+                <h3>Integrity</h3>
+                <p>We say what's true, even when it's inconvenient — to clients and to each other.</p>
             </div>
         </div>
     </div>
@@ -243,7 +111,6 @@
 <section class="roles section" id="roles">
     <div class="container">
         <div class="section-head section-head--left reveal-up">
-            <span class="eyebrow">Open positions</span>
             <h2 class="mt-3">Find your role</h2>
         </div>
 
@@ -287,7 +154,6 @@
 <section class="cta-band section" id="cta">
     <div class="container">
         <div class="cta-band__inner reveal-up">
-            <span class="eyebrow no-rule" style="color:var(--orange);justify-content:center">Don't see your role?</span>
             <h2>We'd still love to hear from you</h2>
             <p>Drop us your résumé and tell us how you'd make an impact. We hire for potential as much as for
                 experience.</p>

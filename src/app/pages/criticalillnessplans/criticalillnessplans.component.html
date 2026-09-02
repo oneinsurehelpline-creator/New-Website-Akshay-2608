@@ -32,7 +32,7 @@
                     <div class="plp-cta-card__badge">Talk to an advisor</div>
                     <h3>Schedule a call</h3>
                     <p>{{ ctaMicrocopy }}</p>
-                    <a class="btn btn--orange btn--big" [href]="scheduleUrl" target="_blank" rel="noopener">
+                    <a class="btn btn--orange btn--big" [href]="scheduleUrl" appScheduleLink>
                         Schedule a Call
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
@@ -63,8 +63,8 @@
 <!-- ============ WHAT IT COVERS ============ -->
 <section class="section" id="covers">
     <div class="container">
-        <div class="section__head reveal-up">
-            <span class="eyebrow">What it covers</span>
+        <div class="section__head section__head--icon reveal-up">
+            <img class="section__head-icon" [src]="coversIcon" alt="" loading="lazy">
             <h2>What's actually <span class="accent">covered.</span></h2>
         </div>
 
@@ -72,12 +72,9 @@
             <div class="col" *ngFor="let c of covers; let i = index">
                 <div class="plp-cover reveal h-100" [attr.data-delay]="(i % 4) + 1">
                     <div class="plp-cover__ic">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
+                        <img [src]="c.icon" alt="" loading="lazy">
                     </div>
-                    <div class="plp-cover__t">{{ c }}</div>
+                    <div class="plp-cover__t">{{ c.text }}</div>
                 </div>
             </div>
         </div>
@@ -88,7 +85,6 @@
 <section class="section section--neutral" id="why">
     <div class="container">
         <div class="section__head reveal-up">
-            <span class="eyebrow">{{ threeUpEyebrow }}</span>
             <h2 *ngIf="threeUpKind === 'steps'">From diagnosis <span class="accent">to payout.</span></h2>
             <h2 *ngIf="threeUpKind === 'points'">Why it <span class="accent">matters.</span></h2>
         </div>
@@ -109,7 +105,6 @@
 <section class="section" id="faqs">
     <div class="container">
         <div class="section__head reveal-up">
-            <span class="eyebrow">Common questions</span>
             <h2>Frequently asked <span class="accent">questions.</span></h2>
         </div>
 
@@ -138,7 +133,7 @@
     <div class="container text-center reveal-up">
         <h2>Not sure this is the right cover for you?</h2>
         <p>That's exactly what a 15-minute call with an advisor is for. No obligation, no hard sell.</p>
-        <a class="btn btn--orange btn--big" [href]="scheduleUrl" target="_blank" rel="noopener">
+        <a class="btn btn--orange btn--big" [href]="scheduleUrl" appScheduleLink>
             Schedule a Call
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
                 stroke-linecap="round" stroke-linejoin="round">

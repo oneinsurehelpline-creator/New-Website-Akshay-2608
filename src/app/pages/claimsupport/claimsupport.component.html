@@ -5,7 +5,6 @@
   <div class="container">
     <div class="row g-5 align-items-center hero__inner">
       <div class="col-12 col-lg-6">
-        <span class="eyebrow reveal-up">Claims Support · Powered by Sahay AI</span>
         <h1 class="reveal-up" data-delay="1">Have a claim question? <span class="accent">Ask Sahay.</span></h1>
         <p class="reveal-up" data-delay="2">Sahay is our AI advisor who can help you check claim status, understand
           your coverage, guide you through the filing process, and answer common questions — instantly, any time.</p>
@@ -68,6 +67,46 @@
 </section>
 
 <!-- ============================================================
+  SECTION 1B — WE'RE HERE TO HELP (warm intro; photo added on the left later)
+  ============================================================ -->
+<section class="care section" id="care">
+  <div class="container">
+    <div class="row g-5 align-items-center care__inner">
+      <div class="col-12 col-lg-6 care__visual reveal-left" aria-hidden="true"></div>
+      <div class="col-12 col-lg-6 care__copy reveal-right">
+        <h2>A claim usually lands on a hard day. <span class="accent">We try to make it easier.</span></h2>
+        <p>Whether it's a hospital admission, a fender-bender, or something harder to talk about — you don't have
+          to sort it out alone. Our team picks up the phone, follows up with the insurer on your behalf, and
+          stays with you until it's resolved.</p>
+        <ul class="care__points">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            A real person, not a ticket number
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            We chase the insurer, not you
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Here from the first call to the final payout
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
   SECTION 2 — TRACK YOUR CLAIM
   ============================================================ -->
 <section class="track section" id="track">
@@ -106,7 +145,6 @@
 <section class="fileclaim section section--muted" id="fileclaim">
   <div class="container">
     <div class="section__head reveal-up">
-      <span class="eyebrow">Filing a Claim</span>
       <h2>We File. We Follow Up. You Recover</h2>
       <p class="lead">You don't have to chase your insurer. Tell us once, and we take it from there.</p>
     </div>
@@ -179,7 +217,6 @@
 <section class="section">
   <div class="container">
     <div class="section__head reveal-up">
-      <span class="eyebrow">Choose Your Claim Type</span>
       <h2>What Kind of Claim Do You Need to File?</h2>
       <p class="lead">Select your claim type to get started.</p>
     </div>
@@ -187,47 +224,23 @@
     <!-- Tab nav -->
     <div class="tabs reveal-up" role="tablist">
       <button class="tab" [class.is-active]="activeTab === 'health'" (click)="activeTab = 'health'" role="tab">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-        </svg>
+        <img src="assets/images/icons/general/hospitalisation.png" alt="" loading="lazy">
         Health
       </button>
       <button class="tab" [class.is-active]="activeTab === 'motor'" (click)="activeTab = 'motor'" role="tab">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path
-            d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2">
-          </path>
-          <circle cx="6.5" cy="16.5" r="2.5"></circle>
-          <circle cx="16.5" cy="16.5" r="2.5"></circle>
-        </svg>
+        <img src="assets/images/icons/knowledgebase/motor.png" alt="" loading="lazy">
         Motor
       </button>
       <button class="tab" [class.is-active]="activeTab === 'life'" (click)="activeTab = 'life'" role="tab">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path
-            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-          </path>
-        </svg>
+        <img src="assets/images/icons/knowledgebase/life.png" alt="" loading="lazy">
         Life / Term
       </button>
       <button class="tab" [class.is-active]="activeTab === 'home'" (click)="activeTab = 'home'" role="tab">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-          <polyline points="9 22 9 12 15 12 15 22"></polyline>
-        </svg>
+        <img src="assets/images/icons/general/comprehensive-cover.png" alt="" loading="lazy">
         Home
       </button>
       <button class="tab" [class.is-active]="activeTab === 'travel'" (click)="activeTab = 'travel'" role="tab">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path
-            d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z">
-          </path>
-        </svg>
+        <img src="assets/images/icons/knowledgebase/travel.png" alt="" loading="lazy">
         Travel
       </button>
     </div>
@@ -585,7 +598,6 @@
 <section class="section section--muted">
   <div class="container">
     <div class="section__head reveal-up">
-      <span class="eyebrow">What You'll Need</span>
       <h2>Documents Checklist</h2>
       <p class="lead">Having the right documents ready speeds up your claim. Download the checklist for your type.</p>
     </div>
@@ -595,50 +607,27 @@
         <div class="col-12 col-lg-3">
           <div class="docs__menu" role="tablist">
             <button class="doc-tab" [class.is-active]="activeDoc === 'health'" (click)="activeDoc = 'health'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-              </svg>
+              <img src="assets/images/icons/general/hospitalisation.png" alt="" loading="lazy">
               Health
               <span class="doc-tab__count">6</span>
             </button>
             <button class="doc-tab" [class.is-active]="activeDoc === 'motor'" (click)="activeDoc = 'motor'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path
-                  d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2">
-                </path>
-                <circle cx="6.5" cy="16.5" r="2.5"></circle>
-                <circle cx="16.5" cy="16.5" r="2.5"></circle>
-              </svg>
+              <img src="assets/images/icons/knowledgebase/motor.png" alt="" loading="lazy">
               Motor
               <span class="doc-tab__count">7</span>
             </button>
             <button class="doc-tab" [class.is-active]="activeDoc === 'life'" (click)="activeDoc = 'life'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                </path>
-              </svg>
+              <img src="assets/images/icons/knowledgebase/life.png" alt="" loading="lazy">
               Life / Term
               <span class="doc-tab__count">7</span>
             </button>
             <button class="doc-tab" [class.is-active]="activeDoc === 'home'" (click)="activeDoc = 'home'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-              </svg>
+              <img src="assets/images/icons/general/comprehensive-cover.png" alt="" loading="lazy">
               Home
               <span class="doc-tab__count">6</span>
             </button>
             <button class="doc-tab" [class.is-active]="activeDoc === 'travel'" (click)="activeDoc = 'travel'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path
-                  d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z">
-                </path>
-              </svg>
+              <img src="assets/images/icons/knowledgebase/travel.png" alt="" loading="lazy">
               Travel
               <span class="doc-tab__count">6</span>
             </button>
@@ -735,7 +724,6 @@
 <section class="section">
   <div class="container">
     <div class="section__head reveal-up">
-      <span class="eyebrow">What to Expect</span>
       <h2>What We Do Once You've Told Us</h2>
       <p class="lead">Here's who's doing what at every stage — and where we step in.</p>
     </div>
@@ -834,7 +822,6 @@
 <section class="section section--muted">
   <div class="container">
     <div class="section__head reveal-up">
-      <span class="eyebrow">Escalations &amp; Grievances</span>
       <h2>Not Satisfied With Your Claim Outcome?</h2>
       <p class="lead">We're committed to fair and transparent decisions. If you feel your claim was handled
         incorrectly, here's how to escalate.</p>
@@ -880,7 +867,6 @@
 <section class="section">
   <div class="container">
     <div class="section__head reveal-up">
-      <span class="eyebrow">Real People, Real Help</span>
       <h2>Need to Speak to Someone?</h2>
       <p class="lead">For complex claims or situations where you need a human touch, our experts are here.</p>
     </div>
@@ -933,8 +919,7 @@
           <div class="meta">Pick a time that works for you. Our expert calls back at your preferred slot.</div>
           <!-- <a class="btn btn--orange btn--sm" (click)="openClaimForm()"
             style="align-self:flex-start;margin-top:auto;cursor:pointer">Schedule Callback</a> -->
-          <a class="btn btn--orange btn--sm" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
-            target="_blank" style="align-self:flex-start;margin-top:auto;cursor:pointer">Schedule Callback</a>
+          <a class="btn btn--orange btn--sm" href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink style="align-self:flex-start;margin-top:auto;cursor:pointer">Schedule Callback</a>
         </div>
       </div>
     </div>
@@ -947,7 +932,6 @@
 <section class="section section--muted">
   <div class="container">
     <div class="section__head reveal-up">
-      <span class="eyebrow">Common Questions</span>
       <h2>Frequently Asked Questions</h2>
       <p class="lead">Quick answers to the questions we get most often. Still unsure? Ask Sahay.</p>
     </div>
@@ -1045,7 +1029,6 @@
     <!-- FORM -->
     <ng-container *ngIf="!claimDone">
       <div class="cs-modal__head">
-        <span class="eyebrow">File a Claim</span>
         <h3 id="claimTitle">File a Claim</h3>
         <p>Share a few details and our claims team will take it from here.</p>
       </div>

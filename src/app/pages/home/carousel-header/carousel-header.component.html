@@ -6,38 +6,30 @@
     </div>
     <!-- Track -->
     <div class="deck__track" id="track">
-        <!-- SCREEN 1 — HERO -->
+        <!-- SCREEN 1 — WHO WE ARE -->
         <div [class.active]="current===0" class="scrn s1">
-            <!-- HERO -->
             <section class="hero" id="top"
                 style="background: radial-gradient(1100px 600px at 85% 0%, rgb(254, 240, 218) 0%, transparent 55%), radial-gradient(900px 500px at 10% 90%, rgb(221, 243, 255) 0%, transparent 60%), linear-gradient(rgb(255, 253, 248) 0%, rgb(235, 248, 255) 100%);">
                 <div class="hero__inner scrn__wrap container">
                     <div class="hero__grid">
-                        <div class="hero__copy reveal-left">
-                            <div style="display:none;"><span class="hero__eyebrow reveal in"><span class="dot"></span>
-                                    Insurance advice that actually puts you first</span></div>
+                        <div class="hero__copy">
                             <h1>
                                 <span class="ins">Insurance</span>
-                                <span class="rest">For every stage of your Life</span>
+                                <span class="rest">for every stage<br>of life</span>
                             </h1>
-                            <p class="hero__sub reveal in">18 years of helping Indian families choose the right cover —
-                                explained simply, without jargon.</p>
-                            <div class="hero__cta reveal in" data-delay="3">
-                                <!-- <a class="btn btn--blue btn--big" href="#consult">Book a Free Consultation
-                                    <svg fill="none" height="14" viewBox="0 0 14 14" width="14">
-                                        <path d="M1 7h12m0 0L8 2m5 5l-5 5" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="2"></path>
-                                    </svg>
-                                </a> -->
+                            <span class="hero__rule" aria-hidden="true"></span>
+                            <p class="hero__sub">18 years of helping Indian families choose the right cover — explained
+                                simply, without jargon.</p>
+                            <div class="hero__cta">
                                 <a class="btn btn--blue btn--big"
-                                    href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
-                                    target="_blank">Book a Free Consultation
+                                    href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Book
+                                    a free consultation
                                     <svg fill="none" height="14" viewBox="0 0 14 14" width="14">
                                         <path d="M1 7h12m0 0L8 2m5 5l-5 5" stroke="currentColor" stroke-linecap="round"
                                             stroke-linejoin="round" stroke-width="2"></path>
                                     </svg>
                                 </a>
-                                <a class="btn btn--blue btn--big" href="https://wa.me/918655986559">
+                                <a class="btn btn--outline btn--big" href="https://wa.me/918655986559">
                                     <svg fill="#25D366" height="14" viewBox="0 0 24 24" width="14">
                                         <path
                                             d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.22-1.63A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.22-3.48-8.52z">
@@ -45,251 +37,123 @@
                                     </svg>
                                     Chat on WhatsApp
                                 </a>
-                                <!-- Reusable pincode / branch locator (SharedModule) -->
-                                <app-branch></app-branch>
                             </div>
-                            <div class="hero__trust reveal" data-delay="4" style="display:none"></div>
+                            <!-- Reusable pincode / branch locator (SharedModule) -->
+                            <div class="hero__locate">
+                                <app-branch label="Prefer meeting us in person?"></app-branch>
+                            </div>
                         </div>
-                        <!-- Hero visual: living, warm, animated -->
-                        <div aria-hidden="true" class="hv reveal in" data-delay="3">
+                        <!-- Hero visual -->
+                        <div aria-hidden="true" class="hv">
                             <div class="hv__halo"></div>
-                            <div class="hv__ring r1"></div>
+                            <div class="hv__ring r1"><span class="hv__ring-dot"></span></div>
                             <div class="hv__ring r2"></div>
                             <div class="hv__ring r3"></div>
                             <div class="hv__image">
-                                <img alt="Hero Image" data-first-enter-image="true"
-                                    src="assets/images/carousel/hero-visual.png" />
+                                <img alt="OneInsure" data-first-enter-image="true" fetchpriority="high"
+                                    src="assets/images/carousel/mascot-welcome.png" />
                             </div>
-                            <div class="orb b1"><span class="bullet"><svg fill="none" viewBox="0 0 16 16">
-                                        <path d="M3 8.5l3 3 7-7" stroke="#fff" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="2"></path>
-                                    </svg></span><span>Get Claim Support</span></div>
-                            <div class="orb b2"><span class="bullet"><svg fill="none" viewBox="0 0 16 16">
-                                        <rect height="8" rx="1.5" stroke="#fff" stroke-width="1.6" width="10" x="2"
-                                            y="15"></rect>
-                                        <path d="M3 7h10" stroke="#fff" stroke-width="1.6"></path>
-                                    </svg></span><span>View Your Policy</span></div>
-                            <div class="orb b3"><span class="bullet"><svg fill="none" viewBox="0 0 16 16">
-                                        <path d="M8 1.5l5 2v4c0 3-2.2 5.5-5 6.5-2.8-1-5-3.5-5-6.5v-4l5-2z" stroke="#fff"
-                                            stroke-linejoin="round" stroke-width="1.6"></path>
-                                    </svg></span><span>Understand Coverage</span></div>
-                            <div class="orb b4"><span class="bullet"><svg fill="none" viewBox="0 0 16 16">
-                                        <circle cx="7" cy="7" r="4.5" stroke="#fff" stroke-width="1.6"></circle>
-                                        <path d="M10.5 10.5L13.5 13.5" stroke="#fff" stroke-linecap="round"
-                                            stroke-width="1.8"></path>
-                                    </svg></span><span>Explore Plans</span></div>
-                            <div class="orb b5"><span class="bullet"><svg fill="none" viewBox="0 0 16 16">
-                                        <path d="M2.5 4.5l5.5 4 5.5-4M2.5 4.5h11v7h-11z" stroke="#fff"
-                                            stroke-linejoin="round" stroke-width="1.6"></path>
-                                    </svg></span><span>Manage Your Policy</span></div>
-                            <div class="chip c1"><img alt="HDFC Ergo" src="assets/images/insurers/HDFCErgo.jpg" /></div>
-                            <div class="chip c2"><img alt="Tata AIA" src="assets/images/insurers/tata-aia.png" /></div>
-                            <div class="chip c3"><img alt="Niva Bupa" src="assets/images/insurers/nivabupa.png" /></div>
-                            <div class="chip c4"><img alt="Go Digit" src="assets/images/insurers/Go-Digit.png" /></div>
+                            <div class="orb b1"><span class="bullet"><img alt=""
+                                        src="assets/images/icons/knowledgebase/basics.png"></span><span>Understand
+                                    coverage</span></div>
+                            <div class="orb b2"><span class="bullet"><img alt=""
+                                        src="assets/images/icons/calculators/guaranteed-return.png"></span><span>Compare
+                                    plans</span></div>
+                            <div class="orb b3"><span class="bullet"><img alt=""
+                                        src="assets/images/icons/general/tax-benefit.png"></span><span>Manage your
+                                    policy</span></div>
+                            <div class="orb b4"><span class="bullet"><img alt=""
+                                        src="assets/images/icons/general/cashless.png"></span><span>Claim
+                                    assistance</span></div>
                         </div>
                     </div>
                 </div>
             </section>
         </div><!-- /scrn s1 -->
-        <!-- SCREEN 2 — Sahay AI -->
+
+        <!-- SCREEN 2 — SAARTH -->
         <div [class.active]="current===1" class="scrn s2">
-            <!-- Background orbs -->
-            <div class="gorb gorb--a"></div>
-            <div class="gorb gorb--b"></div>
-            <div class="gorb gorb--c"></div>
-            <div class="grid-anim"></div>
             <div class="scrn__wrap container">
-                <div class="s2__grid">
-                    <!-- Left copy -->
-                    <div>
-                        <div class="s2__eb">
-                            Sahay by OneInsure
-                            <span class="live">Going Live Soon!</span>
+                <div class="hero__grid">
+                    <div class="hero__copy">
+                        <span class="hero__eyebrow"><span class="dot"></span>Live</span>
+                        <h2>Your personal<br>Insurance Advisor<br><span class="accent-orange">— Now powered by
+                                AI</span></h2>
+                        <p class="hero__sub">Compare plans, decode your policy, understand your claim — instantly, in
+                            plain English. A human picks up when you need one.</p>
+                        <div class="hero__cta">
+                            <a class="btn btn--blue btn--big" href="https://ai.oneinsure.com/" target="_blank"
+                                rel="noopener noreferrer">Ask Saarth
+                                <svg fill="none" height="14" viewBox="0 0 14 14" width="14">
+                                    <path d="M1 7h12m0 0L8 2m5 5l-5 5" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                            </a>
+                            <a class="btn btn--outline btn--big" href="https://ai.oneinsure.com/" target="_blank"
+                                rel="noopener noreferrer">See what it does</a>
                         </div>
-                        <h2>Your AI<br /><span class="grad">Insurance</span><br />Advisor</h2>
-                        <p class="s2__sub">Ask anything about your policy, compare plans, or get claim guidance —
-                            <strong>instantly, in plain English.</strong>
-                        </p>
-                        <div class="s2__chips">
-                            <span class="s2__chip"><svg class="ic" fill="none" stroke="currentColor" stroke-width="2"
-                                    viewBox="0 0 24 24">
-                                    <circle cx="12" cy="12" r="9"></circle>
-                                    <path d="M9 12l2 2 4-4"></path>
-                                </svg>Available 24 × 7</span>
-                            <span class="s2__chip"><svg class="ic" fill="none" stroke="currentColor" stroke-width="2"
-                                    viewBox="0 0 24 24">
-                                    <path d="M12 2L4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z"></path>
-                                </svg>Unbiased advice</span>
-                            <span class="s2__chip"><svg class="ic" fill="none" stroke="currentColor" stroke-width="2"
-                                    viewBox="0 0 24 24">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                </svg>Escalates to human advisor</span>
-                        </div>
-                        <div class="wl" style="margin-top:28px;">
-                            <input type="email" name="waitListEmail" placeholder="Enter your email to try Sahay beta"
-                                [(ngModel)]="waitListEmailId" #emailCtrl="ngModel" required email
-                                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$" />
-
-                            <button class="btn btn--blue wl__btn" style="flex-shrink:0;" (click)="joinWaitList()"
-                                [disabled]="emailCtrl.invalid || submittingWaitList">
-                                <span *ngIf="!submittingWaitList">Join Waitlist</span>
-                                <span *ngIf="submittingWaitList" class="wl__spinner" aria-label="Submitting"></span>
-                            </button>
-
-                            <!-- <small *ngIf="emailCtrl.invalid && emailCtrl.touched" style="color:white;">
-                                Please enter a valid email address (e.g. name@example.com).
-                            </small> -->
-                        </div>
-
+                        <p class="hero__trustline">IRDAI licensed broker &middot; {{ companyAge }} years &middot; 5L+
+                            policies issued</p>
                     </div>
-                    <!-- Right visual — phone mockup -->
-                    <div class="s2__vis">
-                        <div class="phone">
-                            <div class="phone__screen">
-                                <div class="phone__hdr">
-                                    <div class="phone__logo"><span>S</span> Sahay</div>
-                                </div>
-                                <div class="phone__body">
-                                    <div class="pmsg pmsg--bot">
-                                        <div class="pmsg__b">Hi! I'm Sahay. How can I help with your insurance today?
-                                        </div>
-                                    </div>
-                                    <div class="pmsg pmsg--user">
-                                        <div class="pmsg__b">Is my term plan enough for my family?</div>
-                                    </div>
-                                    <div class="pmsg pmsg--bot">
-                                        <div class="pmsg__b">Based on 12× income rule, a family of 3 with ₹1L/month
-                                            income needs ~₹1.5 Cr cover. Want me to calculate your gap?</div>
-                                    </div>
-                                    <div class="pmsg pmsg--user">
-                                        <div class="pmsg__b">Yes, please!</div>
-                                    </div>
-                                    <div class="ptype"><span></span><span></span><span></span></div>
-                                </div>
-                                <div class="phone__glow"></div>
+                    <div aria-hidden="true" class="hv">
+                        <div class="hv__halo"></div>
+                        <div class="hv__ring r1"><span class="hv__ring-dot"></span></div>
+                        <div class="hv__ring r2"></div>
+                        <div class="hv__ring r3"></div>
+                        <div class="hv__image">
+                            <img alt="Saarth, OneInsure's AI advisor" loading="lazy"
+                                src="assets/images/carousel/mascot-saarth.png" />
+                        </div>
+                        <div class="saarth-widget">
+                            <div class="saarth-widget__hdr">
+                                <span class="saarth-widget__name"><span class="dot"></span>Saarth</span>
+                                <span class="saarth-widget__status">Online</span>
+                            </div>
+                            <div class="saarth-widget__msg saarth-widget__msg--user">Is my &#8377;5L health cover enough
+                                for a family of four?</div>
+                            <div class="saarth-widget__msg saarth-widget__msg--bot">In a metro, &#8377;10L is a safer
+                                floor. Here is what changes at each level.</div>
+                            <div class="saarth-widget__typing"><span></span><span></span><span></span></div>
+                            <div class="saarth-widget__input">
+                                <span>Ask anything about your policy</span>
+                                <svg fill="none" height="16" viewBox="0 0 24 24" width="16">
+                                    <path d="M3 11l18-8-8 18-2-8-8-2z" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="1.8"></path>
+                                </svg>
+                            </div>
+                            <div class="saarth-widget__foot">
+                                <svg fill="none" height="12" viewBox="0 0 24 24" width="12">
+                                    <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2.4"></path>
+                                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle>
+                                </svg>
+                                Checked against your policy documents
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- SCREEN 4 — Journey -->
-        <div [class.active]="current===2" class="scrn s4">
-            <!-- Background layers -->
-            <div class="s4__bg-veil"></div>
-            <div class="s4__bg-grain"></div>
-            <!-- Top stamp -->
-            <div class="s4__stamp"><span class="s4__pulse"></span>Limited-Time Offer · Lock-in Today</div>
-            <!-- Decorative coin -->
-            <div aria-hidden="true" class="s4__coin">₹</div>
-            <!-- Floating chips -->
-            <div class="s4__chip s4__chip--l">
-                <span class="s4__chip-ic">
-                    <svg fill="none" height="11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="3" viewBox="0 0 24 24" width="11">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                </span>
-                <span class="s4__chip-txt"><span>Zero Market Risk</span><small>Returns Locked-In</small></span>
-            </div>
-            <div class="s4__chip s4__chip--r">
-                <span class="s4__chip-ic">
-                    <svg fill="none" height="11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="3" viewBox="0 0 24 24" width="11">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    </svg>
-                </span>
-                <span class="s4__chip-txt"><span>Section 10(10D)</span><small>100% Tax Exempt</small></span>
-            </div>
-            <!-- Content -->
+        </div><!-- /scrn s2 -->
+
+        <!-- SCREEN 3 — COMMUNITY -->
+        <div [class.active]="current===2" class="scrn s3">
             <div class="scrn__wrap container">
-                <div class="s4__inner">
-                    <span class="s4__eyebrow invisible">Retire Wealthy · Worry-Free</span>
-                    <p class="s4__lead">Plan today. <em>Retire with</em></p>
-                    <div aria-label="One point one crore rupees" class="s4__num">
-                        <span class="s4nr">₹</span>
-                        <span class="s4nd">1.1</span>
-                        <span class="s4nu">Cr<small>at maturity</small></span>
-                    </div>
-                    <div class="s4__badges">
-                        <div class="s4__badge">
-                            <span class="s4bic">
-                                <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="16">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                    <path d="m9 12 2 2 4-4"></path>
+                <div class="hero__grid">
+                    <div class="hero__copy">
+                        <h2>15 lakh people ask us the <span class="accent-orange">awkward</span> questions</h2>
+                        <span class="hero__rule" aria-hidden="true"></span>
+                        <p class="hero__sub">Real answers, in public, free. No pitch attached.</p>
+                        <div class="hero__cta">
+                            <a class="btn btn--blue btn--big" href="#consult">Join the community
+                                <svg fill="none" height="14" viewBox="0 0 14 14" width="14">
+                                    <path d="M1 7h12m0 0L8 2m5 5l-5 5" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"></path>
                                 </svg>
-                            </span>
-                            <span><span class="s4blbl">100%</span><span class="s4bval">Guaranteed</span></span>
+                            </a>
                         </div>
-                        <div class="s4__badge s4__badge--gold">
-                            <span class="s4bic">
-                                <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="16">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-                                    <line x1="9" x2="9.01" y1="9" y2="9"></line>
-                                    <line x1="15" x2="15.01" y1="9" y2="9"></line>
-                                </svg>
-                            </span>
-                            <span><span class="s4blbl">Returns</span><span class="s4bval">Tax-Free</span></span>
-                        </div>
-                    </div>
-                    <div class="s4__pay">
-                        <div class="s4pcell">
-                            <span class="s4plbl">You pay</span>
-                            <span class="s4pval"><span class="pu">₹</span>4 L</span>
-                            <span class="s4psub">per year</span>
-                        </div>
-                        <div class="s4pop">×</div>
-                        <div class="s4pcell">
-                            <span class="s4plbl">For</span>
-                            <span class="s4pval">10</span>
-                            <span class="s4psub">years</span>
-                        </div>
-                        <div class="s4pdiv"></div>
-                        <div class="s4pcell">
-                            <span class="s4plbl">You get</span>
-                            <span class="s4pval s4pval--g"><span class="pu">₹</span>1.1 Cr</span>
-                            <span class="s4psub">at maturity · tax-free</span>
-                        </div>
-                    </div>
-                    <div class="s4__cta-wrap">
-                        <a class="s4__cta-btn" href="#consult">
-                            Lock in your ₹1.1 Cr — Talk to an Expert
-                            <span class="s4carrow">
-                                <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="14">
-                                    <line x1="5" x2="19" y1="12" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </span>
-                        </a>
-                        <p class="s4__tc">T&amp;C Apply  ·  Age 40  ·  PPT 10 yrs  ·  Maturity 20
-                            yrs  ·  Tax benefit u/s 10(10D), subject to conditions</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- SCREEN 3 — Community -->
-        <div [class.active]="current===3" class="scrn s3">
-            <div class="scrn__wrap container">
-                <div class="s2__grid">
-                    <div>
-                        <span class="eyebrow no-rule" style="color:var(--orange);">Community</span>
-                        <h2
-                            style="margin-top:14px;font-size:clamp(36px,4.5vw,60px);letter-spacing:-2px;line-height:1.04;color:var(--blue-deep);">
-                            India's largest<br />insurance <span class="accent">community</span></h2>
-                        <p class="s1__lede" style="margin-top:18px;color:var(--g600);">15,00,000+ members sharing real
-                            claim experiences, policy reviews and tips — so you never feel lost again.</p>
-                        <div class="s3__cta">
-                            <a class="btn btn--blue btn--big" href="#consult">Join the Community →</a>
-                            <span class="s3__cta__note">Free to join · No spam</span>
-                        </div>
-                        <div
-                            style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px;max-width:440px;">
+                        <p class="hero__trustline">IRDAI licensed broker &middot; {{ companyAge }} years &middot; 5L+
+                            policies issued</p>
+                        <div class="community-proof">
                             <a class="scard" href="https://www.instagram.com/getoneinsure/" rel="noopener noreferrer"
                                 target="_blank">
                                 <div class="scard__ic ig"><svg fill="none" height="18" stroke="#fff" stroke-width="2"
@@ -340,13 +204,80 @@
                             </a>
                         </div>
                     </div>
-                    <div class="s3__r">
-                        <img alt="Social Media" src="assets/images/carousel/SocialMedia.png"
-                            style="width:200%;max-width:700px;display:block;" />
+                    <div aria-hidden="true" class="hv">
+                        <div class="hv__halo"></div>
+                        <div class="hv__ring r1"><span class="hv__ring-dot"></span></div>
+                        <div class="hv__ring r2"></div>
+                        <div class="hv__ring r3"></div>
+                        <div class="hv__image">
+                            <img alt="A OneInsure advisor answering community questions" loading="lazy"
+                                src="assets/images/carousel/mascot-community.png" />
+                        </div>
+                        <div class="quote q1">&ldquo;Is my company insurance enough?&rdquo;</div>
+                        <div class="quote q2">&ldquo;Is my term cover actually enough?&rdquo;</div>
+                        <div class="quote q3">&ldquo;My agent sold me a ULIP. Now what?&rdquo;</div>
+                        <div class="quote q4">&ldquo;Can I still get cover after 45?&rdquo;</div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div><!-- /scrn s3 -->
+
+        <!-- SCREEN 4 — CLAIMS -->
+        <div [class.active]="current===3" class="scrn s4">
+            <div class="scrn__wrap container">
+                <div class="hero__grid">
+                    <div class="hero__copy">
+                        <h2>We don&#39;t just sell insurance. We make sure you have the <span
+                                class="accent-orange">right support</span> — always</h2>
+                        <p class="hero__sub">Documents, follow-up, insurer calls — we walk your claim journey with you.
+                        </p>
+                        <div class="hero__cta">
+                            <a class="btn btn--blue btn--big" routerLink="/ClaimSupport">How claims work
+                                <svg fill="none" height="14" viewBox="0 0 14 14" width="14">
+                                    <path d="M1 7h12m0 0L8 2m5 5l-5 5" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                            </a>
+                            <a class="btn btn--outline btn--big"
+                                href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Talk
+                                to an expert</a>
+                        </div>
+                        <p class="hero__trustline">Claim decisions rest with the insurer. We assist with the process,
+                            not the outcome.</p>
+                    </div>
+                    <div aria-hidden="true" class="hv">
+                        <div class="hv__halo"></div>
+                        <div class="hv__ring r1"><span class="hv__ring-dot"></span></div>
+                        <div class="hv__ring r2"></div>
+                        <div class="hv__ring r3"></div>
+                        <div class="hv__image">
+                            <img alt="A OneInsure advisor holding a claim file" loading="lazy"
+                                src="assets/images/carousel/mascot-claims.png" />
+                        </div>
+                        <div class="claim-tracker">
+                            <div class="claim-tracker__hdr">
+                                <span><svg fill="none" height="14" viewBox="0 0 24 24" width="14">
+                                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle>
+                                        <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="1.8"></path>
+                                    </svg> Your claim, tracked</span>
+                                <em>Step 2 of 3</em>
+                            </div>
+                            <ul class="claim-tracker__steps">
+                                <li class="is-done"><span class="claim-tracker__dot">&#10003;</span>Documents
+                                    collected</li>
+                                <li class="is-done"><span class="claim-tracker__dot">&#10003;</span>Filed with the
+                                    insurer</li>
+                                <li class="is-active"><span class="claim-tracker__dot">&#9679;</span>Settlement in
+                                    progress
+                                    <small>We follow up until it closes.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /scrn s4 -->
     </div><!-- /deck__track -->
     <!-- STAT STRIP — pinned to bottom of deck -->
     <div class="deck__strip">
@@ -392,11 +323,10 @@
                 stroke-width="1.8"></path>
         </svg>
     </button>
-    <!-- Carousel dots -->
-    <div class="dots" id="dots">
-        <button (click)="go(0)" [class.active]="current===0" class="dot active"></button>
-        <button (click)="go(1)" [class.active]="current===1" class="dot"></button>
-        <button (click)="go(2)" [class.active]="current===2" class="dot"></button>
-        <button (click)="go(3)" [class.active]="current===3" class="dot"></button>
+    <!-- Carousel tabs -->
+    <div class="hero-tabs" id="dots" role="tablist">
+        <button *ngFor="let tab of tabs; let i = index" (click)="go(i, true)" [class.active]="current===i"
+            [attr.aria-selected]="current===i" [attr.aria-label]="'Go to ' + tab.label + ' slide'" class="hero-tabs__tab"
+            role="tab">{{ tab.label }}</button>
     </div>
 </div>

@@ -23,7 +23,7 @@
                     <div class="plp-cta-card__badge">For businesses</div>
                     <h3>{{ ctaButtonLabel }}</h3>
                     <p>{{ ctaMicrocopy }}</p>
-                    <a class="btn btn--orange btn--big" [href]="scheduleUrl" target="_blank" rel="noopener">
+                    <a class="btn btn--orange btn--big" [href]="scheduleUrl" appScheduleLink>
                         {{ ctaButtonLabel }}
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
@@ -71,7 +71,6 @@
 <section class="section section--neutral" id="cover">
     <div class="container">
         <div class="section__head reveal-up">
-            <span class="eyebrow">What's inside</span>
             <h2>Three benefits that <span class="accent">reach home.</span></h2>
         </div>
 
@@ -97,7 +96,6 @@
 <section class="section" id="how">
     <div class="container">
         <div class="section__head reveal-up">
-            <span class="eyebrow">How we work</span>
             <h2>From design <span class="accent">to renewal.</span></h2>
         </div>
 
@@ -117,7 +115,6 @@
 <section class="section section--neutral" id="why-broker">
     <div class="container">
         <div class="section__head reveal-up">
-            <span class="eyebrow">Why a broker</span>
             <h2>What changes for <span class="accent">your HR team.</span></h2>
         </div>
 
@@ -136,7 +133,6 @@
 <section class="section" id="who">
     <div class="container">
         <div class="section__head reveal-up">
-            <span class="eyebrow">Who this is for</span>
             <h2>Does this sound like <span class="accent">your company?</span></h2>
         </div>
 
@@ -150,7 +146,6 @@
 <section class="section" id="faqs">
     <div class="container">
         <div class="section__head reveal-up">
-            <span class="eyebrow">Common questions</span>
             <h2>Frequently asked <span class="accent">questions.</span></h2>
         </div>
 
@@ -179,7 +174,7 @@
     <div class="container text-center reveal-up">
         <h2>{{ closingHeadline }}</h2>
         <p>{{ closingLine }}</p>
-        <a class="btn btn--orange btn--big" [href]="scheduleUrl" target="_blank" rel="noopener">
+        <a class="btn btn--orange btn--big" [href]="scheduleUrl" appScheduleLink>
             {{ closingButtonLabel }}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
                 stroke-linecap="round" stroke-linejoin="round">

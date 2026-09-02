@@ -63,7 +63,7 @@ export class HeaderComponent {
     // { label: 'OneInsure Money', href: 'https://www.oneinsure.money/' },    
     { label: 'Become a Partner', route: '/PartnerProgram' },
     { label: 'Careers', route: '/Careers' },
-    {label: 'Knowledge', route: '/KnowledgeBase' }
+    {label: 'Explore Insurance', route: '/KnowledgeBase' }
   ];
 
   @HostListener('window:scroll')

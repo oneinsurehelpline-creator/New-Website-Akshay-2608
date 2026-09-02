@@ -1,9 +1,15 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
+import { LeadService } from 'src/app/services/lead.service';
 
 interface ThreeUpItem {
   num?: string;
   title: string;
   desc: string;
+}
+
+interface CoverItem {
+  icon: string;
+  text: string;
 }
 
 interface FaqItem {
@@ -17,7 +23,10 @@ interface FaqItem {
   styleUrls: ['./personalaccidentplans.component.scss'],
 })
 export class PersonalaccidentplansComponent implements AfterViewInit, OnDestroy {
-  constructor(private host: ElementRef<HTMLElement>) {}
+  userDetails: any = [];
+  companyTrust: any = [];
+  companyAge = 0
+  constructor(private host: ElementRef<HTMLElement>, private leadService: LeadService) { }
 
   scheduleUrl = 'https://schedule.oneinsure.com/book/get-expert-guidance-web';
 
@@ -31,21 +40,31 @@ export class PersonalaccidentplansComponent implements AfterViewInit, OnDestroy 
   ];
   ctaMicrocopy = "Two minutes to see what your health cover leaves out.";
 
-  // ---------- TRUST STRIP (reusable) ----------
-  companyTrust = [
-    '18+ years',
-    'IRDAI-licensed composite broker',
-    '100+ branches',
-    'Advisors, not call centres',
-  ];
+
 
   // ---------- WHAT IT COVERS ----------
-  covers = [
-    'Accidental death — lump sum to your nominee',
-    'Permanent total or partial disability — lump sum scaled to the loss',
-    "Temporary disability — a weekly payout while you're unable to work",
-    'Hospitalisation, ambulance, and broken-bone expenses',
-    'Optional education benefit for your children',
+  coversIcon = 'assets/images/icons/14_Personal_Accident.png';
+  covers: CoverItem[] = [
+    {
+      icon: 'assets/images/icons/knowledgebase/life.png',
+      text: 'Accidental death — lump sum to your nominee',
+    },
+    {
+      icon: 'assets/images/icons/general/comprehensive-cover.png',
+      text: 'Permanent total or partial disability — lump sum scaled to the loss',
+    },
+    {
+      icon: 'assets/images/icons/general/low-cost.png',
+      text: "Temporary disability — a weekly payout while you're unable to work",
+    },
+    {
+      icon: 'assets/images/icons/calculators/health-cover.png',
+      text: 'Hospitalisation, ambulance, and broken-bone expenses',
+    },
+    {
+      icon: 'assets/images/icons/knowledgebase/basics.png',
+      text: 'Optional education benefit for your children',
+    },
   ];
 
   // ---------- WHY IT MATTERS ----------
@@ -101,7 +120,17 @@ export class PersonalaccidentplansComponent implements AfterViewInit, OnDestroy 
   ngOnDestroy(): void {
     this.io?.disconnect();
   }
+  ngOnInit() {
+    this.companyDetails();
+    const startDate = new Date('2008-03-27');
+    const today = new Date();
 
+    this.companyAge = today.getFullYear() - startDate.getFullYear();
+
+    if (today < new Date(today.getFullYear(), 2, 29)) {
+      this.companyAge--;
+    }
+  }
   private setupReveal(): void {
     const sel = '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale';
     this.io = new IntersectionObserver(
@@ -116,5 +145,18 @@ export class PersonalaccidentplansComponent implements AfterViewInit, OnDestroy 
       { threshold: 0.12, rootMargin: '0px 0px -48px 0px' }
     );
     this.host.nativeElement.querySelectorAll(sel).forEach((el) => this.io!.observe(el));
+  }
+  companyDetails() {
+    const cdto = {};
+    this.leadService.companyDetails(cdto).subscribe((res: any) => {
+
+      this.userDetails = res;
+      this.companyTrust = [
+        this.companyAge + '+ years',
+        'IRDAI-licensed composite broker',
+        this.userDetails[0].Branches + '+ branches',
+        'Advisors, not call centres',
+      ];
+    });
   }
 }

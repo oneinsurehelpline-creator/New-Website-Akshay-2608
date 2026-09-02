@@ -861,7 +861,7 @@
 .qlinks {
     position: relative;
     z-index: 1;
-    max-width: 900px;
+    max-width: 1160px;
     margin: 0 auto;
 }
 
@@ -899,23 +899,28 @@
         --ql-accent-2: #fb923c;
         --ql-glow: rgba(249, 115, 22, 0.32);
     }
+
+    &--commercial {
+        --ql-accent: #7c3aed;
+        --ql-accent-2: #a78bfa;
+        --ql-glow: rgba(124, 58, 237, 0.32);
+    }
 }
 
 .qlink__icon {
-    width: 58px;
-    height: 58px;
-    border-radius: 16px;
+    width: 76px;
+    height: 76px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--ql-accent), var(--ql-accent-2));
-    color: #fff;
-    box-shadow: 0 10px 26px var(--ql-glow);
     margin-bottom: 22px;
 
-    svg {
-        width: 30px;
-        height: 30px;
+    img {
+        width: 165%;
+        height: 165%;
+        max-width: 165%;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 18px var(--ql-glow));
     }
 }
 

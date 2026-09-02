@@ -53,6 +53,84 @@
 
 
 /* ============================================================
+   SECTION 1B — WE'RE HERE TO HELP (warm intro)
+   ============================================================ */
+.care {
+    /* This is the first VISIBLE section right now — #sahay-hero above it is
+       temporarily hidden (see the block near the bottom of this file) — so
+       it needs hero-style padding to clear the fixed nav, not just section
+       spacing. Safe to dial back down to clamp(48px, 6vw, 76px) once the
+       hero above it is restored. */
+    padding-top: clamp(110px, 12vw, 150px);
+    padding-bottom: clamp(48px, 6vw, 76px);
+    background: #fff;
+}
+
+.care__visual {
+    min-height: 340px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line-soft);
+    background:
+        radial-gradient(120% 140% at 20% 15%, rgba(0, 176, 255, .10) 0%, transparent 60%),
+        radial-gradient(100% 120% at 85% 90%, rgba(245, 160, 17, .08) 0%, transparent 60%),
+        var(--blue-faint);
+}
+
+@media (max-width: 991px) {
+    .care__visual {
+        min-height: 220px;
+    }
+}
+
+.care__copy h2 {
+    font-size: clamp(26px, 3.2vw, 36px);
+    line-height: 1.25;
+    letter-spacing: -1px;
+    color: var(--navy);
+    margin-bottom: 16px;
+
+    .accent {
+        color: var(--c-blue-deep);
+    }
+}
+
+.care__copy>p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-bottom: 26px;
+    max-width: 520px;
+}
+
+.care__points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font: 600 14.5px/1.4 var(--sans);
+        color: var(--navy);
+    }
+
+    svg {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        padding: 4px;
+        box-sizing: content-box;
+        color: #fff;
+        background: var(--c-blue-deep);
+        border-radius: 50%;
+    }
+}
+
+/* ============================================================
    SECTION 1 — SAHAY HERO
    ============================================================ */
 .hero {
@@ -468,9 +546,11 @@
     transition: all .2s var(--ease);
     text-transform: uppercase;
 
-    svg {
-        width: 16px;
-        height: 16px;
+    img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        flex-shrink: 0;
     }
 
     &:hover {
@@ -636,10 +716,11 @@
     text-align: left;
     transition: all .2s var(--ease);
 
-    svg {
-        width: 18px;
-        height: 18px;
-        color: var(--ink-mute);
+    img {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+        flex-shrink: 0;
     }
 
     &:hover {
