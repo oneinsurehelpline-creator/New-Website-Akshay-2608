@@ -13,8 +13,9 @@ export class BranchComponent implements OnInit, OnDestroy {
 
   mode: 'control' | 'page' = 'control';
 
+  
+  placeholder = 'Enter city name';
   @Input() label = 'Prefer meeting us in-person?';
-  placeholder = 'Enter pincode to check';
   locationType = 3;
 
   pincode = '';
@@ -25,6 +26,7 @@ export class BranchComponent implements OnInit, OnDestroy {
   noExactMatch = false;             // true when a searched pincode had no direct hit
   searchedPin = '';
   loaded = false;
+  city: any;
   private readonly isBrowser: boolean;
 
   constructor(
@@ -94,6 +96,19 @@ export class BranchComponent implements OnInit, OnDestroy {
       this.loaded = true;
       if (this.mode === 'page') { this.renderPage(); }
     });
+  }
+  branchSearch(city: any) {
+
+    const search = city?.trim().toLowerCase();
+
+    if (!search) {
+      this.filteredLocations = this.locations;
+      return;
+    }
+
+    this.filteredLocations = this.locations.filter((location: any) =>
+      location.City?.toLowerCase().includes(search)
+    );
   }
 
   // ---- control mode: open the full page in a new tab, then clear the box ----

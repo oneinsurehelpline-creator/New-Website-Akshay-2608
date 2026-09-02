@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
+import { LeadService } from 'src/app/services/lead.service';
 
 interface CoverBlock {
   title: string;
@@ -31,7 +32,10 @@ interface FaqItem {
   styleUrls: ['./corporateinsurance.component.scss'],
 })
 export class CorporateinsuranceComponent implements AfterViewInit, OnDestroy {
-  constructor(private host: ElementRef<HTMLElement>) {}
+   userDetails: any = [];
+  trustPoints: any = [];
+  companyAge = 0
+  constructor(private host: ElementRef<HTMLElement>, private leadService: LeadService) { }
 
   scheduleUrl = 'https://schedule.oneinsure.com/book/get-expert-guidance-web';
 
@@ -41,13 +45,7 @@ export class CorporateinsuranceComponent implements AfterViewInit, OnDestroy {
   ctaButtonLabel = 'Request a risk review';
   ctaMicrocopy = "A 30-minute call. We map what you're covered for, what you're not, and what that gap would cost.";
 
-  // ---------- TRUST STRIP (page-specific) ----------
-  trustPoints = [
-    '18+ years',
-    'IRDAI-licensed composite broker',
-    '100+ branches',
-    'We represent you, not the insurer',
-  ];
+
 
   // ---------- THE PROBLEM ----------
   problemParagraphs = [
@@ -192,7 +190,17 @@ export class CorporateinsuranceComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.io?.disconnect();
   }
+  ngOnInit() {
+    this.companyDetails();
+    const startDate = new Date('2008-03-27');
+    const today = new Date();
 
+    this.companyAge = today.getFullYear() - startDate.getFullYear();
+
+    if (today < new Date(today.getFullYear(), 2, 29)) {
+      this.companyAge--;
+    }
+  }
   private setupReveal(): void {
     const sel = '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale';
     this.io = new IntersectionObserver(
@@ -207,5 +215,18 @@ export class CorporateinsuranceComponent implements AfterViewInit, OnDestroy {
       { threshold: 0.12, rootMargin: '0px 0px -48px 0px' }
     );
     this.host.nativeElement.querySelectorAll(sel).forEach((el) => this.io!.observe(el));
+  }
+  companyDetails() {
+    const cdto = {};
+    this.leadService.companyDetails(cdto).subscribe((res: any) => {
+
+      this.userDetails = res;
+      this.trustPoints = [
+        this.companyAge + '+ years',
+        'IRDAI-licensed composite broker',
+        this.userDetails[0].Branches + '+ branches',
+        'Advisors, not call centres',
+      ];
+    });
   }
 }
