@@ -4,10 +4,6 @@ import {
 } from '@angular/core';
 import { LeadService } from 'src/app/services/lead.service';
 
-interface HeroTab {
-  label: string;
-}
-
 @Component({
   selector: 'app-carousel-header',
   templateUrl: './carousel-header.component.html',
@@ -28,12 +24,6 @@ export class CarouselHeaderComponent implements OnInit, AfterViewInit, OnDestroy
 
   /** Hero deck carousel state */
   readonly TOTAL = 4;
-  readonly tabs: HeroTab[] = [
-    { label: 'Who we are' },
-    { label: 'Saarth' },
-    { label: 'Community' },
-    { label: 'Claims' },
-  ];
 
   private readonly AUTO_MS = 6000;
   current = 0;
@@ -159,6 +149,19 @@ export class CarouselHeaderComponent implements OnInit, AfterViewInit, OnDestroy
     }
     this.progStart = Date.now();
     this.restart();
+    if (this.isBrowser) {
+      this.blinkHeadline();
+    }
+  }
+
+  /** Briefly blinks the active slide's dynamic headline tail to draw the eye to it on every slide change. */
+  private blinkHeadline(): void {
+    if (this.prefersReducedMotion()) { return; }
+    const el = this.host.nativeElement.querySelector('.scrn.active .hl-dynamic') as HTMLElement | null;
+    if (!el) { return; }
+    el.classList.remove('is-blinking');
+    void el.offsetHeight; // force reflow so the animation restarts even on a repeat slide
+    el.classList.add('is-blinking');
   }
   next(userInitiated = true): void { this.go(this.current + 1, userInitiated); }
   prev(userInitiated = true): void { this.go(this.current - 1, userInitiated); }

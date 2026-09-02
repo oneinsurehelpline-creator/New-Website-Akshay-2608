@@ -7,19 +7,15 @@
     <!-- Track -->
     <div class="deck__track" id="track">
         <!-- SCREEN 1 — WHO WE ARE -->
-        <div [class.active]="current===0" class="scrn s1">
-            <section class="hero" id="top"
-                style="background: radial-gradient(1100px 600px at 85% 0%, rgb(254, 240, 218) 0%, transparent 55%), radial-gradient(900px 500px at 10% 90%, rgb(221, 243, 255) 0%, transparent 60%), linear-gradient(rgb(255, 253, 248) 0%, rgb(235, 248, 255) 100%);">
-                <div class="hero__inner scrn__wrap container">
+        <div [class.active]="current===0" class="scrn s1" id="top">
+                <div class="scrn__wrap container">
                     <div class="hero__grid">
                         <div class="hero__copy">
-                            <h1>
-                                <span class="ins">Insurance</span>
-                                <span class="rest">for every stage<br>of life</span>
+                            <h1 class="headline">
+                                <span class="hl-fixed"><span class="one">One</span> <span class="place">place</span></span>
+                                <span class="hl-dynamic">for all your insurance needs</span>
                             </h1>
-                            <span class="hero__rule" aria-hidden="true"></span>
-                            <p class="hero__sub">18 years of helping Indian families choose the right cover — explained
-                                simply, without jargon.</p>
+                            <p class="hero__sub">18 years of helping Indian families find the right cover.</p>
                             <div class="hero__cta">
                                 <a class="btn btn--blue btn--big"
                                     href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Book
@@ -68,7 +64,6 @@
                         </div>
                     </div>
                 </div>
-            </section>
         </div><!-- /scrn s1 -->
 
         <!-- SCREEN 2 — SAARTH -->
@@ -77,10 +72,12 @@
                 <div class="hero__grid">
                     <div class="hero__copy">
                         <span class="hero__eyebrow"><span class="dot"></span>Live</span>
-                        <h2>Your personal<br>Insurance Advisor<br><span class="accent-orange">— Now powered by
-                                AI</span></h2>
-                        <p class="hero__sub">Compare plans, decode your policy, understand your claim — instantly, in
-                            plain English. A human picks up when you need one.</p>
+                        <h2 class="headline">
+                            <span class="hl-fixed"><span class="one">One</span> <span class="place">place</span></span>
+                            <span class="hl-dynamic">for answers, whenever you want</span>
+                        </h2>
+                        <p class="hero__sub">Saarth answers instantly, in plain English. A human picks up when you need
+                            one.</p>
                         <div class="hero__cta">
                             <a class="btn btn--blue btn--big" href="https://ai.oneinsure.com/" target="_blank"
                                 rel="noopener noreferrer">Ask Saarth
@@ -140,9 +137,12 @@
             <div class="scrn__wrap container">
                 <div class="hero__grid">
                     <div class="hero__copy">
-                        <h2>15 lakh people ask us the <span class="accent-orange">awkward</span> questions</h2>
-                        <span class="hero__rule" aria-hidden="true"></span>
-                        <p class="hero__sub">Real answers, in public, free. No pitch attached.</p>
+                        <h2 class="headline">
+                            <span class="hl-fixed"><span class="one">One</span> <span class="place">place</span></span>
+                            <span class="hl-dynamic">to understand insurance, simply</span>
+                        </h2>
+                        <p class="hero__sub">Real questions, real answers, no pitch attached. That's how 15 lakh people
+                            found us.</p>
                         <div class="hero__cta">
                             <a class="btn btn--blue btn--big" href="#consult">Join the community
                                 <svg fill="none" height="14" viewBox="0 0 14 14" width="14">
@@ -227,10 +227,12 @@
             <div class="scrn__wrap container">
                 <div class="hero__grid">
                     <div class="hero__copy">
-                        <h2>We don&#39;t just sell insurance. We make sure you have the <span
-                                class="accent-orange">right support</span> — always</h2>
-                        <p class="hero__sub">Documents, follow-up, insurer calls — we walk your claim journey with you.
-                        </p>
+                        <h2 class="headline">
+                            <span class="hl-fixed"><span class="one">One</span> <span class="place">place</span></span>
+                            <span class="hl-dynamic">for help when you make a claim</span>
+                        </h2>
+                        <p class="hero__sub">Documents, follow-ups, insurer calls — we walk your claim journey with
+                            you.</p>
                         <div class="hero__cta">
                             <a class="btn btn--blue btn--big" routerLink="/ClaimSupport">How claims work
                                 <svg fill="none" height="14" viewBox="0 0 14 14" width="14">
@@ -323,10 +325,4 @@
                 stroke-width="1.8"></path>
         </svg>
     </button>
-    <!-- Carousel tabs -->
-    <div class="hero-tabs" id="dots" role="tablist">
-        <button *ngFor="let tab of tabs; let i = index" (click)="go(i, true)" [class.active]="current===i"
-            [attr.aria-selected]="current===i" [attr.aria-label]="'Go to ' + tab.label + ' slide'" class="hero-tabs__tab"
-            role="tab">{{ tab.label }}</button>
-    </div>
 </div>
