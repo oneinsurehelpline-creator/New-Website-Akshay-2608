@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { LeadService } from 'src/app/services/lead.service';
 
 interface TeamMember {
@@ -33,17 +34,33 @@ export class AboutusComponent implements OnInit, AfterViewInit {
   // Number of placeholder cards to show while the API responds.
   skeletons = Array.from({ length: 10 });
 
-  constructor(private host: ElementRef<HTMLElement>, private leadService: LeadService) { }
+  private readonly isBrowser: boolean;
+
+  constructor(
+    private host: ElementRef<HTMLElement>,
+    private leadService: LeadService,
+    @Inject(PLATFORM_ID) platformId: Object,
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnInit(): void {
-    this.loadLeadership();
+    if (this.isBrowser) {
+      this.loadLeadership();
+    }
   }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     this.setupReveal();
   }
 
   private setupReveal(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     if (!this.io) {
       this.io = new IntersectionObserver(
         (entries) => {

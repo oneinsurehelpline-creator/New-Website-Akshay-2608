@@ -3,9 +3,12 @@ import {
   Component,
   ElementRef,
   HostListener,
+  Inject,
   OnDestroy,
   OnInit,
+  PLATFORM_ID,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
 interface DocItem {
@@ -53,7 +56,15 @@ interface Manifest {
   styleUrls: ['./regulatorydisclosures.component.scss'],
 })
 export class RegulatorydisclosuresComponent implements OnInit, AfterViewInit, OnDestroy {
-  constructor(private host: ElementRef<HTMLElement>, private http: HttpClient) {}
+  private readonly isBrowser: boolean;
+
+  constructor(
+    private host: ElementRef<HTMLElement>,
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) platformId: Object,
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   lastUpdated = '—';
   sections: DisclosureSection[] = [];
@@ -74,10 +85,12 @@ export class RegulatorydisclosuresComponent implements OnInit, AfterViewInit, On
         this.activeSection = this.sections[0]?.id ?? '';
         this.loading = false;
         // Wait one tick so the *ngFor content is in the DOM before wiring observers.
-        setTimeout(() => {
-          this.setupReveal();
-          this.spyOnScroll();
-        }, 0);
+        if (this.isBrowser) {
+          setTimeout(() => {
+            this.setupReveal();
+            this.spyOnScroll();
+          }, 0);
+        }
       },
       error: () => {
         this.loading = false;
@@ -87,6 +100,9 @@ export class RegulatorydisclosuresComponent implements OnInit, AfterViewInit, On
   }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     this.setupReveal();
   }
 

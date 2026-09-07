@@ -1,9 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
   Component,
   HostListener,
+  Inject,
   OnDestroy,
+  PLATFORM_ID,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -175,8 +178,12 @@ export class PartnerprogramComponent implements AfterViewInit, OnDestroy {
 
   leadForm: FormGroup;
 
+  private readonly isBrowser: boolean;
+
   constructor(private fb: FormBuilder, private leadService: LeadService,
-    private utility: UtilityService, private http: HttpClient) {
+    private utility: UtilityService, private http: HttpClient,
+    @Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
     this.leadForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       // 10 digits, must start with 6-9 (Indian mobile). The digits-only input
@@ -480,16 +487,21 @@ export class PartnerprogramComponent implements AfterViewInit, OnDestroy {
   private countIo?: IntersectionObserver;
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+    this.loadCompanyMetrics();
     // seed metric displays
     this.setupReveal();
     this.setupCounters();
-    this.loadCompanyMetrics();
   }
 
   ngOnDestroy(): void {
     this.io?.disconnect();
     this.countIo?.disconnect();
-    document.body.style.overflow = '';
+    if (this.isBrowser) {
+      document.body.style.overflow = '';
+    }
   }
 
   private setupReveal(): void {

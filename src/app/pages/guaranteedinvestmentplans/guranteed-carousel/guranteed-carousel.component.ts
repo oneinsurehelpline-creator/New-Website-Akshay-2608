@@ -2,11 +2,14 @@ import {
   Component,
   ElementRef,
   HostListener,
+  Inject,
   NgZone,
   OnDestroy,
   OnInit,
+  PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { LeadService } from 'src/app/services/lead.service';
 
 interface CarouselDot {
@@ -75,11 +78,21 @@ export class GuranteedCarouselComponent implements OnInit, OnDestroy {
   womenPlanDetails: any[] = [];
   childPlanDetails: any[] = [];
   retirementPlanDetails: any[] = [];
-  constructor(private zone: NgZone, private leadService: LeadService) { }
+  private readonly isBrowser: boolean;
+
+  constructor(
+    private zone: NgZone,
+    private leadService: LeadService,
+    @Inject(PLATFORM_ID) platformId: Object,
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnInit(): void {
     this.startAutoplay();
-    this.InvestmentPlanDetails();
+    if (this.isBrowser) {
+      this.InvestmentPlanDetails();
+    }
   }
 
   ngOnDestroy(): void {

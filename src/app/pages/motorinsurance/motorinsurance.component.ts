@@ -4,9 +4,13 @@ import {
   Component,
   ElementRef,
   HostListener,
+  Inject,
   OnDestroy,
+  OnInit,
+  PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Lead, LeadService } from '../../services/lead.service';
 import { VideoModalService } from '../../shared/video-modal/video-modal.service';
@@ -84,8 +88,10 @@ interface VideoItem {
   templateUrl: './motorinsurance.component.html',
   styleUrls: ['./motorinsurance.component.scss'],
 })
-export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
+export class MotorinsuranceComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('vidsTrack', { static: false }) vidsTrack!: ElementRef<HTMLElement>;
+
+  private readonly isBrowser: boolean;
 
   constructor(
     private host: ElementRef<HTMLElement>,
@@ -93,7 +99,9 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
     private leadSvc: LeadService,
     private cdr: ChangeDetectorRef,
     private videoModal: VideoModalService,
+    @Inject(PLATFORM_ID) platformId: Object,
   ) {
+    this.isBrowser = isPlatformBrowser(platformId);
     this.quoteForm = this.fb.group({
       vehicleType: ['car', Validators.required],
       policyKind: ['renewal', Validators.required],
@@ -503,10 +511,13 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
   private revealIo?: IntersectionObserver;
   private sectionObserver?: IntersectionObserver;
 
+  ngOnInit(): void {
+    this.enrichVideos();
+  }
+
   ngAfterViewInit(): void {
     this.setupReveal();
     this.setupSectionSpy();
-    this.enrichVideos();
   }
 
   ngOnDestroy(): void {
@@ -520,6 +531,9 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
   }
 
   private setupReveal(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     const sel = '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale, .hstat, .point, .ctcard, .qlink, #qcard';
     this.revealIo = new IntersectionObserver(
       (entries) => {
@@ -538,6 +552,9 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
   }
 
   private setupSectionSpy(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     this.sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {

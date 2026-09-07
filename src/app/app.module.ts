@@ -1,6 +1,6 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,12 +16,12 @@ export function loadConfig(configService: ConfigService) {
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
     SharedModule,
     PagesModule
   ],
  providers: [
+    provideHttpClient(withFetch()),
     {
       provide: APP_INITIALIZER,
       useFactory: loadConfig,

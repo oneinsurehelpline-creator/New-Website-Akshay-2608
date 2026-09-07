@@ -3,8 +3,11 @@ import {
   Component,
   ElementRef,
   HostListener,
+  Inject,
   OnDestroy,
+  PLATFORM_ID,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, timeout } from 'rxjs/operators';
 import { LeadService } from '../../services/lead.service';
@@ -344,12 +347,19 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
   // ==================== LIFECYCLE ====================
   private revealIo?: IntersectionObserver;
 
+  private readonly isBrowser: boolean;
+
   constructor(
     private host: ElementRef<HTMLElement>,
     private fb: FormBuilder,
     private leadService: LeadService,
     private scheduleModal: ScheduleModalService,
+    @Inject(PLATFORM_ID) platformId: Object,
   ) {
+    // Must be set before any code path below (e.g. stripHtml via the
+    // articles.forEach loop) touches the DOM — this runs during SSR too.
+    this.isBrowser = isPlatformBrowser(platformId);
+
     // index lookups + search text
     this.categories.forEach((c) => (this.catById[c.id] = c));
     this.articles.forEach((a) => {
@@ -380,13 +390,26 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  /**
+   * Builds the lowercase search text for an article. Runs at construction
+   * time for every article, so it must not touch the DOM during SSR — fall
+   * back to a regex-based tag strip when there's no `document` (the search
+   * index re-builds identically once the client re-runs the constructor
+   * during hydration, so this is a same-render, no-op-visible fallback).
+   */
   private stripHtml(html: string): string {
+    if (!this.isBrowser) {
+      return html.replace(/<[^>]*>/g, ' ');
+    }
     const d = document.createElement('div');
     d.innerHTML = html;
     return d.textContent || '';
   }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     this.initReveal();
     this.syncFromHash(false);   // <-- add this line
   }
@@ -394,7 +417,9 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.revealIo?.disconnect();
     clearTimeout(this.toastTimer);
-    document.body.style.overflow = '';
+    if (this.isBrowser) {
+      document.body.style.overflow = '';
+    }
   }
 
   // reading progress bar

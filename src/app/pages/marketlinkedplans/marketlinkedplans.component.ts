@@ -2,10 +2,13 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  Inject,
   OnDestroy,
+  PLATFORM_ID,
   QueryList,
   ViewChildren,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 interface Stat {
   num: string;
@@ -279,6 +282,12 @@ export class MarketlinkedplansComponent implements AfterViewInit, OnDestroy {
 
   private io?: IntersectionObserver;
 
+  private readonly isBrowser: boolean;
+
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
   // ---------- Lifecycle ----------
   ngAfterViewInit(): void {
     this.setupReveal();
@@ -289,6 +298,9 @@ export class MarketlinkedplansComponent implements AfterViewInit, OnDestroy {
   }
 
   private setupReveal(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     const els = document.querySelectorAll(
       '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale'
     );

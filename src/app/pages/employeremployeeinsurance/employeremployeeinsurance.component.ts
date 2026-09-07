@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 interface CoverBlock {
   title: string;
@@ -29,7 +30,13 @@ interface FaqItem {
   styleUrls: ['./employeremployeeinsurance.component.scss'],
 })
 export class EmployeremployeeinsuranceComponent implements AfterViewInit, OnDestroy {
-  constructor(private host: ElementRef<HTMLElement>) {}
+  private readonly isBrowser: boolean;
+  constructor(
+    private host: ElementRef<HTMLElement>,
+    @Inject(PLATFORM_ID) platformId: Object,
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   scheduleUrl = 'https://schedule.oneinsure.com/book/get-expert-guidance-web';
 
@@ -187,6 +194,9 @@ export class EmployeremployeeinsuranceComponent implements AfterViewInit, OnDest
   private io?: IntersectionObserver;
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     this.setupReveal();
   }
 

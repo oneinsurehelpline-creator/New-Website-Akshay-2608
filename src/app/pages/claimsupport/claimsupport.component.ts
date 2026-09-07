@@ -1,4 +1,5 @@
-import { Component, ElementRef, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, OnDestroy, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import {
   AbstractControl,
@@ -87,14 +88,18 @@ export class ClaimsupportComponent implements AfterViewInit, OnDestroy {
 
   claimForm: FormGroup;
 
+  private readonly isBrowser: boolean;
+
   constructor(
     private host: ElementRef<HTMLElement>,
     private router: Router,
     private fb: FormBuilder,
     private leadService: LeadService,
     private utility: UtilityService,
-     private configService: ConfigService
+     private configService: ConfigService,
+    @Inject(PLATFORM_ID) platformId: Object,
   ) {
+    this.isBrowser = isPlatformBrowser(platformId);
     this.claimForm = this.fb.group({
       fullName: ['', [Validators.required, Validators.minLength(2)]],
       policyNumber: ['', [Validators.required]],
@@ -153,12 +158,16 @@ export class ClaimsupportComponent implements AfterViewInit, OnDestroy {
     this.claimOpen = true;
     this.claimDone = false;
     this.serverError = '';
-    document.body.style.overflow = 'hidden';
+    if (this.isBrowser) {
+      document.body.style.overflow = 'hidden';
+    }
   }
 
   closeClaimForm(): void {
     this.claimOpen = false;
-    document.body.style.overflow = '';
+    if (this.isBrowser) {
+      document.body.style.overflow = '';
+    }
   }
 
   submitClaim(): void {
@@ -258,6 +267,9 @@ export class ClaimsupportComponent implements AfterViewInit, OnDestroy {
 
   /* ---------- Scroll-reveal (matches Home / About) ---------- */
   ngAfterViewInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     const els = Array.from(
       this.host.nativeElement.querySelectorAll<HTMLElement>(
         '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale'
@@ -325,6 +337,8 @@ export class ClaimsupportComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.observer?.disconnect();
-    document.body.style.overflow = '';
+    if (this.isBrowser) {
+      document.body.style.overflow = '';
+    }
   }
 }

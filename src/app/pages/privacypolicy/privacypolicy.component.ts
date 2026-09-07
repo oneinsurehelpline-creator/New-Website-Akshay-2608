@@ -3,8 +3,11 @@ import {
   Component,
   ElementRef,
   HostListener,
+  Inject,
   OnDestroy,
+  PLATFORM_ID,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 interface TldrCard {
   title: string;
@@ -23,7 +26,14 @@ interface TocItem {
   styleUrls: ['./privacypolicy.component.scss'],
 })
 export class PrivacypolicyComponent implements AfterViewInit, OnDestroy {
-  constructor(private host: ElementRef<HTMLElement>) {}
+  private readonly isBrowser: boolean;
+
+  constructor(
+    private host: ElementRef<HTMLElement>,
+    @Inject(PLATFORM_ID) platformId: Object,
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   lastUpdated = 'June 11, 2015';
 
@@ -73,6 +83,9 @@ export class PrivacypolicyComponent implements AfterViewInit, OnDestroy {
 
   // ---------- Lifecycle ----------
   ngAfterViewInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     this.setupReveal();
     // set the initial active TOC entry
     setTimeout(() => this.spyOnScroll(), 0);

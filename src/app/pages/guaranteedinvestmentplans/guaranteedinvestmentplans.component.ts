@@ -4,11 +4,15 @@ import {
   Component,
   ElementRef,
   HostListener,
+  Inject,
   OnDestroy,
+  OnInit,
+  PLATFORM_ID,
   QueryList,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { VideoModalService } from '../../shared/video-modal/video-modal.service';
 
 interface Plan {
@@ -47,11 +51,19 @@ interface CompareSection {
   templateUrl: './guaranteedinvestmentplans.component.html',
   styleUrls: ['./guaranteedinvestmentplans.component.scss'],
 })
-export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDestroy {
+export class GuaranteedinvestmentplansComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('vidsTrack', { static: false }) vidsTrack!: ElementRef<HTMLElement>;
   @ViewChildren('sectionRef') sectionRefs!: QueryList<ElementRef<HTMLElement>>;
 
-  constructor(private cdr: ChangeDetectorRef, private videoModal: VideoModalService) { }
+  private readonly isBrowser: boolean;
+
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private videoModal: VideoModalService,
+    @Inject(PLATFORM_ID) platformId: Object,
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   /** Opens the explainer video inline; falls back to a new tab when there's no known videoId. */
   openVideo(v: VideoItem, event: Event): void {
@@ -430,16 +442,23 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
   private sectionObserver?: IntersectionObserver;
 
   // ---------- Lifecycle ----------
-  ngAfterViewInit(): void {
-    this.setupReveal();
-    this.setupSectionSpy();
+  ngOnInit(): void {
     this.enrichVideos();
+  }
+
+  ngAfterViewInit(): void {
+    if (this.isBrowser) {
+      this.setupReveal();
+      this.setupSectionSpy();
+    }
   }
 
   ngOnDestroy(): void {
     this.io?.disconnect();
     this.sectionObserver?.disconnect();
-    document.body.style.overflow = '';
+    if (this.isBrowser) {
+      document.body.style.overflow = '';
+    }
   }
 
   private setupReveal(): void {
@@ -481,6 +500,9 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
 
   // ---------- Navigation ----------
   scrollTo(id: string): void {
+    if (!this.isBrowser) {
+      return;
+    }
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -584,12 +606,16 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
       return;
     }
     this.modalOpen = true;
-    document.body.style.overflow = 'hidden';
+    if (this.isBrowser) {
+      document.body.style.overflow = 'hidden';
+    }
   }
 
   closeModal(): void {
     this.modalOpen = false;
-    document.body.style.overflow = '';
+    if (this.isBrowser) {
+      document.body.style.overflow = '';
+    }
   }
 
   cellValue(plan: Plan, label: string): string {

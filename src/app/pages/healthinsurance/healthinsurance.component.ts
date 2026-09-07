@@ -4,11 +4,15 @@ import {
   Component,
   ElementRef,
   HostListener,
+  Inject,
   OnDestroy,
+  OnInit,
+  PLATFORM_ID,
   QueryList,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { VideoModalService } from '../../shared/video-modal/video-modal.service';
 
 interface Plan {
@@ -58,7 +62,7 @@ interface CompareSection {
   templateUrl: './healthinsurance.component.html',
   styleUrls: ['./healthinsurance.component.scss'],
 })
-export class HealthinsuranceComponent implements AfterViewInit, OnDestroy {
+export class HealthinsuranceComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('vidsTrack', { static: false }) vidsTrack!: ElementRef<HTMLElement>;
   @ViewChildren('sectionRef') sectionRefs!: QueryList<ElementRef<HTMLElement>>;
 
@@ -332,7 +336,15 @@ export class HealthinsuranceComponent implements AfterViewInit, OnDestroy {
   private io?: IntersectionObserver;
   private sectionObserver?: IntersectionObserver;
 
-  constructor(private cdr: ChangeDetectorRef, private videoModal: VideoModalService) { }
+  private readonly isBrowser: boolean;
+
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private videoModal: VideoModalService,
+    @Inject(PLATFORM_ID) platformId: Object,
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   /** Opens the explainer video inline; falls back to a new tab when there's no known videoId. */
   openVideo(v: VideoItem, event: Event): void {
@@ -345,19 +357,27 @@ export class HealthinsuranceComponent implements AfterViewInit, OnDestroy {
   }
 
   // ---------- Lifecycle ----------
+  ngOnInit(): void {
+    this.enrichVideos();
+  }
+
   ngAfterViewInit(): void {
     this.setupReveal();
     this.setupSectionSpy();
-    this.enrichVideos();
   }
 
   ngOnDestroy(): void {
     this.io?.disconnect();
     this.sectionObserver?.disconnect();
-    document.body.style.overflow = '';
+    if (this.isBrowser) {
+      document.body.style.overflow = '';
+    }
   }
 
   private setupReveal(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     const els = document.querySelectorAll(
       '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale'
     );
@@ -376,6 +396,9 @@ export class HealthinsuranceComponent implements AfterViewInit, OnDestroy {
   }
 
   private setupSectionSpy(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     this.sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {

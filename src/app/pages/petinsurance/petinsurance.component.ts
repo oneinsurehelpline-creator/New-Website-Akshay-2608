@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { LeadService } from 'src/app/services/lead.service';
 
 interface ThreeUpItem {
@@ -27,7 +28,15 @@ export class PetinsuranceComponent implements AfterViewInit, OnDestroy {
   userDetails: any = [];
   companyTrust: any = [];
   companyAge = 0
-  constructor(private host: ElementRef<HTMLElement>, private leadService: LeadService) { }
+  private readonly isBrowser: boolean;
+
+  constructor(
+    private host: ElementRef<HTMLElement>,
+    private leadService: LeadService,
+    @Inject(PLATFORM_ID) platformId: Object,
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   scheduleUrl = 'https://schedule.oneinsure.com/book/get-expert-guidance-web';
 
@@ -115,6 +124,9 @@ export class PetinsuranceComponent implements AfterViewInit, OnDestroy {
   private io?: IntersectionObserver;
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     this.setupReveal();
   }
 
@@ -122,7 +134,9 @@ export class PetinsuranceComponent implements AfterViewInit, OnDestroy {
     this.io?.disconnect();
   }
   ngOnInit() {
-    this.companyDetails();
+    if (this.isBrowser) {
+      this.companyDetails();
+    }
     const startDate = new Date('2008-03-27');
     const today = new Date();
 

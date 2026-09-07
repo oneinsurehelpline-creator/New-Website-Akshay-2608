@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
-  Component, HostListener, ElementRef, AfterViewInit, OnInit, OnDestroy,
+  Component, HostListener, ElementRef, AfterViewInit, OnInit, OnDestroy, Inject, PLATFORM_ID,
 } from '@angular/core';
-import { ViewportScroller } from '@angular/common';
+import { ViewportScroller, isPlatformBrowser } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LeadService } from '../../services/lead.service';
 import { UtilityService } from 'src/app/services/utility.service';
@@ -34,6 +34,9 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
   Employees = 0;       // → "Team members"
   companyAge = 0;      // → "In business" (yrs)
   resumepdf: any;
+
+  private readonly isBrowser: boolean;
+
   constructor(
     private host: ElementRef<HTMLElement>,
     private viewportScroller: ViewportScroller,
@@ -41,13 +44,17 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
     private http: HttpClient,
     private leadService: LeadService,
     private utility: UtilityService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    @Inject(PLATFORM_ID) platformId: Object,
   ) {
+    this.isBrowser = isPlatformBrowser(platformId);
   }
 
   // ── Lifecycle ───────────────────────────────────────────
   ngOnInit(): void {
-    this.companyDetails();
+    if (this.isBrowser) {
+      this.companyDetails();
+    }
 
     // Years in business (same logic as carousel-header)
     const startDate = new Date('2008-03-27');
@@ -84,7 +91,9 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.revealObserver?.disconnect();
     this.countIo?.disconnect();
-    document.body.style.overflow = '';   // safety: never leave scroll locked
+    if (this.isBrowser) {
+      document.body.style.overflow = '';   // safety: never leave scroll locked
+    }
   }
 
   private inView(el: Element): boolean {
