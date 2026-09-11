@@ -32,14 +32,14 @@ export class PetinsuranceComponent implements AfterViewInit, OnDestroy {
   scheduleUrl = 'https://schedule.oneinsure.com/book/get-expert-guidance-web';
 
   // ---------- HERO ----------
-  heroHeadline = "Vet bills shouldn't force a hard decision.";
+  heroHeadline = "Pet bills shouldn't force a hard decision.";
   heroSub = "Surgery, illness and accident cover for your dog or cat — so treatment is a medical call, not a financial one.";
   trustPoints = [
     'Dogs and cats',
     'Surgery and illness covered',
     'Third-party liability included',
   ];
-  ctaMicrocopy = 'A quick call before the next vet visit costs more than it should.';
+  ctaMicrocopy = 'A quick call before the next pet visit costs more than it should.';
 
   // ---------- TRUST STRIP (reusable) ----------
 
@@ -90,7 +90,7 @@ export class PetinsuranceComponent implements AfterViewInit, OnDestroy {
   faqs: FaqItem[] = [
     {
       q: 'Which pets are eligible?',
-      a: 'Dogs and cats, generally between 8 weeks and 8 years of age, with a vet health certificate and often a microchip.',
+      a: 'Dogs and cats, generally between 8 weeks and 8 years of age, with a pet health certificate and often a microchip.',
     },
     {
       q: 'Are pre-existing conditions covered?',
@@ -102,7 +102,7 @@ export class PetinsuranceComponent implements AfterViewInit, OnDestroy {
     },
     {
       q: 'How do claims work?',
-      a: 'Reimbursement against vet bills, with a network of partner clinics offering cashless treatment in major cities.',
+      a: 'Reimbursement against pet bills, with a network of partner clinics offering cashless treatment in major cities.',
     },
   ];
 
