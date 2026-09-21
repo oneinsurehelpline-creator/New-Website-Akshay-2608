@@ -51,7 +51,7 @@ export class GeneralinsuranceComponent implements AfterViewInit, OnDestroy {
   travelVideos: VideoItem[] = [
     {
       num: '01',
-      cap: '',
+      cap: 'Hindi',
       url: 'https://www.youtube.com/watch?v=gi5dyviK0wI',
       videoId: 'gi5dyviK0wI',
       dur: '0:56',
@@ -109,11 +109,11 @@ export class GeneralinsuranceComponent implements AfterViewInit, OnDestroy {
   homeVideos: VideoItem[] = [
     {
       num: '01',
-      cap: '',
-      url: 'https://www.youtube.com/watch?v=gi5dyviK0wI',
-      videoId: 'gi5dyviK0wI',
-      dur: '0:56',
-      topic: 'Travel Policies',
+      cap: 'Hindi',
+      url: 'https://www.youtube.com/watch?v=7b1rSxinfjg',
+      videoId: '7b1rSxinfjg',
+      dur: '1:14',
+      topic: 'Structure vs Content',
       title: '',
       desc: 'The difference between structure and contents cover — and why most people need both.',
     },

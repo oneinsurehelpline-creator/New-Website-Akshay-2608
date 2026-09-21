@@ -337,7 +337,16 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   // ---- modal control ----
   openCalc(k: CalcKey): void { this.activeCalc = k; document.body.style.overflow = 'hidden'; }
   closeCalc(): void { this.activeCalc = null; document.body.style.overflow = ''; }
-  @HostListener('document:keydown.escape') onEsc(): void { if (this.activeCalc) { this.closeCalc(); } }
+
+  // ============ PRODUCTS "VIEW ALL" MODAL ============
+  productsModalOpen = false;
+  openProductsModal(): void { this.productsModalOpen = true; document.body.style.overflow = 'hidden'; }
+  closeProductsModal(): void { this.productsModalOpen = false; document.body.style.overflow = ''; }
+
+  @HostListener('document:keydown.escape') onEsc(): void {
+    if (this.activeCalc) { this.closeCalc(); }
+    else if (this.productsModalOpen) { this.closeProductsModal(); }
+  }
 
   /** Close the calculator modal (if open) and scroll to the consult form. */
   goConsult(): void {

@@ -78,9 +78,9 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 480px;
-    padding-top: 56px
+    padding-top: 48px
 }
 
 /* ============ Shared headline system (all 4 slides) ============ */
@@ -105,14 +105,18 @@ h2.headline {
     white-space: nowrap;
 }
 
-.hl-fixed .one {
-    color: var(--blue) !important;
+.hl-fixed { 
+
+    .one {
+        color: var(--blue) !important;
+    }
+
+    .place {
+        color: var(--orange) !important;
+        margin-left: .28ch;
+    }
 }
 
-.hl-fixed .place {
-    color: var(--orange) !important;
-    margin-left: .28ch;
-}
 
 .hl-dynamic {
     display: block;
@@ -199,7 +203,7 @@ h2.headline {
     }
 }
 
-.hero__eyebrow { 
+.hero__eyebrow {
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -281,20 +285,18 @@ h2.headline {
 /* Hero visual */
 .hv {
     position: relative;
-    min-height: 480px;
+    // min-height: 480px;
     display: flex;
-    align-items: flex-end;
+    // align-items: flex-end;
     justify-content: center;
-    align-self: stretch;
-    margin-left: -40px;
-    padding-right: 40px
+    // align-self: stretch; 
 }
 
 /* warm amber halo */
 .hv__halo {
     position: absolute;
-    left: 46%;
-    top: 52%;
+    left: 60%;
+    top: 50%;
     transform: translate(-50%, -50%);
     width: 580px;
     height: 580px;
@@ -308,8 +310,8 @@ h2.headline {
 /* rings */
 .hv__ring {
     position: absolute;
-    left: 46%;
-    top: 52%;
+    left: 35%;
+    top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
     animation: spin 28s linear infinite;
@@ -383,23 +385,23 @@ h2.headline {
     width: auto;
     height: auto;
     max-width: 100%;
-    max-height: min(70vh, 680px);
+    max-height: min(75vh, 680px);
     display: block;
     object-fit: contain;
     mix-blend-mode: multiply;
-    transform: translate(130px, 30px);
+    transform: translate(30px, 20px);
 }
 
-.s2 .hv__image img {
-    transform: translate(180px, 30px);
-}
- 
-.s3 .hv__image img { 
-    transform: translate(10px, 30px);
-}
-.s4 .hv__image img {
-    transform: translate(90px, 30px);
-}
+// .s2 .hv__image img {
+//     transform: translate(180px, 30px);
+// }
+
+// .s3 .hv__image img { 
+//     transform: translate(10px, 30px);
+// }
+// .s4 .hv__image img {
+//     transform: translate(90px, 30px);
+// }
 
 /* Central shield/identity — not an icon, an animated geometric mark */
 .hv__core {
@@ -504,41 +506,41 @@ h2.headline {
 
 .orb .bullet img {
     width: 100%;
-    height: 100%; 
+    height: 100%;
     // filter: drop-shadow(0 4px 8px rgba(13, 43, 85, .22));
 }
 
 /* orbs cluster tightly around character, nothing bleeds left past 8% */
 .orb.b1 {
-    left: 20%;
-    top: 6%;
+    left: 0%;
+    top: 15%;
     animation: floatA 5.5s ease-in-out infinite
 }
 
 .orb.b2 {
-    right: -25%;
-    top: 20%;
-    animation: floatB 6.5s ease-in-out infinite
+    right: -5%;
+    top: 25%;
+    animation: floatB 5.5s ease-in-out infinite
 }
 
 .orb.b3 {
-    left: 8%;
-    top: 54%;
-    animation: floatB 5.8s ease-in-out infinite;
+    left: 5%;
+    top: 75%;
+    animation: floatB 5.5s ease-in-out infinite;
     animation-delay: -1s
 }
 
 .orb.b4 {
-    right: -15%;
-    top: 74%;
-    animation: floatA 6.2s ease-in-out infinite;
+    right: -5%;
+    top: 65%;
+    animation: floatA 5.5s ease-in-out infinite;
     animation-delay: -2s
 }
 
 .orb.b5 {
     left: 28%;
     bottom: 3%;
-    animation: floatA 5.2s ease-in-out infinite;
+    animation: floatA 5.5s ease-in-out infinite;
     animation-delay: -1.4s
 }
 
@@ -550,7 +552,7 @@ h2.headline {
     }
 
     50% {
-        transform: translateY(-10px)
+        transform: translateY(-8px)
     }
 }
 
@@ -562,7 +564,7 @@ h2.headline {
     }
 
     50% {
-        transform: translateY(12px)
+        transform: translateY(8px)
     }
 }
 
@@ -574,7 +576,7 @@ h2.headline {
     }
 
     50% {
-        transform: translateX(-10px)
+        transform: translateX(-8px)
     }
 }
 
@@ -586,7 +588,7 @@ h2.headline {
     }
 
     50% {
-        transform: translateX(12px)
+        transform: translateX(8px)
     }
 }
 
@@ -3113,24 +3115,7 @@ select.txt-input {
     z-index: 1;
 }
 
-.scrn__wrap {
-    position: relative;
-    z-index: 2;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 90px;
-    padding-bottom: var(--strip-h);
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
 
-@media (max-width: 720px) {
-    .scrn__wrap {
-        padding: 0 24px;
-        padding-bottom: var(--strip-h);
-    }
-}
 
 /* ============ Hero deck v2 — shared slide furniture ============ */
 .hero__trustline {
@@ -3166,8 +3151,8 @@ select.txt-input {
 /* ---- Saarth chat widget (slide 2) ---- */
 .saarth-widget {
     position: absolute;
-    left: 8%;
-    top: 4%;
+    left: -10%;
+    top: 15%;
     z-index: 6;
     width: 220px;
     background: #fff;
@@ -3278,33 +3263,33 @@ select.txt-input {
     background: #fff;
     border-radius: 14px;
     padding: 12px 16px;
-    font: 600 13px/1.4 var(--sans);
+    font: 600 12px/1.4 var(--sans);
     color: var(--blue-deep);
     box-shadow: 0 16px 36px -14px rgba(13, 43, 85, .22), 0 2px 8px rgba(13, 43, 85, .05);
 }
 
 .quote.q1 {
-    left: 4%;
-    top: 8%;
+    left: 8%;
+    top: 15%;
     animation: floatA 5.5s ease-in-out infinite;
 }
 
 .quote.q2 {
-    right: -14%;
-    top: 22%;
+    right: -2%;
+    top: 24%;
     animation: floatB 6.2s ease-in-out infinite;
 }
 
 .quote.q3 {
-    left: -4%;
-    top: 46%;
+    left: -3%;
+    top: 60%;
     animation: floatB 5.8s ease-in-out infinite;
     animation-delay: -1s;
 }
 
 .quote.q4 {
-    right: -2%;
-    top: 56%;
+    right: 3%;
+    top: 75%;
     animation: floatA 6.4s ease-in-out infinite;
     animation-delay: -2s;
 }
@@ -3321,7 +3306,7 @@ select.txt-input {
 /* ---- Claim tracker card (slide 4 — Claims) ---- */
 .claim-tracker {
     position: absolute;
-    right: -20%;
+    right: -5%;
     top: 20%;
     z-index: 6;
     width: 220px;
@@ -3380,7 +3365,7 @@ select.txt-input {
 }
 
 .claim-tracker__steps li.is-active {
-    color: var(--orange); 
+    color: var(--orange);
 }
 
 .claim-tracker__steps li.is-active .claim-tracker__dot {
@@ -3421,13 +3406,14 @@ select.txt-input {
    this file), the floating decorative cards have nowhere safe to sit without
    landing on top of the character — drop them rather than chase positions
    across every width. */
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
     .saarth-widget,
     .claim-tracker,
     .quote,
     .hero-tabs {
         display: none;
-    } 
+    }
+
     .orb {
         display: none;
     }
@@ -3747,10 +3733,6 @@ select.txt-input {
         width: 264px;
     }
 
-    .s2 h2 {
-        font-size: 32px;
-        letter-spacing: -2px;
-    }
 }
 
 .village-iframe {
@@ -4555,7 +4537,7 @@ h2 .accent-orange {
     }
 
     .deckEl {
-        height: calc(100vh - 150px);
+        height: calc(100vh - 240px);
     }
 
     .hero {
@@ -4574,11 +4556,6 @@ h2 .accent-orange {
     .s4__coin,
     .s4__chip {
         display: none;
-    }
-
-    /* tighter screen padding, no strip reserve */
-    .scrn__wrap {
-        padding: 0 18px;
     }
 
     /* stack every two-column screen to a single centered column */
@@ -4617,13 +4594,10 @@ h2 .accent-orange {
     .scrn {
         // overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        padding-top: 36px;
     }
 
-    .scrn__wrap {
-        justify-content: flex-start;
-        padding-top: 18px;
-        padding-bottom: 56px;
-    }
+
 
     /* arrows: smaller, hugging the edges, vertically centred */
     .arrow {
@@ -4652,10 +4626,7 @@ h2 .accent-orange {
 }
 
 @media (max-width: 480px) {
-    .scrn__wrap {
-        padding-left: 14px;
-        padding-right: 14px;
-    }
+
 
     .hv {
         transform: scale(.72);
