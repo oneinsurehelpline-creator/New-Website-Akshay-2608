@@ -119,7 +119,7 @@ export class HealthinsuranceComponent implements AfterViewInit, OnDestroy {
     { num: '04', topic: 'Top-Up Strategy', dur: '1:41', cap: 'Hindi', title: '', desc: 'How to get higher health insurance coverage with a lower premium using a base policy and super top-up.', url: 'https://www.youtube.com/watch?v=anH0_Zs1JyQ', videoId: 'anH0_Zs1JyQ' },
     { num: '05', topic: 'Parents Health', dur: '1:16', cap: 'Hindi', title: '', desc: 'Why parents may need separate senior citizen health insurance and what to check before choosing a plan.', url: 'https://www.youtube.com/watch?v=ZXbZMyua9nQ', videoId: 'ZXbZMyua9nQ' },
     { num: '06', topic: 'Claim Reject', dur: '1:51', cap: 'Hindi', title: '', desc: 'Step-by-step process to challenge a rejected health insurance claim and get it reviewed.', url: 'https://www.youtube.com/watch?v=Wl1n4NSCukA', videoId: 'Wl1n4NSCukA' },
-    { num: '07', topic: 'Claim disputes', dur: '2:18', cap: 'Hindi', title: 'Rejected claims — and how to fight back', desc: 'IRDAI grievance portal, ombudsman, consumer forum. The escalation path our advisors walk you through.', url: 'https://www.youtube.com/results?search_query=OneInsure+health+insurance+claim+rejected+what+to+do', videoId: '5_bj9ABfKAo' },
+    { num: '07', topic: 'Claim disputes', dur: '1:16', cap: 'Hindi', title: '', desc: 'IRDAI grievance portal, ombudsman, consumer forum. The escalation path our advisors walk you through.', url: 'https://www.youtube.com/watch?v=5_bj9ABfKAo', videoId: '5_bj9ABfKAo' },
   ];
   videoCount = 1;
   videoProgress = 14; // %

@@ -62,7 +62,7 @@ export class HeaderComponent {
     { label: 'Claim Support', route: '/ClaimSupport' },
     // { label: 'OneInsure Money', href: 'https://www.oneinsure.money/' },    
     { label: 'Become a Partner', route: '/PartnerProgram' },
-    { label: 'Careers', route: '/Careers' },
+    // { label: 'Careers', route: '/Careers' },
     {label: 'Explore Insurance', route: '/KnowledgeBase' }
   ];
 
