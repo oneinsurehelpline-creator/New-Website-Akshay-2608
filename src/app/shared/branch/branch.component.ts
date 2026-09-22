@@ -140,7 +140,7 @@ export class BranchComponent implements OnInit, OnDestroy {
     // if (!this.canSearch) { return; }
 
     const url = this.router.serializeUrl(
-      this.router.createUrlTree(['/BranchLocator'], {
+      this.router.createUrlTree(['/branch-locator'], {
         queryParams: { city: city },
       }),
     );

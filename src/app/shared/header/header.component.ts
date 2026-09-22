@@ -34,36 +34,36 @@ export class HeaderComponent {
     {
       title: 'Core Plans',
       items: [
-        { label: 'Guaranteed Savings', desc: 'Fixed returns, zero market risk', route: '/GuaranteedInvestmentPlans' },
-        { label: 'Term Life Insurance', desc: 'Pure protection for your dependents', route: '/TermInsurance' },
-        { label: 'Health Insurance', desc: 'Family floaters and critical illness', route: '/HealthInsurance' },
-        { label: 'Motor Insurance', desc: 'Car, two-wheeler, commercial', route: '/MotorInsurance' },
-        { label: 'Market-Linked Plans', desc: 'Growth with a life-cover floor', route: '/MarketLinkedPlans' },
+        { label: 'Guaranteed Savings', desc: 'Fixed returns, zero market risk', route: '/guaranteed-investment-plans' },
+        { label: 'Term Life Insurance', desc: 'Pure protection for your dependents', route: '/term-life-insurance' },
+        { label: 'Health Insurance', desc: 'Family floaters and critical illness', route: '/health-insurance-plans' },
+        { label: 'Motor Insurance', desc: 'Car, two-wheeler, commercial', route: '/motor-insurance' },
+        { label: 'Market-Linked Plans', desc: 'Growth with a life-cover floor', route: '/market-linked-plans' },
       ],
     },
     {
       title: 'Additional Cover',
       items: [
-        { label: 'Travel Insurance', route: '/GeneralInsurance' },
-        { label: 'Home Insurance', route: '/GeneralInsurance' },
-        { label: 'Critical Illness Plans', route: '/CriticalIllnessPlans' },
-        { label: 'Personal Accident Plans', route: '/PersonalAccidentPlans' },
-        { label: 'Pet Insurance', route: '/PetInsurance' },
-        { label: 'Fire Insurance', route: '/FireInsurance' },
-        { label: 'Corporate Insurance', route: '/CorporateInsurance' },
-        { label: 'Employer-Employee Insurance', route: '/EmployerEmployeeInsurance' },
+        { label: 'Travel Insurance', route: '/general-insurance' },
+        { label: 'Home Insurance', route: '/general-insurance' },
+        { label: 'Critical Illness Plans', route: '/critical-illness-plans' },
+        { label: 'Personal Accident Plans', route: '/personal-accident-insurance' },
+        { label: 'Pet Insurance', route: '/pet-insurance' },
+        { label: 'Fire Insurance', route: '/fire-insurance' },
+        { label: 'Corporate Insurance', route: '/corporate-insurance' },
+        { label: 'Employer-Employee Insurance', route: '/employer-employee-insurance' },
       ],
     },
   ];
 
   /** Top-level links shown after the Products dropdown. */
   navLinks: NavLink[] = [
-    // { label: 'About Us', route: '/AboutUs' },
-    { label: 'Claim Support', route: '/ClaimSupport' },
+    // { label: 'About Us', route: '/about-us' },
+    { label: 'Claim Support', route: '/insurance-claim-support' },
     // { label: 'OneInsure Money', href: 'https://www.oneinsure.money/' },    
-    { label: 'Become a Partner', route: '/PartnerProgram' },
-    // { label: 'Careers', route: '/Careers' },
-    {label: 'Explore Insurance', route: '/KnowledgeBase' }
+    { label: 'Become a Partner', route: '/partner-program' },
+    // { label: 'Careers', route: '/career-opportunities' },
+    {label: 'Explore Insurance', route: '/knowledge-base' }
   ];
 
   @HostListener('window:scroll')
