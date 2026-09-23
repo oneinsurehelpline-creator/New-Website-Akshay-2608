@@ -22,6 +22,7 @@ import { PetinsuranceComponent } from './pages/petinsurance/petinsurance.compone
 import { FireinsuranceComponent } from './pages/fireinsurance/fireinsurance.component';
 import { CorporateinsuranceComponent } from './pages/corporateinsurance/corporateinsurance.component';
 import { EmployeremployeeinsuranceComponent } from './pages/employeremployeeinsurance/employeremployeeinsurance.component';
+import { TermsconditionsComponent } from './pages/termsconditions/termsconditions.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,7 +37,8 @@ const routes: Routes = [
   { path: 'partner-program', component: PartnerprogramComponent },
   { path: 'career-opportunities', component: CareersComponent },
   { path: 'privacy-policy', component: PrivacypolicyComponent },
-  {path: 'knowledge-base', component: KnowledgebaseComponent},
+  { path: 'knowledge-base', component: KnowledgebaseComponent},
+  { path: 'terms-conditions', component: TermsconditionsComponent},
   { path: 'regulatory-disclosures', component: RegulatorydisclosuresComponent },
   { path: 'critical-illness-plans', component: CriticalillnessplansComponent },
   { path: 'personal-accident-insurance', component: PersonalaccidentplansComponent },

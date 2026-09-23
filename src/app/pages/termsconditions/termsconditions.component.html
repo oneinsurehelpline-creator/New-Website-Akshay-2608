@@ -1,0 +1,431 @@
+<!-- ============ HERO ============ -->
+<section class="hero section" id="top">
+    <div class="container hero__inner text-center">
+
+        <nav aria-label="breadcrumb" class="reveal-up">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                <span class="sep">/</span>
+                <li class="breadcrumb-item active" aria-current="page"><span class="here">Terms &amp;
+                        Conditions</span></li>
+            </ol>
+        </nav>
+
+        <div class="hero__chip">
+            <span class="dot"></span>
+            User agreement &amp; terms of use
+        </div>
+
+        <h1 class="hero__h1">Please read these <br> terms carefully.</h1>
+
+        <p class="hero__sub">
+            The user agreement governing your use of the website, resources, and services provided by
+            Robinhood Insurance Broker Limited (OneInsure).
+        </p>
+
+        <div class="hero__meta">
+            <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                In effect since &middot; {{ effectiveDate }}
+            </span>
+            <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                IRDAI-licensed broker
+            </span>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============ TERMS ============ -->
+<section class="policy section" id="policy">
+    <div class="container policy__wrap">
+        <div class="row g-5">
+
+            <!-- TOC -->
+            <aside class="col-lg-3">
+                <div class="toc">
+                    <div class="toc__label">On this page</div>
+                    <ul class="toc__list">
+                        <li *ngFor="let s of sections">
+                            <a [href]="'#' + s.id" [class.active]="activeSection === s.id"
+                                (click)="$event.preventDefault(); scrollTo(s.id)">{{ s.title }}</a>
+                        </li>
+                    </ul>
+
+                    <div class="toc__cta">
+                        <div class="toc__cta-t">Have a question?</div>
+                        <div class="toc__cta-d">Our team responds within one working day.</div>
+                        <a href="mailto:support@oneinsure.com">
+                            Write to us
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- BODY -->
+            <div class="col-lg-9">
+                <div class="policy__body">
+
+                    <!-- 01 · OVERVIEW -->
+                    <article class="section-card reveal-up" id="overview">
+                        <div class="section-card__num">01 / OVERVIEW</div>
+                        <h2 class="section-card__h">Overview</h2>
+
+                        <p class="section-card__summary">
+                            Robinhood Insurance Broker Limited operates the website www.OneInsure.com to provide
+                            consumers choice and an easy way to buy insurance products from multiple insurance
+                            companies. OneInsure or Robinhood is not an insurance company. The company is a licensed
+                            insurance broking company holding a broking license from the Indian insurance regulator,
+                            named Insurance Regulatory and Development Authority of India (IRDAI).
+                        </p>
+
+                        <div class="callout">
+                            <div class="callout__ic">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    <polyline points="9 12 11 14 15 10"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="callout__lbl">Broking license number</div>
+                                <div class="callout__val">IRDAI / DB 407/08 &middot; Code No. 386</div>
+                            </div>
+                        </div>
+
+                        <div class="prose">
+                            <p>Our participating insurance providers supply some of the information available on the
+                                website and therefore there may be inaccuracies in the website information, over which
+                                Robinhood has limited control. For details about any insurance policy, do contact our
+                                advisors or refer the brochure provided on the website of the insurance provider.</p>
+
+                            <p>Robinhood does not warrant or guarantee the timeliness, accuracy, or completeness of the
+                                website information, or the quality of the results obtained from the use of the website.
+                            </p>
+
+                            <p>To the maximum extent permitted by law, Robinhood has no liability in relation to or
+                                arising out of the website information and website recommendations. You are responsible
+                                for the final choice of your product and you should take time to read through all
+                                information supplied before proceeding. If you are in any doubt regarding a product or
+                                its terms, you should seek further advice from Robinhood or the relevant participating
+                                provider before choosing your product. <strong>Insurance is a subject matter of
+                                    solicitation.</strong></p>
+
+                            <p>Robinhood may pass on your personal information to the relevant participating provider if
+                                you apply to purchase a product through www.oneinsure.com; however, Robinhood does not
+                                guarantee when or if you will actually acquire the product that you have chosen. Robinhood
+                                does not accept any liability arising out of circumstances where there is delay in
+                                receiving the product you have chosen.</p>
+
+                            <p>Note that OneInsure only assists in collecting the premium instrument on behalf of the
+                                insurer you have chosen to buy the policy from; OneInsure itself does not collect any
+                                premium. The acceptance of the deposit as premium and final issuance of the policy is
+                                subject to the underwriting norms and discretion of the insurer whose policy you have
+                                chosen to buy, over which Robinhood has no control. Robinhood will ensure that the amount
+                                is refunded by the insurer in case there is no ultimate issuance of the policy.</p>
+
+                            <p>By visiting our website and accessing the information, resources, services, products, and
+                                tools we provide, you agree to accept and adhere to the terms and conditions stated in
+                                this policy (hereafter referred to as &ldquo;user agreement&rdquo;) along with the terms
+                                and conditions as stated in our Privacy Policy (refer to the Privacy Policy section for
+                                more information).</p>
+                        </div>
+
+                        <div class="callout">
+                            <div class="callout__ic">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="callout__lbl">Agreement in effect as of</div>
+                                <div class="callout__val">{{ effectiveDate }}</div>
+                            </div>
+                        </div>
+
+                        <div class="prose">
+                            <p>We reserve the right to make timely changes to this user agreement without prior notices.
+                                We require you to accept the responsibility of reviewing this user agreement periodically
+                                to familiarize yourself with any modifications. Your continued use of this site after such
+                                modifications will constitute acknowledgment and agreement of modified terms and
+                                conditions.</p>
+                        </div>
+                    </article>
+
+                    <!-- 02 · RESPONSIBLE USE & CONDUCT -->
+                    <article class="section-card reveal-up" id="conduct">
+                        <div class="section-card__num">02 / RESPONSIBLE USE &amp; CONDUCT</div>
+                        <h2 class="section-card__h">Responsible Use and Conduct</h2>
+
+                        <p class="section-card__summary">
+                            By visiting our website and accessing the information, resources, services, products, and
+                            tools we provide for you, either directly or indirectly (hereafter referred to as
+                            &ldquo;resources&rdquo;), you agree to use these resources only for the purposes intended as
+                            permitted by:
+                        </p>
+
+                        <ul class="prose-list">
+                            <li>The terms of this user agreement.</li>
+                            <li>Applicable laws, regulations, and generally accepted online practices or guidelines.</li>
+                        </ul>
+
+                        <div class="prose">
+                            <p class="prose__subhead">Wherein, you understand that:</p>
+
+                            <p>In order to access our resources, you may be required to provide certain information about
+                                yourself (such as identification, contact details, and so on) as part of the registration
+                                process, or as part of your accessibility to use the resources. You agree that any
+                                information you provide will always be accurate, correct, and up to date.</p>
+
+                            <p>You are responsible for maintaining the confidentiality of any login information
+                                associated with any account you use to access our resources. Accordingly, you are
+                                responsible for all activities that occur under your account/s.</p>
+
+                            <p>Accessing (or attempting to access) any of our resources through any means other than the
+                                means we provide is strictly prohibited. You specifically agree not to access (or attempt
+                                to access) any of our resources through any automated, unethical, or unconventional
+                                means.</p>
+
+                            <p>Engaging in any activity that disrupts or interferes with our resources, including the
+                                servers and/or networks to which our resources are located or connected, is strictly
+                                prohibited.</p>
+
+                            <p>Attempting to copy, duplicate, reproduce, sell, trade, or resell our resources is strictly
+                                prohibited.</p>
+
+                            <p>You are solely responsible for any consequences, losses, or damages that we may directly
+                                or indirectly incur or suffer due to any unauthorized activities conducted by you, as
+                                explained above, and may incur criminal or civil liability.</p>
+
+                            <p>We may provide various open communication tools on our website, such as blog comments,
+                                blog posts, public chat forums, message boards, newsgroups, product ratings and reviews,
+                                various social media services, and so on. You understand that generally we do not
+                                pre-screen or monitor the content posted by users on these various communication tools,
+                                which means that if you choose to use these tools to submit any type of content to our
+                                website, then it is your personal responsibility to use these tools in a responsible and
+                                ethical manner.</p>
+
+                            <p class="prose__subhead">By posting information or otherwise using any open communication
+                                tools as mentioned, you agree that you will not upload, post, share, or otherwise
+                                distribute any content that:</p>
+                        </div>
+
+                        <ul class="prose-list">
+                            <li>Is illegal, threatening, defamatory, abusive, harassing, degrading, intimidating,
+                                fraudulent, deceptive, invasive, racist, or contains any type of suggestive,
+                                inappropriate, or explicit language.</li>
+                            <li>Infringes on any trademark, patent, trade secret, copyright, or other proprietary right of
+                                any party.</li>
+                            <li>Contains any type of unauthorized or unsolicited advertising.</li>
+                            <li>Impersonates any person or entity, including any www.OneInsure.com
+                                employee/representative.</li>
+                        </ul>
+
+                        <div class="prose">
+                            <p>We have the right at our sole discretion to remove any content that we feel in our judgment
+                                does not comply with this user agreement, along with any content that we feel is otherwise
+                                offensive, harmful, objectionable, inaccurate, or violates any third-party copyrights or
+                                trademarks. We are not responsible for any delay or failure in removing such content. If
+                                you post content that we choose to remove, you hereby consent to such removal and consent
+                                to waive any claim against us.</p>
+
+                            <p>We do not assume any liability for any content posted by you or any other third-party users
+                                of our website. However, any content posted by you using any open communication tools on
+                                our website, provided that it doesn't violate or infringe on any third-party copyrights or
+                                trademarks, becomes the property of Robinhood Insurance Broker Limited and as such gives
+                                us a perpetual, irrevocable, worldwide, royalty-free, exclusive license to reproduce,
+                                modify, adapt, translate, publish, publicly display, and/or distribute as we see fit. This
+                                only refers and applies to content posted via open communication tools as described, and
+                                does not refer to information that is provided as part of the registration process,
+                                necessary in order to use our resources. All information provided as part of our
+                                registration process is covered by our Privacy Policy.</p>
+
+                            <p>You agree to indemnify and hold harmless Robinhood Insurance Broker Limited and its parent
+                                company and affiliates, and their directors, officers, managers, employees, donors,
+                                agents, and licensors, from and against all losses, expenses, damages and costs, including
+                                reasonable attorneys' fees resulting from any violation of this user agreement or the
+                                failure to fulfill any obligations relating to your account incurred by you or any other
+                                person using your account. We reserve the right to take over the exclusive defense of any
+                                claim for which we are entitled to indemnification under this user agreement. In such an
+                                event, you shall provide us with cooperation as is reasonably requested by us.</p>
+                        </div>
+                    </article>
+
+                    <!-- 03 · PRIVACY -->
+                    <article class="section-card reveal-up" id="privacy">
+                        <div class="section-card__num">03 / PRIVACY</div>
+                        <h2 class="section-card__h">Privacy</h2>
+
+                        <div class="prose">
+                            <p>Your privacy is very important to us, which is why we've created a separate Privacy Policy
+                                in order to explain in detail how we collect, manage, process, secure, and store your
+                                private information. Our Privacy Policy is included under the scope of this user
+                                agreement. To read our Privacy Policy in its entirety,
+                                <a routerLink="/privacy-policy">click here</a>.</p>
+                        </div>
+                    </article>
+
+                    <!-- 04 · LIMITATION OF WARRANTIES -->
+                    <article class="section-card reveal-up" id="warranties">
+                        <div class="section-card__num">04 / LIMITATION OF WARRANTIES</div>
+                        <h2 class="section-card__h">Limitation of Warranties</h2>
+
+                        <p class="section-card__summary">
+                            By using our website, you understand and agree that all resources we provide are &ldquo;as
+                            is&rdquo; and &ldquo;as available&rdquo;. This means that we do not represent or warrant to
+                            you that:
+                        </p>
+
+                        <ul class="prose-list">
+                            <li>The use of our resources will meet your needs or requirements.</li>
+                            <li>The use of our resources will be uninterrupted, timely, secure, or free from errors.</li>
+                            <li>The information obtained by using our resources will be accurate or reliable.</li>
+                            <li>Any defects in the operation or functionality of any resources we provide will be
+                                repaired or corrected.</li>
+                        </ul>
+
+                        <div class="prose">
+                            <p class="prose__subhead">Furthermore, you understand and agree that:</p>
+
+                            <p>Any content downloaded or otherwise obtained through the use of our resources is done at
+                                your own discretion and risk, and that you are solely responsible for any damage to your
+                                computer or other devices for any loss of data that may result from the download of such
+                                content.</p>
+
+                            <p>No information or advice, whether expressed, implied, oral or written, obtained by you from
+                                Robinhood Insurance Broker Limited or through any resources we provide, shall create any
+                                warranty, guarantee, or conditions of any kind, except for those expressly outlined in
+                                this user agreement.</p>
+                        </div>
+                    </article>
+
+                    <!-- 05 · LIMITATION OF LIABILITY -->
+                    <article class="section-card reveal-up" id="liability">
+                        <div class="section-card__num">05 / LIMITATION OF LIABILITY</div>
+                        <h2 class="section-card__h">Limitation of Liability</h2>
+
+                        <div class="prose">
+                            <p>In conjunction with the limitation of warranties as explained above, you expressly
+                                understand and agree that any claim against us shall be limited to the amount you paid, if
+                                any, for use of products and/or services. Robinhood Insurance Broker Limited will not be
+                                liable for any direct, indirect, incidental, consequential or exemplary loss or damages
+                                that may be incurred by you as a result of using our resources, or as a result of any
+                                changes, data loss or corruption, cancellation, loss of access, or downtime to the full
+                                extent that applicable limitation of liability laws apply.</p>
+                        </div>
+                    </article>
+
+                    <!-- 06 · COPYRIGHTS / TRADEMARKS -->
+                    <article class="section-card reveal-up" id="copyrights">
+                        <div class="section-card__num">06 / COPYRIGHTS / TRADEMARKS</div>
+                        <h2 class="section-card__h">Copyrights / Trademarks</h2>
+
+                        <div class="prose">
+                            <p>All content and materials available on www.OneInsure.com, including but not limited to
+                                text, graphics, website name, code, images, and logos are the intellectual property of
+                                Robinhood Insurance Broker Limited and are protected by applicable copyright and trademark
+                                laws. Any inappropriate use, including but not limited to the reproduction, distribution,
+                                display or transmission of any content on this site is strictly prohibited unless
+                                specifically authorized by Robinhood Insurance Broker Limited.</p>
+                        </div>
+                    </article>
+
+                    <!-- 07 · TERMINATION OF USE -->
+                    <article class="section-card reveal-up" id="termination">
+                        <div class="section-card__num">07 / TERMINATION OF USE</div>
+                        <h2 class="section-card__h">Termination of Use</h2>
+
+                        <div class="prose">
+                            <p>You agree that we may, at our sole discretion, suspend or terminate your access to all or
+                                part of our website and resources with or without notice and for any reason, including,
+                                without limitation, breach of this user agreement. Any suspected illegal, fraudulent, or
+                                abusive activity may be grounds for terminating your relationship and may be referred to
+                                appropriate law enforcement authorities. Upon suspension or termination, your right to use
+                                the resources we provide will immediately cease, and we reserve the right to remove or
+                                delete any information that you may have on file with us, including any account or login
+                                information.</p>
+                        </div>
+                    </article>
+
+                    <!-- 08 · GOVERNING LAW -->
+                    <article class="section-card reveal-up" id="governing-law">
+                        <div class="section-card__num">08 / GOVERNING LAW</div>
+                        <h2 class="section-card__h">Governing Law</h2>
+
+                        <div class="prose">
+                            <p>This website is controlled by Robinhood Insurance Broker Limited from our offices located
+                                in the state of Maharashtra, India. It can be accessed by most countries around the world.
+                                As each country has laws that may differ from those of Maharashtra, India, by accessing
+                                our website, you agree that the statutes and laws of Maharashtra, without regard to the
+                                conflict of laws and the United Nations Convention on the International Sales of Goods,
+                                will apply to all matters relating to the use of this website and the purchase of any
+                                products or services through this site.</p>
+
+                            <p>Furthermore, any action to enforce this user agreement shall be brought in the courts
+                                located in Maharashtra, India. You hereby agree to personal jurisdiction by such courts
+                                and waive any jurisdictional, venue, or inconvenient forum objections to such courts.</p>
+                        </div>
+                    </article>
+
+                    <!-- 09 · GUARANTEE -->
+                    <article class="section-card reveal-up" id="guarantee">
+                        <div class="section-card__num">09 / GUARANTEE</div>
+                        <h2 class="section-card__h">Guarantee</h2>
+
+                        <div class="prose">
+                            <p>Unless otherwise expressed, Robinhood Insurance Broker Limited expressly disclaims all
+                                warranties and conditions of any kind, whether expressed or implied, including, but not
+                                limited to the implied warranties and conditions of merchantability, fitness for a
+                                particular purpose, and non-infringement.</p>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============ CONTACT CTA ============ -->
+<section class="contact section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 text-center contact__inner reveal-up">
+                <h2>Questions about <em>these terms?</em></h2>
+                <p>If anything here is unclear, or you'd like a clarification before you proceed, write to us and we'll
+                    get back to you within one working day.</p>
+                <div class="contact__opts">
+                    <a href="mailto:support@oneinsure.com" class="btn btn--orange btn--big">
+                        Email support&#64;oneinsure.com
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    <a href="tel:+918655986559" class="btn btn--outline btn--big">Call +91 86559 86559</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
