@@ -41,22 +41,22 @@ export class FooterComponent {
     {
       title: 'Products',
       links: [
-        { label: 'Guaranteed Savings', route: '/GuaranteedInvestmentPlans' },
-        { label: 'Term Life', route: '/TermInsurance' },
-        { label: 'Health Insurance', route: '/HealthInsurance' },
+        { label: 'Guaranteed Savings', route: '/guaranteed-investment-plans' },
+        { label: 'Term Life', route: '/term-life-insurance' },
+        { label: 'Health Insurance', route: '/health-insurance-plans' },
         // { label: 'Health Insurance', route: 'http://www.oneinsure.com/1sbsso/ssoredirect?email=sagar.kulkarni%40oneinsure.com.DUM&mobile=8591416559&name=SAGAR%20SATISH%20KULKARNI&roleId=1&userId=6561DUM&lob=Health&BranchId=220260729783', newTab: true },
-        { label: 'Motor Insurance', route: '/MotorInsurance' },
-        { label: 'Market-Linked Plans', route: '/MarketLinkedPlans' },
-        { label: 'Travel & Home', route: '/GeneralInsurance' },
+        { label: 'Motor Insurance', route: '/motor-insurance' },
+        { label: 'Market-Linked Plans', route: '/market-linked-plans' },
+        { label: 'Travel & Home', route: '/general-insurance' },
       ],
     },
     {
       title: 'Support',
       links: [
-        { label: 'Claim assistance', route: '/ClaimSupport' },
+        { label: 'Claim assistance', route: '/insurance-claim-support' },
         { label: 'Renew a policy', fragment: 'consult' },
         { label: 'Calculators', fragment: 'calc' },
-        { label: 'Knowledge base', route: '/KnowledgeBase' },
+        { label: 'Knowledge base', route: '/knowledge-base' },
         { label: 'Grievance redressal', action: 'grievance' },
         { label: 'Contact us', href: 'https://schedule.oneinsure.com/book/get-expert-guidance-web' },
       ],
@@ -64,10 +64,10 @@ export class FooterComponent {
     {
       title: 'Company',
       links: [
-        // { label: 'About Us', route: '/AboutUs' },
-        { label: 'Careers', route: '/Careers' },
-        { label: 'Partnerships', route: '/PartnerProgram' },
-        { label: 'Regulatory Disclosures', route: '/RegulatoryDisclosures' },
+        // { label: 'About Us', route: '/about-us' },
+        { label: 'Careers', route: '/career-opportunities' },
+        { label: 'Partnerships', route: '/partner-program' },
+        { label: 'Regulatory Disclosures', route: '/regulatory-disclosures' },
       ],
     },
     {
@@ -76,7 +76,7 @@ export class FooterComponent {
         { label: '+91 86559 86559', href: 'tel:+918655986559' },
         { label: 'WhatsApp us', href: 'https://wa.me/918655986559' },
         { label: 'support@oneinsure.com', href: 'mailto:support@oneinsure.com' },
-        { label: 'Find a branch', route: '/BranchLocator' },
+        { label: 'Find a branch', route: '/branch-locator' },
       ],
     },
   ];

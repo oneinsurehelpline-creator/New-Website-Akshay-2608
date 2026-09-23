@@ -26,6 +26,7 @@ import { PetinsuranceComponent } from './petinsurance/petinsurance.component';
 import { FireinsuranceComponent } from './fireinsurance/fireinsurance.component';
 import { CorporateinsuranceComponent } from './corporateinsurance/corporateinsurance.component';
 import { EmployeremployeeinsuranceComponent } from './employeremployeeinsurance/employeremployeeinsurance.component';
+import { TermsconditionsComponent } from './termsconditions/termsconditions.component';
 
 
 
@@ -53,6 +54,7 @@ import { EmployeremployeeinsuranceComponent } from './employeremployeeinsurance/
     FireinsuranceComponent,
     CorporateinsuranceComponent,
     EmployeremployeeinsuranceComponent,
+    TermsconditionsComponent,
   ],
   imports: [
     CommonModule,
