@@ -41,7 +41,7 @@ export class PrivacypolicyComponent implements AfterViewInit, OnDestroy {
     },
     {
       title: 'Shared only to serve you',
-      desc: 'With your insurer or partner — and only with your permission.',
+      desc: 'With your insurer or partner, and only with your permission.',
       icon: 'share',
     },
     {

@@ -32,7 +32,7 @@ export class PersonalaccidentplansComponent implements AfterViewInit, OnDestroy 
 
   // ---------- HERO ----------
   heroHeadline = "Accidents don't end at the hospital.";
-  heroSub = "They end your income. Personal accident cover pays a lump sum for death or disability — and a weekly amount while you can't work.";
+  heroSub = "They end your income. Personal accident cover pays a lump sum for death or disability, and a weekly amount while you can't work.";
   trustPoints = [
     'Cover from ₹500/year',
     '24×7 worldwide',
@@ -47,15 +47,15 @@ export class PersonalaccidentplansComponent implements AfterViewInit, OnDestroy 
   covers: CoverItem[] = [
     {
       icon: 'assets/images/icons/knowledgebase/life.png',
-      text: 'Accidental death — lump sum to your nominee',
+      text: 'Accidental death: lump sum to your nominee',
     },
     {
       icon: 'assets/images/icons/general/comprehensive-cover.png',
-      text: 'Permanent total or partial disability — lump sum scaled to the loss',
+      text: 'Permanent total or partial disability: lump sum scaled to the loss',
     },
     {
       icon: 'assets/images/icons/general/low-cost.png',
-      text: "Temporary disability — a weekly payout while you're unable to work",
+      text: "Temporary disability: a weekly payout while you're unable to work",
     },
     {
       icon: 'assets/images/icons/calculators/health-cover.png',
@@ -89,7 +89,7 @@ export class PersonalaccidentplansComponent implements AfterViewInit, OnDestroy 
   faqs: FaqItem[] = [
     {
       q: 'How is this different from term insurance?',
-      a: 'Term insurance pays only on death, from any cause. Personal accident covers accidental death and disability — including the temporary kind, which is far more common.',
+      a: 'Term insurance pays only on death, from any cause. Personal accident covers accidental death and disability, including the temporary kind, which is far more common.',
     },
     {
       q: 'Am I covered outside India?',

@@ -1,0 +1,115 @@
+<aside class="pn" *ngIf="visible" [class.pn--open]="expanded" role="complementary"
+    aria-label="Get a free financial plan">
+
+    <!-- Compact pill first; the full card only opens when clicked -->
+    <div class="pn__bar">
+        <button class="pn__bar-btn" type="button" (click)="expand()" [attr.aria-expanded]="expanded">
+            <img class="pn__bar-av" src="assets/images/carousel/mascot-avatar.webp" alt="" width="40" height="40">
+            <span class="pn__bar-txt">
+                <strong>{{ copy.title }}</strong>
+                <small>3 quick questions · free 30-min call</small>
+            </span>
+            <svg fill="none" height="14" viewBox="0 0 14 14" width="14" aria-hidden="true">
+                <path d="M1 7h12m0 0L8 2m5 5l-5 5" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+        </button>
+        <button class="pn__x pn__x--bar" type="button" (click)="dismiss()" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="pn__card">
+        <button class="pn__x" type="button" (click)="dismiss()" aria-label="Close">&times;</button>
+
+        <!-- INTRO -->
+        <ng-container *ngIf="step === 'intro'">
+            <div class="pn__intro">
+                <img class="pn__av" src="assets/images/carousel/mascot-avatar.webp" alt="" width="72" height="72">
+                <div>
+                    <h3 class="pn__title">{{ copy.title }}</h3>
+                    <p class="pn__sub">{{ copy.sub }}</p>
+                </div>
+            </div>
+            <button class="pn__cta" type="button" (click)="startQuiz()">
+                Start with 3 quick questions
+                <svg fill="none" height="14" viewBox="0 0 14 14" width="14" aria-hidden="true">
+                    <path d="M1 7h12m0 0L8 2m5 5l-5 5" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2"></path>
+                </svg>
+            </button>
+            <div class="pn__links">
+                <button class="pn__link" type="button" (click)="book()">Skip, just book a call</button>
+                <button class="pn__link pn__link--muted" type="button" (click)="dismiss()">Maybe later</button>
+            </div>
+        </ng-container>
+
+        <!-- QUESTIONS -->
+        <ng-container *ngIf="step === 'q'">
+            <div class="pn__progress" aria-hidden="true">
+                <span *ngFor="let q of questions; let i = index" [class.is-on]="i <= qIndex"></span>
+            </div>
+            <div class="pn__qmeta">Question {{ qIndex + 1 }} of {{ questions.length }}</div>
+            <h3 class="pn__title">{{ question.title }}</h3>
+            <div class="pn__opts" role="group" [attr.aria-label]="question.title">
+                <button *ngFor="let o of question.options" class="pn__opt" type="button"
+                    [class.is-picked]="answers[question.key] === o" (click)="pick(o)">{{ o }}</button>
+            </div>
+            <button class="pn__back" type="button" (click)="back()">&larr; Back</button>
+        </ng-container>
+
+        <!-- RESULT -->
+        <ng-container *ngIf="step === 'done'">
+            <div class="pn__qmeta pn__qmeta--ok">All set</div>
+            <h3 class="pn__title">Here's what we'll plan around</h3>
+            <div class="pn__chips">
+                <span class="pn__chip" *ngFor="let a of answerList">{{ a }}</span>
+            </div>
+            <p class="pn__sub">Book a free 30-minute call and an advisor will build your plan with you.</p>
+            <button class="pn__cta" type="button" (click)="book()">
+                Pick a time for my free call
+                <svg fill="none" height="14" viewBox="0 0 14 14" width="14" aria-hidden="true">
+                    <path d="M1 7h12m0 0L8 2m5 5l-5 5" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2"></path>
+                </svg>
+            </button>
+            <div class="pn__links">
+                <button class="pn__link" type="button" (click)="showCallback()">Prefer a callback instead?</button>
+                <button class="pn__link pn__link--muted" type="button" (click)="back()">Change answers</button>
+            </div>
+        </ng-container>
+
+        <!-- CALLBACK (optional number) -->
+        <ng-container *ngIf="step === 'callback'">
+            <h3 class="pn__title">We'll call you</h3>
+            <p class="pn__sub">Leave your number and an advisor will call you within 24 hours, with your answers
+                in hand.</p>
+            <form class="pn__form" (ngSubmit)="sendCallback()" novalidate>
+                <input class="pn__input" type="text" name="name" [(ngModel)]="name" placeholder="Your name (optional)"
+                    autocomplete="given-name" maxlength="40">
+                <input class="pn__input" type="tel" name="phone" [(ngModel)]="phone" placeholder="10-digit mobile number"
+                    autocomplete="tel-national" inputmode="numeric" maxlength="14" required
+                    [attr.aria-invalid]="!!phoneError">
+                <div class="pn__err" *ngIf="phoneError">{{ phoneError }}</div>
+                <div class="pn__err" *ngIf="sendError">{{ sendError }}</div>
+                <button class="pn__cta" type="submit" [disabled]="sending">
+                    {{ sending ? 'Sending…' : 'Call me back' }}
+                </button>
+            </form>
+            <div class="pn__links">
+                <button class="pn__link" type="button" (click)="book()">Book a time instead</button>
+                <button class="pn__link pn__link--muted" type="button" (click)="back()">Back</button>
+            </div>
+        </ng-container>
+
+        <!-- SENT -->
+        <ng-container *ngIf="step === 'sent'">
+            <div class="pn__intro">
+                <img class="pn__av" src="assets/images/carousel/mascot-avatar.webp" alt="" width="72" height="72">
+                <div>
+                    <h3 class="pn__title">Thanks{{ name.trim() ? ', ' + name.trim() : '' }}!</h3>
+                    <p class="pn__sub">An advisor will call you within 24 hours.</p>
+                </div>
+            </div>
+            <button class="pn__link pn__link--muted" type="button" (click)="dismiss()">Close</button>
+        </ng-container>
+    </div>
+</aside>

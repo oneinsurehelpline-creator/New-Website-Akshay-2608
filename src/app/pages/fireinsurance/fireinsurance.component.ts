@@ -32,13 +32,13 @@ export class FireinsuranceComponent implements AfterViewInit, OnDestroy {
 
   // ---------- HERO ----------
   heroHeadline = 'Rebuild without touching your reserves.';
-  heroSub = "Fire, explosion, riot, flood and earthquake cover for buildings, stock and plant — at a premium that's a rounding error against the risk.";
+  heroSub = "Fire, explosion, riot, flood and earthquake cover for buildings, stock and plant, at a premium that's a rounding error against the risk.";
   trustPoints = [
     'Standard fire & special perils',
     'Covers stock and machinery',
     'Claims support end-to-end',
   ];
-  ctaMicrocopy = 'Get your assets accurately valued — before you ever need to claim.';
+  ctaMicrocopy = 'Get your assets accurately valued, before you ever need to claim.';
 
 
   // ---------- WHAT IT COVERS ----------
@@ -57,7 +57,7 @@ export class FireinsuranceComponent implements AfterViewInit, OnDestroy {
   threeUp: ThreeUpItem[] = [
     {
       title: "It's misnamed.",
-      desc: 'A standard fire policy covers a long list of perils that have nothing to do with fire — flood and earthquake among them.',
+      desc: 'A standard fire policy covers a long list of perils that have nothing to do with fire: flood and earthquake among them.',
     },
     {
       title: 'Underinsurance is the real risk.',
@@ -77,7 +77,7 @@ export class FireinsuranceComponent implements AfterViewInit, OnDestroy {
     },
     {
       q: 'What is the "average clause"?',
-      a: 'If you insure a ₹1 crore asset for ₹50 lakh, the insurer treats you as self-insured for half and pays only half of any claim — even a small one.',
+      a: 'If you insure a ₹1 crore asset for ₹50 lakh, the insurer treats you as self-insured for half and pays only half of any claim, even a small one.',
     },
     {
       q: 'Is flood really included?',

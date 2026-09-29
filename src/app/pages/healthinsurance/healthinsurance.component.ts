@@ -94,12 +94,12 @@ export class HealthinsuranceComponent implements AfterViewInit, OnDestroy {
     },
     {
       title: 'One policy covers your whole family.',
-      desc: 'Floater plans cover spouse, children and parents under one sum insured — often cheaper than individual policies.',
+      desc: 'Floater plans cover spouse, children and parents under one sum insured, often cheaper than individual policies.',
       icon: 'users',
     },
     {
       title: 'Pre- and post-hospitalisation covered.',
-      desc: 'Diagnostic tests, specialist fees, medicines — 60 days before and 90 days after hospitalisation are all included.',
+      desc: 'Diagnostic tests, specialist fees and medicines for 60 days before and 90 days after hospitalisation are all included.',
       icon: 'heart',
     },
     {
@@ -137,7 +137,7 @@ export class HealthinsuranceComponent implements AfterViewInit, OnDestroy {
   plans: Plan[] = [
     // ---- visible set ----
     { insurer: 'Niva Bupa', plan: 'ReAssure 2.0', key: 'Niva Bupa|ReAssure 2.0', logo: 'NB', logoImg: 'assets/images/insurers/nivabupa.png', logoColor: '#004b8d', claimRatio: '~97%', claimRatioSub: 'FY 2024–25 · IRDAI', network: '10,000+', networkSub: 'hospitals', restore: 'Unlimited auto', restoreBadge: 'green', recommended: true },
-    { insurer: 'HDFC ERGO', plan: 'Optima Secure', key: 'HDFC ERGO|Optima Secure', logo: 'HE', logoImg: 'assets/images/insurers/HDFCErgo.jpg', logoColor: '#e2001a', claimRatio: '99%+', claimRatioSub: 'FY 2024–25 · IRDAI', network: '16,000+', networkSub: 'hospitals — largest', restore: '100% once/yr', restoreBadge: 'orange' },
+    { insurer: 'HDFC ERGO', plan: 'Optima Secure', key: 'HDFC ERGO|Optima Secure', logo: 'HE', logoImg: 'assets/images/insurers/HDFCErgo.jpg', logoColor: '#e2001a', claimRatio: '99%+', claimRatioSub: 'FY 2024–25 · IRDAI', network: '16,000+', networkSub: 'hospitals (largest)', restore: '100% once/yr', restoreBadge: 'orange' },
     { insurer: 'ManipalCigna', plan: 'Sarvah Uttam', key: 'ManipalCigna|Sarvah Uttam', logo: 'MC', logoImg: 'assets/images/insurers/Cigna.jpg', logoColor: '#f47920', claimRatio: '~99.9%', claimRatioSub: 'FY 2024–25 · IRDAI', network: '10,000+', networkSub: 'hospitals', restore: 'Unlimited + Anant∞', restoreBadge: 'green' },
     { insurer: 'TATA AIG', plan: 'Medicare Premier', key: 'TATA AIG|Medicare Premier', logo: 'TA', logoImg: 'assets/images/insurers/tata-aia.png', logoColor: '#003087', claimRatio: '~100%', claimRatioSub: 'IRDAI Rank 1 FY24', network: '10,000+', networkSub: 'hospitals', restore: 'Unlimited', restoreBadge: 'green' },
     { insurer: 'Care Health', plan: 'Care Supreme', key: 'Care Health|Care Supreme', logo: 'CH', logoImg: 'assets/images/insurers/CareHealth.png', logoColor: '#00953b', claimRatio: '~98–100%', claimRatioSub: 'FY 2024–25 · IRDAI', network: '11,400+', networkSub: 'hospitals', restore: 'Unlimited auto', restoreBadge: 'green' },
@@ -162,8 +162,8 @@ export class HealthinsuranceComponent implements AfterViewInit, OnDestroy {
       title: 'Plan Basics', rows: [
         { label: 'Plan Type' },
         { label: 'Sum Insured Range' },
-        { label: 'Entry Age — Adults' },
-        { label: 'Entry Age — Children' },
+        { label: 'Entry Age (Adults)' },
+        { label: 'Entry Age (Children)' },
         { label: 'Family Size' },
       ]
     },
@@ -220,34 +220,34 @@ export class HealthinsuranceComponent implements AfterViewInit, OnDestroy {
   // Full comparison dataset (keyed by "insurer|plan")
   planData: { [key: string]: { [label: string]: string } } = {
     'Niva Bupa|ReAssure 2.0': {
-      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹5L – ₹5 Cr', 'Entry Age — Adults': '18 yrs – no limit', 'Entry Age — Children': '91 days', 'Family Size': 'Flexible',
+      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹5L – ₹5 Cr', 'Entry Age (Adults)': '18 yrs – no limit', 'Entry Age (Children)': '91 days', 'Family Size': 'Flexible',
       'Room Rent': 'No cap', 'Co-Pay': 'Zero', 'Pre-Hospitalisation': '90 days', 'Post-Hospitalisation': '180 days', 'Day Care Procedures': '✓', 'AYUSH Cover': '✓', 'Modern Treatments': '✓', 'Domiciliary / Home Care': '✓',
       'Initial Waiting Period': '30 days', 'Pre-Existing Diseases (PED)': '36 months', 'Specific Illness Waiting': '24 months', 'Maternity Cover': '✓ Platinum+; 24 months; newborn Day 1',
-      'No-Claim Bonus (NCB)': '25% p.a.; Lock the Bonus — NCB preserved post-claim', 'NCB Protected on Claim?': '✓ Lock the Bonus', 'Restore / Recharge SI': '✓ Unlimited auto-recharge',
+      'No-Claim Bonus (NCB)': '25% p.a.; Lock the Bonus, NCB preserved post-claim', 'NCB Protected on Claim?': '✓ Lock the Bonus', 'Restore / Recharge SI': '✓ Unlimited auto-recharge',
       'OPD Cover': 'Add-on (Platinum+)', 'Annual Health Check-Up': '✓', 'Wellness / Reward Programme': '✓ Health app rewards', 'International Cover': '✗',
       'Claim Settlement Ratio': '~97% (FY 2024–25)', 'Incurred Claims Ratio': '~65%', 'Network Hospitals': '10,000+',
       'Best Suited For': 'NCB preserved post-claim; unlimited auto-recharge; strong brand reliability', 'Watch Out For': 'No international cover; OPD only in Platinum+ variant',
     },
     'Niva Bupa|ReAssure 3.0': {
-      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹5L – ₹1 Cr (Unlimited option)', 'Entry Age — Adults': '18 yrs – no limit', 'Entry Age — Children': '91 days', 'Family Size': 'Flexible',
+      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹5L – ₹1 Cr (Unlimited option)', 'Entry Age (Adults)': '18 yrs – no limit', 'Entry Age (Children)': '91 days', 'Family Size': 'Flexible',
       'Room Rent': 'No cap', 'Co-Pay': 'Zero', 'Pre-Hospitalisation': '90 days', 'Post-Hospitalisation': '180 days', 'Day Care Procedures': '✓', 'AYUSH Cover': '✓', 'Modern Treatments': '✓', 'Domiciliary / Home Care': '✓',
       'Initial Waiting Period': '30 days', 'Pre-Existing Diseases (PED)': '36 months (reducible w/ add-on)', 'Specific Illness Waiting': '24 months', 'Maternity Cover': '✓ Black+; 12 months waiting (improved)',
-      'No-Claim Bonus (NCB)': '25% p.a.; Lock the Bonus + enhanced in Black+', 'NCB Protected on Claim?': '✓ Lock the Bonus + enhanced', 'Restore / Recharge SI': '✓ Enhanced — covers SAME illness too',
+      'No-Claim Bonus (NCB)': '25% p.a.; Lock the Bonus + enhanced in Black+', 'NCB Protected on Claim?': '✓ Lock the Bonus + enhanced', 'Restore / Recharge SI': '✓ Enhanced, covers SAME illness too',
       'OPD Cover': '✓ OPD in Black+', 'Annual Health Check-Up': '✓', 'Wellness / Reward Programme': '✓ Enhanced wellness rewards', 'International Cover': '✓ Add-on',
       'Claim Settlement Ratio': '~97% (FY 2024–25)', 'Incurred Claims Ratio': '~65%', 'Network Hospitals': '10,000+',
       'Best Suited For': 'Same-illness recharge; maternity 12 months in Black+; stronger wellness vs 2.0', 'Watch Out For': 'Full features only in Black+ variant; higher premium',
     },
     'HDFC ERGO|Optima Secure': {
-      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹5L – ₹1 Cr', 'Entry Age — Adults': '18–65 yrs; no upper limit at renewal', 'Entry Age — Children': '91 days', 'Family Size': 'Up to 6 Adults',
-      'Room Rent': 'No cap — no co-pay on room upgrade', 'Co-Pay': 'Zero', 'Pre-Hospitalisation': '60 days', 'Post-Hospitalisation': '180 days', 'Day Care Procedures': '✓', 'AYUSH Cover': '✓', 'Modern Treatments': '✓ (incl. robotic)', 'Domiciliary / Home Care': '✓',
+      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹5L – ₹1 Cr', 'Entry Age (Adults)': '18–65 yrs; no upper limit at renewal', 'Entry Age (Children)': '91 days', 'Family Size': 'Up to 6 Adults',
+      'Room Rent': 'No cap, no co-pay on room upgrade', 'Co-Pay': 'Zero', 'Pre-Hospitalisation': '60 days', 'Post-Hospitalisation': '180 days', 'Day Care Procedures': '✓', 'AYUSH Cover': '✓', 'Modern Treatments': '✓ (incl. robotic)', 'Domiciliary / Home Care': '✓',
       'Initial Waiting Period': '30 days', 'Pre-Existing Diseases (PED)': '36 months → 30 days (ABCD Chronic Care add-on)', 'Specific Illness Waiting': '24 months', 'Maternity Cover': '✗ (base plan)',
       'No-Claim Bonus (NCB)': '50% p.a. up to 100% of base SI', 'NCB Protected on Claim?': 'Reduces; add-on available', 'Restore / Recharge SI': '✓ 100% once/yr (Plus plan adds a layer)',
       'OPD Cover': '✓ Optima Wellbeing add-on', 'Annual Health Check-Up': '✓', 'Wellness / Reward Programme': '✓ App; renewal discounts', 'International Cover': '✓ Global Plus add-on',
-      'Claim Settlement Ratio': '99%+ 3-yr avg — Best in set', 'Incurred Claims Ratio': '~79%', 'Network Hospitals': '16,000+ (largest)',
+      'Claim Settlement Ratio': '99%+ 3-yr avg (Best in set)', 'Incurred Claims Ratio': '~79%', 'Network Hospitals': '16,000+ (largest)',
       'Best Suited For': 'Best CSR (99%+); 2× effective cover Day 1; ABCD 30-day PED; largest hospital network', 'Watch Out For': 'Maternity not in base plan; restoration only once per year',
     },
     'ICICI Lombard|Elevate': {
-      'Plan Type': 'Individual / Floater (modular add-ons)', 'Sum Insured Range': '₹5L – ₹3 Cr (Unlimited w/ add-on)', 'Entry Age — Adults': '18 yrs – no limit', 'Entry Age — Children': '91 days', 'Family Size': 'Flexible multi-member',
+      'Plan Type': 'Individual / Floater (modular add-ons)', 'Sum Insured Range': '₹5L – ₹3 Cr (Unlimited w/ add-on)', 'Entry Age (Adults)': '18 yrs – no limit', 'Entry Age (Children)': '91 days', 'Family Size': 'Flexible multi-member',
       'Room Rent': 'No cap', 'Co-Pay': 'Zero', 'Pre-Hospitalisation': '90 days', 'Post-Hospitalisation': '180 days', 'Day Care Procedures': '✓', 'AYUSH Cover': '✓', 'Modern Treatments': '✓', 'Domiciliary / Home Care': '✓',
       'Initial Waiting Period': '30 days', 'Pre-Existing Diseases (PED)': '36 months → reducible (Sarathi add-on)', 'Specific Illness Waiting': '24 months', 'Maternity Cover': '✓ Waiting period applies',
       'No-Claim Bonus (NCB)': '20% p.a. up to 100%; Power Booster: 100% guaranteed p.a. regardless of claims', 'NCB Protected on Claim?': '✓ Power Booster (guaranteed)', 'Restore / Recharge SI': '✓ Unlimited resets/yr',
@@ -256,34 +256,34 @@ export class HealthinsuranceComponent implements AfterViewInit, OnDestroy {
       'Best Suited For': 'Most customisable plan; Power Booster guaranteed NCB; worldwide cashless; Jumpstart 30-day PED', 'Watch Out For': 'Most features need add-ons; plan selection can be complex',
     },
     'ManipalCigna|Sarvah Uttam': {
-      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹5L – ₹2 Cr', 'Entry Age — Adults': '18–65 yrs; lifetime renewal', 'Entry Age — Children': '91 days', 'Family Size': 'Self + Spouse + Children + Parents',
+      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹5L – ₹2 Cr', 'Entry Age (Adults)': '18–65 yrs; lifetime renewal', 'Entry Age (Children)': '91 days', 'Family Size': 'Self + Spouse + Children + Parents',
       'Room Rent': 'No cap', 'Co-Pay': 'Zero', 'Pre-Hospitalisation': '90 days', 'Post-Hospitalisation': '180 days', 'Day Care Procedures': '✓', 'AYUSH Cover': '✓', 'Modern Treatments': '✓ (robotic, stem cell)', 'Domiciliary / Home Care': '✓',
       'Initial Waiting Period': '30 days', 'Pre-Existing Diseases (PED)': '36 months → 30 days (Jumpstart add-on)', 'Specific Illness Waiting': '24 months', 'Maternity Cover': '✓ Add-on; incl. IVF; newborn Day 1',
-      'No-Claim Bonus (NCB)': 'Gullak: 100% guaranteed every year (even after claims) up to 10× base SI', 'NCB Protected on Claim?': '✓ Gullak — regardless of claims', 'Restore / Recharge SI': '✓ Unlimited; Anant Benefit: INFINITE SI for critical illness',
+      'No-Claim Bonus (NCB)': 'Gullak: 100% guaranteed every year (even after claims) up to 10× base SI', 'NCB Protected on Claim?': '✓ Gullak, regardless of claims', 'Restore / Recharge SI': '✓ Unlimited; Anant Benefit: INFINITE SI for critical illness',
       'OPD Cover': '✓ OPD included', 'Annual Health Check-Up': '✓', 'Wellness / Reward Programme': '✓ Healthy Lifestyle rewards', 'International Cover': '✓ Add-on',
       'Claim Settlement Ratio': '~99.9% (FY 2024–25)', 'Incurred Claims Ratio': '~65%', 'Network Hospitals': '10,000+',
-      'Best Suited For': 'Gullak: guaranteed 100% SI boost every year up to 10×; Anant INFINITE SI for critical illness — unique in market', 'Watch Out For': 'Maternity via add-on; entry age limit 65 (lifetime renewal after)',
+      'Best Suited For': 'Gullak: guaranteed 100% SI boost every year up to 10×; Anant INFINITE SI for critical illness (unique in market)', 'Watch Out For': 'Maternity via add-on; entry age limit 65 (lifetime renewal after)',
     },
     'TATA AIG|Medicare Premier': {
-      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹5L – ₹3 Cr', 'Entry Age — Adults': '18–65 yrs (parents 65+)', 'Entry Age — Children': '91 days', 'Family Size': 'Self + Spouse + Children + Parents/PIL (65+)',
+      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹5L – ₹3 Cr', 'Entry Age (Adults)': '18–65 yrs (parents 65+)', 'Entry Age (Children)': '91 days', 'Family Size': 'Self + Spouse + Children + Parents/PIL (65+)',
       'Room Rent': 'No cap', 'Co-Pay': 'Zero', 'Pre-Hospitalisation': '90 days', 'Post-Hospitalisation': '180 days', 'Day Care Procedures': '✓', 'AYUSH Cover': '✓', 'Modern Treatments': '✓', 'Domiciliary / Home Care': '✓',
       'Initial Waiting Period': '30 days', 'Pre-Existing Diseases (PED)': '36 months', 'Specific Illness Waiting': '24 months', 'Maternity Cover': '✓ Add-on',
       'No-Claim Bonus (NCB)': '25% p.a. up to 100%; Super Credit add-on: guaranteed boost regardless of claims', 'NCB Protected on Claim?': 'Reduces; Super Credit add-on protects', 'Restore / Recharge SI': '✓ Unlimited restorations',
       'OPD Cover': '✓ Add-on', 'Annual Health Check-Up': '✓', 'Wellness / Reward Programme': '✓ TATA AIG app; wellness points', 'International Cover': '✓ Add-on',
-      'Claim Settlement Ratio': '~100% — IRDAI Rank 1 FY24', 'Incurred Claims Ratio': '~78%', 'Network Hospitals': '10,000+',
+      'Claim Settlement Ratio': '~100% (IRDAI Rank 1 FY24)', 'Incurred Claims Ratio': '~78%', 'Network Hospitals': '10,000+',
       'Best Suited For': 'IRDAI Rank 1 CSR; covers parents 65+ in floater; 3-yr policy option; Super Credit boosts SI annually', 'Watch Out For': 'PED at 36 months; maternity via add-on only',
     },
     'TATA AIG|Medicare Plus': {
-      'Plan Type': 'Super Top-Up', 'Sum Insured Range': '₹5L – ₹3 Cr', 'Entry Age — Adults': '18 yrs – no limit', 'Entry Age — Children': '91 days', 'Family Size': 'Individual or Floater',
+      'Plan Type': 'Super Top-Up', 'Sum Insured Range': '₹5L – ₹3 Cr', 'Entry Age (Adults)': '18 yrs – no limit', 'Entry Age (Children)': '91 days', 'Family Size': 'Individual or Floater',
       'Room Rent': 'No cap', 'Co-Pay': 'Zero', 'Pre-Hospitalisation': '90 days', 'Post-Hospitalisation': '180 days', 'Day Care Procedures': '✓', 'AYUSH Cover': '✓', 'Modern Treatments': '✓', 'Domiciliary / Home Care': '✗',
       'Initial Waiting Period': '30 days', 'Pre-Existing Diseases (PED)': '36 months', 'Specific Illness Waiting': '24 months', 'Maternity Cover': '✗',
       'No-Claim Bonus (NCB)': 'N/A (top-up plan)', 'NCB Protected on Claim?': 'N/A', 'Restore / Recharge SI': '✓ Restores above deductible',
       'OPD Cover': '✗', 'Annual Health Check-Up': '✓', 'Wellness / Reward Programme': 'Limited', 'International Cover': '✗',
-      'Claim Settlement Ratio': '~100% — IRDAI Rank 1 FY24', 'Incurred Claims Ratio': '~78%', 'Network Hospitals': '10,000+',
+      'Claim Settlement Ratio': '~100% (IRDAI Rank 1 FY24)', 'Incurred Claims Ratio': '~78%', 'Network Hospitals': '10,000+',
       'Best Suited For': 'Best value top-up to augment a weak base policy; unlimited restore above deductible', 'Watch Out For': 'Requires an existing base policy; no maternity or domiciliary cover',
     },
     'Care Health|Care Supreme': {
-      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹5L – ₹1 Cr', 'Entry Age — Adults': '18–65 yrs; no upper limit at renewal', 'Entry Age — Children': '91 days', 'Family Size': 'Up to 6 Adults',
+      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹5L – ₹1 Cr', 'Entry Age (Adults)': '18–65 yrs; no upper limit at renewal', 'Entry Age (Children)': '91 days', 'Family Size': 'Up to 6 Adults',
       'Room Rent': 'No cap (any room)', 'Co-Pay': 'Zero', 'Pre-Hospitalisation': '60 days', 'Post-Hospitalisation': '180 days', 'Day Care Procedures': '✓', 'AYUSH Cover': '✓', 'Modern Treatments': '✓ (incl. robotic)', 'Domiciliary / Home Care': '✓',
       'Initial Waiting Period': '30 days', 'Pre-Existing Diseases (PED)': '36 months (reducible w/ add-on)', 'Specific Illness Waiting': '24 months', 'Maternity Cover': '✓ Add-on; 24 months waiting',
       'No-Claim Bonus (NCB)': '25% p.a. up to 100%', 'NCB Protected on Claim?': '✓ (add-on)', 'Restore / Recharge SI': '✓ Unlimited auto-recharge',
@@ -292,16 +292,16 @@ export class HealthinsuranceComponent implements AfterViewInit, OnDestroy {
       'Best Suited For': 'Unlimited recharge + NCB doesn\'t reduce; best all-round family plan; healthy ICR of ~58%', 'Watch Out For': 'No international cover; maternity via add-on',
     },
     'Care Health|Care Advantage': {
-      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹25L – ₹6 Cr', 'Entry Age — Adults': '18 yrs – no limit', 'Entry Age — Children': '91 days', 'Family Size': 'Self + Spouse + 4 Children',
+      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹25L – ₹6 Cr', 'Entry Age (Adults)': '18 yrs – no limit', 'Entry Age (Children)': '91 days', 'Family Size': 'Self + Spouse + 4 Children',
       'Room Rent': 'No cap', 'Co-Pay': 'Zero', 'Pre-Hospitalisation': '60 days', 'Post-Hospitalisation': '180 days', 'Day Care Procedures': '✓', 'AYUSH Cover': '✓', 'Modern Treatments': '✓', 'Domiciliary / Home Care': '✓',
-      'Initial Waiting Period': '30 days', 'Pre-Existing Diseases (PED)': '12 months — best in set', 'Specific Illness Waiting': '12 months', 'Maternity Cover': '✗ (base plan)',
+      'Initial Waiting Period': '30 days', 'Pre-Existing Diseases (PED)': '12 months (best in set)', 'Specific Illness Waiting': '12 months', 'Maternity Cover': '✗ (base plan)',
       'No-Claim Bonus (NCB)': '10% p.a. up to 50%', 'NCB Protected on Claim?': '✗', 'Restore / Recharge SI': '✓ 100% unlimited',
       'OPD Cover': '✗ (base)', 'Annual Health Check-Up': '✓ Day 1', 'Wellness / Reward Programme': 'Basic', 'International Cover': '✗',
       'Claim Settlement Ratio': '~98–100% (FY 2024–25)', 'Incurred Claims Ratio': '~58%', 'Network Hospitals': '11,400+',
-      'Best Suited For': 'Best for seniors — PED from Year 1 (12 months); no room cap; very high SI up to ₹6 Cr', 'Watch Out For': 'No maternity in base plan; limited wellness features; lower NCB cap',
+      'Best Suited For': 'Best for seniors: PED from Year 1 (12 months); no room cap; very high SI up to ₹6 Cr', 'Watch Out For': 'No maternity in base plan; limited wellness features; lower NCB cap',
     },
     'Care Health|Care': {
-      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹3L – ₹75L', 'Entry Age — Adults': '18–65 yrs', 'Entry Age — Children': '91 days', 'Family Size': 'Self + Spouse + 4 Children',
+      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹3L – ₹75L', 'Entry Age (Adults)': '18–65 yrs', 'Entry Age (Children)': '91 days', 'Family Size': 'Self + Spouse + 4 Children',
       'Room Rent': 'Single private room (sub-limit)', 'Co-Pay': '20% if entry ≥ 61 yrs', 'Pre-Hospitalisation': '30 days', 'Post-Hospitalisation': '60 days', 'Day Care Procedures': '✓', 'AYUSH Cover': '✓', 'Modern Treatments': '✓', 'Domiciliary / Home Care': '✓',
       'Initial Waiting Period': '30 days', 'Pre-Existing Diseases (PED)': '36 months', 'Specific Illness Waiting': '24 months', 'Maternity Cover': '✗ (base plan)',
       'No-Claim Bonus (NCB)': '10% p.a. up to 50%', 'NCB Protected on Claim?': '✗', 'Restore / Recharge SI': '✓ 100% once/yr',
@@ -310,22 +310,22 @@ export class HealthinsuranceComponent implements AfterViewInit, OnDestroy {
       'Best Suited For': 'Affordable entry plan; wide SI range ₹3L–₹75L', 'Watch Out For': 'Room rent sub-limit; 20% co-pay for seniors; post-hosp only 60 days',
     },
     'Aditya Birla Health|Activ One': {
-      'Plan Type': 'Individual / Floater (7 variants)', 'Sum Insured Range': '₹5L – ₹6 Cr', 'Entry Age — Adults': '18 yrs – no limit', 'Entry Age — Children': '91 days', 'Family Size': 'Flexible; multi-generation',
+      'Plan Type': 'Individual / Floater (7 variants)', 'Sum Insured Range': '₹5L – ₹6 Cr', 'Entry Age (Adults)': '18 yrs – no limit', 'Entry Age (Children)': '91 days', 'Family Size': 'Flexible; multi-generation',
       'Room Rent': 'No cap (SI ≥ ₹7L); 1% per day for ₹5L SI', 'Co-Pay': 'Zero', 'Pre-Hospitalisation': '90 days', 'Post-Hospitalisation': '180 days', 'Day Care Procedures': '✓', 'AYUSH Cover': '✓', 'Modern Treatments': '✓', 'Domiciliary / Home Care': '✓',
       'Initial Waiting Period': '30 days', 'Pre-Existing Diseases (PED)': '36 months (VYTL: Day 1 for 7 chronic conditions)', 'Specific Illness Waiting': '24 months', 'Maternity Cover': '✓ VIP/VIP+ variants; VIP+ covers intl. delivery',
-      'No-Claim Bonus (NCB)': 'NCB non-erosive; grows up to 100% base SI', 'NCB Protected on Claim?': '✓ Non-erosive NCB', 'Restore / Recharge SI': '✓ Super Reload — 150% unrelated; unlimited in MAX+',
-      'OPD Cover': '✓ Tele-OPD + Chronic Care OPD (VYTL)', 'Annual Health Check-Up': '✓', 'Wellness / Reward Programme': '✓ HealthReturns — up to 100% premium back', 'International Cover': '✓ VIP (excl. USA/CAN); VIP+ (incl. USA/CAN)',
+      'No-Claim Bonus (NCB)': 'NCB non-erosive; grows up to 100% base SI', 'NCB Protected on Claim?': '✓ Non-erosive NCB', 'Restore / Recharge SI': '✓ Super Reload: 150% unrelated; unlimited in MAX+',
+      'OPD Cover': '✓ Tele-OPD + Chronic Care OPD (VYTL)', 'Annual Health Check-Up': '✓', 'Wellness / Reward Programme': '✓ HealthReturns, up to 100% premium back', 'International Cover': '✓ VIP (excl. USA/CAN); VIP+ (incl. USA/CAN)',
       'Claim Settlement Ratio': '~96% (FY 2024–25)', 'Incurred Claims Ratio': '~65%', 'Network Hospitals': '12,000+',
       'Best Suited For': 'HealthReturns up to 100% premium back; VYTL Day 1 chronic cover; VIP+ global cover incl. USA/CAN', 'Watch Out For': 'Room rent cap at ₹5L SI; best features available in higher variants only',
     },
     'Star Health|Super Star Value': {
-      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹5L – ₹1 Cr (+ Unlimited Limitless Care)', 'Entry Age — Adults': '18 yrs – no limit; max SI ₹50L for 65+', 'Entry Age — Children': '91 days', 'Family Size': '2 Adults + 4 Children',
+      'Plan Type': 'Individual / Floater', 'Sum Insured Range': '₹5L – ₹1 Cr (+ Unlimited Limitless Care)', 'Entry Age (Adults)': '18 yrs – no limit; max SI ₹50L for 65+', 'Entry Age (Children)': '91 days', 'Family Size': '2 Adults + 4 Children',
       'Room Rent': 'No cap (Premium variant)', 'Co-Pay': 'Zero (entry before 61); voluntary co-pay add-on available', 'Pre-Hospitalisation': '90 days', 'Post-Hospitalisation': '180 days', 'Day Care Procedures': '✓', 'AYUSH Cover': '✓', 'Modern Treatments': '✓ (robotic, oral chemo)', 'Domiciliary / Home Care': '✓',
       'Initial Waiting Period': '30 days', 'Pre-Existing Diseases (PED)': '36 months → Day 31 (Quick Shield add-on)', 'Specific Illness Waiting': '24 months', 'Maternity Cover': '✓ Add-on; max 4 deliveries; newborn Day 1',
       'No-Claim Bonus (NCB)': '50% p.a.; Super Star Bonus add-on: NCB never reduces on claim', 'NCB Protected on Claim?': '✓ Super Star Bonus add-on', 'Restore / Recharge SI': '✓ Unlimited auto after every claim',
       'OPD Cover': '✓ Annual check-up 1% SI; unlimited tele-consults', 'Annual Health Check-Up': '✓ Day 1', 'Wellness / Reward Programme': '✓ Freeze Your Age: premium locked to entry age until claim (entry ≤ 50)', 'International Cover': '✗',
-      'Claim Settlement Ratio': '~88% — below 90% benchmark ⚠', 'Incurred Claims Ratio': '~65%', 'Network Hospitals': '14,000+',
-      'Best Suited For': 'Freeze Your Age premium lock (entry ≤ 50); Limitless Care one unlimited lifetime claim; 21 add-on options', 'Watch Out For': 'CSR ~88% — notably below the 90% benchmark; higher probability of claim disputes on large claims',
+      'Claim Settlement Ratio': '~88%, below 90% benchmark ⚠', 'Incurred Claims Ratio': '~65%', 'Network Hospitals': '14,000+',
+      'Best Suited For': 'Freeze Your Age premium lock (entry ≤ 50); Limitless Care one unlimited lifetime claim; 21 add-on options', 'Watch Out For': 'CSR ~88%, notably below the 90% benchmark; higher probability of claim disputes on large claims',
     },
   };
 
@@ -354,7 +354,8 @@ export class HealthinsuranceComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.io?.disconnect();
     this.sectionObserver?.disconnect();
-    document.body.style.overflow = '';
+    // server-side render has no document
+    if (typeof document !== 'undefined') { document.body.style.overflow = ''; }
   }
 
   private setupReveal(): void {

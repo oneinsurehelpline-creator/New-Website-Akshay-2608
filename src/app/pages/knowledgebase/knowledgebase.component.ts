@@ -299,7 +299,7 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
         console.log('CustomerDetails response:', res);
         this.closeModal();
         this.form.reset({ name: '', phone: '', need: '' });
-        this.showToast(`Thanks ${firstName} — an advisor will call you shortly.`, 'success');
+        this.showToast(`Thanks, ${firstName}. An advisor will call you shortly.`, 'success');
         this.scheduleModal.open();
       },
       error: (err) => {
@@ -394,7 +394,8 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.revealIo?.disconnect();
     clearTimeout(this.toastTimer);
-    document.body.style.overflow = '';
+    // server-side render has no document
+    if (typeof document !== 'undefined') { document.body.style.overflow = ''; }
   }
 
   // reading progress bar

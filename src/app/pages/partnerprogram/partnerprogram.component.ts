@@ -65,7 +65,7 @@ export class PartnerprogramComponent implements AfterViewInit, OnDestroy {
       icon: 'grid',
       img: 'assets/images/icons/partners/multi-product-access.png',
       title: 'Multi-Product Access',
-      desc: 'Offer life, health, motor, investment, and corporate solutions from multiple insurers — all in one place.',
+      desc: 'Offer life, health, motor, investment, and corporate solutions from multiple insurers, all in one place.',
       tag: 'One platform · Many insurers',
     },
     {
@@ -100,7 +100,7 @@ export class PartnerprogramComponent implements AfterViewInit, OnDestroy {
       img: 'assets/images/icons/partners/better-customer-experience.png',
       num: '02',
       title: 'Better Customer Experience',
-      desc: 'Give clients a smooth, modern journey — from quote to claim — that reflects well on you.',
+      desc: 'Give clients a smooth, modern journey, from quote to claim, that reflects well on you.',
     },
     {
       icon: 'refresh',
@@ -489,7 +489,8 @@ export class PartnerprogramComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.io?.disconnect();
     this.countIo?.disconnect();
-    document.body.style.overflow = '';
+    // server-side render has no document
+    if (typeof document !== 'undefined') { document.body.style.overflow = ''; }
   }
 
   private setupReveal(): void {

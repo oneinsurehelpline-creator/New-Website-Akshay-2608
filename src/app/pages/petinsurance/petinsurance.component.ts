@@ -33,7 +33,7 @@ export class PetinsuranceComponent implements AfterViewInit, OnDestroy {
 
   // ---------- HERO ----------
   heroHeadline = "Pet bills shouldn't force a hard decision.";
-  heroSub = "Surgery, illness and accident cover for your dog or cat — so treatment is a medical call, not a financial one.";
+  heroSub = "Surgery, illness and accident cover for your dog or cat, so treatment is a medical call, not a financial one.";
   trustPoints = [
     'Dogs and cats',
     'Surgery and illness covered',
