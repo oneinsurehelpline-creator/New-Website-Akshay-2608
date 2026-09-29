@@ -428,12 +428,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 8px;
     text-align: center;
     background: #f8fbff;
     border: 1px solid #e5ecf4;
     border-radius: 12px;
-    padding: 10px 12px;
+    padding: 16px 12px 14px;
     text-decoration: none;
     transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
 }
@@ -455,8 +455,8 @@
 // }
 
 .icon-card__icon {
-    width: 64px;
-    height: 64px;
+    width: 96px;
+    height: 96px;
     flex-shrink: 0;
 }
 
@@ -465,13 +465,15 @@
     height: 100%;
     object-fit: contain;
     // filter: drop-shadow(0 4px 10px rgba(13, 43, 85, .14));
+    /* the source PNGs carry wide transparent margins — scale past them */
+    transform: scale(1.15);
     transition: transform .3s var(--ease);
 }
 
 .icon-card__name {
     font-family: var(--display);
     font-weight: 600;
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: -.1px;
     line-height: 1.6;
     color: var(--blue-deep);
@@ -601,8 +603,8 @@
     }
 
     .icon-card__icon {
-        width: 48px;
-        height: 48px;
+        width: 64px;
+        height: 64px;
     }
 
     .icon-card__name {
