@@ -59,6 +59,7 @@ export class HeaderComponent {
   /** Top-level links shown after the Products dropdown. */
   navLinks: NavLink[] = [
     // { label: 'About Us', route: '/about-us' },
+    { label: 'Services', route: '/service-support' },
     { label: 'Claim Support', route: '/insurance-claim-support' },
     // { label: 'OneInsure Money', href: 'https://www.oneinsure.money/' },    
     { label: 'Become a Partner', route: '/partner-program' },

@@ -40,6 +40,7 @@ const SCROLL_RATIO = 0.5;
 /** Routes where a sales prompt would be unwelcome. */
 const EXCLUDED = [
   '/insurance-claim-support',
+  '/service-support',
   '/career-opportunities',
   '/partner-program',
   '/privacy-policy',

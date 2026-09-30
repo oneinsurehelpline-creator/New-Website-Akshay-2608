@@ -23,6 +23,7 @@ import { FireinsuranceComponent } from './pages/fireinsurance/fireinsurance.comp
 import { CorporateinsuranceComponent } from './pages/corporateinsurance/corporateinsurance.component';
 import { EmployeremployeeinsuranceComponent } from './pages/employeremployeeinsurance/employeremployeeinsurance.component';
 import { TermsconditionsComponent } from './pages/termsconditions/termsconditions.component';
+import { ServicesupportComponent } from './pages/servicesupport/servicesupport.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'guaranteed-investment-plans', component: GuaranteedinvestmentplansComponent },
   { path: 'general-insurance', component: GeneralinsuranceComponent },
   { path: 'insurance-claim-support', component: ClaimsupportComponent },
+  { path: 'service-support', component: ServicesupportComponent },
   { path: 'partner-program', component: PartnerprogramComponent },
   { path: 'career-opportunities', component: CareersComponent },
   { path: 'privacy-policy', component: PrivacypolicyComponent },

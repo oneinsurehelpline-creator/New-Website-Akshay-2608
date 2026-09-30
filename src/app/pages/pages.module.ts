@@ -27,6 +27,7 @@ import { FireinsuranceComponent } from './fireinsurance/fireinsurance.component'
 import { CorporateinsuranceComponent } from './corporateinsurance/corporateinsurance.component';
 import { EmployeremployeeinsuranceComponent } from './employeremployeeinsurance/employeremployeeinsurance.component';
 import { TermsconditionsComponent } from './termsconditions/termsconditions.component';
+import { ServicesupportComponent } from './servicesupport/servicesupport.component';
 
 
 
@@ -55,6 +56,7 @@ import { TermsconditionsComponent } from './termsconditions/termsconditions.comp
     CorporateinsuranceComponent,
     EmployeremployeeinsuranceComponent,
     TermsconditionsComponent,
+    ServicesupportComponent,
   ],
   imports: [
     CommonModule,

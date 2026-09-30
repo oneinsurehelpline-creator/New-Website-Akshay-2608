@@ -1,0 +1,229 @@
+<!-- ============================================================
+  SERVICE SUPPORT: one page for every policy request.
+  Pick a category and a service to see what's needed, then either
+  let OneInsure handle it or contact the insurer directly.
+  ============================================================ -->
+
+<!-- HERO -->
+<section class="ss-hero">
+    <div class="container">
+        <span class="eyebrow reveal-up">Service support</span>
+        <h1 class="reveal-up" data-delay="1">Policy requests, <span class="accent">sorted.</span></h1>
+        <p class="reveal-up" data-delay="2">From a lost policy to a nominee change, see exactly what you need. Then let
+            us take it up with your insurer, or reach them yourself.</p>
+
+        <label class="ss-search reveal-up" data-delay="3">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="M20 20l-3.5-3.5"></path>
+            </svg>
+            <input type="search" [(ngModel)]="query" placeholder="Search, e.g. nominee, tax certificate, address"
+                aria-label="Search services">
+        </label>
+
+        <div class="ss-trust reveal-up" data-delay="4">
+            <span>Life, health &amp; motor</span>
+            <span>40+ insurers</span>
+            <span>An advisor calls within 24 hours</span>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="ss-services section--tight" id="services">
+    <div class="container">
+        <div class="ss-tabs" role="tablist" aria-label="Insurance type" [class.is-muted]="query">
+            <button *ngFor="let c of categories" type="button" role="tab" class="ss-tab"
+                [class.is-on]="!query && category === c.id" [attr.aria-selected]="!query && category === c.id"
+                (click)="setCategory(c.id)">
+                <img [src]="c.icon" alt="" width="40" height="40">
+                <span>
+                    <strong>{{ c.label }}</strong>
+                    <small>{{ c.blurb }}</small>
+                </span>
+            </button>
+        </div>
+
+        <p class="ss-results" *ngIf="query">
+            Results for "{{ query }}" <button type="button" (click)="query = ''">Clear</button>
+        </p>
+
+        <div class="ss-groups">
+            <div class="ss-group" *ngFor="let g of groups" [class.ss-group--other]="g.items[0].other">
+                <h2 class="ss-group__title">{{ g.title }}</h2>
+                <button type="button" class="ss-row" *ngFor="let s of g.items" (click)="open(s)">
+                    <span class="ss-row__text">
+                        <span class="ss-row__title">{{ s.title }}</span>
+                        <span class="ss-row__short">{{ s.other ? 'Tell us what you need and an advisor will help.' :
+                            s.short }}</span>
+                    </span>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                        <path d="M1 7h12m0 0L8 2m5 5l-5 5" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="ss-empty" *ngIf="!groups.length">
+            <strong>No service matches "{{ query }}".</strong>
+            <span>Tell us what you need and an advisor will help.</span>
+            <a class="btn btn--blue" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
+                appScheduleLink>Book a free call</a>
+        </div>
+    </div>
+</section>
+
+<!-- INSURER DIRECTORY -->
+<section class="ss-directory section--tight" id="insurers">
+    <div class="container">
+        <div class="ss-head reveal-up">
+            <h2>Contact your insurer <span class="accent">directly</span></h2>
+            <p>Tap an insurer to see their website, helpline and email.</p>
+        </div>
+        <div class="ss-subtabs" role="tablist" aria-label="Insurer type">
+            <button *ngFor="let c of categories" type="button" role="tab" [class.is-on]="category === c.id"
+                [attr.aria-selected]="category === c.id" (click)="setCategory(c.id)">{{ c.label }}</button>
+        </div>
+        <ng-container
+            *ngTemplateOutlet="insurerGrid; context: { cat: category, where: 'page' }"></ng-container>
+    </div>
+</section>
+
+<!-- HELP BAND -->
+<section class="ss-help section--tight">
+    <div class="container">
+        <div class="ss-help__card reveal-up">
+            <div>
+                <h2>Rather not deal with it yourself?</h2>
+                <p>Our advisors handle service requests with your insurer every day. Tell us what you need.</p>
+            </div>
+            <div class="ss-help__cta">
+                <a class="btn btn--orange btn--big" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
+                    appScheduleLink>Book a free call</a>
+                <a class="btn btn--outline btn--big" href="tel:+918655986559">Call 86559 86559</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+  SIDE PANEL: service details
+  ============================================================ -->
+<div class="ss-overlay" *ngIf="active" (click)="close()"></div>
+<aside class="ss-panel" *ngIf="active" role="dialog" aria-modal="true" [attr.aria-label]="active.title">
+    <div class="ss-panel__head">
+        <div>
+            <span class="eyebrow no-rule">{{ categoryLabel(active.category) }}</span>
+            <h3>{{ active.title }}</h3>
+            <p>{{ active.short }}</p>
+        </div>
+        <button type="button" class="ss-panel__x" (click)="close()" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="ss-panel__body">
+        <ng-container *ngIf="!active.other">
+            <!-- variants (e.g. how long the policy has lapsed) -->
+            <div class="ss-cases" *ngIf="active.cases" role="tablist">
+                <button *ngFor="let c of active.cases; let i = index" type="button" role="tab"
+                    [class.is-on]="activeCase === i" (click)="activeCase = i">{{ c.label }}</button>
+            </div>
+
+            <h4>What you'll need</h4>
+            <ul class="ss-needs">
+                <li *ngFor="let n of (active.cases ? active.cases[activeCase].needs : active.needs)">{{ n }}</li>
+            </ul>
+            <p class="ss-note" *ngIf="active.cases && active.cases[activeCase].note">{{ active.cases[activeCase].note }}
+            </p>
+
+            <h4>Usually done by</h4>
+            <div class="ss-ways">
+                <span *ngFor="let w of active.ways" class="ss-way ss-way--{{ w }}">{{ wayLabels[w] }}</span>
+            </div>
+            <p class="ss-fine">Exact steps differ by insurer. We'll confirm yours when we call.</p>
+
+            <ng-container *ngIf="active.tips.length">
+                <h4>Good to know</h4>
+                <ul class="ss-tips">
+                    <li *ngFor="let t of active.tips">{{ t }}</li>
+                </ul>
+            </ng-container>
+        </ng-container>
+
+        <p class="ss-lead" *ngIf="active.other">Not every request fits a list. Tell us what you need and an advisor
+            will take it up with your insurer.</p>
+
+        <!-- Option 1: let us do it -->
+        <div class="ss-handle">
+            <h4>Let OneInsure handle it</h4>
+            <ng-container *ngIf="!cbDone; else cbThanks">
+                <p>Leave your number. An advisor will call within 24 hours and take this up with your insurer.</p>
+                <form (ngSubmit)="sendCallback()" novalidate>
+                    <input type="text" name="name" [(ngModel)]="cbName" placeholder="Your name (optional)"
+                        autocomplete="name" maxlength="40">
+                    <input type="tel" name="phone" [(ngModel)]="cbPhone" placeholder="10-digit mobile number"
+                        autocomplete="tel-national" inputmode="numeric" maxlength="14" [attr.aria-invalid]="!!cbError">
+                    <select name="insurer" [(ngModel)]="cbInsurer" aria-label="Your insurer">
+                        <option value="">Your insurer (optional)</option>
+                        <option *ngFor="let i of insurersFor(active.category)" [value]="i.id">{{ i.name }}</option>
+                    </select>
+                    <div class="ss-err" *ngIf="cbError">{{ cbError }}</div>
+                    <button class="btn btn--blue" type="submit" [disabled]="cbSending">
+                        {{ cbSending ? 'Sending…' : 'Request a callback' }}
+                    </button>
+                </form>
+                <a class="ss-link" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
+                    appScheduleLink>Or pick a time for a call</a>
+            </ng-container>
+            <ng-template #cbThanks>
+                <p class="ss-done"><strong>Thanks{{ cbName.trim() ? ', ' + cbName.trim() : '' }}!</strong> An advisor
+                    will call you within 24 hours about "{{ active.title }}".</p>
+            </ng-template>
+        </div>
+
+        <!-- Option 2: do it yourself -->
+        <div class="ss-self">
+            <h4>Or contact your insurer</h4>
+            <p>Tap your insurer for their contact details.</p>
+            <ng-container
+                *ngTemplateOutlet="insurerGrid; context: { cat: active.category, where: 'panel' }"></ng-container>
+        </div>
+    </div>
+</aside>
+
+<!-- ============================================================
+  Insurer logo grid + contact card (used on the page and in the panel)
+  ============================================================ -->
+<ng-template #insurerGrid let-cat="cat" let-where="where">
+    <div class="ss-insurers" [class.ss-insurers--compact]="where === 'panel'">
+        <button type="button" class="ss-ins" *ngFor="let i of insurersFor(cat)"
+            [class.is-on]="openInsurer[$any(where)] === i.id" [attr.aria-expanded]="openInsurer[$any(where)] === i.id"
+            (click)="toggleInsurer($any(where), i.id)" [attr.aria-label]="i.name">
+            <img *ngIf="i.logo; else tile" [src]="i.logo" [alt]="i.name" loading="lazy">
+            <ng-template #tile>
+                <span class="ss-ins__tile">
+                    <b>{{ initials(i.name) }}</b>
+                    <small>{{ i.name }}</small>
+                </span>
+            </ng-template>
+        </button>
+    </div>
+
+    <ng-container *ngIf="insurerById(openInsurer[$any(where)]) as ins">
+        <div class="ss-contact">
+            <div class="ss-contact__head">
+                <strong>{{ ins.name }}</strong>
+                <span *ngIf="ins.formerly">Formerly {{ ins.formerly }}</span>
+            </div>
+            <div class="ss-contact__rows">
+                <a [href]="ins.website" target="_blank" rel="noopener noreferrer">
+                    <span>Website</span>{{ ins.website.replace('https://', '').replace('www.', '') }}
+                </a>
+                <a *ngIf="ins.phone" [href]="telHref(ins.phone)"><span>Helpline</span>{{ ins.phone }}</a>
+                <a *ngIf="ins.email" [href]="'mailto:' + ins.email"><span>Email</span>{{ ins.email }}</a>
+            </div>
+            <p class="ss-fine">Insurer details can change. If anything doesn't work, call us on 86559 86559.</p>
+        </div>
+    </ng-container>
+</ng-template>
