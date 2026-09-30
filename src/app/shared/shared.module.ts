@@ -9,6 +9,7 @@ import { BranchComponent } from './branch/branch.component';
 import { VideoModalComponent } from './video-modal/video-modal.component';
 import { ScheduleModalComponent } from './schedule-modal/schedule-modal.component';
 import { ScheduleCtaDirective } from './schedule-modal/schedule-cta.directive';
+import { LoginModalComponent } from './login-modal/login-modal.component'; 
 
 
 
@@ -20,7 +21,8 @@ import { ScheduleCtaDirective } from './schedule-modal/schedule-cta.directive';
     BranchComponent,
     VideoModalComponent,
     ScheduleModalComponent,
-    ScheduleCtaDirective
+    ScheduleCtaDirective,
+    LoginModalComponent, 
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { ScheduleCtaDirective } from './schedule-modal/schedule-cta.directive';
     BranchComponent,
     VideoModalComponent,
     ScheduleModalComponent,
-    ScheduleCtaDirective
+    ScheduleCtaDirective,
+    LoginModalComponent
   ]
 })
 export class SharedModule { }

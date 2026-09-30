@@ -23,6 +23,8 @@ import { FireinsuranceComponent } from './pages/fireinsurance/fireinsurance.comp
 import { CorporateinsuranceComponent } from './pages/corporateinsurance/corporateinsurance.component';
 import { EmployeremployeeinsuranceComponent } from './pages/employeremployeeinsurance/employeremployeeinsurance.component';
 import { TermsconditionsComponent } from './pages/termsconditions/termsconditions.component';
+import { MyaccountComponent } from './pages/myaccount/myaccount.component';
+import { authGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -39,6 +41,8 @@ const routes: Routes = [
   { path: 'privacy-policy', component: PrivacypolicyComponent },
   { path: 'knowledge-base', component: KnowledgebaseComponent},
   { path: 'terms-conditions', component: TermsconditionsComponent},
+  { path: 'my-account', component: MyaccountComponent, canActivate: [authGuard] },
+  { path: 'my-account/:tab', component: MyaccountComponent, canActivate: [authGuard] },
   { path: 'regulatory-disclosures', component: RegulatorydisclosuresComponent },
   { path: 'critical-illness-plans', component: CriticalillnessplansComponent },
   { path: 'personal-accident-insurance', component: PersonalaccidentplansComponent },

@@ -1,0 +1,217 @@
+:host {
+    display: contents;
+}
+
+.lmodal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(8, 20, 40, .8);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    animation: lmodalFade .2s ease both;
+}
+
+@keyframes lmodalFade {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.lmodal__panel {
+    background: #fff;
+    border-radius: 18px;
+    max-width: 420px;
+    width: 100%;
+    padding: 36px 32px 28px;
+    position: relative;
+    box-shadow: 0 24px 80px rgba(8, 20, 40, .5);
+    animation: lmodalPop .28s cubic-bezier(.34, 1.4, .64, 1) both;
+}
+
+@keyframes lmodalPop {
+    from {
+        transform: translateY(14px) scale(.97);
+        opacity: 0
+    }
+
+    to {
+        transform: none;
+        opacity: 1
+    }
+}
+
+.lmodal__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--g100, #f1f3f5);
+    border: none;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    color: var(--blue-deep, #0d2b55);
+    font-size: 24px;
+    line-height: 34px;
+    border-radius: 50%;
+    transition: all .2s ease;
+
+    &:hover {
+        background: var(--orange, #F5A011);
+        color: #fff;
+    }
+}
+
+.lmodal__logo {
+    width: 130px;
+    height: auto;
+    margin-bottom: 18px;
+}
+
+.lmodal__title {
+    font: 700 22px/1.25 var(--display, sans-serif);
+    color: var(--blue-deep, #0d2b55);
+    margin: 0 0 6px;
+}
+
+.lmodal__sub {
+    font: 500 13.5px/1.5 var(--sans, sans-serif);
+    color: var(--g600, #4a5568);
+    margin: 0 0 22px;
+
+    strong {
+        color: var(--blue-deep, #0d2b55);
+    }
+}
+
+.lmodal__label {
+    display: block;
+    font: 600 12.5px var(--sans, sans-serif);
+    color: var(--g700, #2d3748);
+    margin-bottom: 8px;
+}
+
+.lmodal__phone {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--g300, #cbd0d8);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color .2s ease, box-shadow .2s ease;
+
+    &:focus-within {
+        border-color: var(--blue, #00B0FF);
+        box-shadow: 0 0 0 3px rgba(0, 176, 255, .15);
+    }
+
+    &.has-error {
+        border-color: #e53e3e;
+    }
+
+    input {
+        flex: 1;
+        min-width: 0;
+        border: 0;
+        outline: 0;
+        padding: 13px 14px;
+        font: 600 15px var(--sans, sans-serif);
+        color: var(--g800, #1a202c);
+        letter-spacing: .5px;
+    }
+}
+
+.lmodal__cc {
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    background: var(--g100, #f1f3f5);
+    border-right: 1px solid var(--g300, #cbd0d8);
+    font: 700 14px var(--sans, sans-serif);
+    color: var(--blue-deep, #0d2b55);
+}
+
+.lmodal__otp {
+    width: 100%;
+    border: 1px solid var(--g300, #cbd0d8);
+    border-radius: 12px;
+    outline: 0;
+    padding: 13px 14px;
+    text-align: center;
+    font: 700 22px var(--sans, sans-serif);
+    letter-spacing: 12px;
+    color: var(--g800, #1a202c);
+    transition: border-color .2s ease, box-shadow .2s ease;
+
+    &:focus {
+        border-color: var(--blue, #00B0FF);
+        box-shadow: 0 0 0 3px rgba(0, 176, 255, .15);
+    }
+
+    &.has-error {
+        border-color: #e53e3e;
+    }
+}
+
+.lmodal__error {
+    margin: 8px 0 0;
+    font: 600 12.5px var(--sans, sans-serif);
+    color: #e53e3e;
+}
+
+.lmodal__submit {
+    width: 100%;
+    justify-content: center;
+    margin-top: 22px;
+    border: 0;
+    cursor: pointer;
+
+    // Bootstrap's .btn:disabled clears the background — keep the brand blue.
+    &:disabled {
+        background: var(--blue, #00B0FF);
+        color: #fff;
+        opacity: .5;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+.lmodal__resend {
+    margin: 16px 0 0;
+    text-align: center;
+    font: 500 13px var(--sans, sans-serif);
+    color: var(--g600, #4a5568);
+}
+
+.lmodal__link {
+    background: none;
+    border: 0;
+    padding: 0;
+    margin-left: 4px;
+    font: 700 13px var(--sans, sans-serif);
+    color: var(--blue, #00B0FF);
+    cursor: pointer;
+
+    &:disabled {
+        color: var(--g400, #9aa3af);
+        cursor: default;
+    }
+}
+
+@media (max-width: 600px) {
+    .lmodal {
+        padding: 16px;
+    }
+
+    .lmodal__panel {
+        padding: 32px 20px 24px;
+    }
+}

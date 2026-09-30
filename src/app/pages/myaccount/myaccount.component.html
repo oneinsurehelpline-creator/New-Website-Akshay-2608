@@ -1,0 +1,178 @@
+<section class="acct">
+    <div class="container acct__inner" *ngIf="isBrowser">
+
+        <!-- ============ SIDEBAR ============ -->
+        <aside class="acct__side">
+            <nav class="acct__nav" aria-label="My account">
+                <a *ngFor="let item of navItems" class="acct__nav-item" [class.is-active]="tab === item.key"
+                    [routerLink]="tabLink(item.key)" [attr.aria-current]="tab === item.key ? 'page' : null">
+                    <ng-container [ngSwitch]="item.key">
+                        <!-- Dashboard -->
+                        <svg *ngSwitchCase="'dashboard'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7.5" height="9" rx="1.5" />
+                            <rect x="13.5" y="3" width="7.5" height="5" rx="1.5" />
+                            <rect x="13.5" y="11" width="7.5" height="10" rx="1.5" />
+                            <rect x="3" y="15" width="7.5" height="6" rx="1.5" />
+                        </svg>
+                        <!-- Policies -->
+                        <svg *ngSwitchCase="'policies'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4.5" y="3.5" width="15" height="18" rx="2" />
+                            <path d="M9 2.5h6v2.5H9z" />
+                            <circle cx="8.5" cy="10" r=".6" />
+                            <path d="M11 10h5" />
+                            <circle cx="8.5" cy="14" r=".6" />
+                            <path d="M11 14h5" />
+                            <path d="M8.5 18h7.5" />
+                        </svg>
+                        <!-- Claims -->
+                        <svg *ngSwitchCase="'claims'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21.5H6.5a2 2 0 0 1-2-2v-14a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2V9" />
+                            <path d="M9 2.5h5v2.5H9z" />
+                            <circle cx="16.5" cy="16.5" r="5" />
+                            <path d="M14.8 14.3h3.6M14.8 15.9h3.6M16 14.3c1.4 0 1.4 3.2 0 3.2h-1.2l2.4 2.3" />
+                        </svg>
+                        <!-- Profile -->
+                        <svg *ngSwitchCase="'profile'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="4" />
+                            <path d="M4.5 21c0-4 3.4-6.5 7.5-6.5s7.5 2.5 7.5 6.5" />
+                        </svg>
+                    </ng-container>
+                    <span>{{ item.label }}</span>
+                </a>
+
+                <button class="acct__nav-item acct__logout" type="button" (click)="logout()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3" />
+                        <path d="M10 17l-5-5 5-5M5 12h11" />
+                    </svg>
+                    <span>Logout</span>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- ============ CONTENT ============ -->
+        <main class="acct__main">
+
+            <!-- Dashboard -->
+            <ng-container *ngIf="tab === 'dashboard'">
+                <header class="acct__hello">
+                    <h1>Hi, <span class="acct__name">{{ firstName }}!</span> <span class="wave">👋</span></h1>
+                    <p>How have you been?</p>
+                </header>
+
+                <div class="acct__card">
+                    <h2 class="acct__title">Let's find the <br> right insurance for you</h2>
+
+                    <div class="prod-grid">
+                        <a class="prod" *ngFor="let p of products" [routerLink]="p.route">
+                            <img class="prod__img" [src]="p.img" [alt]="p.title" loading="lazy">
+                            <h3>{{ p.title }}</h3>
+                            <p>{{ p.desc }}</p>
+                            <span class="prod__go" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M13 6l6 6-6 6" />
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </ng-container>
+
+            <!-- Your policies -->
+            <ng-container *ngIf="tab === 'policies'">
+                <header class="acct__hello">
+                    <h1>Your policies</h1>
+                    <p>All the policies you've bought through OneInsure, in one place.</p>
+                </header>
+
+                <div class="acct__card">
+                    <div class="empty" *ngIf="!policies.length">
+                        <img src="assets/images/icons/05_TULIP_Plans.png" alt="">
+                        <h3>No policies yet</h3>
+                        <p>Policies linked to +91 {{ mobile }} will show up here.</p>
+                        <a class="btn btn--blue" routerLink="/my-account">Explore plans</a>
+                    </div>
+                </div>
+            </ng-container>
+
+            <!-- Claims -->
+            <ng-container *ngIf="tab === 'claims'">
+                <header class="acct__hello">
+                    <h1>Claims</h1>
+                    <p>Track the status of your claims.</p>
+                </header>
+
+                <div class="acct__card">
+                    <div class="empty" *ngIf="!claims.length">
+                        <img src="assets/images/icons/14_Personal_Accident.png" alt="">
+                        <h3>No claims raised</h3>
+                        <p>Need to file a claim? Our team will guide you through every step.</p>
+                        <a class="btn btn--blue" routerLink="/insurance-claim-support">Get claim support</a>
+                    </div>
+                </div>
+            </ng-container>
+
+            <!-- Profile -->
+            <ng-container *ngIf="tab === 'profile'">
+                <header class="acct__hello">
+                    <h1>Profile</h1>
+                    <p>Keep your details up to date.</p>
+                </header>
+
+                <div class="acct__card">
+                    <form class="pform" (ngSubmit)="saveProfile()" #pf="ngForm">
+                        <div class="pform__row">
+                            <label for="pfName">Full name</label>
+                            <input id="pfName" name="name" type="text" [(ngModel)]="profile.name"
+                                (ngModelChange)="profileSaved = false" placeholder="Your full name" autocomplete="name">
+                        </div>
+                        <div class="pform__row">
+                            <label for="pfMobile">Mobile number</label>
+                            <input id="pfMobile" type="text" [value]="'+91 ' + mobile" disabled>
+                        </div>
+                        <div class="pform__row">
+                            <label for="pfEmail">Email</label>
+                            <input id="pfEmail" name="email" type="email" [(ngModel)]="profile.email"
+                                (ngModelChange)="profileSaved = false" placeholder="you@example.com"
+                                autocomplete="email" email #em="ngModel">
+                            <small class="pform__err" *ngIf="em.invalid && em.touched">Please enter a valid
+                                email.</small>
+                        </div>
+                        <div class="pform__row">
+                            <label for="pfDob">Date of birth</label>
+                            <input id="pfDob" name="dob" type="date" [(ngModel)]="profile.dob"
+                                (ngModelChange)="profileSaved = false">
+                        </div>
+                        <div class="pform__row">
+                            <label for="pfGender">Gender</label>
+                            <select id="pfGender" name="gender" [(ngModel)]="profile.gender"
+                                (ngModelChange)="profileSaved = false">
+                                <option value="">Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="pform__row">
+                            <label for="pfCity">City</label>
+                            <input id="pfCity" name="city" type="text" [(ngModel)]="profile.city"
+                                (ngModelChange)="profileSaved = false" placeholder="Your city"
+                                autocomplete="address-level2">
+                        </div>
+
+                        <div class="pform__actions">
+                            <button class="btn btn--blue" type="submit" [disabled]="pf.invalid">Save changes</button>
+                            <span class="pform__ok" *ngIf="profileSaved">✓ Saved</span>
+                        </div>
+                    </form>
+                </div>
+            </ng-container>
+        </main>
+    </div>
+</section>
