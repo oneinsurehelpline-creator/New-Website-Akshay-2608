@@ -482,14 +482,14 @@ export const INSURERS: InsurerContact[] = [
   { id: 'tata-aia', name: 'Tata AIA Life', categories: ['life'], logo: L + 'tata-aia.png', website: 'https://www.tataaia.com', phone: '1860 266 9966', email: 'customercare@tataaia.com' },
   { id: 'kotak-life', name: 'Kotak Life', categories: ['life'], logo: S + 'kotak-life-insurance.png', website: 'https://www.kotaklife.com', phone: '1800 209 8800', email: 'clientservicedesk@kotak.com' },
   { id: 'canara-hsbc', name: 'Canara HSBC Life', categories: ['life'], logo: L + 'CanaraHSBC.jpg', website: 'https://www.canarahsbclife.com', phone: '1800 103 0003', email: 'customerservice@canarahsbclife.in' },
-  { id: 'bandhan-life', name: 'Bandhan Life', formerly: 'Aegon Life', categories: ['life'], website: 'https://www.bandhanlife.com', phone: '1800 209 9090' },
+  { id: 'bandhan-life', name: 'Bandhan Life', formerly: 'Aegon Life', categories: ['life'], logo: L + 'BandhanLife.svg', website: 'https://www.bandhanlife.com', phone: '1800 209 9090' },
   { id: 'bharti-axa-life', name: 'Bharti AXA Life', categories: ['life'], logo: S + 'bharti-axa-life-insurance.png', website: 'https://www.bhartiaxa.com', phone: '1800 102 4444', email: 'service@bharti-axalife.com' },
   { id: 'aviva', name: 'Aviva Life', categories: ['life'], logo: S + 'aviva-life-insurance.png', website: 'https://www.avivaindia.com', phone: '1800 103 7766', email: 'customerservices@avivaindia.com' },
-  { id: 'indusind-nippon', name: 'IndusInd Nippon Life', formerly: 'Reliance Nippon Life', categories: ['life'], website: 'https://www.indusindnipponlife.com', phone: '1800 102 1010' },
-  { id: 'edelweiss-life', name: 'Edelweiss Life', formerly: 'Edelweiss Tokio Life', categories: ['life'], website: 'https://www.edelweisslife.in', phone: '1800 212 1212' },
-  { id: 'generali-central-life', name: 'Generali Central Life', formerly: 'Future Generali Life', categories: ['life'], website: 'https://www.generalicentrallife.com', phone: '1800 102 2355' },
-  { id: 'ageas-federal', name: 'Ageas Federal Life', formerly: 'IDBI Federal Life', categories: ['life'], website: 'https://www.ageasfederal.com', phone: '1800 209 0502' },
-  { id: 'pramerica', name: 'Pramerica Life', formerly: 'DHFL Pramerica Life', categories: ['life'], website: 'https://pramericalife.in', phone: '1800 102 7070' },
+  { id: 'indusind-nippon', name: 'IndusInd Nippon Life', formerly: 'Reliance Nippon Life', categories: ['life'], logo: L + 'IndusIndNipponLife.png', website: 'https://www.indusindnipponlife.com', phone: '1800 102 1010' },
+  { id: 'edelweiss-life', name: 'Edelweiss Life', formerly: 'Edelweiss Tokio Life', categories: ['life'], logo: L + 'EdelweissLife.webp', website: 'https://www.edelweisslife.in', phone: '1800 212 1212' },
+  { id: 'generali-central-life', name: 'Generali Central Life', formerly: 'Future Generali Life', categories: ['life'], logo: L + 'GeneraliCentralLife.svg', website: 'https://www.generalicentrallife.com', phone: '1800 102 2355' },
+  { id: 'ageas-federal', name: 'Ageas Federal Life', formerly: 'IDBI Federal Life', categories: ['life'], logo: L + 'AgeasFederalLife.svg', website: 'https://www.ageasfederal.com', phone: '1800 209 0502' },
+  { id: 'pramerica', name: 'Pramerica Life', formerly: 'DHFL Pramerica Life', categories: ['life'], logo: L + 'PramericaLife.svg', website: 'https://pramericalife.in', phone: '1800 102 7070' },
 
   // ---- Standalone health insurers
   { id: 'star', name: 'Star Health', categories: ['health'], logo: L + 'Star_Health_and_Allied_Insurance.png', website: 'https://www.starhealth.in', phone: '1800 425 2255', email: 'support@starhealth.in' },
@@ -511,13 +511,13 @@ export const INSURERS: InsurerContact[] = [
   { id: 'royal-sundaram', name: 'Royal Sundaram', categories: ['health', 'motor'], logo: L + 'RoyalSundaram.png', website: 'https://www.royalsundaram.in', phone: '1860 425 0000', email: 'customer.services@royalsundaram.in' },
   { id: 'chola-ms', name: 'Chola MS', categories: ['health', 'motor'], logo: L + 'Cholamandalaminsurance.png', website: 'https://www.cholainsurance.com', phone: '1800 200 5544', email: 'customercare@cholams.murugappa.com' },
   { id: 'iffco-tokio', name: 'IFFCO Tokio', categories: ['health', 'motor'], logo: S + 'iffco-tokio-general-insurance.png', website: 'https://www.iffcotokio.co.in', phone: '1800 103 5499', email: 'support@iffcotokio.co.in' },
-  { id: 'indusind-general', name: 'IndusInd General', formerly: 'Reliance General', categories: ['health', 'motor'], website: 'https://www.indusindinsurance.com', phone: '1800 3009' },
+  { id: 'indusind-general', name: 'IndusInd General', formerly: 'Reliance General', categories: ['health', 'motor'], logo: L + 'IndusIndGeneral.png', website: 'https://www.indusindinsurance.com', phone: '1800 3009' },
   { id: 'generali-central', name: 'Generali Central Insurance', formerly: 'Future Generali India', categories: ['health', 'motor'], logo: L + 'GeneraliCentral.png', website: 'https://www.generalicentralinsurance.com', phone: '1800 220 233' },
   { id: 'liberty', name: 'Liberty General', formerly: 'Liberty Videocon', categories: ['health', 'motor'], logo: L + 'Libertyinsurance.jpg', website: 'https://www.libertyinsurance.in', phone: '1800 266 5844' },
   { id: 'zurich-kotak', name: 'Zurich Kotak General', formerly: 'Kotak General', categories: ['health', 'motor'], logo: L + 'Zurich-Kotak.png', website: 'https://www.zurichkotak.com' },
 
   // ---- Motor-only
   { id: 'shriram', name: 'Shriram General', categories: ['motor'], logo: S + 'shriram-general-insurance.png', website: 'https://www.shriramgi.com', phone: '1800 300 30000' },
-  { id: 'magma', name: 'Magma General', formerly: 'Magma HDI', categories: ['motor'], website: 'https://www.magmainsurance.com', phone: '1800 3002 3202' },
+  { id: 'magma', name: 'Magma General', formerly: 'Magma HDI', categories: ['motor'], logo: L + 'MagmaGeneral.svg', website: 'https://www.magmainsurance.com', phone: '1800 3002 3202' },
   { id: 'digit', name: 'Go Digit', categories: ['motor'], logo: L + 'Go-Digit.png', website: 'https://www.godigit.com' },
 ];

@@ -19,6 +19,7 @@ export class ServicesupportComponent implements AfterViewInit, OnDestroy {
 
   category: ServiceCategory = 'life';
   query = '';
+  searchOpen = false;
 
   /** Service open in the side panel. */
   active: ServiceItem | null = null;
@@ -48,19 +49,22 @@ export class ServicesupportComponent implements AfterViewInit, OnDestroy {
 
   // ---------- lists ----------
 
+  /** Services for the selected category, grouped. */
   get groups(): ServiceGroup[] {
-    const q = this.query.trim().toLowerCase();
-    const items = SERVICES.filter((s) => q
-      ? `${s.title} ${s.short} ${s.group}`.toLowerCase().includes(q) && !s.other
-      : s.category === this.category);
     const groups: ServiceGroup[] = [];
-    for (const s of items) {
-      const title = q ? this.categoryLabel(s.category) : s.group;
-      let g = groups.find((x) => x.title === title);
-      if (!g) { g = { title, items: [] }; groups.push(g); }
+    for (const s of SERVICES.filter((x) => x.category === this.category)) {
+      let g = groups.find((x) => x.title === s.group);
+      if (!g) { g = { title: s.group, items: [] }; groups.push(g); }
       g.items.push(s);
     }
     return groups;
+  }
+
+  /** Search matches across every category, shown in the dropdown under the search bar. */
+  get hits(): ServiceItem[] {
+    const q = this.query.trim().toLowerCase();
+    if (q.length < 2) { return []; }
+    return SERVICES.filter((s) => !s.other && `${s.title} ${s.short} ${s.group}`.toLowerCase().includes(q));
   }
 
   insurersFor(cat: ServiceCategory): InsurerContact[] {
@@ -88,8 +92,24 @@ export class ServicesupportComponent implements AfterViewInit, OnDestroy {
 
   setCategory(cat: ServiceCategory): void {
     this.category = cat;
-    this.query = '';
     this.openInsurer.page = null;
+  }
+
+  clearSearch(): void {
+    this.query = '';
+    this.searchOpen = false;
+  }
+
+  /** Pick a search result: switch to its category and open it in the panel. */
+  pickHit(s: ServiceItem): void {
+    this.category = s.category;
+    this.searchOpen = false;
+    this.open(s);
+  }
+
+  openFirstHit(): void {
+    const first = this.hits[0];
+    if (first) { this.pickHit(first); }
   }
 
   open(s: ServiceItem): void {
@@ -107,10 +127,27 @@ export class ServicesupportComponent implements AfterViewInit, OnDestroy {
 
   toggleInsurer(where: 'panel' | 'page', id: string): void {
     this.openInsurer[where] = this.openInsurer[where] === id ? null : id;
+    if (!this.openInsurer[where] || !this.isBrowser) { return; }
+    // wait for the contact card to render, then bring it into view
+    setTimeout(() => {
+      this.host.nativeElement.querySelector<HTMLElement>(`.ss-contact[data-where="${where}"]`)
+        ?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
   }
 
   @HostListener('document:keydown.escape')
-  onEsc(): void { if (this.active) { this.close(); } }
+  onEsc(): void {
+    if (this.active) { this.close(); return; }
+    this.searchOpen = false;
+  }
+
+  /** Close the search dropdown when clicking outside it. */
+  @HostListener('document:click', ['$event'])
+  onDocClick(e: MouseEvent): void {
+    if (!this.searchOpen) { return; }
+    const search = this.host.nativeElement.querySelector('.ss-search');
+    if (search && !search.contains(e.target as Node)) { this.searchOpen = false; }
+  }
 
   sendCallback(): void {
     if (!this.active) { return; }
