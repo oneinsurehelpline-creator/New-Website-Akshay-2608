@@ -105,7 +105,7 @@ h2.headline {
     white-space: nowrap;
 }
 
-.hl-fixed { 
+.hl-fixed {
 
     .one {
         color: var(--blue) !important;
@@ -125,7 +125,7 @@ h2.headline {
     font-family: var(--serif);
     font-style: italic;
     font-weight: 400;
-    font-size: 0.85em;
+    font-size: 0.65em;
     letter-spacing: 0;
     color: var(--blue-deep) !important;
 }
@@ -3298,7 +3298,7 @@ select.txt-input {
 .community-proof {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 24px;
     max-width: 460px;
     margin-top: 28px;
 }
@@ -3407,6 +3407,7 @@ select.txt-input {
    landing on top of the character — drop them rather than chase positions
    across every width. */
 @media (max-width: 1200px) {
+
     .saarth-widget,
     .claim-tracker,
     .quote,
@@ -4537,11 +4538,21 @@ h2 .accent-orange {
     }
 
     .deckEl {
-        height: calc(100vh - 240px);
+        height: calc(100vh - 200px);
     }
 
     .hero {
         padding: 0;
+    }
+
+    .s2 {
+        background: radial-gradient(1100px 600px at 88% 0%, #FEF0DA 0%, transparent 55%), radial-gradient(1000px 540px at 5% 90%, #DDF3FF 0%, transparent 60%), linear-gradient(180deg, #FFFDF8 0%, #F6FBFF 100%);
+    }
+
+    .s4 {
+        background:
+            radial-gradient(900px 500px at 50% 0%, #FEF0DA 0%, transparent 60%),
+            linear-gradient(180deg, #FFFDF8 0%, #F6FBFF 100%);
     }
 
     /* strip hidden below, so minimal reserve */
@@ -4577,6 +4588,13 @@ h2 .accent-orange {
     .hero__cta,
     .hero__trust {
         justify-content: center;
+    }
+
+    .s2 {
+        .hero__cta {
+            flex-direction: column;
+            align-items: center;
+        }
     }
 
     /* the hero visual: drop the negative offset and scale to fit */
@@ -4660,7 +4678,7 @@ h2 .accent-orange {
        changes (the line under it still blinks). */
     .hl-fixed {
         display: block;
-        font-size: 1.35em;
+        font-size: 1.15em;
         line-height: 1.05;
         letter-spacing: -1.5px;
     }
@@ -4677,7 +4695,7 @@ h2 .accent-orange {
 
     .hero__sub {
         margin-top: 20px;
-        font-size: 18px;
+        font-size: 16px;
         max-width: 580px;
     }
 
@@ -4822,11 +4840,11 @@ h2 .accent-orange {
         display: none;
     }
 
-    .community-proof {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px 22px;
-    }
+    // .community-proof {
+    //     display: flex;
+    //     flex-wrap: wrap;
+    //     gap: 10px 22px;
+    // }
 
     .community-proof .scard {
         padding: 0;
