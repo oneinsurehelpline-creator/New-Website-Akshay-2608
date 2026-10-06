@@ -9,6 +9,7 @@ import { BranchComponent } from './branch/branch.component';
 import { VideoModalComponent } from './video-modal/video-modal.component';
 import { ScheduleModalComponent } from './schedule-modal/schedule-modal.component';
 import { ScheduleCtaDirective } from './schedule-modal/schedule-cta.directive';
+import { PlanNudgeComponent } from './plan-nudge/plan-nudge.component';
 
 
 
@@ -20,7 +21,8 @@ import { ScheduleCtaDirective } from './schedule-modal/schedule-cta.directive';
     BranchComponent,
     VideoModalComponent,
     ScheduleModalComponent,
-    ScheduleCtaDirective
+    ScheduleCtaDirective,
+    PlanNudgeComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { ScheduleCtaDirective } from './schedule-modal/schedule-cta.directive';
     BranchComponent,
     VideoModalComponent,
     ScheduleModalComponent,
-    ScheduleCtaDirective
+    ScheduleCtaDirective,
+    PlanNudgeComponent
   ]
 })
 export class SharedModule { }

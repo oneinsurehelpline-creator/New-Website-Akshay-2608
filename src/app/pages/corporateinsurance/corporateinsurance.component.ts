@@ -50,7 +50,7 @@ export class CorporateinsuranceComponent implements AfterViewInit, OnDestroy {
   // ---------- THE PROBLEM ----------
   problemParagraphs = [
     'Most companies insure what they can see. The building, the stock, the fleet.',
-    "The losses that actually take companies down are the ones with no physical form — a regulator's notice, a shareholder suit, a ransomware note, an obituary. These arrive without warning, cost more than any fire, and sit entirely outside a standard corporate policy.",
+    "The losses that actually take companies down are the ones with no physical form: a regulator's notice, a shareholder suit, a ransomware note, an obituary. These arrive without warning, cost more than any fire, and sit entirely outside a standard corporate policy.",
     'This page covers the three that matter most.',
   ];
 
@@ -59,7 +59,7 @@ export class CorporateinsuranceComponent implements AfterViewInit, OnDestroy {
     {
       title: 'Directors & Officers Liability',
       tagline: "When the company is sued, the company defends itself. When a director is sued, that's personal.",
-      body: 'D&O liability sits on the individual — personal assets, personal savings, personal reputation. Claims come from shareholders, regulators, employees, competitors and creditors. Defence costs alone routinely run into crores, long before anyone is found liable of anything.',
+      body: 'D&O liability sits on the individual: personal assets, personal savings, personal reputation. Claims come from shareholders, regulators, employees, competitors and creditors. Defence costs alone routinely run into crores, long before anyone is found liable of anything.',
       covers: [
         'Defence costs, settlements and awards',
         'Regulatory investigation costs',
@@ -86,7 +86,7 @@ export class CorporateinsuranceComponent implements AfterViewInit, OnDestroy {
     {
       title: 'Keyman Insurance',
       tagline: "Insure the person the business can't replace.",
-      body: 'Every company has someone whose absence would be visible in the next quarter\'s numbers — a founder, a technical head, a rainmaker who owns the client relationships. Keyman cover pays the company, not the family, so the business can absorb the shock and buy time to rebuild.',
+      body: 'Every company has someone whose absence would be visible in the next quarter\'s numbers: a founder, a technical head, a rainmaker who owns the client relationships. Keyman cover pays the company, not the family, so the business can absorb the shock and buy time to rebuild.',
       covers: [
         'A lump sum to the company on the death of a named individual',
         'Optional critical illness extension',
@@ -103,7 +103,7 @@ export class CorporateinsuranceComponent implements AfterViewInit, OnDestroy {
     {
       num: '1',
       title: 'Exposure mapping.',
-      desc: 'We go through your structure, your contracts, your data footprint and your cap table — and identify where the real liability sits.',
+      desc: 'We go through your structure, your contracts, your data footprint and your cap table, and identify where the real liability sits.',
     },
     {
       num: '2',

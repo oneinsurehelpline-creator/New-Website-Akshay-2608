@@ -86,12 +86,12 @@ export class MarketlinkedplansComponent implements AfterViewInit, OnDestroy {
     },
     {
       title: 'Life cover throughout the policy',
-      desc: 'Your nominees receive the higher of sum assured or fund value — whichever is greater at the time of claim.',
+      desc: 'Your nominees receive the higher of sum assured or fund value, whichever is greater at the time of claim.',
       icon: 'shield',
     },
     {
       title: 'Flexible fund switching',
-      desc: 'Switch between equity, debt, and balanced funds based on your risk appetite — free switches typically 4–6 times per year.',
+      desc: 'Switch between equity, debt, and balanced funds based on your risk appetite, with free switches typically 4–6 times per year.',
       icon: 'switch',
     },
     {
@@ -181,14 +181,14 @@ export class MarketlinkedplansComponent implements AfterViewInit, OnDestroy {
     },
     {
       title: 'Tax-efficient wealth creation',
-      desc: 'Premiums up to ₹1.5L deductible under 80C. Maturity amount fully exempt under Sec 10(10D) — no LTCG complications.',
+      desc: 'Premiums up to ₹1.5L deductible under 80C. Maturity amount fully exempt under Sec 10(10D). No LTCG complications.',
       icon: 'shield',
       iconBg: '#dbeafe',
       iconColor: '#3b82f6',
     },
     {
       title: 'Flexibility to switch funds',
-      desc: 'Life changes — so can your fund allocation. Switch between equity and debt as your financial situation or market outlook evolves.',
+      desc: 'Life changes, and so can your fund allocation. Switch between equity and debt as your financial situation or market outlook evolves.',
       icon: 'edit',
       iconBg: '#fef3c7',
       iconColor: '#f59e0b',
@@ -202,14 +202,14 @@ export class MarketlinkedplansComponent implements AfterViewInit, OnDestroy {
     },
     {
       title: 'Goal-based investing',
-      desc: "Align your ULIP to a specific milestone — child's education, retirement, or a home — and let systematic investing do the rest.",
+      desc: "Align your ULIP to a specific milestone (child's education, retirement, or a home) and let systematic investing do the rest.",
       icon: 'heart',
       iconBg: '#fce7f3',
       iconColor: '#db2777',
     },
     {
       title: 'Full transparency on charges',
-      desc: 'Every charge — premium allocation, fund management, mortality — is disclosed upfront. IRDAI regulations ensure no hidden costs.',
+      desc: 'Every charge (premium allocation, fund management, mortality) is disclosed upfront. IRDAI regulations ensure no hidden costs.',
       icon: 'monitor',
       iconBg: '#d1fae5',
       iconColor: '#10b981',

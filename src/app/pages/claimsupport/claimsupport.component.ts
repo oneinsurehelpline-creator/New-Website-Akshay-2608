@@ -34,7 +34,7 @@ export class ClaimsupportComponent implements AfterViewInit, OnDestroy {
   faqs = [
     {
       q: 'How long does it take to process a claim?',
-      a: 'Health and travel claims are typically resolved within 7–10 working days. Motor and home claims may take up to 15 working days depending on assessment needs. Life and term death claims are settled within 30 days of receiving all documents, as mandated by IRDAI — longer only if an investigation is required.',
+      a: 'Health and travel claims are typically resolved within 7–10 working days. Motor and home claims may take up to 15 working days depending on assessment needs. Life and term death claims are settled within 30 days of receiving all documents, as mandated by IRDAI, longer only if an investigation is required.',
     },
     {
       q: 'Can I file a claim without all my documents?',
@@ -325,6 +325,7 @@ export class ClaimsupportComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.observer?.disconnect();
-    document.body.style.overflow = '';
+    // server-side render has no document
+    if (typeof document !== 'undefined') { document.body.style.overflow = ''; }
   }
 }

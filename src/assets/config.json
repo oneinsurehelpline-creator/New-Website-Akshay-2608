@@ -8,5 +8,13 @@
     },
     "ClaimSrNumber": {
         "AssignedUserName": "aliabbas.sayyed@oneinsure.com"
+    },
+    "ServiceSrNumber": {
+        "AssignedUserName": "aliabbas.sayyed@oneinsure.com",
+        "ServiceTypeIds": {
+            "life": 99004050,
+            "health": 99004091,
+            "motor": 99004091
+        }
     }
 }

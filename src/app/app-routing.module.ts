@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, UrlMatchResult, UrlSegment } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component';
 import { AboutusComponent } from './pages/aboutus/aboutus.component';
@@ -23,6 +23,12 @@ import { FireinsuranceComponent } from './pages/fireinsurance/fireinsurance.comp
 import { CorporateinsuranceComponent } from './pages/corporateinsurance/corporateinsurance.component';
 import { EmployeremployeeinsuranceComponent } from './pages/employeremployeeinsurance/employeremployeeinsurance.component';
 import { TermsconditionsComponent } from './pages/termsconditions/termsconditions.component';
+import { ServicesupportComponent } from './pages/servicesupport/servicesupport.component';
+
+/** Old site's /service and /Service/<service>/<insurer> URLs (any case). */
+export function oldServiceMatcher(segments: UrlSegment[]): UrlMatchResult | null {
+  return segments.length && segments[0].path.toLowerCase() === 'service' ? { consumed: segments } : null;
+}
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,6 +40,8 @@ const routes: Routes = [
   { path: 'guaranteed-investment-plans', component: GuaranteedinvestmentplansComponent },
   { path: 'general-insurance', component: GeneralinsuranceComponent },
   { path: 'insurance-claim-support', component: ClaimsupportComponent },
+  { path: 'service-support', component: ServicesupportComponent },
+  { matcher: oldServiceMatcher, redirectTo: 'service-support' },
   { path: 'partner-program', component: PartnerprogramComponent },
   { path: 'career-opportunities', component: CareersComponent },
   { path: 'privacy-policy', component: PrivacypolicyComponent },

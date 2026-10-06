@@ -33,7 +33,7 @@ export class CriticalillnessplansComponent implements AfterViewInit, OnDestroy {
 
   // ---------- HERO ----------
   heroHeadline = "A lump sum on the day you're diagnosed.";
-  heroSub = "Health insurance pays the hospital. Critical illness pays you — for everything else the illness costs.";
+  heroSub = "Health insurance pays the hospital. Critical illness pays you, for everything else the illness costs.";
   trustPoints = [
     '30+ illnesses covered',
     'Money paid on diagnosis, not on bills',
@@ -61,7 +61,7 @@ export class CriticalillnessplansComponent implements AfterViewInit, OnDestroy {
     },
     {
       icon: 'assets/images/icons/knowledgebase/travel.png',
-      text: "Costs health insurance won't touch — travel, home care, loan EMIs, a second opinion abroad",
+      text: "Costs health insurance won't touch: travel, home care, loan EMIs, a second opinion abroad",
     },
     {
       icon: 'assets/images/icons/knowledgebase/term.png',

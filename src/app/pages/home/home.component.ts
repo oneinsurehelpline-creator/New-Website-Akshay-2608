@@ -238,7 +238,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   meta: Record<CalcKey, { title: string; sub: string }> = {
     life: { title: 'How much life cover do I need?', sub: 'The ten-minute answer.' },
-    guaranteed: { title: 'What will my guaranteed plan return?', sub: 'At a conservative 6.25% IRR.' },
+    guaranteed: { title: 'How much will my guaranteed plan return?', sub: 'At a conservative 6.25% IRR.' },
     health: { title: 'How much health cover should I take?', sub: 'City-indexed to hospital costs.' },
     fire: { title: 'What is my FIRE number?', sub: 'Financial Independence, Retire Early.' },
     tax: { title: 'How much tax can I save with insurance?', sub: 'Sections 80C + 80D.' },
@@ -334,8 +334,34 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     return `80C eligible: ₹${this.inr(life)} · 80D eligible: ₹${this.inr(health)} · Tax slab: ${(this.tSlab * 100).toFixed(0)}%.`;
   }
 
+  /** "Built by advisors" section: the usual way (struck out) vs the OneInsure way. */
+  readonly diffRows = [
+    {
+      stat: '30 min', cap: 'Free first review',
+      old: 'Pitches you a policy on the first call.',
+      now: 'We start with a free review of what you actually need. A policy comes only if it fits.',
+    },
+    {
+      stat: '30+', cap: 'Insurers compared',
+      old: 'Sells the one or two insurers they are tied to.',
+      now: 'We compare 30+ insurers and hand you the three that make sense for your family.',
+    },
+    {
+      stat: '1', cap: 'Advisor, start to finish',
+      old: 'Hands you over to a call centre once you have bought.',
+      now: 'One advisor stays with you, from the first quote to the final claim.',
+    },
+    {
+      stat: '₹0', cap: 'Claim support fees',
+      old: 'Goes quiet when it is time to claim.',
+      now: 'We do the paperwork and chase the insurer for you. Free, for life.',
+    },
+  ];
+
   // ---- modal control ----
-  openCalc(k: CalcKey): void { this.activeCalc = k; document.body.style.overflow = 'hidden'; }
+  /** Shows the "turn this into a plan" nudge once the visitor has adjusted any input. */
+  calcTouched = false;
+  openCalc(k: CalcKey): void { this.activeCalc = k; this.calcTouched = false; document.body.style.overflow = 'hidden'; }
   closeCalc(): void { this.activeCalc = null; document.body.style.overflow = ''; }
 
   // ============ PRODUCTS "VIEW ALL" MODAL ============

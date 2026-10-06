@@ -5,7 +5,7 @@
     <div class="container">
         <div class="products__head reveal-up">
             <h2 style="font-weight: 800;">Plans for every life <span class="accent">stage.</span></h2>
-            <p>From your first term-life cover to a portfolio that compounds for three decades — we help you build the
+            <p>From your first term-life cover to a portfolio that compounds for three decades, we help you build the
                 right mix, then we maintain it alongside you.</p>
         </div>
         <div class="icon-grid icon-grid--main">
@@ -90,7 +90,7 @@
             </button>
         </div>
         <div class="products__strip reveal-up">
-            <h4 style="font-weight: 800;">Not sure what you need? Let us figure it out together.</h4>
+            <h4 style="font-weight: 800;">Not sure what you need? Let's figure it out together.</h4>
             <!-- <a class="btn btn--big" href="#consult">Start with a free consultation →</a> -->
             <a class="btn btn--big" href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Start with a free consultation →</a>
         </div>
@@ -107,7 +107,7 @@
             </button>
             <div class="products-modal__head">
                 <h3>All products</h3>
-                <p>Our full lineup — pick a category to explore.</p>
+                <p>Our full lineup. Pick a category to explore.</p>
             </div>
             <div class="icon-grid icon-grid--modal">
                 <a class="icon-card" routerLink="/guaranteed-investment-plans" (click)="closeProductsModal()">
@@ -220,8 +220,8 @@
     <div class="container">
         <div class="calc__head reveal-up">
             <h2 style="font-weight:800">Run the numbers.<br>Make a <span class="accent">confident decision.</span></h2>
-            <p>Free calculators that help you understand how much cover you need, what your money will grow to, and how
-                much tax you'll save. No email required, no follow-up spam.</p>
+            <p>Explore our free calculators to estimate the coverage you need, see how your money could grow, and
+                understand your potential tax savings. No email required. No follow-up spam.</p>
         </div>
 
         <div class="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-5 calc__grid">
@@ -245,10 +245,10 @@
                         <div class="ccard__icon">
                             <img src="assets/images/icons/calculators/guaranteed-return.png" alt="" loading="lazy">
                         </div>
-                        <h4 style="font-weight: 800;">What will my guaranteed plan return?</h4>
+                        <h4 style="font-weight: 800;">How much will my guaranteed plan return?</h4>
                         <div class="ccard__sub">At a conservative 6.25% IRR.</div>
-                        <div class="ccard__teaser">We use 6.25% — the lower bound on current-year guaranteed product
-                            IRRs — so the number you see is realistic, not optimistic.</div>
+                        <div class="ccard__teaser">We use 6.25%, the lower bound on current-year guaranteed product
+                            IRRs, so the number you see is realistic, not optimistic.</div>
                         <div class="ccard__chev">Open calculator <span>↓</span></div>
                     </div>
                 </article>
@@ -261,7 +261,7 @@
                         </div>
                         <h4 style="font-weight: 800;">How much health cover should I take?</h4>
                         <div class="ccard__sub">City-indexed to hospital costs.</div>
-                        <div class="ccard__teaser">We look at your city tier, family size, and age band — and benchmark
+                        <div class="ccard__teaser">We look at your city tier, family size, and age band, and benchmark
                             against current Indian hospitalisation averages.</div>
                         <div class="ccard__chev">Open calculator <span>↓</span></div>
                     </div>
@@ -275,7 +275,7 @@
                         </div>
                         <h4 style="font-weight: 800;">What is my FIRE number?</h4>
                         <div class="ccard__sub">Financial Independence, Retire Early.</div>
-                        <div class="ccard__teaser">The corpus you need to live off your investments indefinitely —
+                        <div class="ccard__teaser">The corpus you need to live off your investments indefinitely,
                             calculated at the classic 4% safe withdrawal rate.</div>
                         <div class="ccard__chev">Open calculator <span>↓</span></div>
                     </div>
@@ -320,7 +320,7 @@
                                 existing cover, to arrive at a realistic number.</div>
                         </div>
                     </div>
-                    <div class="calc-modal__body">
+                    <div class="calc-modal__body" (input)="calcTouched=true" (change)="calcTouched=true" (click)="calcTouched=true">
                         <div>
                             <div class="field">
                                 <div class="field__label"><span>Monthly income</span><span class="field__val">{{ lcIncV
@@ -345,6 +345,10 @@
                                 <div class="calc__out-lbl">Recommended Cover</div>
                                 <div class="calc__out-val"><span class="unit">₹</span> <span>{{ lcOut }}</span></div>
                                 <div class="calc__out-note">{{ lcNote }}</div>
+                                <div class="calc__nudge" *ngIf="calcTouched">
+                                    <p>Your family needs about ₹{{ lcOut }} of cover. Want an advisor to turn this into a plan?</p>
+                                    <a href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Get my free plan <span>→</span></a>
+                                </div>
                                 <!-- <a class="btn btn--orange" (click)="goConsult()">Talk to an advisor →</a> -->
                                 <a class="btn btn--orange"
                                     href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Talk to an advisor →</a>
@@ -358,13 +362,13 @@
                             <img src="assets/images/icons/calculators/guaranteed-return.png" alt="" loading="lazy">
                         </div>
                         <div>
-                            <h4 style="font-weight:800">What will my guaranteed plan return?</h4>
+                            <h4 style="font-weight:800">How much will my guaranteed plan return?</h4>
                             <div class="ccard__sub">At a conservative 6.25% IRR.</div>
-                            <div class="ccard__teaser">We use 6.25% — the lower bound on current-year guaranteed product
-                                IRRs — so the number you see is realistic, not optimistic.</div>
+                            <div class="ccard__teaser">We use 6.25%, the lower bound on current-year guaranteed product
+                                IRRs, so the number you see is realistic, not optimistic.</div>
                         </div>
                     </div>
-                    <div class="calc-modal__body">
+                    <div class="calc-modal__body" (input)="calcTouched=true" (change)="calcTouched=true" (click)="calcTouched=true">
                         <div>
                             <div class="field">
                                 <div class="field__label"><span>Monthly investment</span><span class="field__val">{{
@@ -384,6 +388,10 @@
                                 <div class="calc__out-lbl">Maturity Value</div>
                                 <div class="calc__out-val"><span class="unit">₹</span> <span>{{ grOut }}</span></div>
                                 <div class="calc__out-note">{{ grNote }}</div>
+                                <div class="calc__nudge" *ngIf="calcTouched">
+                                    <p>That&#39;s ₹{{ grOut }} at maturity. Want help picking the plan that gets you there?</p>
+                                    <a href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Talk it through, free <span>→</span></a>
+                                </div>
                                 <a class="btn btn--orange" (click)="goTo('/guaranteed-investment-plans', 'compare')">Find
                                     the right plan →</a>
                             </div>
@@ -398,11 +406,11 @@
                         <div>
                             <h4 style="font-weight:800">How much health cover should I take?</h4>
                             <div class="ccard__sub">City-indexed to hospital costs.</div>
-                            <div class="ccard__teaser">We look at your city tier, family size, and age band — and
+                            <div class="ccard__teaser">We look at your city tier, family size, and age band, and
                                 benchmark against current Indian hospitalisation averages.</div>
                         </div>
                     </div>
-                    <div class="calc-modal__body">
+                    <div class="calc-modal__body" (input)="calcTouched=true" (change)="calcTouched=true" (click)="calcTouched=true">
                         <div>
                             <div class="field">
                                 <div class="field__label"><span>City tier</span></div>
@@ -432,6 +440,10 @@
                                 <div class="calc__out-lbl">Recommended Sum Insured</div>
                                 <div class="calc__out-val"><span class="unit">₹</span> <span>{{ hOut }}</span></div>
                                 <div class="calc__out-note">{{ hNote }}</div>
+                                <div class="calc__nudge" *ngIf="calcTouched">
+                                    <p>Your target is ₹{{ hOut }} of health cover. Want an advisor to check what you have today?</p>
+                                    <a href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Get a free cover check <span>→</span></a>
+                                </div>
                                 <!-- <a class="btn btn--orange" (click)="goTo('/HealthInsurance', 'compare')">Compare
                                     Plans</a> -->
                                 <a class="btn btn--orange" routerLink="/health-insurance-plans">Compare
@@ -449,11 +461,11 @@
                             <h4 style="font-weight:800">What is my FIRE number?</h4>
                             <div class="ccard__sub">Financial Independence, Retire Early.</div>
                             <div class="ccard__teaser">The corpus you need to live off your investments
-                                indefinitely —
+                                indefinitely,
                                 calculated at the classic 4% safe withdrawal rate.</div>
                         </div>
                     </div>
-                    <div class="calc-modal__body">
+                    <div class="calc-modal__body" (input)="calcTouched=true" (change)="calcTouched=true" (click)="calcTouched=true">
                         <div>
                             <div class="field">
                                 <div class="field__label"><span>Monthly expenses today</span><span class="field__val">{{
@@ -480,6 +492,10 @@
                                 <div class="calc__out-val"><span class="unit">₹</span> <span>{{ fOut }}</span>
                                 </div>
                                 <div class="calc__out-note">{{ fNote }}</div>
+                                <div class="calc__nudge" *ngIf="calcTouched">
+                                    <p>Your FIRE number is ₹{{ fOut }}. Want a free plan to get there?</p>
+                                    <a href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Get my free plan <span>→</span></a>
+                                </div>
                                 <a class="btn btn--orange" (click)="goConsult()">Build a FIRE plan →</a>
                             </div>
                         </div>
@@ -498,7 +514,7 @@
                                 80D. Plug in your numbers to see your annual tax saving.</div>
                         </div>
                     </div>
-                    <div class="calc-modal__body">
+                    <div class="calc-modal__body" (input)="calcTouched=true" (change)="calcTouched=true" (click)="calcTouched=true">
                         <div>
                             <div class="field">
                                 <div class="field__label"><span>Annual life-insurance premium</span><span
@@ -527,6 +543,10 @@
                                 <div class="calc__out-val"><span class="unit">₹</span> <span>{{ tOut }}</span>
                                 </div>
                                 <div class="calc__out-note">{{ tNote }}</div>
+                                <div class="calc__nudge" *ngIf="calcTouched">
+                                    <p>You could save ₹{{ tOut }} in tax this year. Want an advisor to map out how?</p>
+                                    <a href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Get my free plan <span>→</span></a>
+                                </div>
                                 <a class="btn btn--orange" (click)="goConsult()">Plan your tax savings →</a>
                             </div>
                         </div>
@@ -550,38 +570,23 @@
         <div class="diff__head reveal-up">
             <h2 style="font-weight:800">Built by advisors. Answerable <span class="accent">to you.</span></h2>
         </div>
-        <div class="row g-3 row-cols-1 row-cols-md-2 diff__grid">
-            <div class="col">
-                <div class="dcard reveal-scale h-100">
-                    <span class="dcard__n">01</span>
-                    <h3 style="font-weight:800">We offer advice — then, maybe, sell a policy.</h3>
-                    <p style="font-weight:600">Our first conversation is a 30-minute audit of what you actually need,
-                        not a sales pitch. The policy comes only when it fits — and when it doesn't, we'll say so.</p>
+        <p class="diff__lead reveal-up" data-delay="1">Here's what that means, compared with how insurance is usually
+            sold.</p>
+        <!-- "Strike and rewrite": the usual way gets crossed out as each row scrolls in,
+             then the OneInsure way writes itself in underneath. -->
+        <div class="srw-list">
+            <div class="srw reveal" *ngFor="let r of diffRows; let i = index">
+                <div class="srw__stat">
+                    <div class="srw__num">{{ r.stat }}</div>
+                    <div class="srw__cap">{{ r.cap }}</div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="dcard reveal-scale h-100" data-delay="1">
-                    <span class="dcard__n">02</span>
-                    <h3 style="font-weight:800">One advisor. From quote to claim.</h3>
-                    <p>With a centralized, high-tenure on-ground team, support is always within reach—seamless,
-                        responsive, and reliable.</p>
+                <div class="srw__body">
+                    <div class="srw__tag">The usual way</div>
+                    <p class="srw__old"><s>{{ r.old }}</s></p>
+                    <div class="srw__tag srw__tag--us">The OneInsure way</div>
+                    <p class="srw__new">{{ r.now }}</p>
                 </div>
-            </div>
-            <div class="col">
-                <div class="dcard reveal-scale h-100" data-delay="2">
-                    <span class="dcard__n">03</span>
-                    <h3 style="font-weight:800">Thirty insurers. One honest comparison.</h3>
-                    <p style="font-weight:600">We're licensed with every major Indian insurer, so we compare the whole
-                        market objectively and hand you the three options that actually make sense for your family.</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="dcard reveal-scale h-100" data-delay="3">
-                    <span class="dcard__n">04</span>
-                    <h3 style="font-weight:800">Claim support is part of the job.</h3>
-                    <p style="font-weight:600">Every policy we sell comes with unlimited, no-fee claim assistance for
-                        life. We write the paperwork, chase the insurer, and sit with the family. That's the work.</p>
-                </div>
+                <div class="srw__idx" aria-hidden="true">0{{ i + 1 }}</div>
             </div>
         </div>
     </div>
@@ -591,7 +596,7 @@
 <section class="partners section">
     <div class="container">
         <div class="partners__head reveal">
-            <h2 style="font-weight:800">Access to 30+ of India's most trusted insurers — <span class="accent">in one
+            <h2 style="font-weight:800">Access to 30+ of India's most trusted insurers, <span class="accent">in one
                     place.</span></h2>
         </div>
         <div class="marquee d-none">
@@ -653,7 +658,7 @@
         <!-- empty / error fallback -->
         <div class="partners__fallback" *ngIf="!insurersLoading && !insurers.length">
             <p>The logo wall is
-                taking a moment to load —
+                taking a moment to load. Meanwhile, you can
                 <!-- <a (click)="goConsult()">talk to an advisor</a> -->
                 <a href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>talk to an
                     advisor</a>
@@ -690,7 +695,7 @@
                     <div class="tcard__src"><span class="stars">★★★★★</span> via Google</div>
                     <div class="tcard__quote">&ldquo;</div>
                     <p class="tcard__body">My father's claim was held up for 40 days. One call to OneInsure and they got
-                        it cleared in a week — even though we'd bought the policy elsewhere.</p>
+                        it cleared in a week, even though we'd bought the policy elsewhere.</p>
                     <div class="tcard__foot">
                         <div class="tcard__avatar">M</div>
                         <div>
@@ -735,7 +740,7 @@
                 <article class="tcard">
                     <div class="tcard__src"><span class="stars">★★★★★</span> via Google</div>
                     <div class="tcard__quote">&ldquo;</div>
-                    <p class="tcard__body">They rebuilt my health floater from scratch — added my parents, fixed a
+                    <p class="tcard__body">They rebuilt my health floater from scratch: added my parents, fixed a
                         co-pay clause I didn't understand, and the premium went down. This is what advice looks like.
                     </p>
                     <div class="tcard__foot">
@@ -751,7 +756,7 @@
                     <div class="tcard__src"><span class="stars">★★★★★</span> via Google</div>
                     <div class="tcard__quote">&ldquo;</div>
                     <p class="tcard__body">Plain words, straight answers, and the three options they gave me actually
-                        lined up — cheapest to premium — exactly as they said they would. Refreshing.</p>
+                        lined up, cheapest to premium, exactly as they said they would. Refreshing.</p>
                     <div class="tcard__foot">
                         <div class="tcard__avatar">R</div>
                         <div>
@@ -796,7 +801,7 @@
     <div class="container">
         <div class="consult__head reveal-up">
             <h2 style="font-weight:800">Thirty minutes.<br><span class="accent">One honest conversation.</span></h2>
-            <p>Tell us a little about what you're looking for. A certified advisor will call you back within 24 hours —
+            <p>Tell us a little about what you're looking for. A certified advisor will call you back within 24 hours,
                 at the time that works for you.</p>
         </div>
 
@@ -805,10 +810,10 @@
             <div class="col-12 col-lg">
                 <form class="consult__form reveal h-100 d-none" [formGroup]="consultForm" (ngSubmit)="onConsultSubmit()"
                     novalidate>
-                    <h4 style="font-weight:800">Request my free call</h4>
+                    <h4 style="font-weight:800">Request a Free Call</h4>
 
                     <div class="consult__success" *ngIf="consultDone">
-                        <strong>Thanks — your request is in.</strong>
+                        <strong>Thanks, your request is in.</strong>
                         <span>A certified advisor will call you within 24 hours.</span>
                         <button type="button" class="btn btn--orange" (click)="consultDone = false">Send another
                             request</button>
@@ -878,11 +883,11 @@
                 </form>
                 <div class="consult__form"
                     style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
-                    <h4 style="font-weight:800">Request my free call</h4>
+                    <h4 style="font-weight:800">Request a Free Call</h4>
                     <p style="font: 400 14.5px / 1.65 var(--sans); color: var(--g600); margin-bottom: 22px;">Our
-                        Advisors will help you to navigate the complexities of Insurance. We would need your
-                        undivided attention for atleast 30 mins while we address all your queries and give our
-                        suggestions.</p>
+                        advisors will help you navigate the complexities of insurance. Please set aside at least 30
+                        minutes so we can understand your needs, answer your questions, and provide personalized
+                        guidance.</p>
                     <a class="btn btn--orange btn--big"
                         href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Request my
                         free call</a>
@@ -896,9 +901,9 @@
             <!-- WhatsApp side -->
             <div class="col-12 col-lg">
                 <aside class="consult__side reveal h-100" data-delay="1">
-                    <h4 style="font-weight:800">WhatsApp us — the same advisor who'd take your call.</h4>
-                    <p>Send us a text. Attach your current policy if you have one. We'll read it, reply with a
-                        plain-English summary, and you'll decide if you want to talk further.</p>
+                    <h4 style="font-weight:800">WhatsApp us and connect with an advisor directly.</h4>
+                    <p>Send us a message and attach your current policy, if you have one. We'll review it, explain it
+                        in plain English, and you can decide whether you'd like to speak with us further.</p>
                     <a class="wa-button" href="https://wa.me/918655986559" target="_blank" rel="noopener">
                         <span class="wa-ico">
                             <svg fill="#fff" height="22" viewBox="0 0 24 24" width="22">
@@ -926,13 +931,13 @@
             <div class="col-12 col-lg-6 human__copy reveal-left">
                 <h2 style="font-weight:800">Insurance is a <span class="accent">people business.</span> Ours,
                     especially.</h2>
-                <p>We're a team of over a thousand — with 800+ advisors and service managers, operating out of more than
+                <p>We're a team of over a thousand, with 800+ advisors and service managers, operating out of more than
                     a hundred branches across 20+ Indian cities. Every one of them is trained, mentored, and held to one
                     standard: that every family leaving a OneInsure conversation understands exactly what they've bought
                     and why.</p>
-                <p>Most of our advisors joined us in their twenties. Many are still with us in their forties. When you
-                    sign with OneInsure, you're not signing with a company — you're signing with a person whose career
-                    will run alongside your family's life.</p>
+                <p>Many of our advisors joined us in their twenties. Some have grown with us into their forties. When
+                    you choose OneInsure, you're not just choosing a company. You're building a relationship with an
+                    advisor whose journey can grow alongside your family's.</p>
                 <a class="cta-link" routerLink="/">Meet our team <span>→</span></a>
             </div>
             <div class="col-12 col-lg-6 reveal-right" data-delay="1">

@@ -145,22 +145,22 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
   // ---------- WHY MOTOR ----------
   whyPoints: WhyPoint[] = [
     {
-      title: 'Legally mandatory — and enforceable.',
+      title: 'Legally mandatory, and enforceable.',
       desc: 'Driving without at least third-party cover is a criminal offence. Fine up to ₹4,000 and up to 3 months imprisonment from 2019 rules.',
       icon: 'shield',
     },
     {
       title: 'Cashless repairs at 5,000+ garages.',
-      desc: 'No out-of-pocket payment. Authorised network garages bill the insurer directly — you just drop the car and collect it.',
+      desc: 'No out-of-pocket payment. Authorised network garages bill the insurer directly. You just drop the car and collect it.',
       icon: 'wrench',
     },
     {
-      title: 'No-claim bonus — up to 50% off premiums.',
+      title: 'No-claim bonus: up to 50% off premiums.',
       desc: 'For every claim-free year, your premium reduces. Five years without a claim cuts your OD premium by 50%. Transferable to a new vehicle.',
       icon: 'clock',
     },
     {
-      title: 'Covers theft, flood, fire — not just accidents.',
+      title: 'Covers theft, flood and fire, not just accidents.',
       desc: 'Comprehensive cover includes damage from natural calamities, riots, vandalism, and theft of the vehicle or its parts.',
       icon: 'home',
     },
@@ -173,7 +173,7 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
       tag: 'Most popular',
       tagClass: 'comp',
       title: 'Comprehensive Cover',
-      desc: 'The full package — covers your vehicle, third-party damage, and your passengers. Recommended for any car under 10 years old.',
+      desc: 'The full package: covers your vehicle, third-party damage, and your passengers. Recommended for any car under 10 years old.',
       bullets: [
         'Own damage (accidents, fire, flood, theft)',
         'Third-party liability (unlimited for death/injury)',
@@ -188,7 +188,7 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
       tag: 'Legally mandatory',
       tagClass: 'tp',
       title: 'Third-Party Only',
-      desc: 'Covers damage or injury you cause to another person or their property. The legal minimum — but offers no cover for your own vehicle.',
+      desc: 'Covers damage or injury you cause to another person or their property. The legal minimum, but offers no cover for your own vehicle.',
       bullets: [
         'Unlimited liability for third-party death/injury',
         'Third-party property damage up to ₹7.5 lakh',
@@ -208,7 +208,7 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
         'Covers accidental damage to your vehicle',
         'Fire, explosion, self-ignition',
         'Theft and burglary',
-        'Natural calamities — flood, earthquake, cyclone',
+        'Natural calamities: flood, earthquake, cyclone',
       ],
       coverType: 'own-damage',
       cta: 'Get OD quote',
@@ -221,9 +221,9 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
     { num: '02', topic: 'Zero Depreciation', dur: '0:45', cap: '', title: '', desc: 'Zero Dep cover avoids depreciation deductions on parts, making it especially useful for newer vehicles.', url: 'https://www.youtube.com/watch?v=zw6z0deZKaU', videoId: 'zw6z0deZKaU' },
     { num: '03', topic: 'Save More with NCB', dur: '1:00', cap: '', title: '', desc: 'No Claim Bonus rewards claim-free years with up to 50% discount on your own-damage premium.', url: 'https://www.youtube.com/watch?v=LxKrJ5osR_w', videoId: 'LxKrJ5osR_w' },
     { num: '04', topic: 'Motor Add-Ons', dur: '1:14', cap: '', title: '', desc: 'Learn which add-ons can protect your vehicle, engine, roadside emergencies, repair costs, and pillion riders.', url: 'https://www.youtube.com/watch?v=2QW4XNVQ8uw', videoId: '2QW4XNVQ8uw' },
-    { num: '05', topic: 'Claims', dur: '2:30', cap: 'How to file a cashless claim — step by step from accident to delivery', title: 'Filing a cashless claim', desc: 'Call the insurer → survey → network garage → repair → delivery. What happens at each step and how we help you through it.', url: 'https://www.youtube.com/results?search_query=OneInsure+cashless+motor+insurance+claim' },
-    { num: '06', topic: 'Add-ons', dur: '2:18', cap: 'Engine protect, RTI, consumables — which add-ons are actually useful', title: 'The add-ons worth buying', desc: 'Engine & gearbox protect, return to invoice, key replacement, consumables — we rank them by real-world value.', url: 'https://www.youtube.com/results?search_query=OneInsure+motor+insurance+add+ons+worth+it' },
-    { num: '07', topic: 'Renewal', dur: '1:52', cap: 'Renewal vs fresh policy — and what to check before you renew', title: 'The renewal checklist', desc: 'NCB transfer, IDV review, add-on comparison — five things to check before auto-renewing with the same insurer.', url: 'https://www.youtube.com/results?search_query=OneInsure+motor+insurance+renewal+checklist' },
+    { num: '05', topic: 'Claims', dur: '2:30', cap: 'How to file a cashless claim, step by step from accident to delivery', title: 'Filing a cashless claim', desc: 'Call the insurer → survey → network garage → repair → delivery. What happens at each step and how we help you through it.', url: 'https://www.youtube.com/results?search_query=OneInsure+cashless+motor+insurance+claim' },
+    { num: '06', topic: 'Add-ons', dur: '2:18', cap: 'Engine protect, RTI, consumables: which add-ons are actually useful', title: 'The add-ons worth buying', desc: 'Engine & gearbox protect, return to invoice, key replacement, consumables. We rank them by real-world value.', url: 'https://www.youtube.com/results?search_query=OneInsure+motor+insurance+add+ons+worth+it' },
+    { num: '07', topic: 'Renewal', dur: '1:52', cap: 'Renewal vs fresh policy, and what to check before you renew', title: 'The renewal checklist', desc: 'NCB transfer, IDV review, add-on comparison: five things to check before auto-renewing with the same insurer.', url: 'https://www.youtube.com/results?search_query=OneInsure+motor+insurance+renewal+checklist' },
   ];
   videoCount = 1;
   videoProgress = 14; // %
@@ -238,7 +238,7 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
       icon: 'car',
       eyebrow: 'Four-wheeler',
       title: 'Car Insurance',
-      desc: 'Comprehensive, third-party or standalone OD cover for your car — compare live prices from top insurers and buy in minutes.',
+      desc: 'Comprehensive, third-party or standalone OD cover for your car. Compare live prices from top insurers and buy in minutes.',
       features: [
         'Set your own IDV, pick the add-ons that matter',
         'Cashless repairs at 5,000+ network garages',
@@ -252,7 +252,7 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
       icon: 'bike',
       eyebrow: 'Two-wheeler',
       title: 'Bike Insurance',
-      desc: 'Protect your bike or scooter with the right cover — long-term third-party, comprehensive or own-damage — at the insurer’s own price.',
+      desc: 'Protect your bike or scooter with the right cover (long-term third-party, comprehensive or own-damage) at the insurer’s own price.',
       features: [
         'Multi-year third-party cover options',
         'Theft, fire & natural-calamity protection',
@@ -266,7 +266,7 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
       icon: 'commercial',
       eyebrow: 'Business & fleet',
       title: 'Commercial Vehicle',
-      desc: 'Cover trucks, taxis, and fleet vehicles used for business — GCV, PCV and misc. class options with liability and own-damage protection built around commercial use.',
+      desc: 'Cover trucks, taxis, and fleet vehicles used for business: GCV, PCV and misc. class options with liability and own-damage protection built around commercial use.',
       features: [
         'GCV, PCV & miscellaneous class cover',
         'Multi-vehicle fleet policies with bulk discounts',

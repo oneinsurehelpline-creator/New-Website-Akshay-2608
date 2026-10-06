@@ -57,7 +57,7 @@ export class GeneralinsuranceComponent implements AfterViewInit, OnDestroy {
       dur: '0:56',
       topic: 'Travel Policies',
       title: '',
-      desc: "Medical, baggage, delay, liability — what's in, what's out, in 2 minutes.",
+      desc: "Medical, baggage, delay, liability: what's in, what's out, in 2 minutes.",
     },
     {
       num: '02',
@@ -66,7 +66,7 @@ export class GeneralinsuranceComponent implements AfterViewInit, OnDestroy {
       dur: '1:42',
       topic: 'Trip type',
       title: 'Domestic vs international.',
-      desc: 'Different cover, different price, different rules — which one you actually need.',
+      desc: 'Different cover, different price, different rules: which one you actually need.',
     },
     {
       num: '03',
@@ -115,7 +115,7 @@ export class GeneralinsuranceComponent implements AfterViewInit, OnDestroy {
       dur: '1:14',
       topic: 'Structure vs Content',
       title: '',
-      desc: 'The difference between structure and contents cover — and why most people need both.',
+      desc: 'The difference between structure and contents cover, and why most people need both.',
     },
     {
       num: '02',
@@ -124,16 +124,16 @@ export class GeneralinsuranceComponent implements AfterViewInit, OnDestroy {
       dur: '1:36',
       topic: 'Renters',
       title: 'Renting? You still need cover.',
-      desc: "The landlord's policy doesn't protect your stuff. Tenant cover does — and it's cheap.",
+      desc: "The landlord's policy doesn't protect your stuff. Tenant cover does, and it's cheap.",
     },
     {
       num: '03',
-      cap: 'Filing a burglary claim — step by step',
+      cap: 'Filing a burglary claim, step by step',
       url: 'https://www.youtube.com/results?search_query=OneInsure+home+insurance+burglary+claim',
       dur: '2:20',
       topic: 'Claims',
       title: 'After a break-in.',
-      desc: 'FIR, surveyor, inventory, payout — the order matters. Get it right the first time.',
+      desc: 'FIR, surveyor, inventory, payout: the order matters. Get it right the first time.',
     },
     {
       num: '04',
@@ -142,11 +142,11 @@ export class GeneralinsuranceComponent implements AfterViewInit, OnDestroy {
       dur: '2:06',
       topic: 'Disasters',
       title: 'Floods, quakes, cyclones.',
-      desc: 'What standard home insurance covers — and the add-ons most people skip and regret.',
+      desc: 'What standard home insurance covers, and the add-ons most people skip and regret.',
     },
     {
       num: '05',
-      cap: 'The jewellery rider — worth it?',
+      cap: 'The jewellery rider: worth it?',
       url: 'https://www.youtube.com/results?search_query=OneInsure+jewellery+insurance+rider',
       dur: '1:48',
       topic: 'Riders',
@@ -160,7 +160,7 @@ export class GeneralinsuranceComponent implements AfterViewInit, OnDestroy {
       dur: '1:42',
       topic: 'Sum insured',
       title: 'How much cover is enough.',
-      desc: 'Market value or reinstatement value — pick wrong, and you under-insure by 40%.',
+      desc: 'Market value or reinstatement value: pick wrong, and you under-insure by 40%.',
     },
   ];
 
