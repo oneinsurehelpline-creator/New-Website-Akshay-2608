@@ -199,8 +199,12 @@
                     appScheduleLink>Or pick a time for a call</a>
             </ng-container>
             <ng-template #cbThanks>
-                <p class="ss-done"><strong>Thanks{{ cbName.trim() ? ', ' + cbName.trim() : '' }}!</strong> An advisor
-                    will call you within 24 hours about "{{ active.title }}".</p>
+                <div class="ss-done">
+                    <p><strong>Thanks{{ cbName.trim() ? ', ' + cbName.trim() : '' }}!</strong> Your request has been
+                        raised. Your SR number is</p>
+                    <div class="ss-done__sr">{{ cbSrNumber }}</div>
+                    <p>Keep it for reference. An advisor will call you within 24 hours about "{{ active.title }}".</p>
+                </div>
             </ng-template>
         </div>
 

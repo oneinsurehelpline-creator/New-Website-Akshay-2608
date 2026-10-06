@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnDestroy, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { finalize, timeout } from 'rxjs/operators';
+import { ConfigService } from 'src/app/services/config.service';
 import { LeadService } from 'src/app/services/lead.service';
 import {
   INSURERS, InsurerContact, SERVICE_CATEGORIES, SERVICES, ServiceCategory, ServiceItem, WAY_LABELS,
@@ -35,6 +36,7 @@ export class ServicesupportComponent implements AfterViewInit, OnDestroy {
   cbError = '';
   cbSending = false;
   cbDone = false;
+  cbSrNumber = '';
 
   private isBrowser: boolean;
   private observer?: IntersectionObserver;
@@ -43,6 +45,7 @@ export class ServicesupportComponent implements AfterViewInit, OnDestroy {
     @Inject(PLATFORM_ID) platformId: object,
     private host: ElementRef<HTMLElement>,
     private leads: LeadService,
+    private config: ConfigService,
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
@@ -116,7 +119,7 @@ export class ServicesupportComponent implements AfterViewInit, OnDestroy {
     this.active = s;
     this.activeCase = 0;
     this.openInsurer.panel = null;
-    this.cbName = ''; this.cbPhone = ''; this.cbInsurer = ''; this.cbError = ''; this.cbDone = false;
+    this.cbName = ''; this.cbPhone = ''; this.cbInsurer = ''; this.cbError = ''; this.cbDone = false; this.cbSrNumber = '';
     if (this.isBrowser) { document.body.style.overflow = 'hidden'; }
   }
 
@@ -171,18 +174,59 @@ export class ServicesupportComponent implements AfterViewInit, OnDestroy {
       `Type : Website Lead`,
     ].join(', ');
 
+    // Same SR shape as the claim-support "File a claim" modal; due in 7 days.
+    const due = new Date();
+    due.setDate(due.getDate() + 7);
+    const sr = {
+      IssueDueDate: due.toISOString().split('T')[0],
+      IssueDescription: `Service request: ${s.title}${caseLabel}. Insurer: ${insurer}. `
+        + `Name: ${this.cbName.trim() || 'Not given'}. Mobile: ${phone}.`,
+      IssueId: 0,
+      ProjectId: 1,
+      UserId: '0',
+      PolicyId: 0,
+      ServiceTypeId: this.config.serviceTypeId(s.category),
+      IssueTypeId: 1,
+      Source: '0',
+      IssueCreatorUserName: 'SystemAdmin',
+      IssueOwnerUserName: 'SystemAdmin',
+      LastUpdatedUserName: 'SystemAdmin',
+      IssuePriorityId: '2',
+      Vendor: '0',
+      SourceId: '0',
+      PosAgentuserid: '0',
+      BStatusId: 1,
+      BSubStatusId: 4,
+      AssignedUserName: this.config.serviceAssignedUserName,
+      DateReceived: null,
+      DateCreated: null,
+      LastUpdate: null,
+    };
+
     this.cbSending = true;
+    this.cbSrNumber = '';
+    this.leads.CreateNewSR(sr).pipe(
+      timeout(15000),
+      finalize(() => { this.cbSending = false; }),
+    ).subscribe({
+      next: (srNumber: any) => {
+        this.cbSrNumber = srNumber;
+        this.cbDone = true;
+        this.saveCallbackLead(`${pageData}, SR Number : ${srNumber}`);
+      },
+      error: () => { this.cbError = 'That didn\'t go through. Please try again, or call us on 86559 86559.'; },
+    });
+  }
+
+  /** Also log the callback as a website lead; the SR is already created, so failures here are silent. */
+  private saveCallbackLead(pageData: string): void {
     this.leads.CustomerDetails({
       Id: 0,
       PageName: 'Service Support - Callback',
       PageUrl: window.location.href,
       PageData: pageData,
-    }).pipe(
-      timeout(15000),
-      finalize(() => { this.cbSending = false; }),
-    ).subscribe({
-      next: () => { this.cbDone = true; },
-      error: () => { this.cbError = 'That didn\'t go through. Please try again, or call us on 86559 86559.'; },
+    }).pipe(timeout(15000)).subscribe({
+      error: (err: any) => console.error('Error saving service callback lead:', err),
     });
   }
 

@@ -1457,7 +1457,7 @@ select.txt-input {
 
 /* ===== PARTNERS (section-specific) ===== */
 .partners {
-    background: var(--neutral)
+    background: #fff;
 }
 
 .partners__head {
@@ -1607,7 +1607,8 @@ select.txt-input {
 
 /* ===== TESTIMONIALS (section-specific) ===== */
 .testi {
-    background: #fff
+    // background: #fff;
+    background: var(--neutral);
 }
 
 .testi__head {

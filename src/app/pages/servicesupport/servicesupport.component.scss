@@ -873,6 +873,18 @@
     strong {
         color: var(--blue-deep);
     }
+
+    p {
+        margin: 0;
+    }
+
+    &__sr {
+        margin: 8px 0 10px;
+        font-size: 1.75rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        color: var(--blue-deep);
+    }
 }
 
 .ss-self {
