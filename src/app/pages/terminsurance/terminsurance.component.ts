@@ -154,7 +154,7 @@ export class TerminsuranceComponent implements AfterViewInit, OnDestroy {
     { insurer: 'Bajaj Life', plan: 'eTouch II', key: 'Bajaj Life|eTouch II', logo: 'BJ', logoImg: 'assets/images/insurers/bajajallianz_life.png', logoColor: '#0056A2', claimRatio: '99.21%', claimRatioSub: 'FY 2024–25 · IRDAI', coverUntil: 'Age 99', coverUntilSub: 'Online-only plan', tag: '★ Lowest Premium', tagColor: '#10b981' },
 
     // ---- "show more" set ----
-    { insurer: 'SBI Life', plan: 'eShield Next', key: 'SBI Life|eShield Next', logo: 'SB', logoImg: 'assets/images/insurers/SBIGeneralInsurance.webp', logoColor: '#00508f', claimRatio: '98.20%', claimRatioSub: 'FY 2024–25 · IRDAI', coverUntil: 'Age 100', coverUntilSub: 'Whole life option', hidden: true },
+    { insurer: 'SBI Life', plan: 'eShield Next', key: 'SBI Life|eShield Next', logo: 'SB', logoImg: 'assets/images/insurers/SBIGeneralInsurance.png', logoColor: '#00508f', claimRatio: '98.20%', claimRatioSub: 'FY 2024–25 · IRDAI', coverUntil: 'Age 100', coverUntilSub: 'Whole life option', hidden: true },
     { insurer: 'Aditya Birla Sun Life', plan: 'DigiShield Plan', key: 'Aditya Birla Sun Life|DigiShield Plan', logo: 'AB', logoImg: 'assets/images/insurers/ABSLI.png', logoColor: '#c8102e', claimRatio: '98.10%', claimRatioSub: 'FY 2024–25 · IRDAI', coverUntil: 'Age 100', coverUntilSub: 'Whole life option', hidden: true },
   ];
 

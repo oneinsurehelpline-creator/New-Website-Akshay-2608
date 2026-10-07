@@ -4,7 +4,7 @@
     <!-- Compact pill first; the full card only opens when clicked -->
     <div class="pn__bar">
         <button class="pn__bar-btn" type="button" (click)="expand()" [attr.aria-expanded]="expanded">
-            <img class="pn__bar-av" src="assets/images/carousel/mascot-avatar.webp" alt="" width="40" height="40">
+            <img class="pn__bar-av" src="assets/images/carousel/mascot-avatar.png" alt="" width="40" height="40">
             <span class="pn__bar-txt">
                 <strong>{{ copy.title }}</strong>
                 <small>3 quick questions · free 30-min call</small>
@@ -23,7 +23,7 @@
         <!-- INTRO -->
         <ng-container *ngIf="step === 'intro'">
             <div class="pn__intro">
-                <img class="pn__av" src="assets/images/carousel/mascot-avatar.webp" alt="" width="72" height="72">
+                <img class="pn__av" src="assets/images/carousel/mascot-avatar.png" alt="" width="72" height="72">
                 <div>
                     <h3 class="pn__title">{{ copy.title }}</h3>
                     <p class="pn__sub">{{ copy.sub }}</p>
@@ -103,7 +103,7 @@
         <!-- SENT -->
         <ng-container *ngIf="step === 'sent'">
             <div class="pn__intro">
-                <img class="pn__av" src="assets/images/carousel/mascot-avatar.webp" alt="" width="72" height="72">
+                <img class="pn__av" src="assets/images/carousel/mascot-avatar.png" alt="" width="72" height="72">
                 <div>
                     <h3 class="pn__title">Thanks{{ name.trim() ? ', ' + name.trim() : '' }}!</h3>
                     <p class="pn__sub">An advisor will call you within 24 hours.</p>
