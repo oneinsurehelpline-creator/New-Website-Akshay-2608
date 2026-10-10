@@ -204,7 +204,7 @@
                 <div></div>
             </div>
 
-            <div class="crow" *ngFor="let p of visiblePlans" [class.recommended]="p.recommended">
+            <div class="crow" *ngFor="let p of visiblePlans">
                 <div class="cinsurer">
                     <div class="cinsurer__logo" [class.cinsurer__logo--img]="p.logoImg"
                         [style.background]="p.logoImg ? '#fff' : p.logoColor">
@@ -212,16 +212,12 @@
                         <span *ngIf="!p.logoImg">{{ p.logo }}</span>
                     </div>
                     <div>
-                        <div class="cinsurer__name">
-                            {{ p.insurer }}
-                            <span class="rec-badge" *ngIf="p.recommended">Recommended</span>
-                            <span class="rec-badge" *ngIf="p.tag" [style.background]="p.tagColor">{{ p.tag }}</span>
-                        </div>
                         <div class="cinsurer__plan">{{ p.plan }}</div>
+                        <div class="cinsurer__name">{{ p.insurer }}</div>
                     </div>
                 </div>
                 <div>
-                    <div class="cval" [class.cval--warn]="p.claimRatioWarn">{{ p.claimRatio }}</div>
+                    <div class="cval">{{ p.claimRatio }}</div>
                     <div class="cval__sub">{{ p.claimRatioSub }}</div>
                 </div>
                 <div>
@@ -232,9 +228,9 @@
                     <div class="cbadge" [ngClass]="'cbadge--' + p.restoreBadge">{{ p.restore }}</div>
                 </div>
                 <div class="cact">
-                    <a class="btn" [ngClass]="p.recommended ? 'btn--orange' : 'btn--outline'" routerLink="/"
-                        fragment="consult">
-                        {{ p.recommended ? 'Get this plan' : 'View plan' }} →
+                    <a class="btn btn--outline"
+                        href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>
+                        Know more →
                     </a>
                     <label class="compare">
                         <input type="checkbox" [checked]="isSelected(p.key)"

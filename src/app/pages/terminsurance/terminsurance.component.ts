@@ -481,6 +481,12 @@ export class TerminsuranceComponent implements AfterViewInit, OnDestroy {
   }
 
   // ---------- Comparer ----------
+  /** Lowest indicative yearly premium for ₹1 Cr cover, from the comparison data (e.g. '₹13,000'). */
+  premiumFrom(key: string): string {
+    const raw = this.planData[key]?.['Premium (₹1Cr, 30M, 30yr, non-smoker)'] ?? '';
+    return raw.match(/₹[\d,]+/)?.[0] ?? 'on request';
+  }
+
   get visiblePlans(): Plan[] {
     return this.showAllPlans ? this.plans : this.plans.filter((p) => !p.hidden);
   }
