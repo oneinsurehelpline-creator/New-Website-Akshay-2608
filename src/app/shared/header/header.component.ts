@@ -1,3 +1,4 @@
+import { PHONE_DISPLAY, PHONE_TEL } from '../site-facts';
 import { Component, HostListener } from '@angular/core';
 
 interface MegaItem {
@@ -57,6 +58,9 @@ export class HeaderComponent {
   ];
 
   /** Top-level links shown after the Products dropdown. */
+  readonly phoneDisplay = PHONE_DISPLAY;
+  readonly phoneTel = PHONE_TEL;
+
   /** Existing-customer shortcuts. */
   readonly renewHref = 'https://wa.me/918655986559?text=' + encodeURIComponent('Hi, I want to renew my policy.');
   /** Saarth policy vault (login is the 'Log in' button on its homepage). */
@@ -84,11 +88,18 @@ export class HeaderComponent {
     this.mobileOpen = !this.mobileOpen;
     // On mobile, show the Products accordion expanded by default when opening.
     this.megaOpen = this.mobileOpen;
+    this.syncMenuClass();
   }
 
   closeMenus(): void {
     this.mobileOpen = false;
     this.megaOpen = false;
+    this.syncMenuClass();
+  }
+
+  /** body.menu-open hides the sticky mobile bar and floating buttons while the phone menu is open. */
+  private syncMenuClass(): void {
+    if (typeof document !== 'undefined') { document.body.classList.toggle('menu-open', this.mobileOpen); }
   }
 
   /** Tap on "Products" — toggles the mega menu (accordion on mobile). */

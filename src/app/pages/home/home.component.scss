@@ -2339,3 +2339,10 @@ select.txt-input {
 .calc-regd {
     margin-top: 14px;
 }
+
+/* Phones: the sticky mobile bar has a WhatsApp button, so drop the floating one */
+@media (max-width: 768px) {
+    .fab {
+        display: none;
+    }
+}

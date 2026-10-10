@@ -1,12 +1,8 @@
 import { INSURER_COUNT } from '../../shared/site-facts';
-import { consentRecord } from '../../shared/consent/consent.component';
 import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, HostListener, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewportScroller, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { LeadService } from '../../services/lead.service';
-import { UtilityService } from 'src/app/services/utility.service';
-import { ScheduleModalService } from 'src/app/shared/schedule-modal/schedule-modal.service';
 import { finalize, timeout } from 'rxjs/operators';
 
 type CalcKey = 'life' | 'guaranteed' | 'health' | 'fire' | 'tax';
@@ -30,102 +26,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private host: ElementRef<HTMLElement>,
-    private fb: FormBuilder,
     private viewport: ViewportScroller,
     private router: Router,
     private leadService: LeadService,
-    private utility: UtilityService,
-    private scheduleModal: ScheduleModalService,
     @Inject(PLATFORM_ID) platformId: Object,
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
-    this.consultForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.maxLength(40)]],
-      lastName: ['', [Validators.required, Validators.maxLength(40)]],
-      phone: ['', [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
-      email: ['', [Validators.required, Validators.email]],
-      help: ['Starting from scratch', Validators.required],
-      time: ['Morning (9–12)', Validators.required],
-      consent: [false, Validators.requiredTrue],
-    });
-  }
-
-  // ============ CONSULT FORM ============
-  consultForm!: FormGroup;
-  consultSubmitting = false;
-  consultDone = false;
-  consultError = '';
-
-  /** convenience accessor for the template */
-  get cf() { return this.consultForm.controls; }
-
-  /** show an error only once the user has interacted with the field */
-  invalid(name: string): boolean {
-    const c = this.consultForm.get(name);
-    return !!c && c.invalid && (c.touched || c.dirty);
-  }
-
-  onConsultSubmit(): void {
-    this.consultError = '';
-
-    // validation guard — template already shows the per-field errors
-    if (this.consultForm.invalid) {
-      this.consultForm.markAllAsTouched();
-      this.utility.toast('warning', 'Please fill all required fields correctly.');
-      return;
-    }
-
-    const v = this.consultForm.value;
-
-    // build PageData in the shape the API expects
-    const pageData = [
-      `Contact No : ${v.phone}`,
-      `Name : ${(v.firstName + ' ' + v.lastName).trim()}`,
-      `City : `,                 // no city field on this form
-      `Mail : ${v.email}`,
-      `Insurance : `,            // no insurance field on this form
-      `Remarks : Help: ${v.help}, Preferred time: ${v.time}. ${consentRecord()}`,
-      `Mode : Home - Free Consultation`,
-      `Type : Website Lead`,
-    ].join(', ');
-
-    const cdto = {
-      Id: 0,
-      PageName: 'Book - Free Consultation',
-      PageUrl: window.location.href,
-      PageData: pageData,
-    };
-
-    this.consultSubmitting = true;
-    this.utility.loading('Submitting…', 'Sending your consultation request.');
-
-    this.leadService.CustomerDetails(cdto).pipe(
-      timeout(15000),
-      finalize(() => { this.consultSubmitting = false; })   // always recovers
-    ).subscribe({
-      next: (res: any) => {
-        console.log('CustomerDetails response:', res);
-        this.consultDone = true;
-        this.utility.success('Request received!', 'Our advisor will call you at your preferred time.');
-        this.consultForm.reset({ help: 'Starting from scratch', time: 'Morning (9–12)' });
-        this.scheduleModal.open();
-      },
-      error: (err) => {
-        console.error('CustomerDetails failed:', err);
-        this.consultError = err?.name === 'TimeoutError'
-          ? 'The server took too long to respond. Please try again or reach us on WhatsApp.'
-          : 'Something went wrong sending your request. Please try again, or reach us on WhatsApp.';
-        this.utility.error('Could not send', this.consultError);
-        this.scheduleModal.open();
-      },
-    });
-  }
-
-  onPhoneInput(e: Event): void {
-    const el = e.target as HTMLInputElement;
-    const digits = el.value.replace(/\D/g, '').slice(0, 10);
-    this.consultForm.get('phone')!.setValue(digits);
-    el.value = digits;
   }
 
   ngOnInit(): void {
@@ -379,7 +285,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     else if (this.productsModalOpen) { this.closeProductsModal(); }
   }
 
-  /** Close the calculator modal (if open) and scroll to the consult form. */
+  /** Close the calculator modal (if open) and scroll to the consult section. */
   goConsult(): void {
     this.closeCalc();
     setTimeout(() => this.viewport.scrollToAnchor('consult'), 0);

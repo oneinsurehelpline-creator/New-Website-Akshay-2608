@@ -1,7 +1,8 @@
 <!-- =================== CONTROL MODE (inline, e.g. carousel) =================== -->
 <!-- Search opens the full branch page in a new tab. -->
 <div class="bl-wrap" *ngIf="mode === 'control'">
-    <p class="bl-label" *ngIf="label">{{ label }}</p>
+    <p class="bl-label" *ngIf="label">{{ label }}
+        <a class="bl-all" routerLink="/branch-locator">See all branches →</a></p>
 
     <div class="branch-search">
 

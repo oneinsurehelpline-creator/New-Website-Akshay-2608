@@ -12,6 +12,7 @@ import { ScheduleCtaDirective } from './schedule-modal/schedule-cta.directive';
 import { PlanNudgeComponent } from './plan-nudge/plan-nudge.component';
 import { RegDisclaimerComponent } from './reg-disclaimer/reg-disclaimer.component';
 import { ConsentComponent } from './consent/consent.component';
+import { MobileBarComponent } from './mobile-bar/mobile-bar.component';
 
 
 
@@ -26,7 +27,8 @@ import { ConsentComponent } from './consent/consent.component';
     ScheduleCtaDirective,
     PlanNudgeComponent,
     RegDisclaimerComponent,
-    ConsentComponent
+    ConsentComponent,
+    MobileBarComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,8 @@ import { ConsentComponent } from './consent/consent.component';
     ScheduleCtaDirective,
     PlanNudgeComponent,
     RegDisclaimerComponent,
-    ConsentComponent
+    ConsentComponent,
+    MobileBarComponent
   ]
 })
 export class SharedModule { }

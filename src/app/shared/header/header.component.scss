@@ -594,3 +594,39 @@
     }
   }
 }
+
+.header_strip__phone {
+  padding-right: 18px;
+  border-right: 1px solid rgba(13, 43, 85, .18);
+}
+
+@media (max-width: 1024px) {
+  .nav__acct .nav__acct-call {
+    grid-column: 1 / -1;
+  }
+
+  .nav.open .nav__cta {
+    max-height: 280px;
+  }
+}
+
+.header_strip__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Phone menu: scroll the whole open panel so the bottom actions are always reachable */
+@media (max-width: 1024px) {
+  .nav.open {
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .nav.open .nav__links {
+    max-height: none;
+    overflow: visible;
+  }
+}

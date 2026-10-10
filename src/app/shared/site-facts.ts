@@ -53,3 +53,8 @@ export function yearsInBusiness(today: Date = new Date()): number {
 export function trustLine(): string {
   return `${yearsInBusiness()} years · ${POLICIES_FALLBACK} policies`;
 }
+
+/** Contact numbers (one place for the header, footer, mobile bar and WhatsApp links). */
+export const PHONE_DISPLAY = '86559 86559';
+export const PHONE_TEL = 'tel:+918655986559';
+export const WHATSAPP_URL = 'https://wa.me/918655986559';

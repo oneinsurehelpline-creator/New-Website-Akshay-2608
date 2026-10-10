@@ -1724,3 +1724,9 @@
         padding: 9px 14px;
     }
 }
+/* Phones: float above the sticky mobile bar */
+@media (max-width: 768px) {
+    .sahay-fab {
+        bottom: calc(76px + env(safe-area-inset-bottom));
+    }
+}

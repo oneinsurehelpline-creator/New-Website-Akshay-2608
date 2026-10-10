@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes, UrlMatchResult, UrlSegment } from '@angular/router';
+import { NgModule, inject } from '@angular/core';
+import { Router, RouterModule, Routes, UrlMatchResult, UrlSegment } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component';
 import { AboutusComponent } from './pages/aboutus/aboutus.component';
@@ -44,6 +44,8 @@ const routes: Routes = [
   { path: 'service-support', component: ServicesupportComponent },
   { matcher: oldServiceMatcher, redirectTo: 'service-support' },
   { path: 'grievance-redressal', component: GrievanceredressalComponent },
+  // Saarth (ai.oneinsure.com) links here for 'Talk to an advisor': send it to the callback section.
+  { path: 'assistance/talk-to-an-advisor', redirectTo: () => inject(Router).createUrlTree(['/'], { fragment: 'consult' }) },
   { path: 'partner-program', component: PartnerprogramComponent },
   { path: 'career-opportunities', component: CareersComponent },
   { path: 'privacy-policy', component: PrivacypolicyComponent },

@@ -679,7 +679,6 @@
         <div class="testi__viewport" (mouseenter)="pauseTesti()" (mouseleave)="resumeTesti()">
             <div class="testi__track" #testiTrack [style.transform]="testiTransform">
                 <article class="tcard">
-                    <div class="tcard__src"><span class="stars">★★★★★</span> via Google</div>
                     <div class="tcard__quote">&ldquo;</div>
                     <p class="tcard__body">They told me I was over-insured. Cancelled two overlapping policies and saved
                         my family ₹42,000 a year. I've never had an advisor tell me to buy less.</p>
@@ -693,7 +692,6 @@
                     </div>
                 </article>
                 <article class="tcard">
-                    <div class="tcard__src"><span class="stars">★★★★★</span> via Google</div>
                     <div class="tcard__quote">&ldquo;</div>
                     <p class="tcard__body">My father's claim was held up for 40 days. One call to OneInsure and they got
                         it cleared in a week, even though we'd bought the policy elsewhere.</p>
@@ -717,7 +715,7 @@
                     <div class="tcard__foot">
                         <div class="tcard__avatar">S</div>
                         <div>
-                            <div class="tcard__name">Sydney Monis.</div>
+                            <div class="tcard__name">Sydney Monis</div>
                             <div class="tcard__meta">Mumbai · Client since 2025</div>
                         </div>
                         <span class="tcard__tag">Health</span>
@@ -727,19 +725,17 @@
                     <div class="tcard__src"><span class="stars">★★★★★</span> via Google</div>
                     <div class="tcard__quote">&ldquo;</div>
                     <p class="tcard__body">Anubha helped and guided very professionally. She explained all pros and cons
-                        with facts. Its not like sales driven company like policybazaar where they don't take customers
-                        seriously.</p>
+                        with facts.</p>
                     <div class="tcard__foot">
-                        <div class="tcard__avatar">V</div>
+                        <div class="tcard__avatar">A</div>
                         <div>
-                            <div class="tcard__name">Ashish Tiwari.</div>
+                            <div class="tcard__name">Ashish Tiwari</div>
                             <div class="tcard__meta">Chennai · Client since 2025</div>
                         </div>
                         <span class="tcard__tag">Portfolio</span>
                     </div>
                 </article>
                 <article class="tcard">
-                    <div class="tcard__src"><span class="stars">★★★★★</span> via Google</div>
                     <div class="tcard__quote">&ldquo;</div>
                     <p class="tcard__body">They rebuilt my health floater from scratch: added my parents, fixed a
                         co-pay clause I didn't understand, and the premium went down. This is what advice looks like.
@@ -754,7 +750,6 @@
                     </div>
                 </article>
                 <article class="tcard">
-                    <div class="tcard__src"><span class="stars">★★★★★</span> via Google</div>
                     <div class="tcard__quote">&ldquo;</div>
                     <p class="tcard__body">Plain words, straight answers, and the three options they gave me actually
                         lined up, cheapest to premium, exactly as they said they would. Refreshing.</p>
@@ -809,80 +804,6 @@
         <div class="row consult__grid gx-4 gy-4 justify-content-center align-items-stretch">
             <!-- Form -->
             <div class="col-12 col-lg">
-                <form class="consult__form reveal h-100 d-none" [formGroup]="consultForm" (ngSubmit)="onConsultSubmit()"
-                    novalidate>
-                    <h4 style="font-weight:800">Request a Free Call</h4>
-
-                    <div class="consult__success" *ngIf="consultDone">
-                        <strong>Thanks, your request is in.</strong>
-                        <span>A certified advisor will call you within 24 hours.</span>
-                        <button type="button" class="btn btn--orange" (click)="consultDone = false">Send another
-                            request</button>
-                    </div>
-
-                    <ng-container *ngIf="!consultDone">
-                        <div class="row g-3 form-grid">
-                            <div class="col-12 col-sm-6 form-field">
-                                <label>First name</label>
-                                <input type="text" formControlName="firstName" placeholder="Aarav"
-                                    [class.invalid]="invalid('firstName')">
-                                <small class="form-err" *ngIf="invalid('firstName')">Please enter your first
-                                    name.</small>
-                            </div>
-                            <div class="col-12 col-sm-6 form-field">
-                                <label>Last name</label>
-                                <input type="text" formControlName="lastName" placeholder="Sharma"
-                                    [class.invalid]="invalid('lastName')">
-                                <small class="form-err" *ngIf="invalid('lastName')">Please enter your last name.</small>
-                            </div>
-                            <div class="col-12 form-field">
-                                <label>Mobile number</label>
-                                <input type="tel" formControlName="phone" placeholder="98765 43210" maxlength="10"
-                                    inputmode="numeric" (input)="onPhoneInput($event)"
-                                    [class.invalid]="invalid('phone')">
-                                <small class="form-err" *ngIf="invalid('phone')">
-                                    Enter a valid 10-digit mobile number starting with 6–9.
-                                </small>
-                            </div>
-                            <div class="col-12 form-field">
-                                <label>Email address</label>
-                                <input type="email" formControlName="email" placeholder="you@example.com"
-                                    [class.invalid]="invalid('email')">
-                                <small class="form-err" *ngIf="invalid('email')">Enter a valid email address.</small>
-                            </div>
-                            <div class="col-12 col-sm-6 form-field">
-                                <label>What do you need help with?</label>
-                                <select formControlName="help">
-                                    <option>Starting from scratch</option>
-                                    <option>Term life insurance</option>
-                                    <option>Health insurance</option>
-                                    <option>Guaranteed savings</option>
-                                    <option>Market-linked plans</option>
-                                    <option>Motor insurance</option>
-                                    <option>Portfolio review</option>
-                                    <option>Claim assistance</option>
-                                    <option>Something else</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-sm-6 form-field">
-                                <label>Preferred time to call</label>
-                                <select formControlName="time">
-                                    <option>Morning (9–12)</option>
-                                    <option>Afternoon (12–4)</option>
-                                    <option>Evening (4–7)</option>
-                                    <option>Anytime</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <app-consent class="consult-consent" formControlName="consent" [showError]="!!consultForm.get('consent')?.touched && !!consultForm.get('consent')?.invalid"></app-consent>
-                        <button class="btn btn--orange btn--big" type="submit" [disabled]="consultSubmitting">
-                            {{ consultSubmitting ? 'Sending…' : 'Request my free call →' }}
-                        </button>
-                        <div class="form-err form-err--server" *ngIf="consultError">{{ consultError }}</div>
-                        <div class="fineprint">We'll call you within 24 hours. No spam, ever.</div>
-                    </ng-container>
-                </form>
                 <div class="consult__form"
                     style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
                     <h4 style="font-weight:800">Request a Free Call</h4>
@@ -940,7 +861,7 @@
                 <p>Many of our advisors joined us in their twenties. Some have grown with us into their forties. When
                     you choose OneInsure, you're not just choosing a company. You're building a relationship with an
                     advisor whose journey can grow alongside your family's.</p>
-                <a class="cta-link" routerLink="/">Meet our team <span>→</span></a>
+                <a class="cta-link" routerLink="/about-us">Meet our team <span>→</span></a>
             </div>
             <div class="col-12 col-lg-6 reveal-right" data-delay="1">
                 <div class="human__img">

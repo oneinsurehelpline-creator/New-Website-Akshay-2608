@@ -1794,3 +1794,9 @@
         justify-content: center;
     }
 }
+/* Phones: float above the sticky mobile bar */
+@media (max-width: 768px) {
+    .kb-fab {
+        bottom: calc(76px + env(safe-area-inset-bottom));
+    }
+}

@@ -576,3 +576,16 @@
         height: auto;
     }
 }
+/* "See all branches" link next to the inline label */
+.bl-all {
+    margin-left: 10px;
+    font: 600 12px/1 var(--sans, 'Montserrat', sans-serif);
+    color: var(--blue, #00B0FF);
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+}
