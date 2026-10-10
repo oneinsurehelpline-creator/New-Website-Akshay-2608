@@ -1,11 +1,11 @@
-import { Component, HostListener } from '@angular/core';
+import { FOUNDED_YEAR } from '../site-facts';
+import { Component } from '@angular/core';
 
 interface FooterLink {
   label: string;
   route?: string;       // internal Angular route
   fragment?: string;    // scroll to a section id (uses appScrollTo)
   href?: string;        // external / tel: / mailto: link
-  action?: 'grievance'; // opens an in-page modal
   newTab?: boolean;
 }
 
@@ -21,19 +21,14 @@ interface FooterColumn {
 })
 export class FooterComponent {
   year = new Date().getFullYear();
+  readonly foundedYear = FOUNDED_YEAR;
 
-  grievanceOpen = false;
-  openGrievance(e: Event): void { e.preventDefault(); this.grievanceOpen = true; }
-  closeGrievance(): void { this.grievanceOpen = false; }
-  onGrvBackdrop(e: MouseEvent): void {
-    if ((e.target as HTMLElement).classList.contains('grv')) { this.closeGrievance(); }
-  }
+  /** IRDAI broker licence. Update the date here as soon as the renewal comes through. */
+  readonly irdaiRegNo = 'IRDA/DB 407/08';
+  readonly licenceValidThrough = '13 Nov 2026';
 
   isScheduleLink(href?: string): boolean {
     return !!href && href.includes('schedule.oneinsure.com');
-  }
-  @HostListener('document:keydown.escape') onEsc(): void {
-    if (this.grievanceOpen) { this.closeGrievance(); }
   }
 
   /** Edit the footer link structure here — the template renders it automatically. */
@@ -55,10 +50,10 @@ export class FooterComponent {
       links: [
         { label: 'Claim Assistance', route: '/insurance-claim-support' },
         { label: 'Services', route: '/service-support' },
-        { label: 'Renew a Policy', fragment: 'consult' },
+        { label: 'Renew a Policy', href: 'https://wa.me/918655986559?text=' + encodeURIComponent('Hi, I want to renew my policy.'), newTab: true },
         { label: 'Calculators', fragment: 'calc' },
         // { label: 'Knowledge base', route: '/knowledge-base' },
-        { label: 'Grievance Redressal', action: 'grievance' },
+        { label: 'Grievance Redressal', route: '/grievance-redressal' },
         { label: 'Contact us', href: 'https://schedule.oneinsure.com/book/get-expert-guidance-web' },
       ],
     },

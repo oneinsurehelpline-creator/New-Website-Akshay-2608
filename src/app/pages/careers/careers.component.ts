@@ -1,3 +1,4 @@
+import { FOUNDED_YEAR, STATS_FALLBACK, formatCount, yearsInBusiness } from '../../shared/site-facts';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   Component, HostListener, ElementRef, AfterViewInit, OnInit, OnDestroy,
@@ -30,9 +31,11 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
   private countIo?: IntersectionObserver;
 
   /** Trusted-count stats — seeded with fallbacks, overwritten by companyDetails() */
-  Policy_Issued = 0;   // → "Customers served"
-  Employees = 0;       // → "Team members"
-  companyAge = 0;      // → "In business" (yrs)
+  Policy_Issued = STATS_FALLBACK.policies;   // → "Policies issued"
+  Employees = STATS_FALLBACK.employees;      // → "Team members"
+  readonly fmt = formatCount;
+  companyAge = yearsInBusiness();
+  readonly foundedYear = FOUNDED_YEAR;      // → "In business" (yrs)
   resumepdf: any;
   constructor(
     private host: ElementRef<HTMLElement>,
@@ -49,11 +52,6 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.companyDetails();
 
-    // Years in business (same logic as carousel-header)
-    const startDate = new Date('2008-03-27');
-    const today = new Date();
-    this.companyAge = today.getFullYear() - startDate.getFullYear();
-    if (today < new Date(today.getFullYear(), 2, 29)) { this.companyAge--; }
   }
 
   ngAfterViewInit(): void {
@@ -393,6 +391,7 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
     experience: ['', Validators.required],
     currentDesignation: ['', Validators.required],
     resume: ['', Validators.required],
+    consent: [false, Validators.requiredTrue],
   });
 
   /** True only once a control is invalid AND the user has interacted with it. */

@@ -10,6 +10,8 @@ import { VideoModalComponent } from './video-modal/video-modal.component';
 import { ScheduleModalComponent } from './schedule-modal/schedule-modal.component';
 import { ScheduleCtaDirective } from './schedule-modal/schedule-cta.directive';
 import { PlanNudgeComponent } from './plan-nudge/plan-nudge.component';
+import { RegDisclaimerComponent } from './reg-disclaimer/reg-disclaimer.component';
+import { ConsentComponent } from './consent/consent.component';
 
 
 
@@ -22,7 +24,9 @@ import { PlanNudgeComponent } from './plan-nudge/plan-nudge.component';
     VideoModalComponent,
     ScheduleModalComponent,
     ScheduleCtaDirective,
-    PlanNudgeComponent
+    PlanNudgeComponent,
+    RegDisclaimerComponent,
+    ConsentComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +41,9 @@ import { PlanNudgeComponent } from './plan-nudge/plan-nudge.component';
     VideoModalComponent,
     ScheduleModalComponent,
     ScheduleCtaDirective,
-    PlanNudgeComponent
+    PlanNudgeComponent,
+    RegDisclaimerComponent,
+    ConsentComponent
   ]
 })
 export class SharedModule { }

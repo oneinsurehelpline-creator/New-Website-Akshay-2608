@@ -34,7 +34,7 @@ export class HeaderComponent {
     {
       title: 'Core Plans',
       items: [
-        { label: 'Guaranteed Savings', desc: 'Fixed returns, zero market risk', route: '/guaranteed-investment-plans' },
+        { label: 'Guaranteed Savings', desc: 'Guaranteed returns, not linked to markets', route: '/guaranteed-investment-plans' },
         { label: 'Term Life Insurance', desc: 'Pure protection for your dependents', route: '/term-life-insurance' },
         { label: 'Health Insurance', desc: 'Family floaters and critical illness', route: '/health-insurance-plans' },
         { label: 'Motor Insurance', desc: 'Car, two-wheeler, commercial', route: '/motor-insurance' },
@@ -57,6 +57,11 @@ export class HeaderComponent {
   ];
 
   /** Top-level links shown after the Products dropdown. */
+  /** Existing-customer shortcuts. */
+  readonly renewHref = 'https://wa.me/918655986559?text=' + encodeURIComponent('Hi, I want to renew my policy.');
+  /** Saarth policy vault (login is the 'Log in' button on its homepage). */
+  readonly myPoliciesHref = 'https://ai.oneinsure.com/';
+
   navLinks: NavLink[] = [
     // { label: 'About Us', route: '/about-us' },
     { label: 'Services', route: '/service-support' },

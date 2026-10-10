@@ -361,6 +361,7 @@
 
                 <!-- submit -->
                 <div class="col-12 qsubmit">
+                    <app-consent class="q-consent" formControlName="consent" [showError]="!!quoteForm.get('consent')?.touched && !!quoteForm.get('consent')?.invalid"></app-consent>
                     <button class="qsubmit-btn" type="submit" [disabled]="submitting">
                         <svg *ngIf="!submitting" width="18" height="18" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">

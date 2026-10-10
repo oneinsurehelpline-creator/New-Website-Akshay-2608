@@ -518,6 +518,7 @@
                 </span>
             </div>
 
+            <app-consent class="kb-consent" formControlName="consent" [showError]="!!form.get('consent')?.touched && !!form.get('consent')?.invalid"></app-consent>
             <button type="submit" class="btn btn--orange kb-form__submit" [disabled]="submitting">
                 {{ submitting ? 'Sending…' : 'Talk to advisor' }}
                 <svg *ngIf="!submitting" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"

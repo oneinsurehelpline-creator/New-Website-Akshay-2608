@@ -1,3 +1,4 @@
+import { consentRecord } from '../../shared/consent/consent.component';
 import {
   AfterViewInit,
   Component,
@@ -277,7 +278,7 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
       `City : `,                                       // not collected on this form
       `Mail : `,                                       // not collected on this form
       `Insurance : ${this.needLabel[v.need] || v.need}`,
-      `Remarks : Book a free call (Knowledge Base)`,
+      `Remarks : Book a free call (Knowledge Base). ${consentRecord()}`,
       `Mode : Knowledge Base - Book a Call`,
       `Type : Website Lead`,
     ].join(', ');
@@ -377,6 +378,7 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(60)]],
       phone: ['', [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
       need: ['', Validators.required],
+      consent: [false, Validators.requiredTrue],
     });
   }
 

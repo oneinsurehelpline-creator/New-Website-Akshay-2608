@@ -184,7 +184,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
     'HDFC Life|Sanchay Plus': {
       'Plan Type': 'Non-linked, Non-par Savings (4 options)',
       'Return Nature': 'Guaranteed: fully locked at inception',
-      'Risk Profile': 'Low: zero market risk; ideal for conservative investors',
+      'Risk Profile': 'Low: returns not linked to markets; ideal for conservative investors',
       'Policy Term': 'Single Pay: 5–20 yrs; Limited Pay: 15–40 yrs (option-dependent)',
       'Premium Payment Term': 'Single Pay; Limited: 5/6/8/10/12 yrs; Regular Pay',
       'Premium Frequency': 'Annual / Half-yearly / Quarterly / Monthly',
@@ -211,7 +211,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
     'HDFC Life|SAGA': {
       'Plan Type': 'Non-linked, Non-par Savings / Pension (SAGA = Sanchay Aajeevan Guaranteed Advantage)',
       'Return Nature': 'Guaranteed: locked at inception; lifelong income',
-      'Risk Profile': 'Low: zero market risk; ideal for retirement / pension seekers',
+      'Risk Profile': 'Low: returns not linked to markets; ideal for retirement / pension seekers',
       'Policy Term': 'Flexible: based on maturity age (up to 85) and deferment period chosen',
       'Premium Payment Term': 'Single Pay or Limited Pay (5/7/10/12 yrs); Deferred / Immediate variants',
       'Premium Frequency': 'Annual / Half-yearly / Quarterly / Monthly',
@@ -265,7 +265,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
     'Axis Max Life|Smart Wealth Plan (SWP)': {
       'Plan Type': 'Non-linked, Non-par Guaranteed Savings',
       'Return Nature': 'Guaranteed: fully locked at inception',
-      'Risk Profile': 'Low: zero market risk; ideal for conservative investors',
+      'Risk Profile': 'Low: returns not linked to markets; ideal for conservative investors',
       'Policy Term': '5 yrs (Short Term); 10–30 yrs (regular); Whole Life (to 100)',
       'Premium Payment Term': 'Single / 5/6/8/10/12/15 yrs Limited / Regular Pay',
       'Premium Frequency': 'Annual / Half-yearly / Quarterly / Monthly',
@@ -319,7 +319,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
     'Bajaj Life|Guaranteed Wealth Goal': {
       'Plan Type': 'Non-linked, Non-par Guaranteed Savings',
       'Return Nature': 'Guaranteed: fully locked at inception',
-      'Risk Profile': 'Low: zero market risk; ideal for conservative / income seekers',
+      'Risk Profile': 'Low: returns not linked to markets; ideal for conservative / income seekers',
       'Policy Term': 'Wealth Creation: 15/20/25 yrs; Assured Income: PPT + Income Period (15–40 yrs)',
       'Premium Payment Term': 'Single / Limited (5/7/10/12) / Regular Pay',
       'Premium Frequency': 'Annual / Half-yearly / Quarterly / Monthly',
@@ -346,7 +346,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
     'ICICI Prudential|GIFT': {
       'Plan Type': 'Non-linked, Non-par Guaranteed Savings',
       'Return Nature': 'Guaranteed: fully locked at inception',
-      'Risk Profile': 'Low: zero market risk; ideal for goal-linked income seekers',
+      'Risk Profile': 'Low: returns not linked to markets; ideal for goal-linked income seekers',
       'Policy Term': 'PPT + Income Period (Income period: 15/20/25/30 yrs); Policy term = PPT + IP',
       'Premium Payment Term': '7 or 10 yrs (GIFT); Choose PPT + Income Period',
       'Premium Frequency': 'Annual / Half-yearly / Quarterly / Monthly',
@@ -373,7 +373,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
     'ICICI Prudential|GIFT Pro': {
       'Plan Type': 'Non-linked, Non-par Guaranteed Savings / Income',
       'Return Nature': 'Guaranteed (income locked; MoneyBack flexible)',
-      'Risk Profile': 'Low: zero market risk; ideal for long-term income seekers',
+      'Risk Profile': 'Low: returns not linked to markets; ideal for long-term income seekers',
       'Policy Term': 'PPT + Deferment + Income Period (10–40 yrs total policy term)',
       'Premium Payment Term': '5/7/10/12 yrs (GIFT Pro); Choose PPT + Income Period',
       'Premium Frequency': 'Annual / Half-yearly / Quarterly / Monthly',
@@ -400,7 +400,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
     'Tata AIA|FortuneGuarantee Plus': {
       'Plan Type': 'Non-linked, Non-par Guaranteed Savings / Income',
       'Return Nature': 'Guaranteed (income rate fixed at inception)',
-      'Risk Profile': 'Low: zero market risk; ideal for income + protection seekers',
+      'Risk Profile': 'Low: returns not linked to markets; ideal for income + protection seekers',
       'Policy Term': 'PPT 10 yrs; Policy 15 yrs + Income period up to 45 yrs',
       'Premium Payment Term': 'Single / Limited (5/7/10/12/15) / Regular Pay',
       'Premium Frequency': 'Annual / Half-yearly / Quarterly / Monthly',

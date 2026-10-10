@@ -28,6 +28,7 @@ import { CorporateinsuranceComponent } from './corporateinsurance/corporateinsur
 import { EmployeremployeeinsuranceComponent } from './employeremployeeinsurance/employeremployeeinsurance.component';
 import { TermsconditionsComponent } from './termsconditions/termsconditions.component';
 import { ServicesupportComponent } from './servicesupport/servicesupport.component';
+import { GrievanceredressalComponent } from './grievanceredressal/grievanceredressal.component';
 
 
 
@@ -57,6 +58,7 @@ import { ServicesupportComponent } from './servicesupport/servicesupport.compone
     EmployeremployeeinsuranceComponent,
     TermsconditionsComponent,
     ServicesupportComponent,
+    GrievanceredressalComponent,
   ],
   imports: [
     CommonModule,

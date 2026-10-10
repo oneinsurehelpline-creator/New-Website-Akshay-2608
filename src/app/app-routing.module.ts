@@ -24,6 +24,7 @@ import { CorporateinsuranceComponent } from './pages/corporateinsurance/corporat
 import { EmployeremployeeinsuranceComponent } from './pages/employeremployeeinsurance/employeremployeeinsurance.component';
 import { TermsconditionsComponent } from './pages/termsconditions/termsconditions.component';
 import { ServicesupportComponent } from './pages/servicesupport/servicesupport.component';
+import { GrievanceredressalComponent } from './pages/grievanceredressal/grievanceredressal.component';
 
 /** Old site's /service and /Service/<service>/<insurer> URLs (any case). */
 export function oldServiceMatcher(segments: UrlSegment[]): UrlMatchResult | null {
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'insurance-claim-support', component: ClaimsupportComponent },
   { path: 'service-support', component: ServicesupportComponent },
   { matcher: oldServiceMatcher, redirectTo: 'service-support' },
+  { path: 'grievance-redressal', component: GrievanceredressalComponent },
   { path: 'partner-program', component: PartnerprogramComponent },
   { path: 'career-opportunities', component: CareersComponent },
   { path: 'privacy-policy', component: PrivacypolicyComponent },

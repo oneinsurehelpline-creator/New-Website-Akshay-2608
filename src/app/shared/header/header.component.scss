@@ -535,3 +535,62 @@
     font-size: 10px;
   }
 }
+/* ---- Top strip: brand line + existing-customer shortcuts ---- */
+.header_strip__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.header_strip__links {
+  display: flex;
+  gap: 18px;
+
+  a {
+    font: 700 12px/1 var(--sans);
+    color: var(--blue-deep);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--blue);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+}
+
+/* mobile-menu copy of the shortcuts */
+.nav__acct {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .header_strip__inner {
+    justify-content: center;
+  }
+
+  .header_strip__links {
+    display: none;
+  }
+
+  .nav__acct {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font: 600 13px/1 var(--sans);
+      color: var(--blue-deep);
+      text-decoration: none;
+    }
+  }
+}

@@ -105,6 +105,7 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
       mobile: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
       city: ['', Validators.required],
       coverType: ['comprehensive', Validators.required],
+      consent: [false, Validators.requiredTrue],
     });
   }
 

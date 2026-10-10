@@ -1,3 +1,4 @@
+import { trustLine } from '../../shared/site-facts';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -77,7 +78,7 @@ export class TerminsuranceComponent implements AfterViewInit, OnDestroy {
     'IRDAI-licensed broker',
     'Claim-assistance included',
     'No spam, ever',
-    '18 years · 5 lakh+ policies',
+    trustLine(),
   ];
 
   stats = [

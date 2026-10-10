@@ -1,0 +1,112 @@
+<!-- ============ HERO ============ -->
+<section class="gr-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="gr-crumb">
+            <a routerLink="/">Home</a><span>/</span><span aria-current="page">Grievance Redressal</span>
+        </nav>
+        <span class="eyebrow reveal-up">Grievance redressal</span>
+        <h1 class="reveal-up" data-delay="1">Not happy with us? <span class="accent">Tell us.</span></h1>
+        <p class="reveal-up" data-delay="2">Every complaint is logged, reviewed and answered in writing. Here's how to
+            raise one, who handles it, and where to go if you're still not satisfied.</p>
+    </div>
+</section>
+
+<!-- ============ ESCALATION ============ -->
+<section class="section--tight">
+    <div class="container">
+        <div class="gr-head reveal-up">
+            <h2>How we handle your <span class="accent">complaint</span></h2>
+            <p>Start at Level 1. If you're not satisfied, or don't hear back in time, move to the next level.</p>
+        </div>
+
+        <ol class="gr-steps">
+            <li class="gr-step reveal-up" *ngFor="let l of levels; let i = index" [attr.data-delay]="i">
+                <div class="gr-step__num">{{ i + 1 }}</div>
+                <div class="gr-step__body">
+                    <div class="gr-step__top">
+                        <span class="gr-step__lvl">{{ l.step }}</span>
+                        <span class="gr-step__time" [class.tbc]="!l.timeline">Response: {{ l.timeline || TBC
+                            }}</span>
+                    </div>
+                    <h3>{{ l.title }}</h3>
+                    <p class="gr-step__who" [class.tbc]="!l.who">{{ l.who || TBC }}</p>
+                    <p class="gr-step__when">{{ l.when }}</p>
+                    <div class="gr-step__contacts">
+                        <ng-container *ngFor="let c of l.contacts">
+                            <a *ngIf="c.value && c.href; else plain" [href]="c.href"
+                                [attr.target]="c.href.startsWith('http') ? '_blank' : null" rel="noopener">
+                                <span>{{ c.label }}</span>{{ c.value }}</a>
+                            <ng-template #plain>
+                                <div [class.tbc]="!c.value"><span>{{ c.label }}</span>{{ c.value || TBC }}</div>
+                            </ng-template>
+                        </ng-container>
+                    </div>
+                </div>
+            </li>
+
+            <li class="gr-step gr-step--ext reveal-up" data-delay="3">
+                <div class="gr-step__num">4</div>
+                <div class="gr-step__body">
+                    <div class="gr-step__top">
+                        <span class="gr-step__lvl">Level 4 · Outside OneInsure</span>
+                    </div>
+                    <h3>IRDAI and the Insurance Ombudsman</h3>
+                    <p class="gr-step__when">If your complaint isn't resolved to your satisfaction, or you get no
+                        response within 30 days, you can escalate to the regulator or the Insurance Ombudsman.</p>
+                    <div class="gr-step__contacts">
+                        <a href="https://bimabharosa.irdai.gov.in" target="_blank" rel="noopener"><span>Bima
+                                Bharosa (IRDAI portal)</span>bimabharosa.irdai.gov.in</a>
+                        <a href="tel:155255"><span>IRDAI toll-free</span>155255 or 1800 4254 732</a>
+                        <a href="mailto:complaints@irdai.gov.in"><span>IRDAI email</span>complaints&#64;irdai.gov.in</a>
+                        <a href="https://www.cioins.co.in" target="_blank" rel="noopener"><span>Insurance
+                                Ombudsman</span>cioins.co.in</a>
+                    </div>
+                </div>
+            </li>
+        </ol>
+    </div>
+</section>
+
+<!-- ============ HOW TO RAISE ============ -->
+<section class="section--tight gr-how">
+    <div class="container">
+        <div class="gr-how__grid">
+            <div class="reveal-up">
+                <h2>Raising a complaint</h2>
+                <p>Include these so we can resolve it faster:</p>
+                <ul class="gr-list">
+                    <li>Your name and registered mobile number</li>
+                    <li>Policy number and insurer name</li>
+                    <li>What happened, with dates</li>
+                    <li>What outcome you're looking for</li>
+                    <li>Copies of any letters, emails or documents</li>
+                </ul>
+            </div>
+            <div class="reveal-up" data-delay="1">
+                <h2>What happens next</h2>
+                <ul class="gr-list gr-list--num">
+                    <li>We acknowledge your complaint and share a reference number.</li>
+                    <li>A dedicated officer reviews it and contacts the insurer if needed.</li>
+                    <li>You get a written response with the outcome and reasons.</li>
+                </ul>
+                <div class="gr-post">
+                    <span>Write to us</span>
+                    <p [class.tbc]="!postalAddress">{{ postalAddress || TBC }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ CLAIM HELP ============ -->
+<section class="section--tight">
+    <div class="container">
+        <div class="gr-band reveal-up">
+            <div>
+                <h2>Is this about a claim?</h2>
+                <p>Our claims team can often sort it out before it becomes a formal complaint.</p>
+            </div>
+            <a class="btn btn--orange btn--big" routerLink="/insurance-claim-support">Go to claim support</a>
+        </div>
+    </div>
+</section>

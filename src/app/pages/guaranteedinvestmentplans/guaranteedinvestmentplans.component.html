@@ -25,6 +25,7 @@
                     <h2>Predictability is the most<br />underrated <span class="accent">financial virtue.</span></h2>
                     <p>A guaranteed savings plan locks in your return on day one: exactly how much, exactly when. No
                         market surprises, ever.</p>
+                    <app-reg-disclaimer class="gp-regd" kind="guaranteed" [compact]="true"></app-reg-disclaimer>
                     <a class="btn btn--blue" href="#compare" (click)="$event.preventDefault(); scrollTo('compare')">See
                         plans &amp; projected returns →</a>
                 </div>
@@ -229,6 +230,7 @@
             </button>
         </div>
 
+        <app-reg-disclaimer class="gp-regd gp-regd--full" kind="guaranteed"></app-reg-disclaimer>
         <p class="cmp__disclaimer">
             * IRR and maturity benefit figures are illustrative estimates based on current benefit illustrations. Actual
             returns depend on exact plan chosen, premium frequency, age, and insurer's terms. Speak to an advisor for a

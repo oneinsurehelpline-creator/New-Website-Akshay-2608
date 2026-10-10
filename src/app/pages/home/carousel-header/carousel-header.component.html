@@ -15,7 +15,7 @@
                             <span class="hl-fixed"><span class="one">One</span> <span class="place">place</span></span>
                             <span class="hl-dynamic">for all your insurance needs</span>
                         </h1>
-                        <p class="hero__sub">18 years of helping Indian families find the right cover.</p>
+                        <p class="hero__sub">{{ companyAge }} years of helping Indian families find the right cover.</p>
                         <div class="hero__cta">
                             <a class="btn btn--blue btn--big"
                                 href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Book
@@ -144,8 +144,8 @@
                             <span class="hl-fixed"><span class="one">One</span> <span class="place">place</span></span>
                             <span class="hl-dynamic">to understand insurance, simply</span>
                         </h2>
-                        <p class="hero__sub">Real questions, real answers, no pitch attached. That's how 15 lakh people
-                            found us.</p>
+                        <p class="hero__sub">Real questions, real answers, no pitch attached. That's how {{ socialFollowing }} people
+                            follow us.</p>
                         <div class="hero__cta">
                             <a class="btn btn--blue btn--big" href="#consult">Join the community
                                 <svg fill="none" height="14" viewBox="0 0 14 14" width="14">
@@ -321,26 +321,26 @@
         <div class="hero__strip-grid" style="position:relative;z-index:1;">
             <div class="hs">
                 <div class="hs__num" [attr.data-count]="Policy_Issued" data-suffix="+"><span
-                        class="num-main">0</span><span class="u"><em>+</em></span></div>
+                        class="num-main">{{ fmt(Policy_Issued) }}</span><span class="u"><em>+</em></span></div>
                 <div class="hs__lbl">Policies Issued</div>
             </div>
             <div class="hs">
-                <div class="hs__num" [attr.data-count]="companyAge" data-suffix="+"><span class="num-main">0</span><span
+                <div class="hs__num" [attr.data-count]="companyAge" data-suffix="+"><span class="num-main">{{ companyAge }}</span><span
                         class="u">+</span></div>
                 <div class="hs__lbl">Years of Expertise</div>
             </div>
             <div class="hs">
-                <div class="hs__num" [attr.data-count]="Managers" data-suffix="+"><span class="num-main">0</span><span
+                <div class="hs__num" [attr.data-count]="Managers" data-suffix="+"><span class="num-main">{{ fmt(Managers) }}</span><span
                         class="u">+</span></div>
                 <div class="hs__lbl">Advisors &amp; Service Managers</div>
             </div>
             <div class="hs">
-                <div class="hs__num" [attr.data-count]="Branches" data-suffix="+"><span class="num-main">0</span><span
+                <div class="hs__num" [attr.data-count]="Branches" data-suffix="+"><span class="num-main">{{ fmt(Branches) }}</span><span
                         class="u">+</span></div>
-                <div class="hs__lbl">Branches across 20 cities</div>
+                <div class="hs__lbl">Branches across {{ cityCount }} cities</div>
             </div>
             <div class="hs">
-                <div class="hs__num" [attr.data-count]="Employees" data-suffix="+"><span class="num-main">0</span><span
+                <div class="hs__num" [attr.data-count]="Employees" data-suffix="+"><span class="num-main">{{ fmt(Employees) }}</span><span
                         class="u">+</span></div>
                 <div class="hs__lbl">Employees across India</div>
             </div>

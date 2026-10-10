@@ -1,3 +1,4 @@
+import { CITY_COUNT, SOCIAL_FOLLOWING, STATS_FALLBACK, formatCount, yearsInBusiness } from '../../../shared/site-facts';
 import { isPlatformBrowser } from '@angular/common';
 import {
   Component, AfterViewInit, OnDestroy, OnInit, ElementRef, ViewChild, HostListener, Inject, PLATFORM_ID,
@@ -28,13 +29,16 @@ export class CarouselHeaderComponent implements OnInit, AfterViewInit, OnDestroy
   private readonly AUTO_MS = 6000;
   current = 0;
   progress = 0;                 // bound to the progress bar width (%)
-  companyAge = 0;
+  companyAge = yearsInBusiness();
+  readonly socialFollowing = SOCIAL_FOLLOWING;
+  readonly cityCount = CITY_COUNT;
 
   /** Trusted-count stats — seeded with fallbacks, overwritten by companyDetails() */
-  Policy_Issued = 0;
-  Managers = 0;
-  Branches = 0;
-  Employees = 0;
+  Policy_Issued = STATS_FALLBACK.policies;
+  Managers = STATS_FALLBACK.managers;
+  Branches = STATS_FALLBACK.branches;
+  Employees = STATS_FALLBACK.employees;
+  readonly fmt = formatCount;
 
   private timer: ReturnType<typeof setInterval> | undefined;
   private progStart = Date.now();
@@ -50,14 +54,6 @@ export class CarouselHeaderComponent implements OnInit, AfterViewInit, OnDestroy
   ngOnInit() {
     if (this.isBrowser) {
       this.companyDetails();
-    }
-    const startDate = new Date('2008-03-27');
-    const today = new Date();
-
-    this.companyAge = today.getFullYear() - startDate.getFullYear();
-
-    if (today < new Date(today.getFullYear(), 2, 29)) {
-      this.companyAge--;
     }
   }
 
@@ -103,10 +99,7 @@ export class CarouselHeaderComponent implements OnInit, AfterViewInit, OnDestroy
 
   /** Count-up animation for [data-count] numbers (ports the original initCounters). */
   private initCounters(): void {
-    const fmt = (n: number): string =>
-      n >= 100000 ? Math.round(n / 100000) + 'L'
-        : n >= 1000 ? n.toLocaleString('en-IN')
-          : String(n);
+    const fmt = formatCount;
 
     const animate = (el: Element) => {
       const target = parseInt((el as HTMLElement).dataset['count'] || '0', 10) || 0;

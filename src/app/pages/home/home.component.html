@@ -388,6 +388,7 @@
                                 <div class="calc__out-lbl">Maturity Value</div>
                                 <div class="calc__out-val"><span class="unit">₹</span> <span>{{ grOut }}</span></div>
                                 <div class="calc__out-note">{{ grNote }}</div>
+                                <app-reg-disclaimer class="calc-regd" kind="guaranteed" [compact]="true"></app-reg-disclaimer>
                                 <div class="calc__nudge" *ngIf="calcTouched">
                                     <p>That&#39;s ₹{{ grOut }} at maturity. Want help picking the plan that gets you there?</p>
                                     <a href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Talk it through, free <span>→</span></a>
@@ -596,7 +597,7 @@
 <section class="partners section">
     <div class="container">
         <div class="partners__head reveal">
-            <h2 style="font-weight:800">Access to 30+ of India's most trusted insurers, <span class="accent">in one
+            <h2 style="font-weight:800">Access to {{ insurerCount }} of India's most trusted insurers, <span class="accent">in one
                     place.</span></h2>
         </div>
         <div class="marquee d-none">
@@ -874,6 +875,7 @@
                             </div>
                         </div>
 
+                        <app-consent class="consult-consent" formControlName="consent" [showError]="!!consultForm.get('consent')?.touched && !!consultForm.get('consent')?.invalid"></app-consent>
                         <button class="btn btn--orange btn--big" type="submit" [disabled]="consultSubmitting">
                             {{ consultSubmitting ? 'Sending…' : 'Request my free call →' }}
                         </button>

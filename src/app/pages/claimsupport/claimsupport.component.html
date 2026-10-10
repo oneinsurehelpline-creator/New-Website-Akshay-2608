@@ -856,7 +856,7 @@
     </div>
 
     <div class="esc__ctas reveal-up">
-      <a class="btn btn--orange" (click)="openGrievance($event)" style="cursor:pointer">Raise a Grievance</a>
+      <a class="btn btn--orange" routerLink="/grievance-redressal">Raise a Grievance</a>
       <a href="#" class="btn btn--ghost">Find Your Ombudsman</a>
     </div>
   </div>
@@ -1145,6 +1145,11 @@
             <!-- <small class="form-err" *ngIf="invalid('declaration')">Please confirm the declaration to continue.</small> -->
           </div>
 
+          <!-- CONSENT -->
+          <div class="col-12">
+            <app-consent formControlName="consent" [showError]="!!claimForm.get('consent')?.touched && !!claimForm.get('consent')?.invalid"></app-consent>
+          </div>
+
           <div class="col-12">
             <button type="submit" class="btn btn--orange btn--big claim-form__submit" [disabled]="submitting">
               {{ submitting ? 'Submitting…' : 'Submit Claim' }}
@@ -1155,9 +1160,6 @@
               </svg>
             </button>
             <div class="form-err form-err--server" *ngIf="serverError">{{ serverError }}</div>
-            <p class="claim-form__note">
-              By submitting, you agree to be contacted by the OneInsure claims team. We respect your privacy.
-            </p>
           </div>
 
         </div>

@@ -188,6 +188,7 @@ export class PartnerprogramComponent implements AfterViewInit, OnDestroy {
       experience: ['', [Validators.required]],
       posCode: ['No', [Validators.required]],  // 'No' selected by default
       portfolioLakhs: [null, [Validators.min(0)]], // optional
+      consent: [false, [Validators.requiredTrue]],
     });
   }
 

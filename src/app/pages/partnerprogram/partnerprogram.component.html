@@ -348,6 +348,7 @@
                     </div>
 
                     <div class="col-12">
+                        <app-consent class="pp-consent" kind="partner" formControlName="consent" [showError]="!!leadForm.get('consent')?.touched && !!leadForm.get('consent')?.invalid"></app-consent>
                         <button type="submit" class="btn btn--orange btn--big pp-lead-form__submit"
                             [disabled]="submitting">
                             {{ submitting ? 'Submitting…' : 'Submit Application' }}

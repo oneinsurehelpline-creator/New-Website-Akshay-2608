@@ -1,3 +1,5 @@
+import { INSURER_COUNT } from '../../shared/site-facts';
+import { consentRecord } from '../../shared/consent/consent.component';
 import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, HostListener, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewportScroller, isPlatformBrowser } from '@angular/common';
@@ -44,6 +46,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       email: ['', [Validators.required, Validators.email]],
       help: ['Starting from scratch', Validators.required],
       time: ['Morning (9–12)', Validators.required],
+      consent: [false, Validators.requiredTrue],
     });
   }
 
@@ -81,7 +84,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       `City : `,                 // no city field on this form
       `Mail : ${v.email}`,
       `Insurance : `,            // no insurance field on this form
-      `Remarks : Help: ${v.help}, Preferred time: ${v.time}`,
+      `Remarks : Help: ${v.help}, Preferred time: ${v.time}. ${consentRecord()}`,
       `Mode : Home - Free Consultation`,
       `Type : Website Lead`,
     ].join(', ');
@@ -335,6 +338,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /** "Built by advisors" section: the usual way (struck out) vs the OneInsure way. */
+  readonly insurerCount = INSURER_COUNT;
+
   readonly diffRows = [
     {
       stat: '30 min', cap: 'Free first review',
@@ -344,7 +349,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       stat: '30+', cap: 'Insurers compared',
       old: 'Sells the one or two insurers they are tied to.',
-      now: 'We compare 30+ insurers and hand you the three that make sense for your family.',
+      now: `We compare ${INSURER_COUNT} insurers and hand you the three that make sense for your family.`,
     },
     {
       stat: '1', cap: 'Advisor, start to finish',
