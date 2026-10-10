@@ -630,3 +630,16 @@
     overflow: visible;
   }
 }
+
+/* second link in the Products dropdown footer */
+.mega__foot--calc {
+  margin-left: 26px;
+  color: var(--blue);
+}
+
+@media (max-width: 1024px) {
+  .mega__foot--calc {
+    display: block;
+    margin: 12px 0 0;
+  }
+}

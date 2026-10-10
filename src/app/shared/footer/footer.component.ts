@@ -51,7 +51,7 @@ export class FooterComponent {
         { label: 'Claim Assistance', route: '/insurance-claim-support' },
         { label: 'Services', route: '/service-support' },
         { label: 'Renew a Policy', href: 'https://wa.me/918655986559?text=' + encodeURIComponent('Hi, I want to renew my policy.'), newTab: true },
-        { label: 'Calculators', fragment: 'calc' },
+        { label: 'Calculators', route: '/calculators' },
         // { label: 'Knowledge base', route: '/knowledge-base' },
         { label: 'Grievance Redressal', route: '/grievance-redressal' },
         { label: 'Contact us', href: 'https://schedule.oneinsure.com/book/get-expert-guidance-web' },

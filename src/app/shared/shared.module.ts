@@ -13,6 +13,8 @@ import { PlanNudgeComponent } from './plan-nudge/plan-nudge.component';
 import { RegDisclaimerComponent } from './reg-disclaimer/reg-disclaimer.component';
 import { ConsentComponent } from './consent/consent.component';
 import { MobileBarComponent } from './mobile-bar/mobile-bar.component';
+import { CalculatorsComponent } from './calculators/calculators.component';
+import { ProductMarqueeComponent } from './product-marquee/product-marquee.component';
 
 
 
@@ -28,7 +30,9 @@ import { MobileBarComponent } from './mobile-bar/mobile-bar.component';
     PlanNudgeComponent,
     RegDisclaimerComponent,
     ConsentComponent,
-    MobileBarComponent
+    MobileBarComponent,
+    CalculatorsComponent,
+    ProductMarqueeComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +50,9 @@ import { MobileBarComponent } from './mobile-bar/mobile-bar.component';
     PlanNudgeComponent,
     RegDisclaimerComponent,
     ConsentComponent,
-    MobileBarComponent
+    MobileBarComponent,
+    CalculatorsComponent,
+    ProductMarqueeComponent
   ]
 })
 export class SharedModule { }

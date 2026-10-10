@@ -29,6 +29,7 @@ import { EmployeremployeeinsuranceComponent } from './employeremployeeinsurance/
 import { TermsconditionsComponent } from './termsconditions/termsconditions.component';
 import { ServicesupportComponent } from './servicesupport/servicesupport.component';
 import { GrievanceredressalComponent } from './grievanceredressal/grievanceredressal.component';
+import { CalculatorspageComponent } from './calculatorspage/calculatorspage.component';
 
 
 
@@ -59,6 +60,7 @@ import { GrievanceredressalComponent } from './grievanceredressal/grievanceredre
     TermsconditionsComponent,
     ServicesupportComponent,
     GrievanceredressalComponent,
+    CalculatorspageComponent,
   ],
   imports: [
     CommonModule,

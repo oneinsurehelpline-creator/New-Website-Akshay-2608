@@ -205,7 +205,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
       'Paid-Up Option': '✓ After 2 yrs (reduced paid-up benefits)',
       'Tax Benefit Eligibility': '✓ Sec 80C up to ₹1.5L p.a.; ✓ Sec 10(10D) maturity/death benefit tax-free (conditions apply)',
       'Rider Options': 'Income Benefit on Accidental Disability; Critical Illness Plus; Protect Plus; Livewell Rider',
-      'Free-Look Period': '15 days (30 days: distance marketing)',
+      'Free-Look Period': '30 days',
       'Key Differentiator / USP': '4 payout flavours in one plan; Life-Long Income to age 99; fully guaranteed returns; widest range of payout combos',
     },
     'HDFC Life|SAGA': {
@@ -232,7 +232,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
       'Paid-Up Option': '✓ After 2 yrs (paid-up value retained)',
       'Tax Benefit Eligibility': '✓ Sec 80CCC pension contribution (up to ₹1.5L under 80CCE limit); ✓ Sec 10(10A) commutation; Death benefit tax-free',
       'Rider Options': 'HDFC Life WoP Rider (joint life on 1st death); CI Rider; Protect Plus Rider',
-      'Free-Look Period': '15 days (30 days: distance marketing)',
+      'Free-Look Period': '30 days',
       'Key Differentiator / USP': '★ Lifelong guaranteed income locked at inception (unique); Joint Life option with WoP; Pension/savings hybrid; Partial withdrawal available',
     },
     'HDFC Life|Click 2 Achieve': {
@@ -259,7 +259,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
       'Paid-Up Option': '✓ After 2 yrs (non-par + par both)',
       'Tax Benefit Eligibility': '✓ Sec 80C up to ₹1.5L p.a.; ✓ Sec 10(10D) tax-free maturity (conditions); Child plan: proposer premium eligible',
       'Rider Options': 'Non-par: CI Rider; Protect Plus Rider; Par: WoP Plus Rider; CI Plus Rider; Accidental Disability Rider',
-      'Free-Look Period': '15 days (30 days: distance marketing)',
+      'Free-Look Period': '30 days',
       'Key Differentiator / USP': 'Child plan with Proposer WoP: premiums waived on proposer death; Dream Achiever bonus (2× AP for top university / Olympics); Par: Early income from yr 1; 5 plan variants',
     },
     'Axis Max Life|Smart Wealth Plan (SWP)': {
@@ -286,7 +286,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
       'Paid-Up Option': '✓ After 2 yrs',
       'Tax Benefit Eligibility': '✓ Sec 80C up to ₹1.5L p.a.; ✓ Sec 10(10D) tax-free maturity (conditions apply)',
       'Rider Options': 'Axis Max WoP Plus Rider; Accidental Death & Dismemberment Rider; CI & Disability Rider; Term Plus Rider',
-      'Free-Look Period': '15 days (30 days: distance marketing)',
+      'Free-Look Period': '30 days',
       'Key Differentiator / USP': 'Joint Life Cover; Whole Life income option; Guaranteed returns; Simple, flexible non-par plan; good for conservative retirement planners',
     },
     'Axis Max Life|Smart Wealth Advantage Growth Par (SWAG)': {
@@ -313,7 +313,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
       'Paid-Up Option': '✓ After 2 yrs (reduced paid-up + par bonus continues at reduced level)',
       'Tax Benefit Eligibility': '✓ Sec 80C up to ₹1.5L p.a.; ✓ Sec 10(10D) tax-free maturity (conditions; bonuses also covered)',
       'Rider Options': 'Axis Max WoP Plus Rider (CI + Disability + Death); Accidental Death & Dismemberment Rider; CI & Disability Rider; Term Plus Rider',
-      'Free-Look Period': '15 days (30 days: distance marketing)',
+      'Free-Look Period': '30 days',
       'Key Differentiator / USP': '★ Policy Continuance Benefit: benefits continue to nominee without further premium; Par upside via cash bonus; +50% ADB inbuilt; women: extra 10% SA at maturity',
     },
     'Bajaj Life|Guaranteed Wealth Goal': {
@@ -340,7 +340,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
       'Paid-Up Option': '✓ After 2 yrs (paid-up benefits apply)',
       'Tax Benefit Eligibility': '✓ Sec 80C up to ₹1.5L p.a.; ✓ Sec 10(10D) maturity & death benefit tax-free (conditions apply)',
       'Rider Options': 'Bajaj Life Accidental Death Benefit Rider; CI Rider (10/25/60 illness tiers); Accidental Disability Rider; WoP Rider',
-      'Free-Look Period': '15 days (30 days: distance marketing)',
+      'Free-Look Period': '30 days',
       'Key Differentiator / USP': 'Income period up to 40 yrs (longest in peer set); Step-Up income (+5% p.a.); Wealth Creation + Assured Income sub-options under one plan',
     },
     'ICICI Prudential|GIFT': {
@@ -367,7 +367,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
       'Paid-Up Option': '✓ After 2 yrs',
       'Tax Benefit Eligibility': '✓ Sec 80C up to ₹1.5L p.a.; ✓ Sec 10(10D) income & death benefit tax-free (conditions; premium ≤₹5L aggregate p.a.)',
       'Rider Options': 'ICICI Pru Accidental Death Benefit Rider; WoP Rider (permanent disability); Terminal Illness Rider',
-      'Free-Look Period': '15 days (30 days: distance marketing)',
+      'Free-Look Period': '30 days',
       'Key Differentiator / USP': 'In-built WoP (Future Secure): future premiums waived on death; Guaranteed income starts from Day 7 of policy; Flexible income start date',
     },
     'ICICI Prudential|GIFT Pro': {
@@ -394,7 +394,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
       'Paid-Up Option': '✓ After 2 yrs',
       'Tax Benefit Eligibility': '✓ Sec 80C up to ₹1.5L p.a.; ✓ Sec 10(10D) income & death benefit tax-free (conditions; IT Act 2025 Sec 11)',
       'Rider Options': 'ICICI Pru Accidental Death Rider; WoP on Disability Rider; Terminal Illness cover (limited rider suite)',
-      'Free-Look Period': '15 days (30 days: distance marketing)',
+      'Free-Look Period': '30 days',
       'Key Differentiator / USP': '★ Most flexible in GIFT family: Level OR Increasing income; MoneyBack 0–200% of premiums; choose any year to take lump sum; Low Cover Income Booster option',
     },
     'Tata AIA|FortuneGuarantee Plus': {
@@ -421,7 +421,7 @@ export class GuaranteedinvestmentplansComponent implements AfterViewInit, OnDest
       'Paid-Up Option': '✓ After 2 yrs',
       'Tax Benefit Eligibility': '✓ Sec 80C up to ₹1.5L p.a.; ✓ Sec 10(10D) income & death benefit tax-free (conditions; GST = 0% from Sep 2025)',
       'Rider Options': 'Tata AIA Non-Linked Comprehensive Protection Rider (40 critical illnesses); Tata AIA Vitality Protect Rider; Tata AIA Vitality Health Rider (wellness rewards + CI)',
-      'Free-Look Period': '15 days (30 days: distance marketing)',
+      'Free-Look Period': '30 days',
       'Key Differentiator / USP': 'Income period up to 45 yrs (longest in peer set for non-par); Large Premium Income Booster; Joint life cover with spouse; Income Booster for high-SA policies',
     },
   };

@@ -63,7 +63,7 @@ export class HeaderComponent {
 
   /** Existing-customer shortcuts. */
   readonly renewHref = 'https://wa.me/918655986559?text=' + encodeURIComponent('Hi, I want to renew my policy.');
-  /** Saarth policy vault (login is the 'Log in' button on its homepage). */
+  /** OneInsure AI policy vault (login is the 'Log in' button on its homepage). */
   readonly myPoliciesHref = 'https://ai.oneinsure.com/';
 
   navLinks: NavLink[] = [

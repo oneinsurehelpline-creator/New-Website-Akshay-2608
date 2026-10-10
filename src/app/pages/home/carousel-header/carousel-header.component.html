@@ -40,27 +40,28 @@
                         </div>
                     </div>
                     <!-- Hero visual -->
-                    <div aria-hidden="true" class="hv">
-                        <div class="hv__halo"></div>
-                        <div class="hv__ring r1"><span class="hv__ring-dot"></span></div>
-                        <div class="hv__ring r2"></div>
-                        <div class="hv__ring r3"></div>
-                        <div class="hv__image">
+                    <!-- Not aria-hidden as a whole: the floating bubbles are real links. -->
+                    <div class="hv">
+                        <div aria-hidden="true" class="hv__halo"></div>
+                        <div aria-hidden="true" class="hv__ring r1"><span class="hv__ring-dot"></span></div>
+                        <div aria-hidden="true" class="hv__ring r2"></div>
+                        <div aria-hidden="true" class="hv__ring r3"></div>
+                        <div aria-hidden="true" class="hv__image">
                             <img alt="OneInsure" data-first-enter-image="true" fetchpriority="high"
                                 src="assets/images/carousel/mascot-welcome.png" />
                         </div>
-                        <div class="orb b1"><span class="bullet"><img alt=""
+                        <a class="orb b1" href="https://ai.oneinsure.com/" target="_blank" rel="noopener noreferrer"><span class="bullet"><img alt=""
                                     src="assets/images/icons/knowledgebase/basics.png"></span><span>Understand
-                                coverage</span></div>
-                        <div class="orb b2"><span class="bullet"><img alt=""
+                                coverage</span></a>
+                        <a class="orb b2" href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink><span class="bullet"><img alt=""
                                     src="assets/images/icons/calculators/guaranteed-return.png"></span><span>Compare
-                                plans</span></div>
-                        <div class="orb b3"><span class="bullet"><img alt=""
+                                plans</span></a>
+                        <a class="orb b3" routerLink="/service-support"><span class="bullet"><img alt=""
                                     src="assets/images/icons/general/tax-benefit.png"></span><span>Manage your
-                                policy</span></div>
-                        <div class="orb b4"><span class="bullet"><img alt=""
+                                policy</span></a>
+                        <a class="orb b4" routerLink="/insurance-claim-support"><span class="bullet"><img alt=""
                                     src="assets/images/icons/general/cashless.png"></span><span>Claim
-                                assistance</span></div>
+                                assistance</span></a>
                     </div>
                 </div>
             </div>
@@ -79,11 +80,11 @@
                             </span>
                             <span class="hl-dynamic">for answers, whenever you want</span>
                         </h2>
-                        <p class="hero__sub">Saarth answers instantly, in plain English. A human picks up when you need
+                        <p class="hero__sub">OneInsure AI answers instantly, in plain English. A human picks up when you need
                             one.</p>
                         <div class="hero__cta">
                             <a class="btn btn--blue btn--big" href="https://ai.oneinsure.com/" target="_blank"
-                                rel="noopener noreferrer">Ask Saarth
+                                rel="noopener noreferrer">Ask OneInsure AI
                                 <svg fill="none" height="14" viewBox="0 0 14 14" width="14">
                                     <path d="M1 7h12m0 0L8 2m5 5l-5 5" stroke="currentColor" stroke-linecap="round"
                                         stroke-linejoin="round" stroke-width="2"></path>
@@ -99,12 +100,12 @@
                         <div class="hv__ring r2"></div>
                         <div class="hv__ring r3"></div>
                         <div class="hv__image">
-                            <img alt="Saarth, OneInsure's AI advisor" loading="lazy"
+                            <img alt="OneInsure AI, our AI advisor" loading="lazy"
                                 src="assets/images/carousel/mascot-saarth.png" />
                         </div>
                         <div class="saarth-widget">
                             <div class="saarth-widget__hdr">
-                                <span class="saarth-widget__name"><span class="dot"></span>Saarth</span>
+                                <span class="saarth-widget__name"><span class="dot"></span>OneInsure AI</span>
                                 <span class="saarth-widget__status">Online</span>
                             </div>
                             <div class="saarth-widget__msg saarth-widget__msg--user">Is my &#8377;5L health cover enough
