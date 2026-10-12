@@ -535,3 +535,111 @@
     font-size: 10px;
   }
 }
+/* ---- Top strip: brand line + existing-customer shortcuts ---- */
+.header_strip__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.header_strip__links {
+  display: flex;
+  gap: 18px;
+
+  a {
+    font: 700 12px/1 var(--sans);
+    color: var(--blue-deep);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--blue);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+}
+
+/* mobile-menu copy of the shortcuts */
+.nav__acct {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .header_strip__inner {
+    justify-content: center;
+  }
+
+  .header_strip__links {
+    display: none;
+  }
+
+  .nav__acct {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font: 600 13px/1 var(--sans);
+      color: var(--blue-deep);
+      text-decoration: none;
+    }
+  }
+}
+
+.header_strip__phone {
+  padding-right: 18px;
+  border-right: 1px solid rgba(13, 43, 85, .18);
+}
+
+@media (max-width: 1024px) {
+  .nav__acct .nav__acct-call {
+    grid-column: 1 / -1;
+  }
+
+  .nav.open .nav__cta {
+    max-height: 280px;
+  }
+}
+
+.header_strip__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Phone menu: scroll the whole open panel so the bottom actions are always reachable */
+@media (max-width: 1024px) {
+  .nav.open {
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .nav.open .nav__links {
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+/* second link in the Products dropdown footer */
+.mega__foot--calc {
+  margin-left: 26px;
+  color: var(--blue);
+}
+
+@media (max-width: 1024px) {
+  .mega__foot--calc {
+    display: block;
+    margin: 12px 0 0;
+  }
+}

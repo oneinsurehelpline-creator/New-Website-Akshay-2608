@@ -399,8 +399,9 @@
 @media (max-width: 600px) {
     .pn {
         left: 12px;
-        right: 84px; /* keep clear of the WhatsApp button */
-        bottom: calc(16px + var(--pn-lift, 0px));
+        right: 84px; /* keep clear of the Knowledge Base / Claim Support chat buttons */
+        /* sit above the sticky mobile bar (app-mobile-bar, ~64px) */
+        bottom: calc(76px + env(safe-area-inset-bottom) + var(--pn-lift, 0px));
         width: auto;
         max-width: none;
     }

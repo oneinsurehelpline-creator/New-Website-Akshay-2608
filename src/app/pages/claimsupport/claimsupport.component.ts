@@ -1,3 +1,4 @@
+import { consentRecord } from '../../shared/consent/consent.component';
 import { Component, ElementRef, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -106,6 +107,7 @@ export class ClaimsupportComponent implements AfterViewInit, OnDestroy {
       mobile: ['', [Validators.required, this.phoneValidator]],
       email: ['', [Validators.required, Validators.email]],
       declaration: [false, [Validators.requiredTrue]],
+      consent: [false, [Validators.requiredTrue]],
     });
   }
 
@@ -177,7 +179,7 @@ export class ClaimsupportComponent implements AfterViewInit, OnDestroy {
     const dueDate = date.toISOString().split('T')[0];
     var cdto = {
       "IssueDueDate": dueDate, // add +7 days
-      "IssueDescription": payload.details,
+      "IssueDescription": `${payload.details}\n\n${consentRecord()}`,
       "IssueId": 0,
       "ProjectId": 1,
       "UserId": "0", // customerid 

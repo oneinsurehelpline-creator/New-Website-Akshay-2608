@@ -1,3 +1,4 @@
+import { trustLine } from '../../../shared/site-facts';
 import {
   Component,
   ElementRef,
@@ -46,7 +47,7 @@ export class GuranteedCarouselComponent implements OnInit, OnDestroy {
     'IRDAI-licensed broker',
     'Returns guaranteed at policy start',
     'Tax-free under Sec 10(10D)',
-    '18 years · 5 lakh+ policies',
+    trustLine(),
   ];
 
   stats = [

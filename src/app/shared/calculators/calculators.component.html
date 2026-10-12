@@ -1,0 +1,424 @@
+<!-- ===== Calculators ===== -->
+<section class="calc section section--neutral" id="calc">
+    <div class="container">
+        <div class="calc__head reveal-up">
+            <h2 style="font-weight:800">Run the numbers.<br>Make a <span class="accent">confident decision.</span></h2>
+            <p>Explore our free calculators to estimate the coverage you need, see how your money could grow, and
+                understand your potential tax savings. No email required. No follow-up spam.</p>
+        </div>
+
+        <div class="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-5 calc__grid">
+            <div class="col">
+                <article class="ccard h-100" data-calc="life" (click)="openCalc('life')">
+                    <div class="ccard__head">
+                        <div class="ccard__icon">
+                            <img src="assets/images/icons/calculators/life-cover.png" alt="" loading="lazy">
+                        </div>
+                        <h4 style="font-weight: 800;">How much life cover do I need?</h4>
+                        <div class="ccard__sub">The ten-minute answer.</div>
+                        <div class="ccard__teaser">We use a blended income-and-dependents model, adjusted for your
+                            existing cover, to arrive at a realistic number.</div>
+                        <div class="ccard__chev">Open calculator <span>↓</span></div>
+                    </div>
+                </article>
+            </div>
+            <div class="col">
+                <article class="ccard h-100" data-calc="guaranteed" (click)="openCalc('guaranteed')">
+                    <div class="ccard__head">
+                        <div class="ccard__icon">
+                            <img src="assets/images/icons/calculators/guaranteed-return.png" alt="" loading="lazy">
+                        </div>
+                        <h4 style="font-weight: 800;">How much will my guaranteed plan return?</h4>
+                        <div class="ccard__sub">At a conservative 6.25% IRR.</div>
+                        <div class="ccard__teaser">We use 6.25%, the lower bound on current-year guaranteed product
+                            IRRs, so the number you see is realistic, not optimistic.</div>
+                        <div class="ccard__chev">Open calculator <span>↓</span></div>
+                    </div>
+                </article>
+            </div>
+            <div class="col">
+                <article class="ccard h-100" data-calc="health" (click)="openCalc('health')">
+                    <div class="ccard__head">
+                        <div class="ccard__icon">
+                            <img src="assets/images/icons/calculators/health-cover.png" alt="" loading="lazy">
+                        </div>
+                        <h4 style="font-weight: 800;">How much health cover should I take?</h4>
+                        <div class="ccard__sub">City-indexed to hospital costs.</div>
+                        <div class="ccard__teaser">We look at your city tier, family size, and age band, and benchmark
+                            against current Indian hospitalisation averages.</div>
+                        <div class="ccard__chev">Open calculator <span>↓</span></div>
+                    </div>
+                </article>
+            </div>
+            <div class="col">
+                <article class="ccard h-100" data-calc="fire" (click)="openCalc('fire')">
+                    <div class="ccard__head">
+                        <div class="ccard__icon">
+                            <img src="assets/images/icons/calculators/fire-number.png" alt="" loading="lazy">
+                        </div>
+                        <h4 style="font-weight: 800;">What is my FIRE number?</h4>
+                        <div class="ccard__sub">Financial Independence, Retire Early.</div>
+                        <div class="ccard__teaser">The corpus you need to live off your investments indefinitely,
+                            calculated at the classic 4% safe withdrawal rate.</div>
+                        <div class="ccard__chev">Open calculator <span>↓</span></div>
+                    </div>
+                </article>
+            </div>
+            <div class="col">
+                <article class="ccard h-100" data-calc="tax" (click)="openCalc('tax')">
+                    <div class="ccard__head">
+                        <div class="ccard__icon">
+                            <img src="assets/images/icons/calculators/tax-savings.png" alt="" loading="lazy">
+                        </div>
+                        <h4 style="font-weight: 800;">How much tax can I save with insurance?</h4>
+                        <div class="ccard__sub">Sections 80C + 80D.</div>
+                        <div class="ccard__teaser">Life insurance premiums qualify under 80C, health premiums under 80D.
+                            Plug in your numbers to see your annual tax saving.</div>
+                        <div class="ccard__chev">Open calculator <span>↓</span></div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- Extra calculators (/calculators only) -->
+        <ng-container *ngIf="showMore">
+            <div class="more-group" *ngFor="let g of moreGroups">
+                <h3 class="more-group__title">{{ g.title }}</h3>
+                <div class="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-4 calc__grid justify-content-center">
+                    <div class="col" *ngFor="let c of moreIn(g.id)">
+                        <article class="ccard h-100" [attr.data-calc]="c.theme" (click)="openCalc(c.id)">
+                            <div class="ccard__head">
+                                <div class="ccard__icon"><img [src]="c.icon" alt="" loading="lazy"></div>
+                                <h4 style="font-weight: 800;">{{ c.title }}</h4>
+                                <div class="ccard__sub">{{ c.sub }}</div>
+                                <div class="ccard__teaser">{{ c.teaser }}</div>
+                                <div class="ccard__chev">Open calculator <span>↓</span></div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
+    <!-- Calculator modal -->
+    <div class="calc-overlay" id="calc-overlay" [class.active]="!!activeCalc" [attr.data-calc]="activeCalc">
+        <div class="calc-overlay__backdrop" (click)="closeCalc()"></div>
+        <div class="calc-modal" role="dialog" aria-modal="true">
+            <button class="calc-modal__close" aria-label="Close" (click)="closeCalc()">
+                <svg fill="none" height="16" viewBox="0 0 14 14" width="16">
+                    <path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+                </svg>
+            </button>
+            <ng-container [ngSwitch]="activeCalc">
+                <div *ngSwitchCase="'life'">
+                    <div class="calc-modal__head">
+                        <div class="ccard__icon" data-calc="life">
+                            <img src="assets/images/icons/calculators/life-cover.png" alt="" loading="lazy">
+                        </div>
+                        <div>
+                            <h4 style="font-weight:800">How much life cover do I need?</h4>
+                            <div class="ccard__sub">The ten-minute answer.</div>
+                            <div class="ccard__teaser">We use a blended income-and-dependents model, adjusted for your
+                                existing cover, to arrive at a realistic number.</div>
+                        </div>
+                    </div>
+                    <div class="calc-modal__body" (input)="calcTouched=true" (change)="calcTouched=true" (click)="calcTouched=true">
+                        <div>
+                            <div class="field">
+                                <div class="field__label"><span>Monthly income</span><span class="field__val">{{ lcIncV
+                                        }}</span></div>
+                                <input type="range" min="30000" max="500000" step="5000" [value]="lcInc"
+                                    (input)="lcInc=+$any($event.target).value">
+                            </div>
+                            <div class="field">
+                                <div class="field__label"><span>Number of dependents</span></div>
+                                <div class="stepper"><button type="button" (click)="stepLC(-1)">−</button><span
+                                        class="stepper__v">{{ lcDep }}</span><button type="button"
+                                        (click)="stepLC(1)">+</button></div>
+                            </div>
+                            <div class="field">
+                                <div class="field__label"><span>Existing cover (₹)</span></div>
+                                <input class="txt-input" type="text" [value]="lcExistStr"
+                                    (input)="lcExistStr=$any($event.target).value">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="calc__out">
+                                <div class="calc__out-lbl">Recommended Cover</div>
+                                <div class="calc__out-val"><span class="unit">₹</span> <span>{{ lcOut }}</span></div>
+                                <div class="calc__out-note">{{ lcNote }}</div>
+                                <div class="calc__nudge" *ngIf="calcTouched">
+                                    <p>Your family needs about ₹{{ lcOut }} of cover. Want an advisor to turn this into a plan?</p>
+                                    <a href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Get my free plan <span>→</span></a>
+                                    <a class="calc__nudge-wa" [href]="waResult('life')" target="_blank" rel="noopener noreferrer">Send my result on WhatsApp <span>→</span></a>
+                                </div>
+                                <!-- <a class="btn btn--orange" (click)="goConsult()">Talk to an advisor →</a> -->
+                                <a class="btn btn--orange"
+                                    href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Talk to an advisor →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'guaranteed'">
+                    <div class="calc-modal__head">
+                        <div class="ccard__icon" data-calc="guaranteed">
+                            <img src="assets/images/icons/calculators/guaranteed-return.png" alt="" loading="lazy">
+                        </div>
+                        <div>
+                            <h4 style="font-weight:800">How much will my guaranteed plan return?</h4>
+                            <div class="ccard__sub">At a conservative 6.25% IRR.</div>
+                            <div class="ccard__teaser">We use 6.25%, the lower bound on current-year guaranteed product
+                                IRRs, so the number you see is realistic, not optimistic.</div>
+                        </div>
+                    </div>
+                    <div class="calc-modal__body" (input)="calcTouched=true" (change)="calcTouched=true" (click)="calcTouched=true">
+                        <div>
+                            <div class="field">
+                                <div class="field__label"><span>Monthly investment</span><span class="field__val">{{
+                                        grAmtV }}</span></div>
+                                <input type="range" min="1000" max="100000" step="1000" [value]="grAmt"
+                                    (input)="grAmt=+$any($event.target).value">
+                            </div>
+                            <div class="field">
+                                <div class="field__label"><span>Investment period</span></div>
+                                <div class="stepper"><button type="button" (click)="stepGR(-5)">−</button><span
+                                        class="stepper__v">{{ grYrV }}</span><button type="button"
+                                        (click)="stepGR(5)">+</button></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="calc__out">
+                                <div class="calc__out-lbl">Maturity Value</div>
+                                <div class="calc__out-val"><span class="unit">₹</span> <span>{{ grOut }}</span></div>
+                                <div class="calc__out-note">{{ grNote }}</div>
+                                <app-reg-disclaimer class="calc-regd" kind="guaranteed" [compact]="true"></app-reg-disclaimer>
+                                <div class="calc__nudge" *ngIf="calcTouched">
+                                    <p>That&#39;s ₹{{ grOut }} at maturity. Want help picking the plan that gets you there?</p>
+                                    <a href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Talk it through, free <span>→</span></a>
+                                    <a class="calc__nudge-wa" [href]="waResult('guaranteed')" target="_blank" rel="noopener noreferrer">Send my result on WhatsApp <span>→</span></a>
+                                </div>
+                                <a class="btn btn--orange" (click)="goTo('/guaranteed-investment-plans', 'compare')">Find
+                                    the right plan →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'health'">
+                    <div class="calc-modal__head">
+                        <div class="ccard__icon" data-calc="health">
+                            <img src="assets/images/icons/calculators/health-cover.png" alt="" loading="lazy">
+                        </div>
+                        <div>
+                            <h4 style="font-weight:800">How much health cover should I take?</h4>
+                            <div class="ccard__sub">City-indexed to hospital costs.</div>
+                            <div class="ccard__teaser">We look at your city tier, family size, and age band, and
+                                benchmark against current Indian hospitalisation averages.</div>
+                        </div>
+                    </div>
+                    <div class="calc-modal__body" (input)="calcTouched=true" (change)="calcTouched=true" (click)="calcTouched=true">
+                        <div>
+                            <div class="field">
+                                <div class="field__label"><span>City tier</span></div>
+                                <select class="txt-input" (change)="hCity=+$any($event.target).value">
+                                    <option value="1" [selected]="hCity===1">Metro (Mumbai, Delhi, Bengaluru, Chennai)
+                                    </option>
+                                    <option value="2" [selected]="hCity===2">Tier 1 (Pune, Hyderabad, Kolkata,
+                                        Ahmedabad)</option>
+                                    <option value="3" [selected]="hCity===3">Tier 2 / smaller cities</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <div class="field__label"><span>Family members to cover</span></div>
+                                <div class="stepper"><button type="button" (click)="stepH(-1)">−</button><span
+                                        class="stepper__v">{{ hFamV }}</span><button type="button"
+                                        (click)="stepH(1)">+</button></div>
+                            </div>
+                            <div class="field">
+                                <div class="field__label"><span>Eldest member&#39;s age</span><span
+                                        class="field__val">{{ hAgeV }}</span></div>
+                                <input type="range" min="25" max="75" step="1" [value]="hAge"
+                                    (input)="hAge=+$any($event.target).value">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="calc__out">
+                                <div class="calc__out-lbl">Recommended Sum Insured</div>
+                                <div class="calc__out-val"><span class="unit">₹</span> <span>{{ hOut }}</span></div>
+                                <div class="calc__out-note">{{ hNote }}</div>
+                                <div class="calc__nudge" *ngIf="calcTouched">
+                                    <p>Your target is ₹{{ hOut }} of health cover. Want an advisor to check what you have today?</p>
+                                    <a href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Get a free cover check <span>→</span></a>
+                                    <a class="calc__nudge-wa" [href]="waResult('health')" target="_blank" rel="noopener noreferrer">Send my result on WhatsApp <span>→</span></a>
+                                </div>
+                                <!-- <a class="btn btn--orange" (click)="goTo('/HealthInsurance', 'compare')">Compare
+                                    Plans</a> -->
+                                <a class="btn btn--orange" routerLink="/health-insurance-plans">Compare
+                                    Plans</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'fire'">
+                    <div class=" calc-modal__head">
+                        <div class="ccard__icon" data-calc="fire">
+                            <img src="assets/images/icons/calculators/fire-number.png" alt="" loading="lazy">
+                        </div>
+                        <div>
+                            <h4 style="font-weight:800">What is my FIRE number?</h4>
+                            <div class="ccard__sub">Financial Independence, Retire Early.</div>
+                            <div class="ccard__teaser">The corpus you need to live off your investments
+                                indefinitely,
+                                calculated at the classic 4% safe withdrawal rate.</div>
+                        </div>
+                    </div>
+                    <div class="calc-modal__body" (input)="calcTouched=true" (change)="calcTouched=true" (click)="calcTouched=true">
+                        <div>
+                            <div class="field">
+                                <div class="field__label"><span>Monthly expenses today</span><span class="field__val">{{
+                                        fExpV }}</span></div>
+                                <input type="range" min="20000" max="500000" step="5000" [value]="fExp"
+                                    (input)="fExp=+$any($event.target).value">
+                            </div>
+                            <div class="field">
+                                <div class="field__label"><span>Years until you want to retire</span></div>
+                                <div class="stepper"><button type="button" (click)="stepF(-5)">−</button><span
+                                        class="stepper__v">{{ fYrV }}</span><button type="button"
+                                        (click)="stepF(5)">+</button></div>
+                            </div>
+                            <div class="field">
+                                <div class="field__label"><span>Expected inflation</span><span class="field__val">{{
+                                        fInfV }}</span></div>
+                                <input type="range" min="3" max="9" step="0.5" [value]="fInf"
+                                    (input)="fInf=+$any($event.target).value">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="calc__out">
+                                <div class="calc__out-lbl">Your FIRE Corpus</div>
+                                <div class="calc__out-val"><span class="unit">₹</span> <span>{{ fOut }}</span>
+                                </div>
+                                <div class="calc__out-note">{{ fNote }}</div>
+                                <div class="calc__nudge" *ngIf="calcTouched">
+                                    <p>Your FIRE number is ₹{{ fOut }}. Want a free plan to get there?</p>
+                                    <a href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Get my free plan <span>→</span></a>
+                                    <a class="calc__nudge-wa" [href]="waResult('fire')" target="_blank" rel="noopener noreferrer">Send my result on WhatsApp <span>→</span></a>
+                                </div>
+                                <a class="btn btn--orange" (click)="goConsult()">Build a FIRE plan →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'tax'">
+                    <div class="calc-modal__head">
+                        <div class="ccard__icon" data-calc="tax">
+                            <img src="assets/images/icons/calculators/tax-savings.png" alt="" loading="lazy">
+                        </div>
+                        <div>
+                            <h4 style="font-weight:800">How much tax can I save with insurance?</h4>
+                            <div class="ccard__sub">Sections 80C + 80D.</div>
+                            <div class="ccard__teaser">Life insurance premiums qualify under 80C, health
+                                premiums under
+                                80D. Plug in your numbers to see your annual tax saving.</div>
+                        </div>
+                    </div>
+                    <div class="calc-modal__body" (input)="calcTouched=true" (change)="calcTouched=true" (click)="calcTouched=true">
+                        <div>
+                            <div class="field">
+                                <div class="field__label"><span>Annual life-insurance premium</span><span
+                                        class="field__val">{{ tLifeV }}</span></div>
+                                <input type="range" min="0" max="150000" step="5000" [value]="tLife"
+                                    (input)="tLife=+$any($event.target).value">
+                            </div>
+                            <div class="field">
+                                <div class="field__label"><span>Annual health-insurance premium</span><span
+                                        class="field__val">{{ tHV }}</span></div>
+                                <input type="range" min="0" max="75000" step="1000" [value]="tH"
+                                    (input)="tH=+$any($event.target).value">
+                            </div>
+                            <div class="field">
+                                <div class="field__label"><span>Your tax slab</span></div>
+                                <select class="txt-input" (change)="tSlab=+$any($event.target).value">
+                                    <option value="0.05" [selected]="tSlab===0.05">5%</option>
+                                    <option value="0.20" [selected]="tSlab===0.2">20%</option>
+                                    <option value="0.30" [selected]="tSlab===0.3">30%</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="calc__out">
+                                <div class="calc__out-lbl">Annual Tax Saved</div>
+                                <div class="calc__out-val"><span class="unit">₹</span> <span>{{ tOut }}</span>
+                                </div>
+                                <div class="calc__out-note">{{ tNote }}</div>
+                                <div class="calc__nudge" *ngIf="calcTouched">
+                                    <p>You could save ₹{{ tOut }} in tax this year. Want an advisor to map out how?</p>
+                                    <a href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Get my free plan <span>→</span></a>
+                                    <a class="calc__nudge-wa" [href]="waResult('tax')" target="_blank" rel="noopener noreferrer">Send my result on WhatsApp <span>→</span></a>
+                                </div>
+                                <a class="btn btn--orange" (click)="goConsult()">Plan your tax savings →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Extra calculators: rendered from MORE_CALCS -->
+                <div *ngSwitchDefault>
+                    <ng-container *ngIf="activeMore as c">
+                        <div class="calc-modal__head">
+                            <div class="ccard__icon" [attr.data-calc]="c.theme"><img [src]="c.icon" alt="" loading="lazy"></div>
+                            <div>
+                                <h4 style="font-weight:800">{{ c.title }}</h4>
+                                <div class="ccard__sub">{{ c.sub }}</div>
+                                <div class="ccard__teaser">{{ c.teaser }}</div>
+                            </div>
+                        </div>
+                        <div class="calc-modal__body">
+                            <div>
+                                <div class="field" *ngFor="let f of c.fields" [ngSwitch]="f.kind">
+                                    <div class="field__label"><span>{{ f.label }}</span><span class="field__val"
+                                            *ngIf="f.kind === 'range'">{{ fieldVal(c, f) }}</span></div>
+                                    <input *ngSwitchCase="'range'" type="range" [min]="$any(f).min" [max]="$any(f).max"
+                                        [step]="$any(f).step" [value]="moreVals[c.id][f.key]"
+                                        (input)="setMore(c, f, +$any($event.target).value)" [attr.aria-label]="f.label">
+                                    <div *ngSwitchCase="'stepper'" class="stepper">
+                                        <button type="button" (click)="stepMore(c, f, -1)" [attr.aria-label]="'Decrease ' + f.label">−</button>
+                                        <span class="stepper__v">{{ fieldVal(c, f) }}</span>
+                                        <button type="button" (click)="stepMore(c, f, 1)" [attr.aria-label]="'Increase ' + f.label">+</button>
+                                    </div>
+                                    <select *ngSwitchCase="'select'" class="txt-input" [attr.aria-label]="f.label"
+                                        (change)="setMore(c, f, +$any($event.target).value)">
+                                        <option *ngFor="let o of $any(f).options" [value]="o.v"
+                                            [selected]="moreVals[c.id][f.key] === o.v">{{ o.l }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="calc__out" *ngIf="moreResult(c) as r">
+                                    <div class="calc__out-lbl">{{ r.label }}</div>
+                                    <div class="calc__out-val" [class.calc__out-val--text]="!r.unit"><span class="unit" *ngIf="r.unit">{{ r.unit }}</span>
+                                        <span>{{ r.value }}</span></div>
+                                    <div class="calc__out-note">{{ r.note }}</div>
+                                    <div class="calc__out-note calc__out-note--est">{{ estimateNote }}</div>
+                                    <div class="calc__nudge" *ngIf="calcTouched">
+                                        <p>Want an advisor to turn this into a plan?</p>
+                                        <a href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Get my free plan <span>→</span></a>
+                                        <a class="calc__nudge-wa" [href]="waMore(c)" target="_blank" rel="noopener noreferrer">Send my result on WhatsApp <span>→</span></a>
+                                    </div>
+                                    <a class="btn btn--orange" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
+                                        appScheduleLink>Talk to an advisor →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+            <div class="calc-modal__banner ccard__banner">
+                <p>Have more questions?</p>
+                <!-- <a class="btn" (click)="goConsult()">Connect
+                    with our experts →</a> -->
+                <a class="btn" href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink>Connect
+                    with our experts →</a>
+            </div>
+        </div>
+    </div>
+</section>

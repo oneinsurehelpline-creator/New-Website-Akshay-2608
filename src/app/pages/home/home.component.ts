@@ -1,13 +1,8 @@
+import { INSURER_COUNT } from '../../shared/site-facts';
 import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, HostListener, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ViewportScroller, isPlatformBrowser } from '@angular/common';
-import { Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 import { LeadService } from '../../services/lead.service';
-import { UtilityService } from 'src/app/services/utility.service';
-import { ScheduleModalService } from 'src/app/shared/schedule-modal/schedule-modal.service';
 import { finalize, timeout } from 'rxjs/operators';
-
-type CalcKey = 'life' | 'guaranteed' | 'health' | 'fire' | 'tax';
 
 interface Insurer {
   Id: number;
@@ -28,101 +23,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private host: ElementRef<HTMLElement>,
-    private fb: FormBuilder,
-    private viewport: ViewportScroller,
-    private router: Router,
     private leadService: LeadService,
-    private utility: UtilityService,
-    private scheduleModal: ScheduleModalService,
     @Inject(PLATFORM_ID) platformId: Object,
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
-    this.consultForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.maxLength(40)]],
-      lastName: ['', [Validators.required, Validators.maxLength(40)]],
-      phone: ['', [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
-      email: ['', [Validators.required, Validators.email]],
-      help: ['Starting from scratch', Validators.required],
-      time: ['Morning (9–12)', Validators.required],
-    });
-  }
-
-  // ============ CONSULT FORM ============
-  consultForm!: FormGroup;
-  consultSubmitting = false;
-  consultDone = false;
-  consultError = '';
-
-  /** convenience accessor for the template */
-  get cf() { return this.consultForm.controls; }
-
-  /** show an error only once the user has interacted with the field */
-  invalid(name: string): boolean {
-    const c = this.consultForm.get(name);
-    return !!c && c.invalid && (c.touched || c.dirty);
-  }
-
-  onConsultSubmit(): void {
-    this.consultError = '';
-
-    // validation guard — template already shows the per-field errors
-    if (this.consultForm.invalid) {
-      this.consultForm.markAllAsTouched();
-      this.utility.toast('warning', 'Please fill all required fields correctly.');
-      return;
-    }
-
-    const v = this.consultForm.value;
-
-    // build PageData in the shape the API expects
-    const pageData = [
-      `Contact No : ${v.phone}`,
-      `Name : ${(v.firstName + ' ' + v.lastName).trim()}`,
-      `City : `,                 // no city field on this form
-      `Mail : ${v.email}`,
-      `Insurance : `,            // no insurance field on this form
-      `Remarks : Help: ${v.help}, Preferred time: ${v.time}`,
-      `Mode : Home - Free Consultation`,
-      `Type : Website Lead`,
-    ].join(', ');
-
-    const cdto = {
-      Id: 0,
-      PageName: 'Book - Free Consultation',
-      PageUrl: window.location.href,
-      PageData: pageData,
-    };
-
-    this.consultSubmitting = true;
-    this.utility.loading('Submitting…', 'Sending your consultation request.');
-
-    this.leadService.CustomerDetails(cdto).pipe(
-      timeout(15000),
-      finalize(() => { this.consultSubmitting = false; })   // always recovers
-    ).subscribe({
-      next: (res: any) => {
-        console.log('CustomerDetails response:', res);
-        this.consultDone = true;
-        this.utility.success('Request received!', 'Our advisor will call you at your preferred time.');
-        this.consultForm.reset({ help: 'Starting from scratch', time: 'Morning (9–12)' });
-        this.scheduleModal.open();
-      },
-      error: (err) => {
-        console.error('CustomerDetails failed:', err);
-        this.consultError = err?.name === 'TimeoutError'
-          ? 'The server took too long to respond. Please try again or reach us on WhatsApp.'
-          : 'Something went wrong sending your request. Please try again, or reach us on WhatsApp.';
-        this.utility.error('Could not send', this.consultError);
-        this.scheduleModal.open();
-      },
-    });
-  }
-
-  onPhoneInput(e: Event): void {
-    const el = e.target as HTMLInputElement;
-    const digits = el.value.replace(/\D/g, '').slice(0, 10);
-    this.consultForm.get('phone')!.setValue(digits);
-    el.value = digits;
   }
 
   ngOnInit(): void {
@@ -233,108 +137,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
 
-  // ============ CALCULATORS ============
-  activeCalc: CalcKey | null = null;
-
-  meta: Record<CalcKey, { title: string; sub: string }> = {
-    life: { title: 'How much life cover do I need?', sub: 'The ten-minute answer.' },
-    guaranteed: { title: 'How much will my guaranteed plan return?', sub: 'At a conservative 6.25% IRR.' },
-    health: { title: 'How much health cover should I take?', sub: 'City-indexed to hospital costs.' },
-    fire: { title: 'What is my FIRE number?', sub: 'Financial Independence, Retire Early.' },
-    tax: { title: 'How much tax can I save with insurance?', sub: 'Sections 80C + 80D.' },
-  };
-
-  // Life cover
-  lcInc = 150000; lcDep = 2; lcExistStr = '25,00,000';
-  // Guaranteed
-  grAmt = 10000; grYr = 20;
-  // Health
-  hCity = 2; hAge = 45; hFam = 3;
-  // FIRE
-  fExp = 80000; fInf = 6; fYr = 20;
-  // Tax
-  tLife = 60000; tH = 25000; tSlab = 0.30;
-
-  // ---- helpers ----
-  private inr(n: number): string {
-    const x = Math.round(n).toString();
-    const last3 = x.slice(-3);
-    const other = x.slice(0, -3);
-    return other ? other.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + ',' + last3 : last3;
-  }
-  private parseNum(s: string): number { return parseInt(String(s).replace(/[^0-9]/g, ''), 10) || 0; }
-  private fmtCr(v: number): string {
-    return v >= 10000000 ? (v / 10000000).toFixed(2) + ' Cr'
-      : v >= 100000 ? (v / 100000).toFixed(1) + ' L'
-        : this.inr(v);
-  }
-
-  // ---- Life cover ----
-  get lcExist(): number { return this.parseNum(this.lcExistStr); }
-  get lcIncV(): string { return '₹ ' + this.inr(this.lcInc); }
-  get lcOut(): string {
-    const rec = Math.max(0, this.lcInc * 144 + this.lcDep * 1500000 - this.lcExist);
-    return this.inr(rec);
-  }
-  get lcNote(): string {
-    return `Based on 12× annual income (₹ ${this.inr(this.lcInc * 12)}) + ${this.lcDep} dependents, less existing cover.`;
-  }
-  stepLC(d: number): void { this.lcDep = Math.max(0, Math.min(8, this.lcDep + d)); }
-
-  // ---- Guaranteed ----
-  get grAmtV(): string { return '₹ ' + this.inr(this.grAmt); }
-  get grYrV(): string { return this.grYr + ' yrs'; }
-  private get grFV(): number {
-    const r = 0.0625 / 12, n = this.grYr * 12;
-    return this.grAmt * ((Math.pow(1 + r, n) - 1) / r);
-  }
-  get grOut(): string { return this.fmtCr(this.grFV); }
-  get grNote(): string {
-    const totalIn = this.grAmt * this.grYr * 12;
-    return `You invest ₹ ${this.fmtCr(totalIn)} · You get back ₹ ${this.fmtCr(this.grFV)}. Guaranteed at 6.25% IRR.`;
-  }
-  stepGR(d: number): void { this.grYr = Math.max(5, Math.min(30, this.grYr + d)); }
-
-  // ---- Health ----
-  get hAgeV(): number { return this.hAge; }
-  get hFamV(): number { return this.hFam; }
-  private get hRec(): number {
-    const base = this.hCity === 1 ? 1500000 : this.hCity === 2 ? 1000000 : 700000;
-    const famMult = 1 + (this.hFam - 1) * 0.18;
-    const ageMult = this.hAge < 40 ? 1 : this.hAge < 55 ? 1.35 : this.hAge < 65 ? 1.75 : 2.2;
-    return Math.round(base * famMult * ageMult / 500000) * 500000;
-  }
-  get hOut(): string { return this.fmtCr(this.hRec); }
-  get hNote(): string {
-    const city = this.hCity === 1 ? 'metro' : this.hCity === 2 ? 'Tier 1' : 'Tier 2';
-    return `Covers multi-day hospitalisation in a ${city} city for a family of ${this.hFam} plus a critical-illness buffer.`;
-  }
-  stepH(d: number): void { this.hFam = Math.max(1, Math.min(8, this.hFam + d)); }
-
-  // ---- FIRE ----
-  get fExpV(): string { return '₹ ' + this.inr(this.fExp); }
-  get fInfV(): string { return this.fInf.toFixed(1) + '%'; }
-  get fYrV(): string { return this.fYr + ' yrs'; }
-  private get fFutureAnnual(): number { return this.fExp * 12 * Math.pow(1 + this.fInf / 100, this.fYr); }
-  get fOut(): string { return this.fmtCr(this.fFutureAnnual * 25); }
-  get fNote(): string {
-    return `Today's ₹${this.inr(this.fExp * 12)}/yr becomes ₹${this.fmtCr(this.fFutureAnnual)}/yr in ${this.fYr} years. Corpus = 25× that (4% SWR).`;
-  }
-  stepF(d: number): void { this.fYr = Math.max(5, Math.min(45, this.fYr + d)); }
-
-  // ---- Tax ----
-  get tLifeV(): string { return '₹ ' + this.inr(this.tLife); }
-  get tHV(): string { return '₹ ' + this.inr(this.tH); }
-  get tOut(): string {
-    const life = Math.min(150000, this.tLife), health = Math.min(75000, this.tH);
-    return this.inr((life + health) * this.tSlab);
-  }
-  get tNote(): string {
-    const life = Math.min(150000, this.tLife), health = Math.min(75000, this.tH);
-    return `80C eligible: ₹${this.inr(life)} · 80D eligible: ₹${this.inr(health)} · Tax slab: ${(this.tSlab * 100).toFixed(0)}%.`;
-  }
-
   /** "Built by advisors" section: the usual way (struck out) vs the OneInsure way. */
+  readonly insurerCount = INSURER_COUNT;
+
   readonly diffRows = [
     {
       stat: '30 min', cap: 'Free first review',
@@ -344,7 +149,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       stat: '30+', cap: 'Insurers compared',
       old: 'Sells the one or two insurers they are tied to.',
-      now: 'We compare 30+ insurers and hand you the three that make sense for your family.',
+      now: `We compare ${INSURER_COUNT} insurers and hand you the three that make sense for your family.`,
     },
     {
       stat: '1', cap: 'Advisor, start to finish',
@@ -358,32 +163,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     },
   ];
 
-  // ---- modal control ----
-  /** Shows the "turn this into a plan" nudge once the visitor has adjusted any input. */
-  calcTouched = false;
-  openCalc(k: CalcKey): void { this.activeCalc = k; this.calcTouched = false; document.body.style.overflow = 'hidden'; }
-  closeCalc(): void { this.activeCalc = null; document.body.style.overflow = ''; }
-
   // ============ PRODUCTS "VIEW ALL" MODAL ============
   productsModalOpen = false;
   openProductsModal(): void { this.productsModalOpen = true; document.body.style.overflow = 'hidden'; }
   closeProductsModal(): void { this.productsModalOpen = false; document.body.style.overflow = ''; }
 
   @HostListener('document:keydown.escape') onEsc(): void {
-    if (this.activeCalc) { this.closeCalc(); }
-    else if (this.productsModalOpen) { this.closeProductsModal(); }
-  }
-
-  /** Close the calculator modal (if open) and scroll to the consult form. */
-  goConsult(): void {
-    this.closeCalc();
-    setTimeout(() => this.viewport.scrollToAnchor('consult'), 0);
-  }
-
-  /** Close the modal and navigate to another page (optionally to a section id). */
-  goTo(route: string, fragment?: string): void {
-    this.closeCalc();
-    this.router.navigate([route], fragment ? { fragment } : {});
+    if (this.productsModalOpen) { this.closeProductsModal(); }
   }
 
   // ============ TESTIMONIALS CAROUSEL ============

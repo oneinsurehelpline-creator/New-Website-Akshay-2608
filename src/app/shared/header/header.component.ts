@@ -1,3 +1,4 @@
+import { PHONE_DISPLAY, PHONE_TEL } from '../site-facts';
 import { Component, HostListener } from '@angular/core';
 
 interface MegaItem {
@@ -34,7 +35,7 @@ export class HeaderComponent {
     {
       title: 'Core Plans',
       items: [
-        { label: 'Guaranteed Savings', desc: 'Fixed returns, zero market risk', route: '/guaranteed-investment-plans' },
+        { label: 'Guaranteed Savings', desc: 'Guaranteed returns, not linked to markets', route: '/guaranteed-investment-plans' },
         { label: 'Term Life Insurance', desc: 'Pure protection for your dependents', route: '/term-life-insurance' },
         { label: 'Health Insurance', desc: 'Family floaters and critical illness', route: '/health-insurance-plans' },
         { label: 'Motor Insurance', desc: 'Car, two-wheeler, commercial', route: '/motor-insurance' },
@@ -57,6 +58,14 @@ export class HeaderComponent {
   ];
 
   /** Top-level links shown after the Products dropdown. */
+  readonly phoneDisplay = PHONE_DISPLAY;
+  readonly phoneTel = PHONE_TEL;
+
+  /** Existing-customer shortcuts. */
+  readonly renewHref = 'https://wa.me/918655986559?text=' + encodeURIComponent('Hi, I want to renew my policy.');
+  /** OneInsure AI policy vault (login is the 'Log in' button on its homepage). */
+  readonly myPoliciesHref = 'https://ai.oneinsure.com/';
+
   navLinks: NavLink[] = [
     // { label: 'About Us', route: '/about-us' },
     { label: 'Services', route: '/service-support' },
@@ -79,11 +88,18 @@ export class HeaderComponent {
     this.mobileOpen = !this.mobileOpen;
     // On mobile, show the Products accordion expanded by default when opening.
     this.megaOpen = this.mobileOpen;
+    this.syncMenuClass();
   }
 
   closeMenus(): void {
     this.mobileOpen = false;
     this.megaOpen = false;
+    this.syncMenuClass();
+  }
+
+  /** body.menu-open hides the sticky mobile bar and floating buttons while the phone menu is open. */
+  private syncMenuClass(): void {
+    if (typeof document !== 'undefined') { document.body.classList.toggle('menu-open', this.mobileOpen); }
   }
 
   /** Tap on "Products" — toggles the mega menu (accordion on mobile). */

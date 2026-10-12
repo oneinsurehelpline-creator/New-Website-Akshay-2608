@@ -1,3 +1,5 @@
+import { INSURER_COUNT } from 'src/app/shared/site-facts';
+import { consentRecord } from 'src/app/shared/consent/consent.component';
 import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnDestroy, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { finalize, timeout } from 'rxjs/operators';
@@ -17,6 +19,7 @@ interface ServiceGroup { title: string; items: ServiceItem[]; }
 export class ServicesupportComponent implements AfterViewInit, OnDestroy {
   readonly categories = SERVICE_CATEGORIES;
   readonly wayLabels = WAY_LABELS;
+  readonly insurerCount = INSURER_COUNT;
 
   category: ServiceCategory = 'life';
   query = '';
@@ -34,6 +37,8 @@ export class ServicesupportComponent implements AfterViewInit, OnDestroy {
   cbPhone = '';
   cbInsurer = '';
   cbError = '';
+  cbConsent = false;
+  cbConsentTried = false;
   cbSending = false;
   cbDone = false;
   cbSrNumber = '';
@@ -119,7 +124,7 @@ export class ServicesupportComponent implements AfterViewInit, OnDestroy {
     this.active = s;
     this.activeCase = 0;
     this.openInsurer.panel = null;
-    this.cbName = ''; this.cbPhone = ''; this.cbInsurer = ''; this.cbError = ''; this.cbDone = false; this.cbSrNumber = '';
+    this.cbName = ''; this.cbPhone = ''; this.cbInsurer = ''; this.cbError = ''; this.cbConsent = false; this.cbConsentTried = false; this.cbDone = false; this.cbSrNumber = '';
     if (this.isBrowser) { document.body.style.overflow = 'hidden'; }
   }
 
@@ -160,6 +165,8 @@ export class ServicesupportComponent implements AfterViewInit, OnDestroy {
       return;
     }
     this.cbError = '';
+    this.cbConsentTried = true;
+    if (!this.cbConsent) { return; }
     const s = this.active;
     const insurer = this.insurerById(this.cbInsurer)?.name ?? 'Not specified';
     const caseLabel = s.cases ? ` (${s.cases[this.activeCase].label})` : '';
@@ -169,7 +176,7 @@ export class ServicesupportComponent implements AfterViewInit, OnDestroy {
       `City : `,
       `Mail : `,
       `Insurance : ${this.categoryLabel(s.category)}`,
-      `Remarks : Service request: ${s.title}${caseLabel}. Insurer: ${insurer}`,
+      `Remarks : Service request: ${s.title}${caseLabel}. Insurer: ${insurer}. ${consentRecord()}`,
       `Mode : Service Support - Callback`,
       `Type : Website Lead`,
     ].join(', ');
@@ -180,7 +187,7 @@ export class ServicesupportComponent implements AfterViewInit, OnDestroy {
     const sr = {
       IssueDueDate: due.toISOString().split('T')[0],
       IssueDescription: `Service request: ${s.title}${caseLabel}. Insurer: ${insurer}. `
-        + `Name: ${this.cbName.trim() || 'Not given'}. Mobile: ${phone}.`,
+        + `Name: ${this.cbName.trim() || 'Not given'}. Mobile: ${phone}. ${consentRecord()}.`,
       IssueId: 0,
       ProjectId: 1,
       UserId: '0',
