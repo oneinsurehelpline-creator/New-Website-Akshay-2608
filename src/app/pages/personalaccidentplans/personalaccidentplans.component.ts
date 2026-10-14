@@ -1,3 +1,4 @@
+import { yearsInBusiness } from '../../shared/site-facts';
 import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
 import { LeadService } from 'src/app/services/lead.service';
 
@@ -25,7 +26,7 @@ interface FaqItem {
 export class PersonalaccidentplansComponent implements AfterViewInit, OnDestroy {
   userDetails: any = [];
   companyTrust: any = [];
-  companyAge = 0
+  companyAge = yearsInBusiness();
   constructor(private host: ElementRef<HTMLElement>, private leadService: LeadService) { }
 
   scheduleUrl = 'https://schedule.oneinsure.com/book/get-expert-guidance-web';
@@ -122,14 +123,6 @@ export class PersonalaccidentplansComponent implements AfterViewInit, OnDestroy 
   }
   ngOnInit() {
     this.companyDetails();
-    const startDate = new Date('2008-03-27');
-    const today = new Date();
-
-    this.companyAge = today.getFullYear() - startDate.getFullYear();
-
-    if (today < new Date(today.getFullYear(), 2, 29)) {
-      this.companyAge--;
-    }
   }
   private setupReveal(): void {
     const sel = '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale';

@@ -90,6 +90,8 @@
                     [attr.aria-invalid]="!!phoneError">
                 <div class="pn__err" *ngIf="phoneError">{{ phoneError }}</div>
                 <div class="pn__err" *ngIf="sendError">{{ sendError }}</div>
+                <app-consent class="pn__consent" name="consent" [(ngModel)]="consent"
+                    [showError]="consentTried && !consent"></app-consent>
                 <button class="pn__cta" type="submit" [disabled]="sending">
                     {{ sending ? 'Sending…' : 'Call me back' }}
                 </button>

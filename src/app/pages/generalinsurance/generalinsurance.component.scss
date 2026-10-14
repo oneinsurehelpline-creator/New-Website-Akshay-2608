@@ -652,7 +652,7 @@
 .prod--home .vcard__media::before {
     background: radial-gradient(circle at 30% 40%, rgba(245, 166, 35, .25), transparent 60%);
 }
- 
+
 .prod--travel .vcard__media.has-thumb::before,
 .prod--home .vcard__media.has-thumb::before {
     background: linear-gradient(180deg,
@@ -750,6 +750,10 @@
 .vcard__body p {
     font: 400 12px/1.55 var(--sans);
     color: var(--g500);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .vcard__cta {

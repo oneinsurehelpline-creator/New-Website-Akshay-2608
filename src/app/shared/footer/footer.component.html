@@ -10,11 +10,11 @@
                 </a>
                 <p class="footer__tag">
                     Insurance advice that actually puts you first. Pan-India, IRDAI-certified,
-                    human-first since 2007.
+                    human-first since {{ foundedYear }}.
                 </p>
                 <p class="footer__reg">
-                    Powered by Robinhood Insurance Broker Ltd. <br> · IRDAI Reg. No. IRDA/DB 407/08 <br> ·
-                    Valid through 13 Nov 2026
+                    Powered by Robinhood Insurance Broker Ltd. <br> · IRDAI Reg. No. {{ irdaiRegNo }} <br> ·
+                    Valid through {{ licenceValidThrough }}
                 </p>
 
                 <p class="footer__address">
@@ -59,8 +59,8 @@
                 <h6>{{ col.title }}</h6>
                 <ul>
                     <li *ngFor="let link of col.links" [ngSwitch]="true">
-                        <a *ngSwitchCase="!!link.action" href="#" (click)="openGrievance($event)">{{ link.label }}</a>
-                        <a *ngSwitchCase="!!link.fragment" href="#" [appScrollTo]="link.fragment!">{{ link.label }}</a>
+                        <!-- real href so the link works for crawlers and without JS; the directive smooth-scrolls -->
+                        <a *ngSwitchCase="!!link.fragment" [attr.href]="'/#' + link.fragment" [appScrollTo]="link.fragment!">{{ link.label }}</a>
                         <a *ngSwitchCase="!!link.route" [routerLink]="link.route">{{ link.label }}</a>
                         <a *ngSwitchDefault [href]="link.href" [attr.target]="link.newTab ? '_blank' : null"
                             [attr.rel]="link.newTab ? 'noopener noreferrer' : null"
@@ -85,51 +85,5 @@
             involve in the activities of selling insurance, announcing bonus or investment of premium. Public receiving
             such calls are requested to lodge a complaint on sancharsaathi.gov.in or the Cybercrime helpline 1930.
             OneInsure is a registered trade name of Robinhood Insurance Broker Ltd.</div>
-    </div>
-
-    <!-- Grievance redressal modal -->
-    <div class="grv" *ngIf="grievanceOpen" (click)="onGrvBackdrop($event)">
-        <div class="grv__panel" role="dialog" aria-modal="true" aria-label="Grievance Redressal">
-            <button class="grv__close" (click)="closeGrievance()" aria-label="Close">&times;</button>
-            <div class="grv__head">
-                <div class="grv__icon">
-                    <svg fill="none" height="20" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24" width="20">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M12 8v4m0 4h.01"></path>
-                    </svg>
-                </div>
-                <div>
-                    <h3>Grievance Redressal</h3>
-                    <p>Response within 48 business hours</p>
-                </div>
-            </div>
-            <p class="grv__lede">Reach us through any channel below. Every concern is reviewed by a dedicated officer.
-            </p>
-            <div class="grv__channels">
-                <a class="grv__ch" href="mailto:support@oneinsure.com">
-                    <svg fill="none" height="20" stroke="#0d2b55" stroke-width="2" viewBox="0 0 24 24" width="20">
-                        <rect height="16" rx="2" width="20" x="2" y="4"></rect>
-                        <path d="m2 7 10 7 10-7"></path>
-                    </svg>
-                    <span><b>Email</b><i>support&#64;oneinsure.com</i></span>
-                </a>
-                <a class="grv__ch" href="tel:+918655986559">
-                    <svg fill="none" height="20" stroke="#0d2b55" stroke-width="2" viewBox="0 0 24 24" width="20">
-                        <path
-                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z">
-                        </path>
-                    </svg>
-                    <span><b>Call</b><i>+91 86559 86559</i></span>
-                </a>
-                <a class="grv__ch" href="https://wa.me/918655986559" target="_blank" rel="noopener">
-                    <svg fill="#0d2b55" height="20" viewBox="0 0 24 24" width="20">
-                        <path
-                            d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.22-1.63A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.22-3.48-8.52zM12 22a9.93 9.93 0 0 1-5.09-1.4l-.37-.22-3.69.97.99-3.6-.24-.37A9.94 9.94 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z">
-                        </path>
-                    </svg>
-                    <span><b>WhatsApp</b><i>+91 86559 86559</i></span>
-                </a>
-            </div>
-        </div>
     </div>
 </footer>

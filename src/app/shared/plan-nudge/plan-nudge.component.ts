@@ -1,3 +1,4 @@
+import { consentRecord } from '../consent/consent.component';
 import { Component, ElementRef, HostListener, Inject, NgZone, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
@@ -104,6 +105,8 @@ export class PlanNudgeComponent implements OnInit, OnDestroy {
 
   // callback form
   name = '';
+  consent = false;
+  consentTried = false;
   phone = '';
   phoneError = '';
   sending = false;
@@ -313,6 +316,7 @@ export class PlanNudgeComponent implements OnInit, OnDestroy {
 
   showCallback(): void {
     this.step = 'callback';
+    this.consentTried = false;
     this.phoneError = '';
     this.sendError = '';
   }
@@ -324,6 +328,8 @@ export class PlanNudgeComponent implements OnInit, OnDestroy {
       return;
     }
     this.phoneError = '';
+    this.consentTried = true;
+    if (!this.consent) { return; }
     this.sendError = '';
 
     const remarks = this.questions
@@ -335,7 +341,7 @@ export class PlanNudgeComponent implements OnInit, OnDestroy {
       `City : `,
       `Mail : `,
       `Insurance : ${this.answers.goal ?? ''}`,
-      `Remarks : Free financial plan quiz. ${remarks}`,
+      `Remarks : Free financial plan quiz. ${remarks}. ${consentRecord()}`,
       `Mode : Plan Nudge - Callback`,
       `Type : Website Lead`,
     ].join(', ');

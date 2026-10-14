@@ -57,7 +57,7 @@
 
         <div class="ss-trust reveal-up" data-delay="4">
             <span>Life, health &amp; motor</span>
-            <span>40+ insurers</span>
+            <span>{{ insurerCount }} insurers</span>
             <span>An advisor calls within 24 hours</span>
         </div>
     </div>
@@ -191,6 +191,8 @@
                         <option *ngFor="let i of insurersFor(active.category)" [value]="i.id">{{ i.name }}</option>
                     </select>
                     <div class="ss-err" *ngIf="cbError">{{ cbError }}</div>
+                    <app-consent name="consent" [(ngModel)]="cbConsent"
+                        [showError]="cbConsentTried && !cbConsent"></app-consent>
                     <button class="btn btn--blue" type="submit" [disabled]="cbSending">
                         {{ cbSending ? 'Sending…' : 'Request a callback' }}
                     </button>
