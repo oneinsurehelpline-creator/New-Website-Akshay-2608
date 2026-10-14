@@ -84,25 +84,11 @@
                 </div>
             </ng-container>
 
-            <!-- Your policies -->
+            <!-- My Policies -->
             <app-account-policies *ngIf="tab === 'policies'" [policies]="policies"></app-account-policies>
 
             <!-- Claims -->
-            <ng-container *ngIf="tab === 'claims'">
-                <header class="acct__hello">
-                    <h1>Claims</h1>
-                    <p>Track the status of your claims.</p>
-                </header>
-
-                <div class="acct__card">
-                    <div class="empty" *ngIf="!claims.length">
-                        <img src="assets/images/icons/14_Personal_Accident.png" alt="">
-                        <h3>No claims raised</h3>
-                        <p>Need to file a claim? Our team will guide you through every step.</p>
-                        <a class="btn btn--blue" routerLink="/insurance-claim-support">Get claim support</a>
-                    </div>
-                </div>
-            </ng-container>
+            <app-account-claims *ngIf="tab === 'claims'" [claims]="claims"></app-account-claims>
 
             <!-- Profile -->
             <ng-container *ngIf="tab === 'profile'">

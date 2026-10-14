@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { AuthService, UserProfile } from '../../services/auth.service';
 import { LeadService } from 'src/app/services/lead.service';
 import { AccountPolicy, SAMPLE_POLICIES } from './account-policies/account-policies.model';
+import { AccountClaim, SAMPLE_CLAIMS } from './account-claims/account-claims.model';
 
 type AccountTab = 'dashboard' | 'policies' | 'claims' | 'profile';
 
@@ -34,8 +35,8 @@ export class MyaccountComponent implements OnInit, OnDestroy {
 
   navItems: AccountNavItem[] = [
     { key: 'dashboard', label: 'Dashboard' },
-    { key: 'policies', label: 'Your policies' },
-    { key: 'claims', label: 'Claims' },
+    { key: 'policies', label: 'My Policies' },
+    { key: 'claims', label: 'My Claims' },
     { key: 'profile', label: 'Profile' },
   ];
 
@@ -51,7 +52,7 @@ export class MyaccountComponent implements OnInit, OnDestroy {
 
   /** TODO: load from the backend once the policies / claims APIs are available. */
   policies: AccountPolicy[] = SAMPLE_POLICIES;
-  claims: any[] = [];
+  claims: AccountClaim[] = SAMPLE_CLAIMS;
 
   private sub?: Subscription;
 

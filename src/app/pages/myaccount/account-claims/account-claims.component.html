@@ -1,0 +1,337 @@
+<!-- ============ LIST VIEW ============ -->
+<ng-container *ngIf="!selected; else detail">
+    <header class="hero">
+        <div class="hero__top">
+            <div>
+                <h1>My Claims</h1>
+                <p>File, track, or get help with your claims.</p>
+            </div>
+            <a class="hero__cta" routerLink="/insurance-claim-support">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" aria-hidden="true">
+                    <path d="M12 5v14M5 12h14" />
+                </svg>
+                Raise a claim
+            </a>
+        </div>
+
+        <div class="seg" role="tablist" aria-label="Claim status">
+            <button type="button" role="tab" class="seg__btn" [class.is-on]="view === 'ongoing'"
+                [attr.aria-selected]="view === 'ongoing'" (click)="setView('ongoing')">
+                Ongoing <span class="seg__count">{{ count('ongoing') }}</span>
+            </button>
+            <button type="button" role="tab" class="seg__btn" [class.is-on]="view === 'closed'"
+                [attr.aria-selected]="view === 'closed'" (click)="setView('closed')">
+                Closed <span class="seg__count">{{ count('closed') }}</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Empty -->
+    <div class="empty-card" *ngIf="!viewList.length">
+        <span class="empty-card__art" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none">
+                <rect x="14" y="8" width="36" height="48" rx="5" fill="#fff" stroke="#B9C0CC"
+                    stroke-dasharray="3 3" />
+                <path d="M22 22h20M22 30h14" stroke="#CBD0D8" stroke-width="2.4" stroke-linecap="round" />
+                <circle cx="44" cy="44" r="10" fill="#E4E6E8" />
+                <path d="M40 44l3 3 5-6" stroke="#8A93A1" stroke-width="2.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </span>
+        <div class="empty-card__text">
+            <h3>{{ view === 'ongoing' ? 'No ongoing claims' : 'No closed claims yet' }}</h3>
+            <p>Need to file a claim? Our team will guide you through every step.</p>
+        </div>
+        <a class="btn btn--blue" routerLink="/insurance-claim-support">Raise a claim</a>
+    </div>
+
+    <ng-container *ngIf="viewList.length">
+        <div class="chips" role="group" aria-label="Filter by category">
+            <button type="button" class="chip" *ngFor="let c of categories" [class.is-on]="category === c"
+                [attr.aria-pressed]="category === c" (click)="toggleCategory(c)">
+                {{ c }}
+                <svg *ngIf="category === c" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                    stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="10" cy="10" r="7.5" />
+                    <path d="M7.5 7.5l5 5M12.5 7.5l-5 5" />
+                </svg>
+            </button>
+        </div>
+
+        <ul class="plist">
+            <li *ngFor="let c of visible">
+                <button type="button" class="pcard" (click)="open(c)">
+                    <span class="pcard__logo" [ngClass]="'tint--' + c.category.toLowerCase()">
+                        <img [src]="logo(c)" [alt]="c.insurer || c.category" loading="lazy">
+                    </span>
+
+                    <span class="pcard__body">
+                        <span class="eyebrow pcard__cat">{{ c.claimType }}</span>
+                        <span class="pcard__title">{{ title(c) }}</span>
+                        <span class="pcard__sub">Claim ID · {{ c.claimNo }}</span>
+
+                        <span class="cmeta">
+                            <span class="status" [ngClass]="'status--' + c.status">{{ statusLabel(c) }}</span>
+                            <span class="cmeta__date">Raised on {{ c.raisedOn | date:'dd MMM, yyyy' }}</span>
+                            <span class="cmeta__docs" *ngIf="!isClosed(c) && pendingDocs(c)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="9" />
+                                    <path d="M12 7.5v5.5M12 16.5v.01" />
+                                </svg>
+                                {{ pendingDocs(c) }} document{{ pendingDocs(c) > 1 ? 's' : '' }} pending
+                            </span>
+                        </span>
+
+                        <span class="cprog" *ngIf="!isClosed(c)">
+                            <span class="cprog__bar"><span [style.width.%]="progress(c)"></span></span>
+                            <span class="cprog__label">{{ currentStep(c).label }}</span>
+                        </span>
+                    </span>
+
+                    <span class="pcard__go" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                    </span>
+                </button>
+            </li>
+        </ul>
+
+        <p class="plist__none" *ngIf="!visible.length">
+            No {{ category }} claims in {{ view }} status.
+        </p>
+    </ng-container>
+</ng-container>
+
+<!-- ============ DETAIL VIEW ============ -->
+<ng-template #detail>
+    <ng-container *ngIf="selected as c">
+
+        <!-- Header -->
+        <section class="dhead" [ngClass]="'theme--' + c.category.toLowerCase()">
+            <div class="dhead__bar">
+                <button type="button" class="dhead__back" (click)="back()" aria-label="Back to claims">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.5 6l-6 6 6 6" />
+                    </svg>
+                </button>
+                <span class="status" [ngClass]="'status--' + c.status">{{ statusLabel(c) }}</span>
+            </div>
+
+            <div class="dhead__main">
+                <span class="dhead__logo"><img [src]="logo(c)" [alt]="c.insurer || c.category"></span>
+                <div class="dhead__info">
+                    <span class="eyebrow">{{ c.claimType }}</span>
+                    <h2>{{ title(c) }}</h2>
+                    <dl class="dhead__grid">
+                        <div>
+                            <dt>Claim ID</dt>
+                            <dd class="copyval">
+                                {{ c.claimNo }}
+                                <button type="button" (click)="copyClaimNo(c)"
+                                    [attr.aria-label]="copied ? 'Copied' : 'Copy claim ID'"
+                                    [title]="copied ? 'Copied!' : 'Copy'">
+                                    <svg *ngIf="!copied" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.8" stroke-linejoin="round">
+                                        <rect x="8" y="8" width="11.5" height="12.5" rx="2" />
+                                        <path d="M5 15.5V5.5a2 2 0 0 1 2-2h8.5" />
+                                    </svg>
+                                    <svg *ngIf="copied" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M5 12.5l4.5 4.5L19 7.5" />
+                                    </svg>
+                                </button>
+                            </dd>
+                        </div>
+                        <div>
+                            <dt>Raised on</dt>
+                            <dd>{{ c.raisedOn | date:'dd MMM, yyyy' }}</dd>
+                        </div>
+                        <div *ngIf="c.policyNo">
+                            <dt>Policy No</dt>
+                            <dd>{{ c.policyNo }}</dd>
+                        </div>
+                        <div *ngIf="c.insurer">
+                            <dt>Insurer</dt>
+                            <dd>{{ c.insurer }}</dd>
+                        </div>
+                        <div *ngIf="c.insuredName">
+                            <dt>Insured member</dt>
+                            <dd>{{ c.insuredName }}</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+
+            <!-- Amounts -->
+            <div class="amounts" *ngIf="hasAmounts(c)">
+                <div class="amounts__item" *ngIf="c.claimAmount != null">
+                    <span>Claimed</span>
+                    <strong>{{ inr(c.claimAmount) }}</strong>
+                </div>
+                <div class="amounts__item" *ngIf="c.approvedAmount != null">
+                    <span>Approved</span>
+                    <strong>{{ inr(c.approvedAmount) }}</strong>
+                </div>
+                <div class="amounts__item amounts__item--ok" *ngIf="c.settledAmount != null">
+                    <span>Settled</span>
+                    <strong>{{ inr(c.settledAmount) }}</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest update -->
+        <div class="notice" *ngIf="c.remarks">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 11v5.5M12 7.5v.01" />
+            </svg>
+            <div>
+                <strong>Latest update</strong>
+                <p>{{ c.remarks }}</p>
+            </div>
+        </div>
+
+        <!-- Situation + Timeline -->
+        <div class="dgrid">
+            <section class="dcard">
+                <div class="dcard__head">
+                    <span class="dcard__icon dcard__icon--blue" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" />
+                            <circle cx="12" cy="10" r="2.4" />
+                        </svg>
+                    </span>
+                    <h3>My situation</h3>
+                </div>
+                <ol class="path">
+                    <li *ngFor="let s of c.situation">{{ titleCase(s) }}</li>
+                </ol>
+            </section>
+
+            <section class="dcard">
+                <div class="dcard__head">
+                    <span class="dcard__icon dcard__icon--orange" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="8.5" />
+                            <path d="M12 7.5V12l3 2" />
+                        </svg>
+                    </span>
+                    <h3>Timeline</h3>
+                </div>
+                <ol class="tline">
+                    <li *ngFor="let s of c.timeline; let i = index" class="tline__step"
+                        [ngClass]="'is-' + stepState(c, i)">
+                        <span class="tline__dot" aria-hidden="true">
+                            <svg *ngIf="stepState(c, i) === 'done'" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M6 12.5l4 4 8-9" />
+                            </svg>
+                            <svg *ngIf="stepState(c, i) === 'failed'" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                                <path d="M7.5 7.5l9 9M16.5 7.5l-9 9" />
+                            </svg>
+                        </span>
+                        <div class="tline__text">
+                            <strong>{{ s.label }}</strong>
+                            <span *ngIf="s.date">{{ s.date | date:'dd MMM, yyyy' }}</span>
+                            <span *ngIf="!s.date && stepState(c, i) === 'current'">In progress</span>
+                            <em *ngIf="s.note">{{ s.note }}</em>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+        </div>
+
+        <!-- Details (ticket) -->
+        <section class="ticket">
+            <div class="ticket__head">
+                <span class="dcard__icon dcard__icon--blue" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                        <path d="M14 3v5h5M8.5 13h7M8.5 16.5h5" />
+                    </svg>
+                </span>
+                <h3>Claim details</h3>
+            </div>
+            <dl class="kv">
+                <div class="kv__item" *ngFor="let d of c.details">
+                    <dt>{{ d.label }}</dt>
+                    <dd [class.is-empty]="d.value === null || d.value === ''">{{ detailValue(d) }}</dd>
+                </div>
+            </dl>
+        </section>
+
+        <!-- Documents -->
+        <section class="dcard" *ngIf="c.documents.length">
+            <div class="dcard__head">
+                <span class="dcard__icon dcard__icon--orange" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                        <path d="M14 3v5h5M12 17.5v-6M9.5 14l2.5-2.5 2.5 2.5" />
+                    </svg>
+                </span>
+                <div>
+                    <h3>Documents</h3>
+                    <p class="dcard__sub" *ngIf="pendingDocs(c) && !isClosed(c)">
+                        {{ pendingDocs(c) }} document{{ pendingDocs(c) > 1 ? 's' : '' }} needed to process your claim
+                    </p>
+                </div>
+            </div>
+
+            <ul class="docs">
+                <li *ngFor="let d of c.documents" class="doc" [ngClass]="'doc--' + d.status">
+                    <span class="doc__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                            <path d="M14 3v5h5" />
+                        </svg>
+                    </span>
+                    <div class="doc__text">
+                        <strong>{{ d.name }}</strong>
+                        <span *ngIf="d.fileName">{{ d.fileName }}<ng-container *ngIf="d.uploadedOn"> · {{ d.uploadedOn | date:'dd MMM, yyyy' }}</ng-container></span>
+                        <em *ngIf="d.remark">{{ d.remark }}</em>
+                    </div>
+                    <span class="doc__tag">{{ docLabel(d) }}</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Help -->
+        <section class="dcard help">
+            <div class="help__who">
+                <span class="help__avatar" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z" />
+                        <path d="M21 16v2a4 4 0 0 1-4 4h-5" />
+                    </svg>
+                </span>
+                <div class="help__text">
+                    <strong>{{ c.advisor?.name || 'Need help with this claim?' }}</strong>
+                    <span>{{ c.advisor ? 'Your claim advisor' : 'Talk to our claims experts, free of cost' }}</span>
+                    <a *ngIf="c.advisor?.phone" [href]="'tel:' + c.advisor?.phone">{{ c.advisor?.phone }}</a>
+                </div>
+            </div>
+            <a class="btn btn--blue" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
+                target="_blank" rel="noopener">
+                Get help
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+            </a>
+        </section>
+    </ng-container>
+</ng-template>

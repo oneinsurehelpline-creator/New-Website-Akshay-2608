@@ -1,0 +1,454 @@
+/* ============================================================
+   MY ACCOUNT — shared UI for the Policies & Claims tabs
+   (hero + status switch, chips, list cards, detail header, cards)
+   ============================================================ */
+
+/* ============ HERO + STATUS SWITCH ============ */
+.hero {
+    padding: clamp(22px, 2.6vw, 24px);
+    border-radius: 20px;
+    background: var(--blue);
+    color: #fff;
+
+    h1 {
+        font: 800 clamp(26px, 3vw, 34px)/1.2 var(--display);
+        color: #fff;
+        margin: 0 0 8px;
+    }
+
+    p {
+        font: 500 15px/1.4 var(--sans);
+        color: rgba(255, 255, 255, .9);
+        margin: 0 0 20px;
+    }
+}
+
+.seg {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 5px;
+    border-radius: 14px;
+    background: #0096DB;
+}
+
+.seg__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 10px;
+    border-radius: 10px;
+    font: 700 14px/1 var(--sans);
+    color: #fff;
+    transition: background .2s ease, color .2s ease;
+
+    &:hover:not(.is-on) {
+        background: rgba(255, 255, 255, .12);
+    }
+
+    &.is-on {
+        background: #fff;
+        color: var(--blue-deep);
+
+        .seg__count {
+            background: var(--blue-deep);
+            color: #fff;
+        }
+    }
+}
+
+.seg__count {
+    min-width: 20px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    background: #fff;
+    color: var(--blue-deep);
+    font: 700 11.5px/1 var(--sans);
+}
+
+/* ============ EMPTY STATE ============ */
+.empty-card {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-top: 22px;
+    padding: clamp(20px, 2.6vw, 26px);
+    border-radius: 20px;
+    background: #fff;
+}
+
+.empty-card__art {
+    flex-shrink: 0;
+    width: 68px;
+    height: 68px;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.empty-card__text {
+    flex: 1;
+
+    h3 {
+        font: 700 18px/1.3 var(--display);
+        color: var(--blue-deep);
+        margin: 0 0 6px;
+    }
+
+    p {
+        font: 500 14.5px/1.55 var(--sans);
+        color: var(--g600);
+        margin: 0;
+        max-width: 380px;
+    }
+}
+
+/* ============ CATEGORY CHIPS ============ */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 22px 0 20px;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: #fff;
+    font: 600 14px/1 var(--sans);
+    color: var(--g700);
+    transition: border-color .2s ease, background .2s ease, color .2s ease;
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    &:hover {
+        border-color: #BFD6FA;
+    }
+
+    &.is-on {
+        border-color: #1363DF;
+        background: #E3EDFD;
+        color: #1363DF;
+    }
+}
+
+/* ============ LIST + CARDS ============ */
+.plist {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.plist__none {
+    padding: 28px 16px;
+    border-radius: 20px;
+    background: #fff;
+    text-align: center;
+    font: 500 14.5px/1.5 var(--sans);
+    color: var(--g500);
+}
+
+.pcard {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #E3ECF9;
+    border-radius: 18px;
+    background: #fff;
+    text-align: left;
+    transition: border-color .25s ease, box-shadow .25s ease;
+
+    &:hover {
+        border-color: #BFD6FA;
+        box-shadow: 0 14px 34px -18px rgba(19, 99, 223, .35);
+
+        .pcard__go {
+            background: #1363DF;
+            color: #fff;
+        }
+    }
+}
+
+.pcard__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 98px;
+    height: 98px;
+    padding: 14px;
+    border-radius: 14px;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        mix-blend-mode: multiply;
+    }
+}
+
+.tint--health { background: #FDECEC; }
+.tint--life   { background: var(--blue-soft); }
+.tint--motor  { background: var(--orange-soft); }
+
+.pcard__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.pcard__cat {
+    margin-bottom: 10px;
+}
+
+.pcard__title {
+    font: 700 18px/1.3 var(--display);
+    color: var(--blue-deep);
+}
+
+.pcard__sub {
+    margin-top: 6px;
+    font: 500 15px/1.4 var(--sans);
+    color: var(--g600);
+}
+
+/* same round arrow as the dashboard product cards */
+.pcard__go {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #E3EDFD;
+    color: #1363DF;
+    transition: background .2s ease, color .2s ease;
+
+    svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* ============ DETAIL HEADER ============ */
+.theme--health { --d-bg: #FDECEC; --d-bar: #F9D9D9; }
+.theme--life   { --d-bg: var(--blue-soft); --d-bar: #D3EEFF; }
+.theme--motor  { --d-bg: #FEF3E0; --d-bar: var(--orange-soft); }
+
+.dhead {
+    overflow: hidden;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    background: var(--d-bg);
+}
+
+.dhead__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 20px;
+    background: var(--d-bar);
+}
+
+.dhead__back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--blue-deep);
+    transition: background .2s ease, color .2s ease;
+
+    svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    &:hover {
+        background: var(--blue-deep);
+        color: #fff;
+    }
+}
+
+.dhead__main {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.dhead__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 108px;
+    height: 108px;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #fff;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+}
+
+.dhead__info {
+    flex: 1;
+    min-width: 0;
+
+    h2 {
+        font: 800 clamp(20px, 2.2vw, 24px)/1.3 var(--display);
+        color: var(--blue-deep);
+        margin: 8px 0 18px;
+    }
+}
+
+.dhead__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 20px;
+    margin: 0;
+
+    dt {
+        font: 500 13px/1.3 var(--sans);
+        color: var(--g600);
+        margin-bottom: 4px;
+    }
+
+    dd {
+        font: 700 16px/1.3 var(--sans);
+        color: var(--blue-deep);
+        margin: 0;
+        overflow-wrap: anywhere;
+    }
+}
+
+.is-disabled {
+    pointer-events: none;
+    opacity: .55;
+}
+
+/* ============ CONTENT CARDS ============ */
+.dcard {
+    margin-top: 22px;
+    padding: clamp(20px, 2.6vw, 26px);
+    border-radius: 20px;
+    background: #fff;
+
+    h3 {
+        font: 700 18px/1.3 var(--display);
+        color: var(--blue-deep);
+        margin: 0;
+    }
+}
+
+.dcard__head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.dcard__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+
+    svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    &--blue {
+        background: var(--blue-soft);
+        color: #0096DB;
+    }
+
+    &--orange {
+        background: var(--orange-soft);
+        color: #D9890A;
+    }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 600px) {
+    .empty-card {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .empty-card .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .pcard {
+        gap: 14px;
+        padding: 16px;
+    }
+
+    .pcard__logo {
+        width: 72px;
+        height: 72px;
+        padding: 10px;
+    }
+
+    .pcard__title {
+        font-size: 16px;
+    }
+
+    .pcard__sub {
+        font-size: 14px;
+    }
+
+    .pcard__go {
+        width: 32px;
+        height: 32px;
+    }
+
+    .dhead__main {
+        flex-direction: column;
+    }
+
+    .dhead__logo {
+        width: 88px;
+        height: 88px;
+    }
+
+    .dcard__icon {
+        width: 46px;
+        height: 46px;
+
+        svg {
+            width: 22px;
+            height: 22px;
+        }
+    }
+}
