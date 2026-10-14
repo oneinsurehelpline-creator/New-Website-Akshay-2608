@@ -19,13 +19,13 @@
 
             <p class="lmodal__error" *ngIf="error">{{ error }}</p>
 
-            <button class="btn btn--blue lmodal__submit" type="submit" [disabled]="!mobileValid || loading">
+            <button class="btn btn--blue lmodal__submit" type="submit" [disabled]="!mobileValid || loading" (click)="generateOtp()">
                 {{ loading ? 'Sending OTP…' : 'Get OTP' }}
             </button>
         </form>
 
         <!-- Step 2: OTP -->
-        <form *ngIf="step === 'otp'" (ngSubmit)="verifyOtp()" novalidate>
+        <form *ngIf="step === 'otp'" (ngSubmit)="verifyOtpnew()" novalidate>
             <h3 class="lmodal__title">Verify OTP</h3>
             <p class="lmodal__sub">
                 We've sent a 6-digit OTP to <strong>+91 {{ mobile }}</strong>

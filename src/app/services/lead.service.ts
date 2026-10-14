@@ -76,4 +76,16 @@ export class LeadService {
     let header = new HttpHeaders();
     return this.http.post(this.jsonUrl + "OneinsureApi/InvestmentPlanDetails", cdto, { 'headers': header })
   }
+  generateOtp(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/generate-otp", cdto, { 'headers': header })
+  }
+  verifyOtp(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/verifyOtp", cdto, { 'headers': header })
+  }
+  getInfo(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/getInfo", cdto, { 'headers': header })
+  }
 }

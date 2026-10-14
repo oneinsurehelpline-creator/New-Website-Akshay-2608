@@ -112,4 +112,7 @@ export class AuthService {
       localStorage.setItem(STORAGE_KEY, mobile);
     } catch { }
   }
+  setAuthenticatedUser(mobile: string): void {
+  this.setUser(mobile);
+}
 }

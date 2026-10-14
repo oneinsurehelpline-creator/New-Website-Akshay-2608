@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService, UserProfile } from '../../services/auth.service';
+import { LeadService } from 'src/app/services/lead.service';
 
 type AccountTab = 'dashboard' | 'policies' | 'claims' | 'profile';
 
@@ -57,6 +58,7 @@ export class MyaccountComponent implements OnInit, OnDestroy {
     private auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
+    private leadService: LeadService,
     @Inject(PLATFORM_ID) platformId: object
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -70,6 +72,7 @@ export class MyaccountComponent implements OnInit, OnDestroy {
       this.tab = tab && this.navItems.some((n) => n.key === tab) ? tab : 'dashboard';
       this.profileSaved = false;
     });
+    this.getInfo();
   }
 
   get firstName(): string {
@@ -84,6 +87,7 @@ export class MyaccountComponent implements OnInit, OnDestroy {
     this.auth.saveProfile({ ...this.profile, name: this.profile.name.trim(), email: this.profile.email.trim() });
     this.profile = this.auth.getProfile();
     this.profileSaved = true;
+    console.log('Profile saved:', this.profile);
   }
 
   logout(): void {
@@ -93,5 +97,25 @@ export class MyaccountComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+  }
+  getInfo(): void {
+    var cdto = {
+      "Mobile": this.mobile
+    }
+    this.leadService.getInfo(cdto).subscribe({
+      next: (res) => {
+        console.log('User info retrieved:', res);
+        this.profile = {
+          name: res?.FullName || '',
+          email: res?.Email || '',
+        dob: res?.DOB ? res.DOB.split('T')[0] : '',
+          gender: res?.Gender || '',
+          city: res?.CityName || ''
+        };
+      },
+      error: () => {
+        console.error('Failed to retrieve user info.');
+      }
+    });
   }
 }

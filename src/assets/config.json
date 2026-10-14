@@ -1,6 +1,6 @@
 {
     "api": {
-        "baseUrl": "https://v2Api.oneinsure.com/api/"
+        "baseUrl": "http://localhost:4000/api/"
     },
     "Careers": {
         "FromEmail": "support@oneinsure.com",

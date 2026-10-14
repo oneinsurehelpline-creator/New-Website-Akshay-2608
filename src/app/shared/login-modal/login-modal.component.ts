@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { LoginModalService } from './login-modal.service';
+import { LeadService } from 'src/app/services/lead.service';
 
 const RESEND_SECONDS = 30;
 
@@ -21,14 +22,16 @@ export class LoginModalComponent implements OnDestroy {
   loading = false;
   error = '';
   resendIn = 0;
-
+  otpData: any;
   private sub: Subscription;
   private timer: ReturnType<typeof setInterval> | undefined;
 
   constructor(
     private svc: LoginModalService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private leadService: LeadService,
+    private authService: AuthService
   ) {
     this.sub = this.svc.open$.subscribe((open) => {
       this.isOpen = open;
@@ -53,67 +56,14 @@ export class LoginModalComponent implements OnDestroy {
     this.error = '';
   }
 
-  sendOtp(): void {
-    if (this.loading) {
-      return;
-    }
-    if (!this.mobileValid) {
-      this.error = 'Please enter a valid 10-digit mobile number.';
-      return;
-    }
-    this.loading = true;
-    this.error = '';
-    this.auth.sendOtp(this.mobile).subscribe({
-      next: (res) => {
-        this.loading = false;
-        if (res?.success) {
-          this.step = 'otp';
-          this.otp = '';
-          this.startResendTimer();
-          setTimeout(() => this.otpInput?.nativeElement.focus());
-        } else {
-          this.error = res?.message || 'Could not send OTP. Please try again.';
-        }
-      },
-      error: () => {
-        this.loading = false;
-        this.error = 'Could not send OTP. Please try again.';
-      },
-    });
-  }
 
-  verifyOtp(): void {
-    if (this.loading) {
-      return;
-    }
-    if (!this.otpValid) {
-      this.error = 'Please enter the 6-digit OTP.';
-      return;
-    }
-    this.loading = true;
-    this.error = '';
-    this.auth.verifyOtp(this.mobile, this.otp).subscribe({
-      next: (res) => {
-        this.loading = false;
-        if (res?.success) {
-          this.close();
-          this.router.navigate(['/my-account']);
-        } else {
-          this.error = res?.message || 'Invalid OTP. Please try again.';
-        }
-      },
-      error: () => {
-        this.loading = false;
-        this.error = 'Invalid OTP. Please try again.';
-      },
-    });
-  }
+
 
   resendOtp(): void {
     if (this.resendIn > 0) {
       return;
     }
-    this.sendOtp();
+    this.generateOtp();
   }
 
   changeNumber(): void {
@@ -171,4 +121,76 @@ export class LoginModalComponent implements OnDestroy {
     this.timer = undefined;
     this.resendIn = 0;
   }
+
+  generateOtp(): void {
+    if (this.loading) {
+      return;
+    }
+    if (!this.mobileValid) {
+      this.error = 'Please enter a valid 10-digit mobile number.';
+      return;
+    }
+    this.loading = true;
+    this.error = '';
+    var cdto = {
+      "MobileNo": this.mobile,
+      "APPSIGNID": ""
+    }
+    this.leadService.generateOtp(cdto).subscribe({
+      next: (res) => {
+        this.loading = false;
+        this.step = 'otp';
+        this.otpData = res;
+        this.otp = '';
+        this.startResendTimer();
+        setTimeout(() => this.otpInput?.nativeElement.focus());
+
+      },
+      error: () => {
+        this.loading = false;
+        this.error = 'Could not send OTP. Please try again.';
+      },
+    });
+  }
+  verifyOtpnew(): void {
+    if (this.loading) {
+      return;
+    }
+    if (!this.otpValid) {
+      this.error = 'Please enter the 6-digit OTP.';
+      return;
+    }
+    this.loading = true;
+    this.error = '';
+    var cdto = {
+      "mobileno": this.mobile,
+      "otpstr": this.otp,
+      "OTPidkey": this.otpData?.Otpidkey || ''
+    }
+    this.leadService.verifyOtp(cdto).subscribe({
+      next: (res) => {
+        this.loading = false;
+        if (Number(res?.response) === 1) {
+          console.log('OTP verified successfully:', res);
+
+          this.authService.setAuthenticatedUser(this.mobile);
+
+          this.close();
+
+          this.router.navigate(['/my-account']).then((navigated) => {
+            console.log('Navigation successful:', navigated);
+          }); 
+        } else {
+          this.error = res?.message || 'Invalid OTP. Please try again.';
+        }
+      },
+      error: () => {
+        this.loading = false;
+        this.error = 'Invalid OTP. Please try again.';
+      },
+    });
+  }
+
+
+ 
 }
