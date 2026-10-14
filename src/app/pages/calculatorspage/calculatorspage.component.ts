@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-calculatorspage',
   template: `
-    <section class="cp-hero">
+    <section class="cp-hero d-none">
       <div class="container">
         <nav aria-label="breadcrumb" class="cp-crumb">
           <a routerLink="/">Home</a><span>/</span><span aria-current="page">Calculators</span>

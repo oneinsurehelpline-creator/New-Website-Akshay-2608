@@ -7,7 +7,8 @@
 .calc {
     background: var(--blue-soft);
     position: relative;
-    overflow: hidden
+    overflow: hidden;
+    padding-top: clamp(110px, 12vw, 150px);
 }
 
 .calc__head {
