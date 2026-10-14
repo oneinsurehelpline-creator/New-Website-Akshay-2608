@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService, UserProfile } from '../../services/auth.service';
 import { LeadService } from 'src/app/services/lead.service';
+import { AccountPolicy, SAMPLE_POLICIES } from './account-policies/account-policies.model';
 
 type AccountTab = 'dashboard' | 'policies' | 'claims' | 'profile';
 
@@ -49,7 +50,7 @@ export class MyaccountComponent implements OnInit, OnDestroy {
   ];
 
   /** TODO: load from the backend once the policies / claims APIs are available. */
-  policies: any[] = [];
+  policies: AccountPolicy[] = SAMPLE_POLICIES;
   claims: any[] = [];
 
   private sub?: Subscription;

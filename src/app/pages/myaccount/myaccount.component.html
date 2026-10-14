@@ -85,21 +85,7 @@
             </ng-container>
 
             <!-- Your policies -->
-            <ng-container *ngIf="tab === 'policies'">
-                <header class="acct__hello">
-                    <h1>Your policies</h1>
-                    <p>All the policies you've bought through OneInsure, in one place.</p>
-                </header>
-
-                <div class="acct__card">
-                    <div class="empty" *ngIf="!policies.length">
-                        <img src="assets/images/icons/05_TULIP_Plans.png" alt="">
-                        <h3>No policies yet</h3>
-                        <p>Policies linked to +91 {{ mobile }} will show up here.</p>
-                        <a class="btn btn--blue" routerLink="/my-account">Explore plans</a>
-                    </div>
-                </div>
-            </ng-container>
+            <app-account-policies *ngIf="tab === 'policies'" [policies]="policies"></app-account-policies>
 
             <!-- Claims -->
             <ng-container *ngIf="tab === 'claims'">

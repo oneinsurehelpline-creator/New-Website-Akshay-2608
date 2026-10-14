@@ -28,6 +28,7 @@ import { CorporateinsuranceComponent } from './corporateinsurance/corporateinsur
 import { EmployeremployeeinsuranceComponent } from './employeremployeeinsurance/employeremployeeinsurance.component';
 import { TermsconditionsComponent } from './termsconditions/termsconditions.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
+import { AccountPoliciesComponent } from './myaccount/account-policies/account-policies.component';
 
 
 
@@ -57,6 +58,7 @@ import { MyaccountComponent } from './myaccount/myaccount.component';
     EmployeremployeeinsuranceComponent,
     TermsconditionsComponent,
     MyaccountComponent,
+    AccountPoliciesComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,250 @@
+<!-- ============ LIST VIEW ============ -->
+<ng-container *ngIf="!selected; else detail">
+    <header class="hero">
+        <h1>Your policies</h1>
+        <p>Manage your insurance policies &amp; renewals</p>
+
+        <div class="seg" role="tablist" aria-label="Policy status">
+            <button type="button" role="tab" class="seg__btn" [class.is-on]="state === 'active'"
+                [attr.aria-selected]="state === 'active'" (click)="setState('active')">
+                Active <span class="seg__count">{{ count('active') }}</span>
+            </button>
+            <button type="button" role="tab" class="seg__btn" [class.is-on]="state === 'inactive'"
+                [attr.aria-selected]="state === 'inactive'" (click)="setState('inactive')">
+                Inactive <span class="seg__count">{{ count('inactive') }}</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Empty: no policies in this status at all -->
+    <div class="empty-card" *ngIf="!stateList.length">
+        <span class="empty-card__art" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none">
+                <rect x="6" y="12" width="30" height="40" rx="4" stroke="#B9C0CC" stroke-dasharray="3 3"
+                    transform="rotate(-10 21 32)" />
+                <rect x="26" y="12" width="30" height="40" rx="4" stroke="#B9C0CC" stroke-dasharray="3 3"
+                    transform="rotate(10 41 32)" />
+                <rect x="16" y="10" width="32" height="44" rx="4" fill="#fff" stroke="#B9C0CC"
+                    stroke-dasharray="3 3" />
+                <circle cx="32" cy="32" r="9" fill="#E4E6E8" />
+                <path d="M32 27v10M27 32h10" stroke="#8A93A1" stroke-width="2.4" stroke-linecap="round" />
+            </svg>
+        </span>
+        <div class="empty-card__text">
+            <h3>{{ state === 'active' ? 'You don’t have any policies yet!' : 'No inactive policies' }}</h3>
+            <p>Buy an insurance policy to protect your family &amp; assets now</p>
+        </div>
+        <a class="btn btn--blue" routerLink="/my-account">Explore</a>
+    </div>
+
+    <ng-container *ngIf="stateList.length">
+        <div class="chips" role="group" aria-label="Filter by category">
+            <button type="button" class="chip" *ngFor="let c of categories" [class.is-on]="category === c"
+                [attr.aria-pressed]="category === c" (click)="toggleCategory(c)">
+                {{ c }}
+                <svg *ngIf="category === c" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                    stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="10" cy="10" r="7.5" />
+                    <path d="M7.5 7.5l5 5M12.5 7.5l-5 5" />
+                </svg>
+            </button>
+        </div>
+
+        <ul class="plist">
+            <li *ngFor="let p of visible">
+                <button type="button" class="pcard" (click)="open(p)">
+                    <span class="pcard__logo" [ngClass]="'tint--' + p.category.toLowerCase()">
+                        <img [src]="p.logo" [alt]="p.insurer" loading="lazy">
+                    </span>
+                    <span class="pcard__body">
+                        <span class="eyebrow pcard__cat">{{ p.category }} Insurance</span>
+                        <span class="pcard__title">{{ headline(p) }}</span>
+                        <span class="pcard__sub" *ngIf="subline(p) as s">{{ s }}</span>
+                        <span class="pcard__date">
+                            {{ p.state === 'active' ? 'Valid till' : 'Expired on' }} {{ p.endDate | date:'dd MMM, yyyy' }}
+                        </span>
+                    </span>
+                    <span class="pcard__go" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                    </span>
+                </button>
+            </li>
+        </ul>
+
+        <p class="plist__none" *ngIf="!visible.length">
+            No {{ category }} policies in {{ state }} status.
+        </p>
+    </ng-container>
+</ng-container>
+
+<!-- ============ DETAIL VIEW ============ -->
+<ng-template #detail>
+    <ng-container *ngIf="selected as p">
+        <section class="dhead" [ngClass]="'theme--' + p.category.toLowerCase()">
+            <div class="dhead__bar">
+                <button type="button" class="dhead__back" (click)="back()" aria-label="Back to policies">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.5 6l-6 6 6 6" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="dhead__main">
+                <span class="dhead__logo"><img [src]="p.logo" [alt]="p.insurer"></span>
+                <div class="dhead__info">
+                    <span class="eyebrow">{{ p.category }} Insurance</span>
+                    <h2>{{ p.planName }}</h2>
+                    <dl class="dhead__grid">
+                        <div>
+                            <dt>Cover Amount</dt>
+                            <dd>{{ inr(p.coverAmount) }}</dd>
+                        </div>
+                        <div>
+                            <dt>Policy No</dt>
+                            <dd>{{ p.policyNo }}</dd>
+                        </div>
+                        <div>
+                            <dt>Premium</dt>
+                            <dd>{{ inr(p.premium) }}</dd>
+                        </div>
+                        <div>
+                            <dt>Policy Term</dt>
+                            <dd>{{ term(p.termYears) }}</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+
+            <a class="dhead__dl" [attr.href]="p.policyCopyUrl || null" target="_blank" rel="noopener"
+                [class.is-disabled]="!p.policyCopyUrl">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M4.5 17v2.5h15V17" />
+                </svg>
+                Policy copy
+            </a>
+        </section>
+
+        <!-- Insured members / vehicle -->
+        <section class="dcard">
+            <div class="dcard__head">
+                <span class="dcard__icon dcard__icon--blue" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z" />
+                        <path d="M8.8 12.2l2.2 2.2 4.3-4.4" />
+                    </svg>
+                </span>
+                <h3>{{ p.vehicle ? 'Insured vehicle' : (p.insuredMembers.length > 1 ? 'Insured members' : 'Insured member') }}</h3>
+            </div>
+            <ul class="members" *ngIf="!p.vehicle">
+                <li *ngFor="let m of p.insuredMembers">{{ m }}</li>
+            </ul>
+            <ul class="members" *ngIf="p.vehicle as v">
+                <li>{{ v.name }} <span>{{ v.regNo }}</span></li>
+            </ul>
+        </section>
+
+        <!-- Policy details -->
+        <section class="dcard">
+            <div class="dcard__head">
+                <span class="dcard__icon dcard__icon--blue" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M13.5 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4" />
+                        <path d="M13.5 3V8h5" />
+                        <path d="M13.5 3l5 5v3" />
+                        <path d="M8.5 12h4M8.5 15.5h2.5" />
+                        <circle cx="17" cy="17" r="2.2" />
+                        <path d="M17 13.3v1.5M17 19.2v1.5M20.7 17h-1.5M14.8 17h-1.5" />
+                    </svg>
+                </span>
+                <h3>Policy Details</h3>
+            </div>
+
+            <dl class="dtable">
+                <div class="dtable__row">
+                    <dt>Plan Name</dt>
+                    <dd>{{ p.planName }}</dd>
+                </div>
+                <div class="dtable__row">
+                    <dt>Cover Amount</dt>
+                    <dd>{{ inr(p.coverAmount) }}</dd>
+                </div>
+                <div class="dtable__row">
+                    <dt>Policy Number</dt>
+                    <dd class="dtable__copy">
+                        <span>{{ p.policyNo }}</span>
+                        <button type="button" (click)="copyPolicyNo(p)"
+                            [attr.aria-label]="copied ? 'Copied' : 'Copy policy number'"
+                            [title]="copied ? 'Copied!' : 'Copy'">
+                            <svg *ngIf="!copied" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linejoin="round">
+                                <rect x="8" y="8" width="11.5" height="12.5" rx="2" />
+                                <path d="M5 15.5V5.5a2 2 0 0 1 2-2h8.5" />
+                            </svg>
+                            <svg *ngIf="copied" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12.5l4.5 4.5L19 7.5" />
+                            </svg>
+                        </button>
+                    </dd>
+                </div>
+                <div class="dtable__row" *ngIf="p.vehicle as v">
+                    <dt>Registration No</dt>
+                    <dd>{{ v.regNo }}</dd>
+                </div>
+                <div class="dtable__row">
+                    <dt>Policy Term</dt>
+                    <dd>{{ term(p.termYears) }}</dd>
+                </div>
+                <div class="dtable__row">
+                    <dt>Policy Start Date</dt>
+                    <dd>{{ p.startDate | date:'dd MMM, yyyy' }}</dd>
+                </div>
+                <div class="dtable__row">
+                    <dt>Policy End Date</dt>
+                    <dd>{{ p.endDate | date:'dd MMM, yyyy' }}</dd>
+                </div>
+                <div class="dtable__row">
+                    <dt>Proposer name</dt>
+                    <dd>{{ p.proposer }}</dd>
+                </div>
+                <div class="dtable__row">
+                    <dt>Status</dt>
+                    <dd>{{ p.statusLabel }}</dd>
+                </div>
+                <div class="dtable__row">
+                    <dt>Booking Date</dt>
+                    <dd>{{ p.bookingDate | date:'dd MMM, yyyy' }}</dd>
+                </div>
+            </dl>
+        </section>
+
+        <!-- Documents -->
+        <section class="dcard dcard--docs">
+            <span class="dcard__icon dcard__icon--orange" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 4v10M7.5 9.5L12 14l4.5-4.5M5 19h14" />
+                </svg>
+            </span>
+            <div>
+                <h3>Policy documents</h3>
+                <p>Get policy related documents here</p>
+                <a class="btn btn--ghost-blue btn--sm" [attr.href]="p.policyCopyUrl || null" target="_blank" rel="noopener"
+                    [class.is-disabled]="!p.policyCopyUrl">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M4.5 17v2.5h15V17" />
+                    </svg>
+                    Policy copy
+                </a>
+            </div>
+        </section>
+    </ng-container>
+</ng-template>
