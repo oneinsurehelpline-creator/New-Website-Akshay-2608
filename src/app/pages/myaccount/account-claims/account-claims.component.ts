@@ -1,22 +1,12 @@
 import { Component, Inject, Input, PLATFORM_ID } from '@angular/core';
 import { DatePipe, isPlatformBrowser } from '@angular/common';
-import {
-  AccountClaim, ClaimCategory, ClaimDetail, ClaimDocStatus, ClaimDocument, ClaimStatus, ClaimStep
-} from './account-claims.model';
+import { Observable } from 'rxjs';
+import { LeadService } from 'src/app/services/lead.service';
+import { AccountClaim, ClaimCategory, ClaimDetail, ClaimDocStatus, ClaimDocument, ClaimStep } from './account-claims.model';
+import { applyHealthDetails, applyLifeDetails, applyMotorDetails } from './claim-details.mapper';
 
 type ClaimView = 'ongoing' | 'closed';
 type StepState = 'done' | 'current' | 'pending' | 'failed';
-
-const CLOSED: ClaimStatus[] = ['settled', 'rejected', 'cancelled'];
-
-const STATUS_LABEL: Record<ClaimStatus, string> = {
-  'initiated': 'Initiated',
-  'in-review': 'In review',
-  'approved': 'Approved',
-  'settled': 'Settled',
-  'rejected': 'Rejected',
-  'cancelled': 'Cancelled',
-};
 
 const DOC_LABEL: Record<ClaimDocStatus, string> = {
   pending: 'Pending',
@@ -25,12 +15,13 @@ const DOC_LABEL: Record<ClaimDocStatus, string> = {
   rejected: 'Rejected',
 };
 
-/** Shown when a claim has no insurer logo yet. */
-const CATEGORY_ICON: Record<ClaimCategory, string> = {
-  Health: 'assets/images/icons/08_Health.png',
-  Life: 'assets/images/icons/07_Term_Life_Insurance.png',
-  Motor: 'assets/images/icons/09_Car_Bike_Motor.png',
+/** Shown when a claim has no insurer logo (or the logo fails to load). */
+const CATEGORY_ICON: Record<string, string> = {
+  health: 'assets/images/icons/08_Health.png',
+  life: 'assets/images/icons/07_Term_Life_Insurance.png',
+  motor: 'assets/images/icons/09_Car_Bike_Motor.png',
 };
+const DEFAULT_ICON = 'assets/images/icons/05_TULIP_Plans.png';
 
 @Component({
   selector: 'app-account-claims',
@@ -40,6 +31,8 @@ const CATEGORY_ICON: Record<ClaimCategory, string> = {
 })
 export class AccountClaimsComponent {
   @Input() claims: AccountClaim[] = [];
+  @Input() loading = false;
+  @Input() error = false;
 
   view: ClaimView = 'ongoing';
   category: ClaimCategory | null = null;
@@ -47,11 +40,14 @@ export class AccountClaimsComponent {
   copied = false;
 
   readonly categories: ClaimCategory[] = ['Health', 'Life', 'Motor'];
+  readonly skeletons = [1, 2, 3];
 
+  private brokenLogos = new Set<number>();
   private isBrowser: boolean;
 
   constructor(
     private datePipe: DatePipe,
+    private leadService: LeadService,
     @Inject(PLATFORM_ID) platformId: object
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -59,20 +55,18 @@ export class AccountClaimsComponent {
 
   /* ---------- list ---------- */
 
-  isClosed(c: AccountClaim): boolean {
-    return CLOSED.includes(c.status);
-  }
-
   count(view: ClaimView): number {
-    return this.claims.filter((c) => this.isClosed(c) === (view === 'closed')).length;
+    return this.claims.filter((c) => c.closed === (view === 'closed')).length;
   }
 
   get viewList(): AccountClaim[] {
-    return this.claims.filter((c) => this.isClosed(c) === (this.view === 'closed'));
+    return this.claims.filter((c) => c.closed === (this.view === 'closed'));
   }
 
   get visible(): AccountClaim[] {
-    return this.category ? this.viewList.filter((c) => c.category === this.category) : this.viewList;
+    return this.category
+      ? this.viewList.filter((c) => c.category.toLowerCase() === this.category!.toLowerCase())
+      : this.viewList;
   }
 
   setView(view: ClaimView): void {
@@ -88,28 +82,68 @@ export class AccountClaimsComponent {
     this.selected = c;
     this.copied = false;
     if (this.isBrowser) window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.loadDetails(c);
   }
 
   back(): void {
     this.selected = null;
   }
 
-  /* ---------- display helpers ---------- */
+  /** Fetches the Health / Motor / Life details for the claim (once) and merges them in. */
+  loadDetails(c: AccountClaim): void {
+    if (c.detailsState === 'loading' || c.detailsState === 'loaded') return;
 
-  title(c: AccountClaim): string {
-    return this.titleCase(c.situation[c.situation.length - 1] || c.claimType);
+    let req: Observable<any>;
+    let apply: (c: AccountClaim, r: any) => void;
+    switch (this.key(c)) {
+      case 'health':
+        req = this.leadService.healthClaims({ issueId: c.issueId });
+        apply = applyHealthDetails;
+        break;
+      case 'motor':
+        req = this.leadService.motorClaims({ issueId: c.issueId });
+        apply = applyMotorDetails;
+        break;
+      case 'life':
+        req = this.leadService.lifeClaims({ ID: c.issueId });
+        apply = applyLifeDetails;
+        break;
+      default:
+        c.detailsState = 'loaded';
+        return;
+    }
+
+    c.detailsState = 'loading';
+    req.subscribe({
+      next: (res) => {
+        const row = Array.isArray(res) ? res[0] : res;
+        if (row) apply(c, row);
+        c.detailsState = 'loaded';
+      },
+      error: () => {
+        console.error('Failed to retrieve claim details.');
+        c.detailsState = 'error';
+      }
+    });
   }
 
-  titleCase(s: string): string {
-    return s.replace(/\bDont\b/gi, 'Don’t').replace(/\b\w/g, (m) => m.toUpperCase());
+  /* ---------- display helpers ---------- */
+
+  key(c: AccountClaim): string {
+    return c.category.toLowerCase();
   }
 
   logo(c: AccountClaim): string {
-    return c.logo || CATEGORY_ICON[c.category];
+    if (c.logo && !this.brokenLogos.has(c.issueId)) return c.logo;
+    return CATEGORY_ICON[this.key(c)] || DEFAULT_ICON;
+  }
+
+  onLogoError(c: AccountClaim): void {
+    this.brokenLogos.add(c.issueId);
   }
 
   statusLabel(c: AccountClaim): string {
-    return STATUS_LABEL[c.status];
+    return c.insurerStatus || (c.closed ? 'Closed' : 'Filed');
   }
 
   docLabel(d: ClaimDocument): string {
@@ -119,20 +153,20 @@ export class AccountClaimsComponent {
   stepState(c: AccountClaim, i: number): StepState {
     const step = c.timeline[i];
     if (step.failed) return 'failed';
-    if (step.date) return 'done';
-    const firstOpen = c.timeline.findIndex((s) => !s.date);
-    return !this.isClosed(c) && i === firstOpen ? 'current' : 'pending';
+    if (step.done) return 'done';
+    const firstOpen = c.timeline.findIndex((s) => !s.done && !s.failed);
+    return !c.closed && i === firstOpen ? 'current' : 'pending';
   }
 
   /** Latest stage reached, for the list card. */
   currentStep(c: AccountClaim): ClaimStep {
-    const reached = c.timeline.filter((s) => s.date);
+    const reached = c.timeline.filter((s) => s.done || s.failed);
     return reached[reached.length - 1] || c.timeline[0];
   }
 
   progress(c: AccountClaim): number {
-    if (c.status === 'settled') return 100;
-    const done = c.timeline.filter((s) => s.date).length;
+    if (!c.timeline.length) return 0;
+    const done = c.timeline.filter((s) => s.done).length;
     return Math.round((done / c.timeline.length) * 100);
   }
 
@@ -159,7 +193,7 @@ export class AccountClaimsComponent {
 
   copyClaimNo(c: AccountClaim): void {
     if (!this.isBrowser || !navigator.clipboard) return;
-    navigator.clipboard.writeText(c.claimNo).then(() => {
+    navigator.clipboard.writeText(String(c.issueId)).then(() => {
       this.copied = true;
       setTimeout(() => (this.copied = false), 1800);
     });

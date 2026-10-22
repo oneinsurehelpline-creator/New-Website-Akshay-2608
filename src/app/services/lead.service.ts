@@ -88,4 +88,20 @@ export class LeadService {
     let header = new HttpHeaders();
     return this.http.post(this.jsonUrl + "OneinsureApi/getInfo", cdto, { 'headers': header })
   }
+  customerClaimsList(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/customerClaimsList", cdto, { 'headers': header })
+  }
+  healthClaims(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/healthClaims", cdto, { 'headers': header })
+  }
+  motorClaims(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/motorClaims", cdto, { 'headers': header })
+  }
+  lifeClaims(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/lifeClaims", cdto, { 'headers': header })
+  }
 }

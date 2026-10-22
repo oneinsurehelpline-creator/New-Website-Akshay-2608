@@ -5,9 +5,12 @@ import { Subscription } from 'rxjs';
 import { AuthService, UserProfile } from '../../services/auth.service';
 import { LeadService } from 'src/app/services/lead.service';
 import { AccountPolicy, SAMPLE_POLICIES } from './account-policies/account-policies.model';
-import { AccountClaim, SAMPLE_CLAIMS } from './account-claims/account-claims.model';
+import { AccountClaim, ClaimListItem, toAccountClaim } from './account-claims/account-claims.model';
 
-type AccountTab = 'dashboard' | 'policies' | 'claims' | 'profile';
+/** TODO: replace with the logged-in customer's id once it's available. */
+const TEMP_CUSTOMER_ID = 561000;
+
+type AccountTab ='dashboard' | 'policies' | 'claims' | 'profile';
 
 interface AccountNavItem {
   key: AccountTab;
@@ -50,9 +53,11 @@ export class MyaccountComponent implements OnInit, OnDestroy {
     { title: 'Critical Illness', desc: 'A lump sum when a serious diagnosis hits', img: 'assets/images/icons/15_Critical_Illness.png', route: '/critical-illness-plans' },
   ];
 
-  /** TODO: load from the backend once the policies / claims APIs are available. */
+  /** TODO: load policies from the backend once the policies API is available. */
   policies: AccountPolicy[] = SAMPLE_POLICIES;
-  claims: AccountClaim[] = SAMPLE_CLAIMS;
+  claims: AccountClaim[] = [];
+  claimsLoading = true;
+  claimsError = false;
 
   private sub?: Subscription;
 
@@ -75,6 +80,7 @@ export class MyaccountComponent implements OnInit, OnDestroy {
       this.profileSaved = false;
     });
     this.getInfo();
+    if (this.isBrowser) this.getClaims(TEMP_CUSTOMER_ID);
   }
 
   get firstName(): string {
@@ -117,6 +123,28 @@ export class MyaccountComponent implements OnInit, OnDestroy {
       },
       error: () => {
         console.error('Failed to retrieve user info.');
+      }
+    });
+  }
+
+  getClaims(customerId: number | null | undefined): void {
+    if (!customerId) {
+      this.claimsLoading = false;
+      return;
+    }
+    this.claimsLoading = true;
+    this.claimsError = false;
+    this.leadService.customerClaimsList({ CustomerID: customerId }).subscribe({
+      next: (res: ClaimListItem[]) => {
+        this.claims = (Array.isArray(res) ? res : [])
+          .map(toAccountClaim)
+          .sort((a, b) => new Date(b.filedOn).getTime() - new Date(a.filedOn).getTime());
+        this.claimsLoading = false;
+      },
+      error: () => {
+        console.error('Failed to retrieve claims.');
+        this.claimsLoading = false;
+        this.claimsError = true;
       }
     });
   }

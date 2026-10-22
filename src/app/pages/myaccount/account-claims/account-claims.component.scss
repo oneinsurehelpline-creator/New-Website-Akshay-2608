@@ -51,6 +51,8 @@
     border-radius: 999px;
     font: 700 12px/1 var(--sans);
     white-space: nowrap;
+    background: var(--orange-soft);
+    color: #B86E00;
 
     &::before {
         content: '';
@@ -60,30 +62,38 @@
         background: currentColor;
     }
 
-    &--initiated,
-    &--in-review {
-        background: var(--orange-soft);
-        color: #B86E00;
-    }
-
-    &--approved {
-        background: var(--blue-soft);
-        color: #0077B6;
-    }
-
-    &--settled {
-        background: #E3F6EA;
-        color: #1E8A4C;
-    }
-
-    &--rejected {
-        background: #FDECEC;
-        color: #C53030;
-    }
-
-    &--cancelled {
+    &--closed {
         background: var(--g100);
         color: var(--g600);
+    }
+}
+
+/* ============ LOADING SKELETON ============ */
+.skel {
+    pointer-events: none;
+}
+
+.skel__box,
+.skel__line {
+    background: linear-gradient(90deg, var(--g100) 25%, #F8F9FA 50%, var(--g100) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s linear infinite;
+}
+
+.skel__line {
+    display: block;
+    height: 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+
+    &--sm { width: 90px; }
+    &--lg { width: 60%; height: 18px; }
+    &--md { width: 40%; margin-bottom: 0; }
+}
+
+@keyframes shimmer {
+    to {
+        background-position: -200% 0;
     }
 }
 
@@ -458,6 +468,22 @@
         &.is-empty {
             color: var(--g400);
         }
+    }
+}
+
+.ticket__msg {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    padding: 22px clamp(20px, 2.6vw, 26px) 26px;
+    font: 500 14.5px/1.5 var(--sans);
+    color: var(--g500);
+
+    button {
+        font: 700 14px/1 var(--sans);
+        color: #1363DF;
+        text-decoration: underline;
     }
 }
 

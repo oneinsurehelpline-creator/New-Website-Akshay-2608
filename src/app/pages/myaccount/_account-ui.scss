@@ -256,7 +256,7 @@
     overflow: hidden;
     padding-bottom: 20px;
     border-radius: 20px;
-    background: var(--d-bg);
+    background: var(--d-bg, var(--blue-soft));
 }
 
 .dhead__bar {
@@ -265,7 +265,7 @@
     justify-content: space-between;
     gap: 12px;
     padding: 14px 20px;
-    background: var(--d-bar);
+    background: var(--d-bar, #D3EEFF);
 }
 
 .dhead__back {
