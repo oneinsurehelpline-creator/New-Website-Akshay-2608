@@ -629,11 +629,13 @@ select.txt-input {
 }
 
 .more-group__title {
-    margin: 0 0 16px;
-    font: 700 12px/1 var(--sans);
-    letter-spacing: 1.6px;
-    text-transform: uppercase;
-    color: var(--orange);
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-transform: capitalize;
+    color: var(--blue-deep);
+    text-wrap: balance;
 }
 
 /* text results ("Likely tax-free") */

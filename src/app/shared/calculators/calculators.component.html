@@ -84,7 +84,7 @@
         <ng-container *ngIf="showMore">
             <div class="more-group" *ngFor="let g of moreGroups">
                 <h3 class="more-group__title">{{ g.title }}</h3>
-                <div class="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-4 calc__grid justify-content-center">
+                <div class="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-4 calc__grid">
                     <div class="col" *ngFor="let c of moreIn(g.id)">
                         <article class="ccard h-100" [attr.data-calc]="c.theme" (click)="openCalc(c.id)">
                             <div class="ccard__head">
