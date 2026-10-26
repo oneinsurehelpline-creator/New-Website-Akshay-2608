@@ -80,7 +80,7 @@ export class MyaccountComponent implements OnInit, OnDestroy {
       this.profileSaved = false;
     });
     this.getInfo();
-    if (this.isBrowser) this.getClaims(TEMP_CUSTOMER_ID);
+    // if (this.isBrowser) this.getClaims(TEMP_CUSTOMER_ID);
   }
 
   get firstName(): string {
@@ -115,7 +115,6 @@ export class MyaccountComponent implements OnInit, OnDestroy {
       next: (res) => {
         console.log('User info retrieved:', res);
         this.userData = res;
-           this.leadService.userId = this.userData?.UserId;
         this.profile = {
           name: res?.FullName || '',
           email: res?.Email || '',

@@ -7,6 +7,7 @@ import {
   PolicyState
 } from './account-policies.model';
 import { LeadService } from 'src/app/services/lead.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-account-policies',
@@ -29,7 +30,8 @@ export class AccountPoliciesComponent implements OnInit {
   detailsLoading = false;
   detailsError = false;
   policiesLoading = false;
-
+  userData: any;
+  mobile: any;
   readonly categories: PolicyCategory[] = [
     'Health',
     'Life',
@@ -40,19 +42,35 @@ export class AccountPoliciesComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) platformId: object,
-    private leadService: LeadService
+    private leadService: LeadService,
+    private auth: AuthService,
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
   ngOnInit(): void {
-    this.getPolicy();
+    this.mobile = this.auth.mobile || '';
+    this.getInfo();
   }
-
+  getInfo(): void {
+    var cdto = {
+      "Mobile": this.mobile
+    }
+    this.leadService.getInfo(cdto).subscribe({
+      next: (res) => {
+        console.log('User info retrieved:', res);
+        this.userData = res;
+        this.getPolicy();
+      },
+      error: () => {
+        console.error('Failed to retrieve user info.');
+      }
+    });
+  }
   // FIRST API: Fetch policy list
   getPolicy(): void {
     const cdto = {
-      userid: this.leadService.userId
+      userid: this.userData.UserId
     };
 
     this.policiesLoading = true;
@@ -246,12 +264,12 @@ export class AccountPoliciesComponent implements OnInit {
   // }
 
   get visible(): AccountPolicy[] {
-  return this.policies.filter(p =>
-    p.state === this.state &&
-    !!p.policyNo?.trim() &&
-    (!this.category || p.category === this.category)
-  );
-}
+    return this.policies.filter(p =>
+      p.state === this.state &&
+      !!p.policyNo?.trim() &&
+      (!this.category || p.category === this.category)
+    );
+  }
 
   setState(state: PolicyState): void {
     this.state = state;
@@ -271,10 +289,10 @@ export class AccountPoliciesComponent implements OnInit {
     }
 
     return `${this.shortAmount(p.coverAmount)} ${p.category === 'Life'
-        ? 'life cover'
-        : p.category === 'Health'
-          ? 'health cover'
-          : 'motor policy'
+      ? 'life cover'
+      : p.category === 'Health'
+        ? 'health cover'
+        : 'motor policy'
       }`;
   }
 
@@ -413,25 +431,25 @@ export class AccountPoliciesComponent implements OnInit {
       this.selected?.vehicle?.regNo ||
       '';
   }
-  
-downloadPolicyCopy(): void {
-  const url = this.detailPolicyCopyUrl;
-  console.log('Downloading policy copy from URL:', url);
 
-  if (!url) {
-    console.warn('Policy copy is not available.');
-    return;
+  downloadPolicyCopy(): void {
+    const url = this.detailPolicyCopyUrl;
+    console.log('Downloading policy copy from URL:', url);
+
+    if (!url) {
+      console.warn('Policy copy is not available.');
+      return;
+    }
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'PolicyCopy';
+    link.target = '_blank';
+    link.rel = 'noopener';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
-
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'PolicyCopy';
-  link.target = '_blank';
-  link.rel = 'noopener';
-
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
 
 }
