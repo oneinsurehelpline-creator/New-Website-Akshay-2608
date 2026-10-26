@@ -10,7 +10,7 @@ import { AccountClaim, ClaimListItem, toAccountClaim } from './account-claims/ac
 /** TODO: replace with the logged-in customer's id once it's available. */
 const TEMP_CUSTOMER_ID = 561000;
 
-type AccountTab ='dashboard' | 'policies' | 'claims' | 'profile';
+type AccountTab = 'dashboard' | 'policies' | 'claims' | 'profile';
 
 interface AccountNavItem {
   key: AccountTab;
@@ -35,11 +35,11 @@ export class MyaccountComponent implements OnInit, OnDestroy {
   mobile = '';
   profile: UserProfile;
   profileSaved = false;
-
+  userData: any;
   navItems: AccountNavItem[] = [
     { key: 'dashboard', label: 'Dashboard' },
     { key: 'policies', label: 'My Policies' },
-    { key: 'claims', label: 'My Claims' },
+    // { key: 'claims', label: 'My Claims' },
     { key: 'profile', label: 'Profile' },
   ];
 
@@ -94,7 +94,8 @@ export class MyaccountComponent implements OnInit, OnDestroy {
   saveProfile(): void {
     this.auth.saveProfile({ ...this.profile, name: this.profile.name.trim(), email: this.profile.email.trim() });
     this.profile = this.auth.getProfile();
-    this.profileSaved = true;
+    this.getRigisteredUser();
+    
     console.log('Profile saved:', this.profile);
   }
 
@@ -113,10 +114,12 @@ export class MyaccountComponent implements OnInit, OnDestroy {
     this.leadService.getInfo(cdto).subscribe({
       next: (res) => {
         console.log('User info retrieved:', res);
+        this.userData = res;
+           this.leadService.userId = this.userData?.UserId;
         this.profile = {
           name: res?.FullName || '',
           email: res?.Email || '',
-        dob: res?.DOB ? res.DOB.split('T')[0] : '',
+          dob: res?.DOB ? res.DOB.split('T')[0] : '',
           gender: res?.Gender || '',
           city: res?.CityName || ''
         };
@@ -145,6 +148,36 @@ export class MyaccountComponent implements OnInit, OnDestroy {
         console.error('Failed to retrieve claims.');
         this.claimsLoading = false;
         this.claimsError = true;
+      }
+    });
+  }
+
+  getRigisteredUser(): void {
+    var cdto = {
+      "UserId": this.userData?.UserId,
+      "Name": this.profile.name,
+      "DOB": this.profile.dob,
+      "City": this.profile.city,
+      "Mobile": this.mobile,
+      "EmailID": this.profile.email,
+      "Password": "text",
+      "IsRHuser": 1,
+      "IsActive": 1,
+      "DoneBy": "",
+      "chkcontact": 1,
+      "VerifiedOTP": "1234",
+      "Flag": this.userData?.UserId ? "UPDATE" : "Insert", //Insert
+      "Pincode": ""
+    }
+    this.leadService.registerUser(cdto).subscribe({
+      next: (res) => {
+     
+        console.log('User registered:', res);
+        this.profileSaved = true;
+      },
+      error: () => {
+        this.profileSaved = false;
+        console.error('Failed to register user.');
       }
     });
   }

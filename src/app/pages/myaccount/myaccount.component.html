@@ -122,7 +122,7 @@
                             <input id="pfDob" name="dob" type="date" [(ngModel)]="profile.dob"
                                 (ngModelChange)="profileSaved = false">
                         </div>
-                        <div class="pform__row">
+                        <!-- <div class="pform__row">
                             <label for="pfGender">Gender</label>
                             <select id="pfGender" name="gender" [(ngModel)]="profile.gender"
                                 (ngModelChange)="profileSaved = false">
@@ -131,7 +131,7 @@
                                 <option value="Female">Female</option>
                                 <option value="Other">Other</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="pform__row">
                             <label for="pfCity">City</label>
                             <input id="pfCity" name="city" type="text" [(ngModel)]="profile.city"
@@ -140,7 +140,7 @@
                         </div>
 
                         <div class="pform__actions">
-                            <button class="btn btn--blue" type="submit" [disabled]="pf.invalid">Save changes</button>
+                            <button class="btn btn--blue" type="submit" [disabled]="pf.invalid" >Save changes</button>
                             <span class="pform__ok" *ngIf="profileSaved">✓ Saved</span>
                         </div>
                     </form>

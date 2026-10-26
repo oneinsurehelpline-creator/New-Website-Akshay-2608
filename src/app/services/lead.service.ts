@@ -27,7 +27,7 @@ export class LeadService {
   constructor(private http: HttpClient, private configService: ConfigService) {
     this.jsonUrl = this.configService.baseUrl;
   }
-
+  userId: number | string | null = null;
   submit(payload: Lead): Observable<unknown> {
     return this.http.post(this.jsonUrl, payload);
   }
@@ -104,4 +104,16 @@ export class LeadService {
     let header = new HttpHeaders();
     return this.http.post(this.jsonUrl + "OneinsureApi/lifeClaims", cdto, { 'headers': header })
   }
-}
+  getpolicies(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/getpolicies", cdto, { 'headers': header })
+  }
+  getPolicyDetails(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/getPolicyDetails", cdto, { 'headers': header })
+  }
+    registerUser(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/registerUser", cdto, { 'headers': header })
+  }
+} 

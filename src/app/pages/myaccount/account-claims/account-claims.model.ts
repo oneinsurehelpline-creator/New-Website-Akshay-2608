@@ -68,7 +68,7 @@ export interface AccountClaim {
   advisor?: { name: string; phone?: string };
 }
 
-const INSURER_IMG = 'https://www.oneinsure.com/assets/bi/images/FlutterOneinsureimg/flutterinsurerimg/';
+const INSURER_IMG = 'https://v2.oneinsure.com/assets/bi/images/FlutterOneinsureimg/flutterinsurerimg/';
 
 /**
  * IssueStatus codes that mean the claim is closed.
@@ -77,6 +77,8 @@ const INSURER_IMG = 'https://www.oneinsure.com/assets/bi/images/FlutterOneinsure
 export const CLOSED_ISSUE_STATUSES = ['8'];
 
 export function insurerLogo(insurerId: number | null): string | null {
+  console.log('insurerLogo called with insurerId:', insurerId);
+  console.log(`${INSURER_IMG}${insurerId}.png` );
   return insurerId != null ? `${INSURER_IMG}${insurerId}.png` : null;
 }
 
