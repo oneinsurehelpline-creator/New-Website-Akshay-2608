@@ -121,7 +121,7 @@ h2.headline {
 .hl-dynamic {
     display: block;
     white-space: nowrap;
-    margin-top: 2px;
+    margin-top: 16px;
     font-family: var(--serif);
     font-style: italic;
     font-weight: 400;
@@ -3123,6 +3123,14 @@ select.txt-input {
     font: 600 12.5px/1.5 var(--sans);
     color: var(--g500);
     max-width: 460px;
+}
+
+/* s2 slider, mobile: one trust point per line (3 lines) */
+@media (max-width: 767px) {
+    .hero__trustline--stack span {
+        display: block;
+    }
+ 
 }
 
 .hero__locate {

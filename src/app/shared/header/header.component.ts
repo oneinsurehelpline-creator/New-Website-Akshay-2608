@@ -53,6 +53,16 @@ export class HeaderComponent {
     }
   }
 
+  /** Logged in → My Account's My Policies tab; otherwise open the login popup. */
+  openMyPolicies(): void {
+    this.closeMenus();
+    if (this.isLoggedIn) {
+      this.router.navigate(['/my-account', 'policies']);
+    } else {
+      this.loginModal.open(['/my-account', 'policies']);
+    }
+  }
+
   /** Products mega-menu — edit here to add/rename products. */
   productGroups: MegaGroup[] = [
     {

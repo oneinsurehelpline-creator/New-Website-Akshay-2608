@@ -190,7 +190,7 @@ export class AccountPoliciesComponent implements OnInit {
     this.detailsError = false;
 
     const cdto = {
-      UserID: this.leadService.userId,
+      UserID: this.userData.UserId,
       PolicyID: Number(p.id)
     };
 

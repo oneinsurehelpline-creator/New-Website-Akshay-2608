@@ -6,7 +6,11 @@ export class LoginModalService {
   private readonly openSubject = new BehaviorSubject<boolean>(false);
   readonly open$ = this.openSubject.asObservable();
 
-  open(): void {
+  /** Where to land after a successful login; defaults to the dashboard. */
+  redirectTo: string[] = ['/my-account'];
+
+  open(redirectTo: string[] = ['/my-account']): void {
+    this.redirectTo = redirectTo;
     this.openSubject.next(true);
   }
 

@@ -101,12 +101,12 @@
                 <div class="acct__card">
                     <form class="pform" (ngSubmit)="saveProfile()" #pf="ngForm">
                         <div class="pform__row">
-                            <label for="pfName">Full name</label>
+                            <label for="pfName">Full Name</label>
                             <input id="pfName" name="name" type="text" [(ngModel)]="profile.name"
                                 (ngModelChange)="profileSaved = false" placeholder="Your full name" autocomplete="name">
                         </div>
                         <div class="pform__row">
-                            <label for="pfMobile">Mobile number</label>
+                            <label for="pfMobile">Mobile Number</label>
                             <input id="pfMobile" type="text" [value]="'+91 ' + mobile" disabled>
                         </div>
                         <div class="pform__row">
@@ -118,7 +118,7 @@
                                 email.</small>
                         </div>
                         <div class="pform__row">
-                            <label for="pfDob">Date of birth</label>
+                            <label for="pfDob">Date of Birth</label>
                             <input id="pfDob" name="dob" type="date" [(ngModel)]="profile.dob"
                                 (ngModelChange)="profileSaved = false">
                         </div>
@@ -140,7 +140,7 @@
                         </div>
 
                         <div class="pform__actions">
-                            <button class="btn btn--blue" type="submit" [disabled]="pf.invalid" >Save changes</button>
+                            <button class="btn btn--blue" type="submit" [disabled]="pf.invalid" >Save Changes</button>
                             <span class="pform__ok" *ngIf="profileSaved">✓ Saved</span>
                         </div>
                     </form>
