@@ -1,3 +1,4 @@
+import { yearsInBusiness } from '../../shared/site-facts';
 import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
 import { LeadService } from 'src/app/services/lead.service';
 
@@ -26,14 +27,14 @@ export class CriticalillnessplansComponent implements AfterViewInit, OnDestroy {
 
   userDetails: any = [];
   companyTrust: any = [];
-  companyAge = 0
+  companyAge = yearsInBusiness();
   constructor(private host: ElementRef<HTMLElement>, private leadService: LeadService) { }
 
   scheduleUrl = 'https://schedule.oneinsure.com/book/get-expert-guidance-web';
 
   // ---------- HERO ----------
   heroHeadline = "A lump sum on the day you're diagnosed.";
-  heroSub = "Health insurance pays the hospital. Critical illness pays you — for everything else the illness costs.";
+  heroSub = "Health insurance pays the hospital. Critical illness pays you, for everything else the illness costs.";
   trustPoints = [
     '30+ illnesses covered',
     'Money paid on diagnosis, not on bills',
@@ -61,7 +62,7 @@ export class CriticalillnessplansComponent implements AfterViewInit, OnDestroy {
     },
     {
       icon: 'assets/images/icons/knowledgebase/travel.png',
-      text: "Costs health insurance won't touch — travel, home care, loan EMIs, a second opinion abroad",
+      text: "Costs health insurance won't touch: travel, home care, loan EMIs, a second opinion abroad",
     },
     {
       icon: 'assets/images/icons/knowledgebase/term.png',
@@ -127,14 +128,6 @@ export class CriticalillnessplansComponent implements AfterViewInit, OnDestroy {
   }
   ngOnInit() {
     this.companyDetails();
-    const startDate = new Date('2008-03-27');
-    const today = new Date();
-
-    this.companyAge = today.getFullYear() - startDate.getFullYear();
-
-    if (today < new Date(today.getFullYear(), 2, 29)) {
-      this.companyAge--;
-    }
   }
   private setupReveal(): void {
     const sel = '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale';

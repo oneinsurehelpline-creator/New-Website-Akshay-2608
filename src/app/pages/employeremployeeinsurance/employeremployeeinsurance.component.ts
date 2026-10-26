@@ -35,7 +35,7 @@ export class EmployeremployeeinsuranceComponent implements AfterViewInit, OnDest
 
   // ---------- HERO ----------
   heroHeadline = 'The benefits your team notices when it counts.';
-  heroSub = "Group medical, group term life and group accident cover — the three benefits that reach an employee's family, and the ones they remember at appraisal time.";
+  heroSub = "Group medical, group term life and group accident cover: the three benefits that reach an employee's family, and the ones they remember at appraisal time.";
   ctaButtonLabel = 'Get a group quote';
   ctaMicrocopy = "Share your headcount and rough age mix. We'll come back with structured options in 48 hours.";
 
@@ -50,7 +50,7 @@ export class EmployeremployeeinsuranceComponent implements AfterViewInit, OnDest
   // ---------- THE PROBLEM ----------
   problemParagraphs = [
     'Most employee benefits are invisible. They get announced at induction and never thought about again.',
-    "These three are different. They activate on the worst day of someone's year — a parent in the ICU, an accident on the way to work, a death in a young family. That's when an employee finds out whether their company's cover was real or decorative.",
+    "These three are different. They activate on the worst day of someone's year: a parent in the ICU, an accident on the way to work, a death in a young family. That's when an employee finds out whether their company's cover was real or decorative.",
     "It's also when HR discovers whether their broker picks up the phone.",
   ];
 
@@ -59,7 +59,7 @@ export class EmployeremployeeinsuranceComponent implements AfterViewInit, OnDest
     {
       title: 'Group Medical Cover (GMC)',
       tagline: 'The one benefit that reaches the whole family.',
-      body: 'Cashless hospitalisation for employees and their dependents, with no waiting period for pre-existing conditions — the single biggest advantage group cover has over anything an employee could buy retail.',
+      body: 'Cashless hospitalisation for employees and their dependents, with no waiting period for pre-existing conditions, the single biggest advantage group cover has over anything an employee could buy retail.',
       covers: [
         'Hospitalisation, room rent, ICU and surgery',
         'Pre and post-hospitalisation expenses',
@@ -102,7 +102,7 @@ export class EmployeremployeeinsuranceComponent implements AfterViewInit, OnDest
     {
       num: '1',
       title: 'Design.',
-      desc: "We build the benefit structure around your headcount, age mix, salary bands and budget — not around whatever the insurer's standard template offers.",
+      desc: "We build the benefit structure around your headcount, age mix, salary bands and budget, not around whatever the insurer's standard template offers.",
     },
     {
       num: '2',
@@ -117,7 +117,7 @@ export class EmployeremployeeinsuranceComponent implements AfterViewInit, OnDest
     {
       num: '4',
       title: 'Renewal, with data.',
-      desc: 'Every year you get a utilisation report — claim patterns, high-cost categories, where the money went. So renewal pricing is a negotiation, not a surprise.',
+      desc: 'Every year you get a utilisation report: claim patterns, high-cost categories, where the money went. So renewal pricing is a negotiation, not a surprise.',
     },
   ];
 
@@ -153,18 +153,18 @@ export class EmployeremployeeinsuranceComponent implements AfterViewInit, OnDest
     },
     {
       q: 'Do employees really get day-one cover for pre-existing conditions?',
-      a: 'Yes, under group medical. That’s the structural advantage — a retail health policy would make them wait two to four years for the same conditions.',
+      a: 'Yes, under group medical. That’s the structural advantage. A retail health policy would make them wait two to four years for the same conditions.',
     },
     {
       q: 'Can employees add their parents?',
-      a: "Yes, either company-funded or as a voluntary contribution deducted from salary. For most teams, parent cover is the most valued and the most expensive part of the plan — we'll model both options.",
+      a: "Yes, either company-funded or as a voluntary contribution deducted from salary. For most teams, parent cover is the most valued and the most expensive part of the plan. We'll model both options.",
     },
     {
       q: 'Our renewal quote went up sharply. Is that normal?',
       a: "It's normal if your claim ratio ran high, but it's negotiable. Bring us the quote and last year's claims data before you sign it.",
     },
     {
-      q: 'Who handles a claim — us or you?',
+      q: 'Who handles a claim, us or you?',
       a: 'Us. Employees and their families deal directly with our desk. Your HR team gets a status update, not a workload.',
     },
     {

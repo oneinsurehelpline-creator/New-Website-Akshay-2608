@@ -37,5 +37,11 @@ export class ConfigService {
   get claimAssignedUserName(): string {
     return this.config?.ClaimSrNumber?.AssignedUserName;
   }
+  get serviceAssignedUserName(): string {
+    return this.config?.ServiceSrNumber?.AssignedUserName ?? this.claimAssignedUserName;
+  }
+  serviceTypeId(category: string): number {
+    return this.config?.ServiceSrNumber?.ServiceTypeIds?.[category] ?? 0;
+  }
 
 }

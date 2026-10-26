@@ -17,6 +17,10 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
 
+  // Old site's service pages (/service, /Service/<service>/<insurer>, any case)
+  // moved to one page. 301 so search engines carry them over.
+  server.get(/^\/service(\/.*)?$/i, (req, res) => res.redirect(301, '/service-support'));
+
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser

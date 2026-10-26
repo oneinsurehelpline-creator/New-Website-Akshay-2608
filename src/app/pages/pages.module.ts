@@ -30,6 +30,9 @@ import { TermsconditionsComponent } from './termsconditions/termsconditions.comp
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { AccountPoliciesComponent } from './myaccount/account-policies/account-policies.component';
 import { AccountClaimsComponent } from './myaccount/account-claims/account-claims.component';
+import { ServicesupportComponent } from './servicesupport/servicesupport.component';
+import { GrievanceredressalComponent } from './grievanceredressal/grievanceredressal.component';
+import { CalculatorspageComponent } from './calculatorspage/calculatorspage.component';
 
 
 
@@ -61,6 +64,9 @@ import { AccountClaimsComponent } from './myaccount/account-claims/account-claim
     MyaccountComponent,
     AccountPoliciesComponent,
     AccountClaimsComponent,
+    ServicesupportComponent,
+    GrievanceredressalComponent,
+    CalculatorspageComponent,
   ],
   imports: [
     CommonModule,

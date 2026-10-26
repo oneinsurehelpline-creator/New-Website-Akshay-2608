@@ -10,6 +10,12 @@ import { VideoModalComponent } from './video-modal/video-modal.component';
 import { ScheduleModalComponent } from './schedule-modal/schedule-modal.component';
 import { ScheduleCtaDirective } from './schedule-modal/schedule-cta.directive';
 import { LoginModalComponent } from './login-modal/login-modal.component'; 
+import { PlanNudgeComponent } from './plan-nudge/plan-nudge.component';
+import { RegDisclaimerComponent } from './reg-disclaimer/reg-disclaimer.component';
+import { ConsentComponent } from './consent/consent.component';
+import { MobileBarComponent } from './mobile-bar/mobile-bar.component';
+import { CalculatorsComponent } from './calculators/calculators.component';
+import { ProductMarqueeComponent } from './product-marquee/product-marquee.component';
 
 
 
@@ -23,6 +29,12 @@ import { LoginModalComponent } from './login-modal/login-modal.component';
     ScheduleModalComponent,
     ScheduleCtaDirective,
     LoginModalComponent, 
+    PlanNudgeComponent,
+    RegDisclaimerComponent,
+    ConsentComponent,
+    MobileBarComponent,
+    CalculatorsComponent,
+    ProductMarqueeComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +49,13 @@ import { LoginModalComponent } from './login-modal/login-modal.component';
     VideoModalComponent,
     ScheduleModalComponent,
     ScheduleCtaDirective,
-    LoginModalComponent
+    LoginModalComponent,
+    PlanNudgeComponent,
+    RegDisclaimerComponent,
+    ConsentComponent,
+    MobileBarComponent,
+    CalculatorsComponent,
+    ProductMarqueeComponent
   ]
 })
 export class SharedModule { }

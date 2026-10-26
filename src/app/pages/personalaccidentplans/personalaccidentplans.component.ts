@@ -1,3 +1,4 @@
+import { yearsInBusiness } from '../../shared/site-facts';
 import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
 import { LeadService } from 'src/app/services/lead.service';
 
@@ -25,14 +26,14 @@ interface FaqItem {
 export class PersonalaccidentplansComponent implements AfterViewInit, OnDestroy {
   userDetails: any = [];
   companyTrust: any = [];
-  companyAge = 0
+  companyAge = yearsInBusiness();
   constructor(private host: ElementRef<HTMLElement>, private leadService: LeadService) { }
 
   scheduleUrl = 'https://schedule.oneinsure.com/book/get-expert-guidance-web';
 
   // ---------- HERO ----------
   heroHeadline = "Accidents don't end at the hospital.";
-  heroSub = "They end your income. Personal accident cover pays a lump sum for death or disability — and a weekly amount while you can't work.";
+  heroSub = "They end your income. Personal accident cover pays a lump sum for death or disability, and a weekly amount while you can't work.";
   trustPoints = [
     'Cover from ₹500/year',
     '24×7 worldwide',
@@ -47,15 +48,15 @@ export class PersonalaccidentplansComponent implements AfterViewInit, OnDestroy 
   covers: CoverItem[] = [
     {
       icon: 'assets/images/icons/knowledgebase/life.png',
-      text: 'Accidental death — lump sum to your nominee',
+      text: 'Accidental death: lump sum to your nominee',
     },
     {
       icon: 'assets/images/icons/general/comprehensive-cover.png',
-      text: 'Permanent total or partial disability — lump sum scaled to the loss',
+      text: 'Permanent total or partial disability: lump sum scaled to the loss',
     },
     {
       icon: 'assets/images/icons/general/low-cost.png',
-      text: "Temporary disability — a weekly payout while you're unable to work",
+      text: "Temporary disability: a weekly payout while you're unable to work",
     },
     {
       icon: 'assets/images/icons/calculators/health-cover.png',
@@ -89,7 +90,7 @@ export class PersonalaccidentplansComponent implements AfterViewInit, OnDestroy 
   faqs: FaqItem[] = [
     {
       q: 'How is this different from term insurance?',
-      a: 'Term insurance pays only on death, from any cause. Personal accident covers accidental death and disability — including the temporary kind, which is far more common.',
+      a: 'Term insurance pays only on death, from any cause. Personal accident covers accidental death and disability, including the temporary kind, which is far more common.',
     },
     {
       q: 'Am I covered outside India?',
@@ -122,14 +123,6 @@ export class PersonalaccidentplansComponent implements AfterViewInit, OnDestroy 
   }
   ngOnInit() {
     this.companyDetails();
-    const startDate = new Date('2008-03-27');
-    const today = new Date();
-
-    this.companyAge = today.getFullYear() - startDate.getFullYear();
-
-    if (today < new Date(today.getFullYear(), 2, 29)) {
-      this.companyAge--;
-    }
   }
   private setupReveal(): void {
     const sel = '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale';

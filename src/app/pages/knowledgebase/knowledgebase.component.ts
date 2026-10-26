@@ -1,3 +1,4 @@
+import { consentRecord } from '../../shared/consent/consent.component';
 import {
   AfterViewInit,
   Component,
@@ -277,7 +278,7 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
       `City : `,                                       // not collected on this form
       `Mail : `,                                       // not collected on this form
       `Insurance : ${this.needLabel[v.need] || v.need}`,
-      `Remarks : Book a free call (Knowledge Base)`,
+      `Remarks : Book a free call (Knowledge Base). ${consentRecord()}`,
       `Mode : Knowledge Base - Book a Call`,
       `Type : Website Lead`,
     ].join(', ');
@@ -299,7 +300,7 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
         console.log('CustomerDetails response:', res);
         this.closeModal();
         this.form.reset({ name: '', phone: '', need: '' });
-        this.showToast(`Thanks ${firstName} — an advisor will call you shortly.`, 'success');
+        this.showToast(`Thanks, ${firstName}. An advisor will call you shortly.`, 'success');
         this.scheduleModal.open();
       },
       error: (err) => {
@@ -377,6 +378,7 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(60)]],
       phone: ['', [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
       need: ['', Validators.required],
+      consent: [false, Validators.requiredTrue],
     });
   }
 
@@ -394,7 +396,8 @@ export class KnowledgebaseComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.revealIo?.disconnect();
     clearTimeout(this.toastTimer);
-    document.body.style.overflow = '';
+    // server-side render has no document
+    if (typeof document !== 'undefined') { document.body.style.overflow = ''; }
   }
 
   // reading progress bar

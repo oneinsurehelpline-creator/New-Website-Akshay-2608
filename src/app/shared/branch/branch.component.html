@@ -1,7 +1,8 @@
 <!-- =================== CONTROL MODE (inline, e.g. carousel) =================== -->
 <!-- Search opens the full branch page in a new tab. -->
 <div class="bl-wrap" *ngIf="mode === 'control'">
-    <p class="bl-label" *ngIf="label">{{ label }}</p>
+    <p class="bl-label" *ngIf="label">{{ label }}
+        <a class="bl-all" routerLink="/branch-locator">See all branches →</a></p>
 
     <div class="branch-search">
 
@@ -75,7 +76,7 @@
                 Showing branches for pincode <b>{{ searchedPin }}</b>.
             </p>
             <p class="branch-page__sub" *ngIf="searchedPin && noExactMatch">
-                No branch found for <b>{{ searchedPin }}</b> — showing all our locations instead.
+                No branch found for <b>{{ searchedPin }}</b>. Showing all our locations instead.
             </p>
             <p class="branch-page__sub" *ngIf="!searchedPin">
                 Browse all {{ filteredLocations.length }} OneInsure branches, or search by city.

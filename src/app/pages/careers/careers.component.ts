@@ -1,3 +1,4 @@
+import { FOUNDED_YEAR, STATS_FALLBACK, formatCount, yearsInBusiness } from '../../shared/site-facts';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   Component, HostListener, ElementRef, AfterViewInit, OnInit, OnDestroy,
@@ -30,9 +31,11 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
   private countIo?: IntersectionObserver;
 
   /** Trusted-count stats — seeded with fallbacks, overwritten by companyDetails() */
-  Policy_Issued = 0;   // → "Customers served"
-  Employees = 0;       // → "Team members"
-  companyAge = 0;      // → "In business" (yrs)
+  Policy_Issued = STATS_FALLBACK.policies;   // → "Policies issued"
+  Employees = STATS_FALLBACK.employees;      // → "Team members"
+  readonly fmt = formatCount;
+  companyAge = yearsInBusiness();
+  readonly foundedYear = FOUNDED_YEAR;      // → "In business" (yrs)
   resumepdf: any;
   constructor(
     private host: ElementRef<HTMLElement>,
@@ -49,11 +52,6 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.companyDetails();
 
-    // Years in business (same logic as carousel-header)
-    const startDate = new Date('2008-03-27');
-    const today = new Date();
-    this.companyAge = today.getFullYear() - startDate.getFullYear();
-    if (today < new Date(today.getFullYear(), 2, 29)) { this.companyAge--; }
   }
 
   ngAfterViewInit(): void {
@@ -84,7 +82,8 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.revealObserver?.disconnect();
     this.countIo?.disconnect();
-    document.body.style.overflow = '';   // safety: never leave scroll locked
+    // server-side render has no document
+    if (typeof document !== 'undefined') { document.body.style.overflow = ''; }   // safety: never leave scroll locked
   }
 
   private inView(el: Element): boolean {
@@ -149,12 +148,12 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       title: 'Senior Frontend Engineer', dept: 'Technology', deptKey: 'tech',
       type: 'Full-time', location: 'Mumbai / Remote', experience: '4–7 years',
-      summary: 'Own the experience customers see — from quote flows to claims tracking — building fast, accessible interfaces in Angular that make insurance feel effortless.',
+      summary: 'Own the experience customers see, from quote flows to claims tracking, building fast, accessible interfaces in Angular that make insurance feel effortless.',
       responsibilities: [
         'Build and maintain customer-facing features in Angular, with a focus on performance and accessibility.',
         'Translate Figma designs into pixel-accurate, responsive components.',
         'Partner with backend and product teams to ship end-to-end flows.',
-        'Set frontend standards — code review, testing, and reusable component libraries.',
+        'Set frontend standards: code review, testing, and reusable component libraries.',
       ],
       requirements: [
         '4+ years building production web apps with Angular (or React/Vue with willingness to switch).',
@@ -164,14 +163,14 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
       ],
     },
     {
-      title: 'Backend Engineer — Node.js / Python', dept: 'Technology', deptKey: 'tech',
+      title: 'Backend Engineer (Node.js / Python)', dept: 'Technology', deptKey: 'tech',
       type: 'Full-time', location: 'Pune / Remote', experience: '3–6 years',
-      summary: 'Design the services and APIs that power policies, payments, and claims at scale — reliable, secure, and built to handle millions of customer interactions.',
+      summary: 'Design the services and APIs that power policies, payments, and claims at scale: reliable, secure, and built to handle millions of customer interactions.',
       responsibilities: [
         'Design, build, and maintain REST APIs and microservices in Node.js and/or Python.',
         'Model data and optimise queries across SQL and NoSQL stores.',
         'Integrate with insurer and payment-gateway partners.',
-        'Own reliability — monitoring, logging, and incident response for your services.',
+        'Own reliability: monitoring, logging, and incident response for your services.',
       ],
       requirements: [
         '3+ years of backend development with Node.js or Python.',
@@ -181,9 +180,9 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
       ],
     },
     {
-      title: 'AI / ML Engineer — Sahay', dept: 'Technology', deptKey: 'tech',
+      title: 'AI / ML Engineer (Sahay)', dept: 'Technology', deptKey: 'tech',
       type: 'Full-time', location: 'Remote', experience: '3–6 years',
-      summary: 'Build Sahay, our AI advisor that helps customers understand policies in plain language — from retrieval pipelines to model evaluation and guardrails.',
+      summary: 'Build Sahay, our AI advisor that helps customers understand policies in plain language, from retrieval pipelines to model evaluation and guardrails.',
       responsibilities: [
         'Develop and ship LLM-powered features: retrieval, summarisation, and conversational guidance.',
         'Build evaluation and guardrail systems to keep advice accurate and compliant.',
@@ -198,9 +197,9 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
       ],
     },
     {
-      title: 'Product Manager — Digital Products', dept: 'Technology', deptKey: 'tech',
+      title: 'Product Manager, Digital Products', dept: 'Technology', deptKey: 'tech',
       type: 'Full-time', location: 'Mumbai', experience: '4–8 years',
-      summary: 'Drive the roadmap for our digital purchase and servicing journeys — turning customer pain points into clear, measurable product bets.',
+      summary: 'Drive the roadmap for our digital purchase and servicing journeys, turning customer pain points into clear, measurable product bets.',
       responsibilities: [
         'Own the roadmap and discovery for one or more customer journeys.',
         'Translate research and data into crisp requirements and success metrics.',
@@ -215,19 +214,19 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
       ],
     },
     {
-      title: 'Insurance Advisor — Health & Life', dept: 'Advisory', deptKey: 'advisory',
+      title: 'Insurance Advisor, Health & Life', dept: 'Advisory', deptKey: 'advisory',
       type: 'Full-time', location: 'Pan-India', experience: '1–4 years',
-      summary: 'Be the trusted voice on the other end of the call — helping families choose the right health and life cover with honesty and zero pressure.',
+      summary: 'Be the trusted voice on the other end of the call, helping families choose the right health and life cover with honesty and zero pressure.',
       responsibilities: [
         'Understand each customer\u2019s needs and recommend suitable health/life products.',
-        'Explain options in plain language — coverage, exclusions, and claims.',
+        'Explain options in plain language: coverage, exclusions, and claims.',
         'Guide customers through application and onboarding.',
         'Maintain long-term relationships built on trust, not pushy sales.',
       ],
       requirements: [
         '1+ year in insurance, financial services, or customer advisory (freshers with aptitude welcome).',
         'Excellent communication in English and at least one regional language.',
-        'IRDAI certification (or willingness to certify — we support this).',
+        'IRDAI certification (or willingness to certify, which we support).',
         'Genuine customer-first attitude.',
       ],
     },
@@ -251,7 +250,7 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       title: 'Claims Relationship Manager', dept: 'Advisory', deptKey: 'advisory',
       type: 'Full-time', location: 'Bengaluru', experience: '2–5 years',
-      summary: 'Stand beside customers at their hardest moment — owning claims end to end so families get what they\u2019re owed, quickly and with dignity.',
+      summary: 'Stand beside customers at their hardest moment, owning claims end to end so families get what they\u2019re owed, quickly and with dignity.',
       responsibilities: [
         'Own claims cases from intimation to settlement.',
         'Coordinate between customers, hospitals, and insurer claims teams.',
@@ -266,7 +265,7 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
       ],
     },
     {
-      title: 'Content Strategist — Insurance Education', dept: 'Marketing', deptKey: 'marketing',
+      title: 'Content Strategist, Insurance Education', dept: 'Marketing', deptKey: 'marketing',
       type: 'Full-time', location: 'Remote', experience: '3–6 years',
       summary: 'Make insurance make sense. Plan and create content that demystifies policies and helps lakhs of Indians make confident decisions.',
       responsibilities: [
@@ -285,7 +284,7 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       title: 'Performance Marketing Manager', dept: 'Marketing', deptKey: 'marketing',
       type: 'Full-time', location: 'Mumbai', experience: '3–6 years',
-      summary: 'Own paid acquisition end to end — turn budget into qualified leads across Google, Meta, and beyond, with a relentless focus on cost per quality lead.',
+      summary: 'Own paid acquisition end to end. Turn budget into qualified leads across Google, Meta, and beyond, with a relentless focus on cost per quality lead.',
       responsibilities: [
         'Plan, run, and optimise paid campaigns across search and social.',
         'Own budgets, targets, and reporting for lead generation.',
@@ -302,7 +301,7 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       title: 'Policy Operations Executive', dept: 'Operations', deptKey: 'ops',
       type: 'Full-time', location: 'Pune', experience: '0–3 years',
-      summary: 'Keep the engine running — process policies accurately and on time so every customer\u2019s cover is exactly what they were promised.',
+      summary: 'Keep the engine running. Process policies accurately and on time so every customer\u2019s cover is exactly what they were promised.',
       responsibilities: [
         'Process new policies, renewals, and endorsements accurately.',
         'Coordinate with insurers and resolve discrepancies.',
@@ -392,6 +391,7 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
     experience: ['', Validators.required],
     currentDesignation: ['', Validators.required],
     resume: ['', Validators.required],
+    consent: [false, Validators.requiredTrue],
   });
 
   /** True only once a control is invalid AND the user has interacted with it. */
@@ -531,7 +531,7 @@ export class CareersComponent implements OnInit, AfterViewInit, OnDestroy {
       FromEmail: this.configService.careersFromEmail,
       ToEmail: this.configService.careersToEmail,
       CCEmail: '', // <-- add your email here
-      Subject: `New Job Application: ${roleTitle} — ${dto.Name}`,
+      Subject: `New Job Application: ${roleTitle} (${dto.Name})`,
       HTMLBody: this.buildRecruitmentHtml(dto, roleTitle),
       AttachmentFilePath: null,   // attaches the uploaded resume
       ReplyEmailId: dto.EmailId,

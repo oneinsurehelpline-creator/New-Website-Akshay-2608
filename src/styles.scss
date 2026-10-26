@@ -440,3 +440,17 @@ h6 {
         font-weight: 600;
     }
 }
+/* Phones: leave room for the sticky Call / WhatsApp / Book bar (app-mobile-bar) */
+@media (max-width: 768px) {
+    body {
+        padding-bottom: calc(64px + env(safe-area-inset-bottom));
+    }
+}
+
+/* Phone menu open: keep the bottom bar and floating chat buttons out of the way */
+body.menu-open app-mobile-bar,
+body.menu-open .kb-fab,
+body.menu-open .sahay-fab,
+body.menu-open app-plan-nudge {
+    display: none !important;
+}
