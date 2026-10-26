@@ -362,7 +362,7 @@
 
   .nav__inner {
     flex-wrap: wrap;
-    padding-top: 24px;
+    padding-top: 32px;
     padding-bottom: 6px;
     gap: 0;
     row-gap: 0;
@@ -536,6 +536,10 @@
 }
 
 @media (max-width: 768px) {
+  .nav__brand img {
+    width: 120px;
+  }
+
   .header_strip {
     font-size: 10px;
   }
@@ -624,6 +628,7 @@
 /* Phone menu: scroll the whole open panel so the bottom actions are always reachable */
 @media (max-width: 1024px) {
   .nav.open {
+    height: auto;
     max-height: 100vh;
     max-height: 100dvh;
     overflow-y: auto;
@@ -645,6 +650,14 @@
 @media (max-width: 1024px) {
   .mega__foot--calc {
     display: block;
-    margin: 12px 0 0;
+    margin: 0 0 0;
+  }
+}
+
+/* .nav is a wrapping flex box; with a fixed 80px height the leftover space was being
+   spread between its lines (nudging the logo row ~3px) and vanished when the menu opened. */
+@media (max-width: 1024px) {
+  .nav {
+    align-content: flex-start;
   }
 }

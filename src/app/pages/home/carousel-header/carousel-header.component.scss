@@ -3129,6 +3129,11 @@ select.txt-input {
 @media (max-width: 767px) {
     .hero__trustline--stack span {
         display: block;
+        font-size: 14px;
+        font-weight: 400;
+        text-align: start;
+        margin-top: 8px;
+        color: var(--g600);
     }
  
 }
