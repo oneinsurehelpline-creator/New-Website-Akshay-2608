@@ -50,10 +50,12 @@
                             <img alt="OneInsure" data-first-enter-image="true" fetchpriority="high"
                                 src="assets/images/carousel/mascot-welcome.png" />
                         </div>
-                        <a class="orb b1" href="https://ai.oneinsure.com/" target="_blank" rel="noopener noreferrer"><span class="bullet"><img alt=""
+                        <a class="orb b1" href="https://ai.oneinsure.com/" target="_blank"
+                            rel="noopener noreferrer"><span class="bullet"><img alt=""
                                     src="assets/images/icons/knowledgebase/basics.png"></span><span>Understand
                                 coverage</span></a>
-                        <a class="orb b2" href="https://schedule.oneinsure.com/book/get-expert-guidance-web" appScheduleLink><span class="bullet"><img alt=""
+                        <a class="orb b2" href="https://schedule.oneinsure.com/book/get-expert-guidance-web"
+                            appScheduleLink><span class="bullet"><img alt=""
                                     src="assets/images/icons/calculators/guaranteed-return.png"></span><span>Compare
                                 plans</span></a>
                         <a class="orb b3" routerLink="/service-support"><span class="bullet"><img alt=""
@@ -74,13 +76,15 @@
                     <div class="hero__copy">
 
                         <h2 class="headline">
-                            <span class="hl-fixed d-flex align-items-end justify-content-md-start justify-content-center">
+                            <span
+                                class="hl-fixed d-flex align-items-end justify-content-md-start justify-content-center">
                                 <span class="one">One</span> <span class="place">place</span>
                                 <span class="hero__eyebrow ms-3"><span class="dot"></span>Live</span>
                             </span>
                             <span class="hl-dynamic">for answers, whenever you want</span>
                         </h2>
-                        <p class="hero__sub">OneInsure AI answers instantly, in plain English. A human picks up when you need
+                        <p class="hero__sub">OneInsure AI answers instantly, in plain English. A human picks up when you
+                            need
                             one.</p>
                         <div class="hero__cta">
                             <a class="btn btn--blue btn--big" href="https://ai.oneinsure.com/" target="_blank"
@@ -91,8 +95,8 @@
                                 </svg>
                             </a>
                         </div>
-                        <p class="hero__trustline">IRDAI licensed broker &middot; {{ companyAge }} years &middot; 5L+
-                            policies issued</p>
+
+                        <p class="hero__trustline hero__trustline--stack"><span>&middot; IRDAI Licensed Broker</span><span>&middot; {{ companyAge }} Years</span><span>&middot; 5L+ Policies Issued</span></p>
                     </div>
                     <div aria-hidden="true" class="hv">
                         <div class="hv__halo"></div>
@@ -143,18 +147,19 @@
                             <span class="hl-fixed"><span class="one">One</span> <span class="place">place</span></span>
                             <span class="hl-dynamic">to understand insurance, simply</span>
                         </h2>
-                        <p class="hero__sub">Real questions, real answers, no pitch attached. That's how {{ socialFollowing }} people
+                        <p class="hero__sub">Real questions, real answers, no pitch attached. That's how {{
+                            socialFollowing }} people
                             follow us.</p>
                         <div class="hero__cta">
-                            <a class="btn btn--blue btn--big" href="https://chat.whatsapp.com/GmbKYRUdBN9CnBFoSZBnWy" target="_blank"
-                                rel="noopener noreferrer">Join the community
+                            <a class="btn btn--blue btn--big" href="https://chat.whatsapp.com/GmbKYRUdBN9CnBFoSZBnWy"
+                                target="_blank" rel="noopener noreferrer">Join the community
                                 <svg fill="none" height="14" viewBox="0 0 14 14" width="14">
                                     <path d="M1 7h12m0 0L8 2m5 5l-5 5" stroke="currentColor" stroke-linecap="round"
                                         stroke-linejoin="round" stroke-width="2"></path>
                                 </svg>
                             </a>
                         </div>
-                        <p class="hero__trustline">IRDAI licensed broker &middot; {{ companyAge }} years &middot; 5L+
+                        <p class="hero__trustline d-sm-block d-none">IRDAI licensed broker &middot; {{ companyAge }} years &middot; 5L+
                             policies issued</p>
                         <div class="community-proof">
                             <a class="scard" href="https://www.instagram.com/getoneinsure/" rel="noopener noreferrer"
@@ -229,8 +234,8 @@
                                 </svg></span>
                             <span class="sfloat__txt"><strong>672K</strong><small>Instagram</small></span>
                         </a>
-                        <a class="sfloat sf2" href="https://www.facebook.com/OneInsureOfficial" rel="noopener noreferrer"
-                            target="_blank" aria-label="Facebook, 568K followers">
+                        <a class="sfloat sf2" href="https://www.facebook.com/OneInsureOfficial"
+                            rel="noopener noreferrer" target="_blank" aria-label="Facebook, 568K followers">
                             <span class="sfloat__ic fb"><svg fill="#fff" height="16" viewBox="0 0 24 24" width="16">
                                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                                 </svg></span>
@@ -320,28 +325,28 @@
     <div class="deck__strip">
         <div class="hero__strip-grid" style="position:relative;z-index:1;">
             <div class="hs">
-                <div class="hs__num" [attr.data-count]="Policy_Issued" data-suffix="+"><span
-                        class="num-main">{{ fmt(Policy_Issued) }}</span><span class="u"><em>+</em></span></div>
+                <div class="hs__num" [attr.data-count]="Policy_Issued" data-suffix="+"><span class="num-main">{{
+                        fmt(Policy_Issued) }}</span><span class="u"><em>+</em></span></div>
                 <div class="hs__lbl">Policies Issued</div>
             </div>
             <div class="hs">
-                <div class="hs__num" [attr.data-count]="companyAge" data-suffix="+"><span class="num-main">{{ companyAge }}</span><span
-                        class="u">+</span></div>
+                <div class="hs__num" [attr.data-count]="companyAge" data-suffix="+"><span class="num-main">{{ companyAge
+                        }}</span><span class="u">+</span></div>
                 <div class="hs__lbl">Years of Expertise</div>
             </div>
             <div class="hs">
-                <div class="hs__num" [attr.data-count]="Managers" data-suffix="+"><span class="num-main">{{ fmt(Managers) }}</span><span
-                        class="u">+</span></div>
+                <div class="hs__num" [attr.data-count]="Managers" data-suffix="+"><span class="num-main">{{
+                        fmt(Managers) }}</span><span class="u">+</span></div>
                 <div class="hs__lbl">Advisors &amp; Service Managers</div>
             </div>
             <div class="hs">
-                <div class="hs__num" [attr.data-count]="Branches" data-suffix="+"><span class="num-main">{{ fmt(Branches) }}</span><span
-                        class="u">+</span></div>
+                <div class="hs__num" [attr.data-count]="Branches" data-suffix="+"><span class="num-main">{{
+                        fmt(Branches) }}</span><span class="u">+</span></div>
                 <div class="hs__lbl">Branches across {{ cityCount }} cities</div>
             </div>
             <div class="hs">
-                <div class="hs__num" [attr.data-count]="Employees" data-suffix="+"><span class="num-main">{{ fmt(Employees) }}</span><span
-                        class="u">+</span></div>
+                <div class="hs__num" [attr.data-count]="Employees" data-suffix="+"><span class="num-main">{{
+                        fmt(Employees) }}</span><span class="u">+</span></div>
                 <div class="hs__lbl">Employees across India</div>
             </div>
 

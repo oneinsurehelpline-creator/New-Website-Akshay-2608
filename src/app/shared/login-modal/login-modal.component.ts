@@ -175,9 +175,10 @@ export class LoginModalComponent implements OnDestroy {
 
           this.authService.setAuthenticatedUser(this.mobile);
 
+          const target = this.svc.redirectTo;
           this.close();
 
-          this.router.navigate(['/my-account']).then((navigated) => {
+          this.router.navigate(target).then((navigated) => {
             console.log('Navigation successful:', navigated);
           }); 
         } else {
