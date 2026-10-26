@@ -27,7 +27,7 @@ export class LeadService {
   constructor(private http: HttpClient, private configService: ConfigService) {
     this.jsonUrl = this.configService.baseUrl;
   }
-
+  userId: number | string | null = null;
   submit(payload: Lead): Observable<unknown> {
     return this.http.post(this.jsonUrl, payload);
   }
@@ -76,4 +76,44 @@ export class LeadService {
     let header = new HttpHeaders();
     return this.http.post(this.jsonUrl + "OneinsureApi/InvestmentPlanDetails", cdto, { 'headers': header })
   }
-}
+  generateOtp(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/generate-otp", cdto, { 'headers': header })
+  }
+  verifyOtp(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/verifyOtp", cdto, { 'headers': header })
+  }
+  getInfo(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/getInfo", cdto, { 'headers': header })
+  }
+  customerClaimsList(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/customerClaimsList", cdto, { 'headers': header })
+  }
+  healthClaims(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/healthClaims", cdto, { 'headers': header })
+  }
+  motorClaims(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/motorClaims", cdto, { 'headers': header })
+  }
+  lifeClaims(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/lifeClaims", cdto, { 'headers': header })
+  }
+  getpolicies(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/getpolicies", cdto, { 'headers': header })
+  }
+  getPolicyDetails(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/getPolicyDetails", cdto, { 'headers': header })
+  }
+    registerUser(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post(this.jsonUrl + "OneinsureApi/registerUser", cdto, { 'headers': header })
+  }
+} 

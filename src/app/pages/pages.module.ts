@@ -27,6 +27,9 @@ import { FireinsuranceComponent } from './fireinsurance/fireinsurance.component'
 import { CorporateinsuranceComponent } from './corporateinsurance/corporateinsurance.component';
 import { EmployeremployeeinsuranceComponent } from './employeremployeeinsurance/employeremployeeinsurance.component';
 import { TermsconditionsComponent } from './termsconditions/termsconditions.component';
+import { MyaccountComponent } from './myaccount/myaccount.component';
+import { AccountPoliciesComponent } from './myaccount/account-policies/account-policies.component';
+import { AccountClaimsComponent } from './myaccount/account-claims/account-claims.component';
 import { ServicesupportComponent } from './servicesupport/servicesupport.component';
 import { GrievanceredressalComponent } from './grievanceredressal/grievanceredressal.component';
 import { CalculatorspageComponent } from './calculatorspage/calculatorspage.component';
@@ -58,6 +61,9 @@ import { CalculatorspageComponent } from './calculatorspage/calculatorspage.comp
     CorporateinsuranceComponent,
     EmployeremployeeinsuranceComponent,
     TermsconditionsComponent,
+    MyaccountComponent,
+    AccountPoliciesComponent,
+    AccountClaimsComponent,
     ServicesupportComponent,
     GrievanceredressalComponent,
     CalculatorspageComponent,

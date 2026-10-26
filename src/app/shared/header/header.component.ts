@@ -1,5 +1,8 @@
 import { PHONE_DISPLAY, PHONE_TEL } from '../site-facts';
 import { Component, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginModalService } from '../login-modal/login-modal.service';
+import { AuthService } from '../../services/auth.service';
 
 interface MegaItem {
   label: string;
@@ -29,6 +32,26 @@ export class HeaderComponent {
   mobileOpen = false;
   megaOpen = false;
   private megaTimer: ReturnType<typeof setTimeout> | undefined;
+
+  constructor(
+    private loginModal: LoginModalService,
+    private auth: AuthService,
+    private router: Router
+  ) {}
+
+  get isLoggedIn(): boolean {
+    return this.auth.isLoggedIn;
+  }
+
+  /** Logged in → go to My Account; otherwise open the login popup. */
+  openLogin(): void {
+    this.closeMenus();
+    if (this.isLoggedIn) {
+      this.router.navigate(['/my-account']);
+    } else {
+      this.loginModal.open();
+    }
+  }
 
   /** Products mega-menu — edit here to add/rename products. */
   productGroups: MegaGroup[] = [

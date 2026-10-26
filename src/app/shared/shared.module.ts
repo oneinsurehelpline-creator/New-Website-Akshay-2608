@@ -9,6 +9,7 @@ import { BranchComponent } from './branch/branch.component';
 import { VideoModalComponent } from './video-modal/video-modal.component';
 import { ScheduleModalComponent } from './schedule-modal/schedule-modal.component';
 import { ScheduleCtaDirective } from './schedule-modal/schedule-cta.directive';
+import { LoginModalComponent } from './login-modal/login-modal.component'; 
 import { PlanNudgeComponent } from './plan-nudge/plan-nudge.component';
 import { RegDisclaimerComponent } from './reg-disclaimer/reg-disclaimer.component';
 import { ConsentComponent } from './consent/consent.component';
@@ -27,6 +28,7 @@ import { ProductMarqueeComponent } from './product-marquee/product-marquee.compo
     VideoModalComponent,
     ScheduleModalComponent,
     ScheduleCtaDirective,
+    LoginModalComponent, 
     PlanNudgeComponent,
     RegDisclaimerComponent,
     ConsentComponent,
@@ -47,6 +49,7 @@ import { ProductMarqueeComponent } from './product-marquee/product-marquee.compo
     VideoModalComponent,
     ScheduleModalComponent,
     ScheduleCtaDirective,
+    LoginModalComponent,
     PlanNudgeComponent,
     RegDisclaimerComponent,
     ConsentComponent,

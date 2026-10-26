@@ -141,6 +141,10 @@
   gap: 18px;
 }
 
+.nav__login {
+  cursor: pointer;
+}
+
 .wa-link {
   display: inline-flex;
   align-items: center;
@@ -308,7 +312,8 @@
     display: none;
   }
 
-  .btn.btn--blue {
+  .btn.btn--blue,
+  .btn.nav__login {
     padding: 10px 16px;
     font-size: 12.5px;
   }
