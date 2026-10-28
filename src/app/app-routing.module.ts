@@ -36,7 +36,7 @@ export function oldServiceMatcher(segments: UrlSegment[]): UrlMatchResult | null
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'about-us', component: AboutusComponent },
+  // { path: 'about-us', component: AboutusComponent },
   { path: 'health-insurance-plans', component: HealthinsuranceComponent },
   { path: 'term-life-insurance', component: TerminsuranceComponent },
   { path: 'motor-insurance', component: MotorinsuranceComponent },

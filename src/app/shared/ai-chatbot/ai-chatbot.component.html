@@ -1,0 +1,43 @@
+<section class="aic-panel" [class.is-open]="open" role="dialog"
+  aria-label="OneInsure AI Assistant" [attr.aria-hidden]="!open">
+  <header class="aic-head">
+    <span class="aic-avatar" aria-hidden="true">
+      <img src="assets/images/carousel/mascot-avatar.png" alt="" width="36" height="36">
+    </span>
+    <div class="aic-titles">
+      <strong>{{ cfg.title }}</strong>
+      <small>{{ cfg.subtitle }}</small>
+    </div>
+    <button type="button" class="aic-iconbtn aic-min" (click)="minimize()"
+      aria-label="Minimize chat" [attr.tabindex]="open ? 0 : -1">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14"/></svg>
+    </button>
+    <button #closeBtn type="button" class="aic-iconbtn" (click)="close()" aria-label="Close chat"
+      [attr.tabindex]="open ? 0 : -1">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </header>
+
+  <div class="aic-body">
+    <iframe *ngIf="activated" [src]="safeUrl" [title]="cfg.title" class="aic-frame"
+      allow="microphone; clipboard-write" referrerpolicy="strict-origin-when-cross-origin"
+      (load)="onLoaded()"></iframe>
+
+    <div class="aic-state" *ngIf="loading" role="status">
+      <span class="aic-spinner"></span>
+      <p>Connecting to OneInsure AI…</p>
+    </div>
+
+    <div class="aic-state" *ngIf="failed" role="alert">
+      <p><strong>The assistant could not be loaded.</strong><br>Please check your connection and try again.</p>
+      <button type="button" class="aic-retry" (click)="retry()">Retry</button>
+    </div>
+  </div>
+</section>
+
+<button #launcher type="button" class="aic-launcher" [class.is-open]="open" [hidden]="open" (click)="toggle()"
+  [attr.aria-label]="cfg.tooltip" [attr.title]="cfg.tooltip" [attr.aria-expanded]="open">
+  <span class="aic-mascot"><img src="assets/images/carousel/mascot-avatar.png" alt="" width="64" height="64"></span>
+  <span class="aic-label">{{ cfg.label }}</span>
+  <span class="aic-dot" *ngIf="unseen && !open" aria-hidden="true"></span>
+</button>

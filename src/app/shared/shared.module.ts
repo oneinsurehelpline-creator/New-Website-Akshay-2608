@@ -14,6 +14,7 @@ import { PlanNudgeComponent } from './plan-nudge/plan-nudge.component';
 import { RegDisclaimerComponent } from './reg-disclaimer/reg-disclaimer.component';
 import { ConsentComponent } from './consent/consent.component';
 import { MobileBarComponent } from './mobile-bar/mobile-bar.component';
+import { AiChatbotComponent } from './ai-chatbot/ai-chatbot.component';
 import { CalculatorsComponent } from './calculators/calculators.component';
 import { ProductMarqueeComponent } from './product-marquee/product-marquee.component';
 
@@ -33,6 +34,7 @@ import { ProductMarqueeComponent } from './product-marquee/product-marquee.compo
     RegDisclaimerComponent,
     ConsentComponent,
     MobileBarComponent,
+    AiChatbotComponent,
     CalculatorsComponent,
     ProductMarqueeComponent
   ],
@@ -54,6 +56,7 @@ import { ProductMarqueeComponent } from './product-marquee/product-marquee.compo
     RegDisclaimerComponent,
     ConsentComponent,
     MobileBarComponent,
+    AiChatbotComponent,
     CalculatorsComponent,
     ProductMarqueeComponent
   ]
