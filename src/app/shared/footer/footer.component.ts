@@ -54,7 +54,7 @@ export class FooterComponent {
         { label: 'Calculators', route: '/calculators' },
         // { label: 'Knowledge base', route: '/knowledge-base' },
         { label: 'Grievance Redressal', route: '/grievance-redressal' },
-        { label: 'Contact us', href: 'https://schedule.oneinsure.com/book/get-expert-guidance-web' },
+        { label: 'Contact Us', href: 'https://schedule.oneinsure.com/book/get-expert-guidance-web' },
       ],
     },
     {
@@ -68,10 +68,10 @@ export class FooterComponent {
       ],
     },
     {
-      title: 'Talk to us',
+      title: 'Talk to Us',
       links: [
         { label: '+91 86559 86559', href: 'tel:+918655986559' },
-        { label: 'WhatsApp us', href: 'https://wa.me/918655986559' },
+        { label: 'WhatsApp Us', href: 'https://wa.me/918655986559' },
         { label: 'support@oneinsure.com', href: 'mailto:support@oneinsure.com' },
         { label: 'Find a branch', route: '/branch-locator' },
       ],
