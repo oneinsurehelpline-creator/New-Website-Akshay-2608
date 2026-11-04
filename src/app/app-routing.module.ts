@@ -28,6 +28,7 @@ import { authGuard } from './services/auth.guard';
 import { ServicesupportComponent } from './pages/servicesupport/servicesupport.component';
 import { GrievanceredressalComponent } from './pages/grievanceredressal/grievanceredressal.component';
 import { CalculatorspageComponent } from './pages/calculatorspage/calculatorspage.component';
+import { ContactusComponent } from './pages/contactus/contactus.component';
 
 /** Old site's /service and /Service/<service>/<insurer> URLs (any case). */
 export function oldServiceMatcher(segments: UrlSegment[]): UrlMatchResult | null {
@@ -36,7 +37,7 @@ export function oldServiceMatcher(segments: UrlSegment[]): UrlMatchResult | null
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'about-us', component: AboutusComponent },
+  // { path: 'about-us', component: AboutusComponent },
   { path: 'health-insurance-plans', component: HealthinsuranceComponent },
   { path: 'term-life-insurance', component: TerminsuranceComponent },
   { path: 'motor-insurance', component: MotorinsuranceComponent },
@@ -48,6 +49,7 @@ const routes: Routes = [
   { matcher: oldServiceMatcher, redirectTo: 'service-support' },
   { path: 'grievance-redressal', component: GrievanceredressalComponent },
   { path: 'calculators', component: CalculatorspageComponent },
+  { path: 'contact-us', component: ContactusComponent },
   // OneInsure AI (ai.oneinsure.com) links here for 'Talk to an advisor': send it to the callback section.
   { path: 'assistance/talk-to-an-advisor', redirectTo: () => inject(Router).createUrlTree(['/'], { fragment: 'consult' }) },
   { path: 'partner-program', component: PartnerprogramComponent },

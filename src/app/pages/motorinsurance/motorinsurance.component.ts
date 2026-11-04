@@ -65,6 +65,8 @@ interface QuoteLink {
   features: string[];
   cta: string;
   url: string;
+  /** Open the schedule-a-call modal instead of navigating to `url`. */
+  schedule?: boolean;
 }
 
 interface VideoItem {
@@ -274,7 +276,9 @@ export class MotorinsuranceComponent implements AfterViewInit, OnDestroy {
         'Fast claims support to keep vehicles on the road',
       ],
       cta: 'View commercial quotes',
-      url: 'https://online.oneinsure.com/commercial-vehicle-insurance/?_ga=2.184066214.1847325676.1785406708-940937582.1774530673',
+      // TODO: restore the commercial quote link (https://online.oneinsure.com/commercial-vehicle-insurance/) when it's ready
+      url: 'https://schedule.oneinsure.com/book/get-expert-guidance-web',
+      schedule: true,
     },
   ];
 

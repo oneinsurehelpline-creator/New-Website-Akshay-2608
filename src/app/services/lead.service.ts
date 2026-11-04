@@ -116,4 +116,7 @@ export class LeadService {
     let header = new HttpHeaders();
     return this.http.post(this.jsonUrl + "OneinsureApi/registerUser", cdto, { 'headers': header })
   }
+  getbranchAddress(): Observable<any> {
+    return this.http.get(this.jsonUrl + "OneinsureApi/branchAddress")
+  }
 } 
