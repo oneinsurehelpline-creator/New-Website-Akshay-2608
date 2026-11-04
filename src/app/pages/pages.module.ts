@@ -33,6 +33,7 @@ import { AccountClaimsComponent } from './myaccount/account-claims/account-claim
 import { ServicesupportComponent } from './servicesupport/servicesupport.component';
 import { GrievanceredressalComponent } from './grievanceredressal/grievanceredressal.component';
 import { CalculatorspageComponent } from './calculatorspage/calculatorspage.component';
+import { ContactusComponent } from './contactus/contactus.component';
 
 
 
@@ -67,6 +68,7 @@ import { CalculatorspageComponent } from './calculatorspage/calculatorspage.comp
     ServicesupportComponent,
     GrievanceredressalComponent,
     CalculatorspageComponent,
+    ContactusComponent,
   ],
   imports: [
     CommonModule,
