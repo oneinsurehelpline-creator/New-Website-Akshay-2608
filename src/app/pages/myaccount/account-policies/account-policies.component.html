@@ -173,8 +173,8 @@
                 </div>
             </div>
 
-            <a class="dhead__dl" [attr.href]="detailPolicyCopyUrl || null" target="_blank" rel="noopener"
-                [class.is-disabled]="!detailPolicyCopyUrl">
+            <a class="dhead__dl" (click)="getPolicyDoc(policyDetails?.Policyidd)" target="_blank" rel="noopener"
+                >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                     stroke-linejoin="round" aria-hidden="true">
                     <path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M4.5 17v2.5h15V17" />

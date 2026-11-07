@@ -452,4 +452,17 @@ export class AccountPoliciesComponent implements OnInit {
     document.body.removeChild(link);
   }
 
+
+  getPolicyDoc(policyId: string) {
+    var cdto = {
+      "policyId": policyId
+    }
+    this.leadService.PolicyDocs(cdto).subscribe((response: any) => {
+      console.log('Policy Docs:', response);
+      window.open(response[0].Filepath, '_blank', 'noopener');
+    }, (error) => {
+      console.error('Error fetching policy docs:', error);
+    });
+  }
+
 }
