@@ -255,7 +255,8 @@
 
 /* ============ WHAT IS A ULIP ============ */
 .why {
-    background: linear-gradient(180deg, #fff 0%, var(--neutral) 100%);
+    // background: linear-gradient(180deg, #fff 0%, var(--neutral) 100%);
+    background: var(--neutral);
 }
 
 .why__copy {
