@@ -8,6 +8,7 @@ import {
 } from './account-policies.model';
 import { LeadService } from 'src/app/services/lead.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { UtilityService } from 'src/app/services/utility.service';
 
 @Component({
   selector: 'app-account-policies',
@@ -44,6 +45,7 @@ export class AccountPoliciesComponent implements OnInit {
     @Inject(PLATFORM_ID) platformId: object,
     private leadService: LeadService,
     private auth: AuthService,
+    private utility: UtilityService
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
@@ -461,6 +463,7 @@ export class AccountPoliciesComponent implements OnInit {
       console.log('Policy Docs:', response);
       window.open(response[0].Filepath, '_blank', 'noopener');
     }, (error) => {
+      this.utility.error('Error', 'Policy document not available.');
       console.error('Error fetching policy docs:', error);
     });
   }
