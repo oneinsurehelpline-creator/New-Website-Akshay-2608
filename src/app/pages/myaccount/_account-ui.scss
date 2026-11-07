@@ -89,6 +89,23 @@
     }
 }
 
+.empty-card--3d {
+    margin-top: 0;
+
+    .empty-card__art {
+        width: 150px;
+        height: 132px;
+        filter: drop-shadow(0 10px 14px rgba(19, 99, 223, .18));
+    }
+}
+
+@media (max-width: 600px) {
+    .empty-card--3d {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
 .empty-card__text {
     flex: 1;
 
@@ -103,6 +120,36 @@
         color: var(--g600);
         margin: 0;
         max-width: 380px;
+    }
+}
+
+/* ============ LOADER ============ */
+.loader-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 22px;
+    padding: 48px 20px;
+    border-radius: 20px;
+    background: #fff;
+    font: 600 14.5px/1.4 var(--sans);
+    color: var(--g600);
+}
+
+.spinner {
+    width: 38px;
+    height: 38px;
+    border: 4px solid #E3EDFD;
+    border-top-color: #1363DF;
+    border-radius: 50%;
+    animation: acct-spin .8s linear infinite;
+}
+
+@keyframes acct-spin {
+    to {
+        transform: rotate(360deg);
     }
 }
 

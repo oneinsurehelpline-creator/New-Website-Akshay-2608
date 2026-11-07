@@ -59,7 +59,13 @@
         <main class="acct__main">
 
             <!-- Dashboard -->
-            <ng-container *ngIf="tab === 'dashboard'">
+            <div class="acct__loader" *ngIf="userLoading && (tab === 'dashboard' || tab === 'profile')"
+                role="status" aria-live="polite">
+                <span class="spinner" aria-hidden="true"></span>
+                <span>Loading your details...</span>
+            </div>
+
+            <ng-container *ngIf="tab === 'dashboard' && !userLoading">
                 <header class="acct__hello">
                     <h1>Hi, <span class="acct__name">{{ firstName }}!</span> <span class="wave">👋</span></h1>
                     <p>How have you been?</p>
@@ -92,7 +98,7 @@
                 [error]="claimsError"></app-account-claims>
 
             <!-- Profile -->
-            <ng-container *ngIf="tab === 'profile'">
+            <ng-container *ngIf="tab === 'profile' && !userLoading">
                 <header class="acct__hello">
                     <h1>Profile</h1>
                     <p>Keep your details up to date.</p>

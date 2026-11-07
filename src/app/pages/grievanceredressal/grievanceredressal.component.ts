@@ -34,7 +34,7 @@ export class GrievanceredressalComponent implements AfterViewInit, OnDestroy {
       title: 'Customer support',
       who: 'OneInsure support team',
       when: 'Start here for any complaint about our service or your policy.',
-      timeline: 'Acknowledged in 3 working days, resolved in 14',
+      timeline: 'Acknowledged in 3 working days, resolved in 7',
       contacts: [
         { label: 'Email', value: 'support@oneinsure.com', href: 'mailto:support@oneinsure.com' },
         { label: 'Call', value: '+91 86559 86559', href: 'tel:+918655986559' },
@@ -46,7 +46,7 @@ export class GrievanceredressalComponent implements AfterViewInit, OnDestroy {
       title: 'Grievance Officer',
       who: 'Ms. Rochelle Mascarenhas',
       when: 'If you\'re not satisfied with the response, or haven\'t heard back in time.',
-      timeline: 'Written reply in 15 days',
+      timeline: 'Written reply in 7 days',
       contacts: [
         { label: 'Email', value: 'rochelle.mascarenhas@oneinsure.com', href: 'mailto:rochelle.mascarenhas@oneinsure.com' },
       ],
@@ -56,7 +56,7 @@ export class GrievanceredressalComponent implements AfterViewInit, OnDestroy {
       title: 'Principal Officer',
       who: 'Mrs. Mukta Bansal',
       when: 'If the Grievance Officer\'s resolution doesn\'t settle the matter.',
-      timeline: 'Written reply in 15 days',
+      timeline: 'Written reply in 7 days',
       contacts: [
         { label: 'Email', value: 'mukta.bansal@oneinsure.com', href: 'mailto:mukta.bansal@oneinsure.com' },
       ],

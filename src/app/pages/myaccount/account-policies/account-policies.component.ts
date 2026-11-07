@@ -29,7 +29,7 @@ export class AccountPoliciesComponent implements OnInit {
   copied = false;
   detailsLoading = false;
   detailsError = false;
-  policiesLoading = false;
+  policiesLoading = true;
   userData: any;
   mobile: any;
   readonly categories: PolicyCategory[] = [
@@ -63,6 +63,7 @@ export class AccountPoliciesComponent implements OnInit {
         this.getPolicy();
       },
       error: () => {
+        this.policiesLoading = false;
         console.error('Failed to retrieve user info.');
       }
     });
@@ -276,10 +277,9 @@ export class AccountPoliciesComponent implements OnInit {
     this.category = null;
   }
 
-  toggleCategory(cat: PolicyCategory): void {
-    this.category = this.category === cat
-      ? null
-      : cat;
+  // null = "All"
+  selectCategory(cat: PolicyCategory | null): void {
+    this.category = cat;
   }
 
   // Display title on each policy card

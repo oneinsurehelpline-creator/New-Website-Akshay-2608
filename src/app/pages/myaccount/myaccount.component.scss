@@ -87,6 +87,34 @@
 }
 
 /* ============ CONTENT ============ */
+.acct__loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 70px 20px;
+    border-radius: 20px;
+    background: #fff;
+    font-weight: 600;
+    color: #5b6472;
+
+    .spinner {
+        width: 38px;
+        height: 38px;
+        border: 4px solid #E3EDFD;
+        border-top-color: #1363DF;
+        border-radius: 50%;
+        animation: acct-spin .8s linear infinite;
+    }
+}
+
+@keyframes acct-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .acct__hello {
     margin-bottom: 26px;
 
