@@ -112,9 +112,13 @@ export class LeadService {
     let header = new HttpHeaders();
     return this.http.post(this.jsonUrl + "OneinsureApi/getPolicyDetails", cdto, { 'headers': header })
   }
-    registerUser(cdto: any): Observable<any> {
+  registerUser(cdto: any): Observable<any> {
     let header = new HttpHeaders();
     return this.http.post(this.jsonUrl + "OneinsureApi/registerUser", cdto, { 'headers': header })
+  }
+  PolicyDocs(cdto: any): Observable<any> {
+    let header = new HttpHeaders();
+    return this.http.post("https://crmwebapi.oneinsure.com/api/policy/GetPolicyDocs", cdto, { 'headers': header })
   }
   getbranchAddress(): Observable<any> {
     return this.http.get(this.jsonUrl + "OneinsureApi/branchAddress")

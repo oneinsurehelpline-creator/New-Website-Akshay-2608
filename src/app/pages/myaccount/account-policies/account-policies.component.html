@@ -19,53 +19,84 @@
     </header>
 
     <!-- Initial loading -->
-    <div class="empty-card" *ngIf="policiesLoading">
-        <div class="empty-card__text">
-            <h3>Loading policies...</h3>
-            <p>Please wait while we fetch your policies.</p>
-        </div>
+    <div class="loader-card" *ngIf="policiesLoading" role="status" aria-live="polite">
+        <span class="spinner" aria-hidden="true"></span>
+        <span>Loading your policies...</span>
     </div>
 
-    <!-- No policies -->
-    <div class="empty-card" *ngIf="!policiesLoading && !stateList.length">
-        <span class="empty-card__art" aria-hidden="true">
-            <svg viewBox="0 0 64 64" fill="none">
-                <rect x="6" y="12" width="30" height="40" rx="4" stroke="#B9C0CC" stroke-dasharray="3 3"
-                    transform="rotate(-10 21 32)" />
-                <rect x="26" y="12" width="30" height="40" rx="4" stroke="#B9C0CC" stroke-dasharray="3 3"
-                    transform="rotate(10 41 32)" />
-                <rect x="16" y="10" width="32" height="44" rx="4" fill="#fff" stroke="#B9C0CC" stroke-dasharray="3 3" />
-                <circle cx="32" cy="32" r="9" fill="#E4E6E8" />
-                <path d="M32 27v10M27 32h10" stroke="#8A93A1" stroke-width="2.4" stroke-linecap="round" />
-            </svg>
-        </span>
-
-        <div class="empty-card__text">
-            <h3>
-                {{ state === 'active'
-                ? 'You don’t have any policies yet!'
-                : 'No inactive policies' }}
-            </h3>
-            <p>Buy an insurance policy to protect your family &amp; assets now</p>
-        </div>
-
-        <a class="btn btn--blue" routerLink="/my-account">Explore</a>
-    </div>
-
-    <ng-container *ngIf="!policiesLoading && stateList.length">
+    <ng-container *ngIf="!policiesLoading">
 
         <!-- Category filters -->
         <div class="chips" role="group" aria-label="Filter by category">
-            <button type="button" class="chip" *ngFor="let c of categories" [class.is-on]="category === c"
-                [attr.aria-pressed]="category === c" (click)="toggleCategory(c)">
-                {{ c }}
-
-                <svg *ngIf="category === c" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"
-                    stroke-linecap="round" aria-hidden="true">
-                    <circle cx="10" cy="10" r="7.5" />
-                    <path d="M7.5 7.5l5 5M12.5 7.5l-5 5" />
-                </svg>
+            <button type="button" class="chip" [class.is-on]="category === null"
+                [attr.aria-pressed]="category === null" (click)="selectCategory(null)">
+                All
             </button>
+            <button type="button" class="chip" *ngFor="let c of categories" [class.is-on]="category === c"
+                [attr.aria-pressed]="category === c" (click)="selectCategory(c)">
+                {{ c }}
+            </button>
+        </div>
+
+        <!-- No policies (below the filters) -->
+        <div class="empty-card empty-card--3d" *ngIf="!visible.length">
+            <span class="empty-card__art" aria-hidden="true">
+                <svg viewBox="0 0 160 140" fill="none">
+                    <defs>
+                        <linearGradient id="eBack" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#CFE0FB" />
+                            <stop offset="1" stop-color="#9DBDF2" />
+                        </linearGradient>
+                        <linearGradient id="eFront" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#FFFFFF" />
+                            <stop offset="1" stop-color="#E3EDFD" />
+                        </linearGradient>
+                        <linearGradient id="eShield" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stop-color="#4C9BFF" />
+                            <stop offset="1" stop-color="#1363DF" />
+                        </linearGradient>
+                        <radialGradient id="eShadow" cx=".5" cy=".5" r=".5">
+                            <stop offset="0" stop-color="#1363DF" stop-opacity=".28" />
+                            <stop offset="1" stop-color="#1363DF" stop-opacity="0" />
+                        </radialGradient>
+                    </defs>
+                    <ellipse cx="80" cy="128" rx="56" ry="9" fill="url(#eShadow)" />
+                    <!-- back sheet -->
+                    <rect x="30" y="22" width="68" height="92" rx="10" fill="url(#eBack)" transform="rotate(-9 64 68)" />
+                    <rect x="30" y="22" width="68" height="92" rx="10" stroke="#fff" stroke-opacity=".6"
+                        transform="rotate(-9 64 68)" />
+                    <!-- front sheet with side thickness for depth -->
+                    <rect x="52" y="20" width="70" height="94" rx="10" fill="#B7CDF3" transform="translate(4 4)" />
+                    <rect x="52" y="20" width="70" height="94" rx="10" fill="url(#eFront)" />
+                    <rect x="64" y="36" width="36" height="6" rx="3" fill="#C9D8F2" />
+                    <rect x="64" y="48" width="46" height="6" rx="3" fill="#DCE6F7" />
+                    <rect x="64" y="60" width="28" height="6" rx="3" fill="#DCE6F7" />
+                    <!-- shield badge -->
+                    <g transform="translate(96 82)">
+                        <path d="M0 -6 L26 4 V24 C26 40 15 50 0 56 C-15 50 -26 40 -26 24 V4 Z" fill="#0B3F94"
+                            opacity=".35" transform="translate(2 4) scale(.8)" />
+                        <path d="M0 -6 L26 4 V24 C26 40 15 50 0 56 C-15 50 -26 40 -26 24 V4 Z" fill="url(#eShield)"
+                            transform="scale(.8)" />
+                        <path d="M0 -6 L26 4 V24 C26 40 15 50 0 56 Z" fill="#fff" opacity=".12" transform="scale(.8)" />
+                        <path d="M-9 20 L-2 28 L11 12" stroke="#fff" stroke-width="5" stroke-linecap="round"
+                            stroke-linejoin="round" transform="scale(.8)" />
+                    </g>
+                    <circle cx="30" cy="40" r="4" fill="#9DBDF2" opacity=".7" />
+                    <circle cx="140" cy="30" r="3" fill="#FFC857" />
+                    <circle cx="22" cy="96" r="2.5" fill="#FFC857" opacity=".8" />
+                </svg>
+            </span>
+
+            <div class="empty-card__text">
+                <h3>
+                    {{ category
+                    ? 'No ' + category + ' policies found'
+                    : (state === 'active' ? 'You don’t have any policies yet!' : 'No inactive policies') }}
+                </h3>
+                <p>Buy an insurance policy to protect your family &amp; assets now</p>
+            </div>
+
+            <a class="btn btn--blue" routerLink="/my-account">Explore</a>
         </div>
 
         <!-- Policy cards from first API -->
@@ -106,10 +137,6 @@
                 </button>
             </li>
         </ul>
-
-        <p class="plist__none" *ngIf="!visible.length">
-            No {{ category }} policies in {{ state }} status.
-        </p>
 
     </ng-container>
 </ng-container>
@@ -173,8 +200,8 @@
                 </div>
             </div>
 
-            <a class="dhead__dl" [attr.href]="detailPolicyCopyUrl || null" target="_blank" rel="noopener"
-                [class.is-disabled]="!detailPolicyCopyUrl">
+            <a class="dhead__dl" *ngIf="!detailsLoading" (click)="getPolicyDoc(policyDetails?.Policyidd)" target="_blank" rel="noopener"
+                >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                     stroke-linejoin="round" aria-hidden="true">
                     <path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M4.5 17v2.5h15V17" />
@@ -184,10 +211,10 @@
         </section>
 
         <!-- Loading details -->
-        <section class="dcard" *ngIf="detailsLoading">
-            <h3>Loading policy details...</h3>
-            <p>Please wait while we fetch the selected policy information.</p>
-        </section>
+        <div class="loader-card" *ngIf="detailsLoading" role="status" aria-live="polite">
+            <span class="spinner" aria-hidden="true"></span>
+            <span>Loading policy details...</span>
+        </div>
 
         <!-- API error -->
         <section class="dcard" *ngIf="detailsError && !detailsLoading">

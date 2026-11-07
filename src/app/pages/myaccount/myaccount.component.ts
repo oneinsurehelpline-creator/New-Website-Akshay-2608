@@ -36,6 +36,7 @@ export class MyaccountComponent implements OnInit, OnDestroy {
   profile: UserProfile;
   profileSaved = false;
   userData: any;
+  userLoading = true;
   navItems: AccountNavItem[] = [
     { key: 'dashboard', label: 'Dashboard' },
     { key: 'policies', label: 'My Policies' },
@@ -122,8 +123,10 @@ export class MyaccountComponent implements OnInit, OnDestroy {
           gender: res?.Gender || '',
           city: res?.CityName || ''
         };
+        this.userLoading = false;
       },
       error: () => {
+        this.userLoading = false;
         console.error('Failed to retrieve user info.');
       }
     });
