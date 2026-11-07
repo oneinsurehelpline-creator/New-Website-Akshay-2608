@@ -120,4 +120,7 @@ export class LeadService {
     let header = new HttpHeaders();
     return this.http.post("https://crmwebapi.oneinsure.com/api/policy/GetPolicyDocs", cdto, { 'headers': header })
   }
+  getbranchAddress(): Observable<any> {
+    return this.http.get(this.jsonUrl + "OneinsureApi/branchAddress")
+  }
 } 
