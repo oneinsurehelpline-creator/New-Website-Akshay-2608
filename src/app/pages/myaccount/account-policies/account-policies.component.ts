@@ -22,6 +22,7 @@ export class AccountPoliciesComponent implements OnInit {
 
   // Second API: selected policy details
   policyDetails: any = null;
+  PolicyMemberDetails: any = null;
 
   state: PolicyState = 'active';
   category: PolicyCategory | null = null;
@@ -196,26 +197,32 @@ export class AccountPoliciesComponent implements OnInit {
       UserID: this.userData.UserId,
       PolicyID: Number(p.id)
     };
-
+    console.log('Fetching policy details for:', p);
     this.leadService.getPolicyDetails(cdto).subscribe({
       next: (res: any) => {
-        const details = Array.isArray(res)
-          ? res[0]
-          : Array.isArray(res)
-            ? res
-            : res ?? res;
+        const rigisterdetails = res.RigisteredPolicy[0];
+        const MemberDetails = res.MemberDetails;
+        
+        if (p.category === 'Health') {
+          
+          this.PolicyMemberDetails = (MemberDetails ?? []).map(member => ({
+            ...member,
+            HealthTitles: (res.HealthPolicyCoverages ?? [])
+              .filter(coverage => String(coverage.Id) === String(member.Id))
+              .map(coverage => coverage.Title)
+          }));
+        } else if (p.category === 'Life') {
+          this.PolicyMemberDetails = MemberDetails; 
+        }
 
-        this.policyDetails = details || null;
+        console.log('Policy details retrieved:', this.PolicyMemberDetails);
         this.detailsLoading = false;
 
         if (!this.policyDetails) {
           this.detailsError = true;
         }
 
-        console.log(
-          'Selected policy details:',
-          this.policyDetails
-        );
+
       },
 
       error: (err: any) => {

@@ -28,8 +28,8 @@
 
         <!-- Category filters -->
         <div class="chips" role="group" aria-label="Filter by category">
-            <button type="button" class="chip" [class.is-on]="category === null"
-                [attr.aria-pressed]="category === null" (click)="selectCategory(null)">
+            <button type="button" class="chip" [class.is-on]="category === null" [attr.aria-pressed]="category === null"
+                (click)="selectCategory(null)">
                 All
             </button>
             <button type="button" class="chip" *ngFor="let c of categories" [class.is-on]="category === c"
@@ -62,7 +62,8 @@
                     </defs>
                     <ellipse cx="80" cy="128" rx="56" ry="9" fill="url(#eShadow)" />
                     <!-- back sheet -->
-                    <rect x="30" y="22" width="68" height="92" rx="10" fill="url(#eBack)" transform="rotate(-9 64 68)" />
+                    <rect x="30" y="22" width="68" height="92" rx="10" fill="url(#eBack)"
+                        transform="rotate(-9 64 68)" />
                     <rect x="30" y="22" width="68" height="92" rx="10" stroke="#fff" stroke-opacity=".6"
                         transform="rotate(-9 64 68)" />
                     <!-- front sheet with side thickness for depth -->
@@ -190,7 +191,7 @@
                         </div>
                         <div>
                             <dt>Policy Start Date</dt>
-                               <dd>{{ detailStartDate ?(detailStartDate | date:'dd MMM, yyyy') :'-' }}</dd>
+                            <dd>{{ detailStartDate ?(detailStartDate | date:'dd MMM, yyyy') :'-' }}</dd>
                         </div>
                         <div>
                             <dt>Policy End Date</dt>
@@ -200,8 +201,8 @@
                 </div>
             </div>
 
-            <a class="dhead__dl" *ngIf="!detailsLoading" (click)="getPolicyDoc(policyDetails?.Policyidd)" target="_blank" rel="noopener"
-                >
+            <a class="dhead__dl" *ngIf="!detailsLoading" (click)="getPolicyDoc(policyDetails?.Policyidd)"
+                target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                     stroke-linejoin="round" aria-hidden="true">
                     <path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M4.5 17v2.5h15V17" />
@@ -255,8 +256,21 @@
                     </li>
                 </ul>
 
-                <ul class="members" *ngIf="!detailVehicleName && !detailVehicleRegNo && p.insuredMembers.length">
+                <!-- <ul class="members" *ngIf="!detailVehicleName && !detailVehicleRegNo && p.insuredMembers.length">
                     <li *ngFor="let m of p.insuredMembers">{{ m }}</li>
+                </ul> -->
+                <ul class="members">
+                    <li *ngFor="let policy of PolicyMemberDetails; trackBy: trackByVendorId">
+
+                        {{ policy.FirstName }}
+                        {{ policy.Gender }}
+                        {{ policy.Age }}
+
+                        <div *ngFor="let title of policy.HealthTitles">
+                            {{ title }}
+                        </div>
+
+                    </li>
                 </ul>
 
                 <p *ngIf="!detailVehicleName && !detailVehicleRegNo && !p.insuredMembers.length">
