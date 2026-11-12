@@ -28,8 +28,8 @@
 
         <!-- Category filters -->
         <div class="chips" role="group" aria-label="Filter by category">
-            <button type="button" class="chip" [class.is-on]="category === null"
-                [attr.aria-pressed]="category === null" (click)="selectCategory(null)">
+            <button type="button" class="chip" [class.is-on]="category === null" [attr.aria-pressed]="category === null"
+                (click)="selectCategory(null)">
                 All
             </button>
             <button type="button" class="chip" *ngFor="let c of categories" [class.is-on]="category === c"
@@ -62,7 +62,8 @@
                     </defs>
                     <ellipse cx="80" cy="128" rx="56" ry="9" fill="url(#eShadow)" />
                     <!-- back sheet -->
-                    <rect x="30" y="22" width="68" height="92" rx="10" fill="url(#eBack)" transform="rotate(-9 64 68)" />
+                    <rect x="30" y="22" width="68" height="92" rx="10" fill="url(#eBack)"
+                        transform="rotate(-9 64 68)" />
                     <rect x="30" y="22" width="68" height="92" rx="10" stroke="#fff" stroke-opacity=".6"
                         transform="rotate(-9 64 68)" />
                     <!-- front sheet with side thickness for depth -->
@@ -190,7 +191,7 @@
                         </div>
                         <div>
                             <dt>Policy Start Date</dt>
-                               <dd>{{ detailStartDate ?(detailStartDate | date:'dd MMM, yyyy') :'-' }}</dd>
+                            <dd>{{ detailStartDate ?(detailStartDate | date:'dd MMM, yyyy') :'-' }}</dd>
                         </div>
                         <div>
                             <dt>Policy End Date</dt>
@@ -200,8 +201,8 @@
                 </div>
             </div>
 
-            <a class="dhead__dl" *ngIf="!detailsLoading" (click)="getPolicyDoc(policyDetails?.Policyidd)" target="_blank" rel="noopener"
-                >
+            <a class="dhead__dl" *ngIf="!detailsLoading" (click)="getPolicyDoc(policyDetails?.Policyidd)"
+                target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                     stroke-linejoin="round" aria-hidden="true">
                     <path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M4.5 17v2.5h15V17" />
@@ -255,159 +256,57 @@
                     </li>
                 </ul>
 
-                <ul class="members" *ngIf="!detailVehicleName && !detailVehicleRegNo && p.insuredMembers.length">
+                <!-- <ul class="members" *ngIf="!detailVehicleName && !detailVehicleRegNo && p.insuredMembers.length">
                     <li *ngFor="let m of p.insuredMembers">{{ m }}</li>
-                </ul>
+                </ul> -->
+                <div class="mcards" *ngIf="PolicyMemberDetails?.length">
+                    <article class="mcard" *ngFor="let policy of PolicyMemberDetails; trackBy: trackByVendorId">
 
-                <p *ngIf="!detailVehicleName && !detailVehicleRegNo && !p.insuredMembers.length">
+                        <header class="mcard__top">
+                            <h4 class="mcard__name">{{ policy.FirstName }}</h4>
+                            <dl class="mcard__meta">
+                                <div>
+                                    <dt>Age</dt>
+                                    <dd>{{ policy.Age }}</dd>
+                                </div>
+                                <div *ngIf="p.category === 'Health'">
+                                    <dt>Gender</dt>
+                                    <dd>{{ policy.Gender }}</dd>
+                                </div>
+                                <div *ngIf="p.category === 'Life'">
+                                    <dt>Nominee</dt>
+                                    <dd>{{ policy.NomineeName }}</dd>
+                                </div>
+                            </dl>
+                        </header>
+
+                        <div class="mcard__cov" *ngIf="policy.HealthTitles?.length && p.category === 'Health'">
+                            <h5 class="mcard__covtitle">Coverage &amp; Waiting period</h5>
+
+                            <ol class="tl">
+                                <li class="tl__item" *ngFor="let items of policy.HealthTitles"
+                                    [class.is-done]="+items.Status === 1">
+                                    <span class="tl__dot" aria-hidden="true">
+                                        <svg *ngIf="+items.Status === 1" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M5 12.5l4.5 4.5L19 7.5" />
+                                        </svg>
+                                    </span>
+                                    <span class="tl__text">{{ items.Title }}</span>
+                                </li>
+                            </ol>
+                        </div>
+
+                    </article>
+                </div>
+
+                <p *ngIf="!detailVehicleName && !detailVehicleRegNo && !PolicyMemberDetails?.length && !p.insuredMembers.length">
                     Insured member information is not available.
                 </p>
             </section>
 
-            <!-- Policy details -->
-            <section class="dcard d-none">
-                <div class="dcard__head">
-                    <span class="dcard__icon dcard__icon--blue" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M13.5 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4" />
-                            <path d="M13.5 3V8h5" />
-                            <path d="M13.5 3l5 5v3" />
-                            <path d="M8.5 12h4M8.5 15.5h2.5" />
-                            <circle cx="17" cy="17" r="2.2" />
-                            <path d="M17 13.3v1.5M17 19.2v1.5M20.7 17h-1.5M14.8 17h-1.5" />
-                        </svg>
-                    </span>
-
-                    <h3>Policy Details</h3>
-                </div>
-
-                <dl class="dtable">
-
-                    <div class="dtable__row">
-                        <dt>Plan Name</dt>
-                        <dd>{{ detailPlanName }}</dd>
-                    </div>
-
-                    <div class="dtable__row">
-                        <dt>Insurer</dt>
-                        <dd>{{ detailInsurer }}</dd>
-                    </div>
-
-                    <div class="dtable__row">
-                        <dt>Cover Amount</dt>
-                        <dd>{{ inr(detailCoverAmount) }}</dd>
-                    </div>
-
-                    <div class="dtable__row">
-                        <dt>Premium</dt>
-                        <dd>{{ inr(detailPremium) }}</dd>
-                    </div>
-
-                    <div class="dtable__row">
-                        <dt>Policy Number</dt>
-                        <dd class="dtable__copy">
-                            <span>{{ detailPolicyNo }}</span>
-
-                            <button type="button" (click)="copyPolicyNo(p)"
-                                [attr.aria-label]="copied ? 'Copied' : 'Copy policy number'"
-                                [title]="copied ? 'Copied!' : 'Copy'">
-
-                                <svg *ngIf="!copied" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1.8" stroke-linejoin="round">
-                                    <rect x="8" y="8" width="11.5" height="12.5" rx="2" />
-                                    <path d="M5 15.5V5.5a2 2 0 0 1 2-2h8.5" />
-                                </svg>
-
-                                <svg *ngIf="copied" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M5 12.5l4.5 4.5L19 7.5" />
-                                </svg>
-
-                            </button>
-                        </dd>
-                    </div>
-
-                    <div class="dtable__row" *ngIf="detailVehicleRegNo">
-                        <dt>Registration No</dt>
-                        <dd>{{ detailVehicleRegNo }}</dd>
-                    </div>
-
-                    <div class="dtable__row">
-                        <dt>Policy Term</dt>
-                        <dd>{{ term(p.termYears) }}</dd>
-                    </div>
-
-                    <div class="dtable__row">
-                        <dt>Policy Start Date</dt>
-                        <dd>{{ detailStartDate ?(detailStartDate | date:'dd MMM, yyyy') :'-' }}</dd>
-                    </div>
-
-                    <div class="dtable__row">
-                        <dt>Policy End Date</dt>
-                        <dd>{{detailEndDate ? (detailEndDate | date:'dd MMM, yyyy') : '-' }}</dd>
-                    </div>
-
-                    <div class="dtable__row">
-                        <dt>Proposer Name</dt>
-                        <dd>{{ p.proposer || 'Not available' }}</dd>
-                    </div>
-
-                    <div class="dtable__row">
-                        <dt>Status</dt>
-                        <dd>{{ detailStatus }}</dd>
-                    </div>
-
-                    <div class="dtable__row">
-                        <dt>Booking Date</dt>
-                        <dd>{{ detailBookingDate | date:'dd MMM, yyyy' }}</dd>
-                    </div>
-
-                    <div class="dtable__row" *ngIf="policyDetails?.SubCategoryName">
-                        <dt>Sub Category</dt>
-                        <dd>{{ policyDetails.SubCategoryName }}</dd>
-                    </div>
-
-                    <div class="dtable__row" *ngIf="policyDetails?.PayModeType">
-                        <dt>Payment Mode</dt>
-                        <dd>{{ policyDetails.PayModeType }}</dd>
-                    </div>
-
-                    <div class="dtable__row" *ngIf="policyDetails?.PremiumDueDate">
-                        <dt>Premium Due Date</dt>
-                        <dd>{{ policyDetails.PremiumDueDate | date:'dd MMM, yyyy' }}</dd>
-                    </div>
-
-                </dl>
-            </section>
-
-            <!-- Policy documents -->
-            <section class="dcard dcard--docs d-none">
-                <span class="dcard__icon dcard__icon--orange" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M12 4v10M7.5 9.5L12 14l4.5-4.5M5 19h14" />
-                    </svg>
-                </span>
-
-                <div>
-                    <h3>Policy documents</h3>
-                    <p>Get policy related documents here</p>
-
-
-                    <a class="btn btn--ghost-blue btn--sm" [class.is-disabled]="!detailPolicyCopyUrl"
-                        [attr.aria-disabled]="!detailPolicyCopyUrl" (click)="downloadPolicyCopy()">
-
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M4.5 17v2.5h15V17" />
-                        </svg>
-
-                        Policy copy
-                    </a>
-
-                </div>
-            </section>
+           
 
         </ng-container>
     </ng-container>

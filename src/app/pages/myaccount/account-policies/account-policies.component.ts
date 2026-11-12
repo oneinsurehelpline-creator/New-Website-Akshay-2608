@@ -22,6 +22,7 @@ export class AccountPoliciesComponent implements OnInit {
 
   // Second API: selected policy details
   policyDetails: any = null;
+  PolicyMemberDetails: any = null;
 
   state: PolicyState = 'active';
   category: PolicyCategory | null = null;
@@ -196,26 +197,35 @@ export class AccountPoliciesComponent implements OnInit {
       UserID: this.userData.UserId,
       PolicyID: Number(p.id)
     };
-
+    console.log('Fetching policy details for:', p);
     this.leadService.getPolicyDetails(cdto).subscribe({
       next: (res: any) => {
-        const details = Array.isArray(res)
-          ? res[0]
-          : Array.isArray(res)
-            ? res
-            : res ?? res;
+        const rigisterdetails = res?.RigisteredPolicy[0];
+        const MemberDetails = res?.MemberDetails;
+        this.policyDetails = rigisterdetails;
+        if (p.category === 'Health') {
 
-        this.policyDetails = details || null;
+          this.PolicyMemberDetails = (MemberDetails ?? []).map(member => ({
+            ...member,
+            HealthTitles: (res.HealthPolicyCoverages ?? [])
+              .filter(coverage => String(coverage.Id) === String(member.Id))
+              .map(coverage => ({
+                Title: coverage.Title,
+                Status: coverage.Status
+              }))
+          }));
+        } else if (p.category === 'Life') {
+          this.PolicyMemberDetails = MemberDetails;
+        }
+
+        console.log('Policy details retrieved:', this.PolicyMemberDetails);
         this.detailsLoading = false;
 
         if (!this.policyDetails) {
           this.detailsError = true;
         }
 
-        console.log(
-          'Selected policy details:',
-          this.policyDetails
-        );
+
       },
 
       error: (err: any) => {
@@ -461,7 +471,13 @@ export class AccountPoliciesComponent implements OnInit {
     }
     this.leadService.PolicyDocs(cdto).subscribe((response: any) => {
       console.log('Policy Docs:', response);
-      window.open(response[0].Filepath, '_blank', 'noopener');
+      const filePath = response?.[0]?.Filepath;
+      if (!filePath) {
+        this.utility.error('Error', 'Policy document not available.');
+        return;
+      }
+      const url = String(filePath).replace(/www\.oneinsure/i, 'v2.oneinsure');
+      window.open(url, '_blank', 'noopener');
     }, (error) => {
       this.utility.error('Error', 'Policy document not available.');
       console.error('Error fetching policy docs:', error);
