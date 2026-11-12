@@ -476,8 +476,7 @@ export class AccountPoliciesComponent implements OnInit {
         this.utility.error('Error', 'Policy document not available.');
         return;
       }
-      // swap the "www." host prefix for "v2." (keeps any http/https prefix)
-      const url = String(filePath).replace(/^(https?:\/\/)?www\./i, '$1v2.');
+      const url = String(filePath).replace(/www\.oneinsure/i, 'v2.oneinsure');
       window.open(url, '_blank', 'noopener');
     }, (error) => {
       this.utility.error('Error', 'Policy document not available.');
