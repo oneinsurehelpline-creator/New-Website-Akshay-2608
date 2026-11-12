@@ -209,7 +209,10 @@ export class AccountPoliciesComponent implements OnInit {
             ...member,
             HealthTitles: (res.HealthPolicyCoverages ?? [])
               .filter(coverage => String(coverage.Id) === String(member.Id))
-              .map(coverage => coverage.Title)
+              .map(coverage => ({
+                Title: coverage.Title,
+                Status: coverage.Status
+              }))
           }));
         } else if (p.category === 'Life') {
           this.PolicyMemberDetails = MemberDetails;
@@ -468,7 +471,14 @@ export class AccountPoliciesComponent implements OnInit {
     }
     this.leadService.PolicyDocs(cdto).subscribe((response: any) => {
       console.log('Policy Docs:', response);
-      window.open(response[0].Filepath, '_blank', 'noopener');
+      const filePath = response?.[0]?.Filepath;
+      if (!filePath) {
+        this.utility.error('Error', 'Policy document not available.');
+        return;
+      }
+      // swap the "www." host prefix for "v2." (keeps any http/https prefix)
+      const url = String(filePath).replace(/^(https?:\/\/)?www\./i, '$1v2.');
+      window.open(url, '_blank', 'noopener');
     }, (error) => {
       this.utility.error('Error', 'Policy document not available.');
       console.error('Error fetching policy docs:', error);
