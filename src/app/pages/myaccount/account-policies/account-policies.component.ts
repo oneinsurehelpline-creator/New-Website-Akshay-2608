@@ -200,11 +200,11 @@ export class AccountPoliciesComponent implements OnInit {
     console.log('Fetching policy details for:', p);
     this.leadService.getPolicyDetails(cdto).subscribe({
       next: (res: any) => {
-        const rigisterdetails = res.RigisteredPolicy[0];
-        const MemberDetails = res.MemberDetails;
-        
+        const rigisterdetails = res?.RigisteredPolicy[0];
+        const MemberDetails = res?.MemberDetails;
+        this.policyDetails = rigisterdetails;
         if (p.category === 'Health') {
-          
+
           this.PolicyMemberDetails = (MemberDetails ?? []).map(member => ({
             ...member,
             HealthTitles: (res.HealthPolicyCoverages ?? [])
@@ -212,7 +212,7 @@ export class AccountPoliciesComponent implements OnInit {
               .map(coverage => coverage.Title)
           }));
         } else if (p.category === 'Life') {
-          this.PolicyMemberDetails = MemberDetails; 
+          this.PolicyMemberDetails = MemberDetails;
         }
 
         console.log('Policy details retrieved:', this.PolicyMemberDetails);
