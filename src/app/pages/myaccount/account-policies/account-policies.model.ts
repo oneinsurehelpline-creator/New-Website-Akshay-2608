@@ -1,4 +1,4 @@
-export type PolicyCategory = 'Health' | 'Life' | 'Motor';
+export type PolicyCategory = 'Health' | 'Life' | 'Others';
 export type PolicyState = 'active' | 'inactive';
 
 export interface AccountPolicy {
@@ -62,7 +62,7 @@ export const SAMPLE_POLICIES: AccountPolicy[] = [
   },
   {
     id: 'p3',
-    category: 'Motor',
+    category: 'Others',
     state: 'active',
     insurer: 'Digit',
     logo: 'assets/images/insurers/Go-Digit.png',
@@ -99,7 +99,7 @@ export const SAMPLE_POLICIES: AccountPolicy[] = [
   },
   {
     id: 'p5',
-    category: 'Motor',
+    category: 'Others',
     state: 'inactive',
     insurer: 'ICICI Lombard',
     logo: 'assets/images/insurers/ICICILombard.jpg',

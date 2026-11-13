@@ -37,7 +37,7 @@ export class AccountPoliciesComponent implements OnInit {
   readonly categories: PolicyCategory[] = [
     'Health',
     'Life',
-    'Motor'
+    'Others'
   ];
 
   private isBrowser: boolean;
@@ -86,7 +86,7 @@ export class AccountPoliciesComponent implements OnInit {
           : Array.isArray(res?.data)
             ? res.data
             : [];
-
+ console.log( data);
         this.policies = data.map((item: any): AccountPolicy => {
           const policyType = String(
             item.PolicyTypeName || ''
@@ -97,8 +97,8 @@ export class AccountPoliciesComponent implements OnInit {
               ? 'Health'
               : policyType.includes('life')
                 ? 'Life'
-                : 'Motor';
-
+                : policyType as PolicyCategory; 
+          // const category: PolicyCategory = item.PolicyTypeName;
           const logoFile = item.InsurerLogo;
 
           return {
@@ -276,13 +276,25 @@ export class AccountPoliciesComponent implements OnInit {
   //     : this.stateList;
   // }
 
+  // get visible(): AccountPolicy[] {
+  //   return this.policies.filter(p =>
+  //     p.state === this.state &&
+  //     !!p.policyNo?.trim() &&
+  //     (!this.category || p.category === this.category)
+  //   );
+  // }
   get visible(): AccountPolicy[] {
-    return this.policies.filter(p =>
-      p.state === this.state &&
-      !!p.policyNo?.trim() &&
-      (!this.category || p.category === this.category)
-    );
-  }
+  return this.policies.filter(p =>
+    p.state === this.state &&
+    !!p.policyNo?.trim() &&
+    (
+      !this.category ||
+      (this.category === 'Others'
+        ? p.category !== 'Health' && p.category !== 'Life'
+        : p.category === this.category)
+    )
+  );
+}
 
   setState(state: PolicyState): void {
     this.state = state;
@@ -296,7 +308,7 @@ export class AccountPoliciesComponent implements OnInit {
 
   // Display title on each policy card
   headline(p: AccountPolicy): string {
-    if (p.category === 'Motor' && p.vehicle) {
+    if (p.category === 'Others' && p.vehicle) {
       return p.vehicle.name;
     }
 
