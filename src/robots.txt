@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+# Logged-in area, no search value
+Disallow: /my-account
+
+Sitemap: https://www.oneinsure.com/sitemap.xml
