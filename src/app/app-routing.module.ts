@@ -29,6 +29,7 @@ import { ServicesupportComponent } from './pages/servicesupport/servicesupport.c
 import { GrievanceredressalComponent } from './pages/grievanceredressal/grievanceredressal.component';
 import { CalculatorspageComponent } from './pages/calculatorspage/calculatorspage.component';
 import { ContactusComponent } from './pages/contactus/contactus.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 /** Old site's /service and /Service/<service>/<insurer> URLs (any case). */
 export function oldServiceMatcher(segments: UrlSegment[]): UrlMatchResult | null {
@@ -71,7 +72,7 @@ const routes: Routes = [
   { path: 'employer-employee-insurance', component: EmployeremployeeinsuranceComponent, data: seo('Employer-Employee Insurance: Group Benefits | OneInsure', 'Group health and benefits insurance for employers and employees with OneInsure.') },
   // Full branch-finder page. `branchPage: true` puts BranchComponent into page mode.
   { path: 'branch-locator', component: BranchComponent, data: { branchPage: true, ...seo('Branch Locator: Find a OneInsure Branch Near You', 'Find the nearest OneInsure branch and contact details.') } },
-  { path: '**', redirectTo: '' }
+  { path: '**', component: NotfoundComponent, data: seo('Page Not Found | OneInsure', 'The page you are looking for does not exist.', true) }
 ];
 
 @NgModule({

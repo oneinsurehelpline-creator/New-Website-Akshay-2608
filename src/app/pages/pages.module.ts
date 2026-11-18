@@ -34,6 +34,7 @@ import { ServicesupportComponent } from './servicesupport/servicesupport.compone
 import { GrievanceredressalComponent } from './grievanceredressal/grievanceredressal.component';
 import { CalculatorspageComponent } from './calculatorspage/calculatorspage.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 
 
@@ -69,6 +70,7 @@ import { ContactusComponent } from './contactus/contactus.component';
     GrievanceredressalComponent,
     CalculatorspageComponent,
     ContactusComponent,
+    NotfoundComponent,
   ],
   imports: [
     CommonModule,

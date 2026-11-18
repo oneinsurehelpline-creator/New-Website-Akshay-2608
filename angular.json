@@ -43,7 +43,7 @@
                 "output": "assets"
               },
               {
-                "glob": "{favicon.ico,robots.txt,sitemap.xml}",
+                "glob": "{favicon.ico,robots.txt,sitemap.xml,web.config}",
                 "input": "src",
                 "output": "/"
               }

@@ -1,0 +1,9 @@
+<main class="nf">
+  <p class="nf__code">404</p>
+  <h1>Page not found</h1>
+  <p class="nf__text">The page you are looking for does not exist or has moved.</p>
+  <a routerLink="/" class="nf__btn">Go to homepage</a>
+  <ul class="nf__links">
+    <li *ngFor="let l of links"><a [routerLink]="l.path">{{ l.label }}</a></li>
+  </ul>
+</main>
