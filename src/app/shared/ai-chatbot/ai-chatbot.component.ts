@@ -5,7 +5,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 /** Everything tweakable about the widget lives here. */
 export const AI_CHATBOT_CONFIG = {
   /** Existing production AI assistant. Its server must allow this site in CSP `frame-ancestors`. */
-  url: 'https://nonfusible-syreeta-unrepealed.ngrok-free.dev/shortchat',
+  url: 'https://ai.oneinsure.com/',
   title: 'Advisor AI',
   subtitle: 'Health, Life, Motor',
   label: 'Ask Saarth',
