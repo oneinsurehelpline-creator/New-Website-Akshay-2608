@@ -555,9 +555,10 @@
     border: 1px solid var(--line);
     border-radius: 20px;
     padding: 32px;
-    transition: transform .3s var(--ease), box-shadow .3s;
+    transition: opacity .65s var(--ease), transform .65s var(--ease), box-shadow .3s;
 
-    &:hover {
+    &.in:hover {
+        transition-delay: 0s;
         transform: translateY(-6px);
         box-shadow: 0 20px 48px -12px rgba(13, 43, 85, .12);
     }

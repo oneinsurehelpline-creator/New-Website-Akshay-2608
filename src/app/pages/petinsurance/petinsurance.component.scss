@@ -194,16 +194,17 @@
 /* ============ WHAT IT COVERS ============ */
 .plp-cover {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 14px;
     padding: 20px 22px;
     background: #fff;
     border: 1px solid var(--line);
     border-radius: 16px;
-    transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease);
+    transition: opacity .65s var(--ease), transform .65s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease);
 }
 
-.plp-cover:hover {
+.plp-cover.in:hover {
+    transition-delay: 0s;
     transform: translateY(-3px);
     border-color: rgba(0, 176, 255, .25);
     box-shadow: 0 14px 28px -12px rgba(13, 43, 85, .16);
